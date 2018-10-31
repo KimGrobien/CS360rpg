@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: 6660f80f3cf05484ba95a172082e8d50
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EgoSpriteSheet_0
+    21300002: EgoSpriteSheet_1
+    21300004: EgoSpriteSheet_2
+    21300006: EgoSpriteSheet_3
+    21300008: EgoSpriteSheet_4
+    21300010: EgoSpriteSheet_5
+    21300012: EgoSpriteSheet_6
+    21300014: EgoSpriteSheet_7
+    21300016: EgoSpriteSheet_8
+    21300018: EgoSpriteSheet_9
+    21300020: EgoSpriteSheet_10
+    21300022: EgoSpriteSheet_11
+    21300024: EgoSpriteSheet_12
+    21300026: EgoSpriteSheet_13
+    21300028: EgoSpriteSheet_14
+    21300030: EgoSpriteSheet_15
+    21300032: EgoSpriteSheet_16
+    21300034: EgoSpriteSheet_17
+    21300036: EgoSpriteSheet_18
+    21300038: EgoSpriteSheet_19
+    21300040: EgoSpriteSheet_20
+    21300042: EgoSpriteSheet_21
+    21300044: EgoSpriteSheet_22
+    21300046: EgoSpriteSheet_23
+    21300048: EgoSpriteSheet_24
+    21300050: EgoSpriteSheet_25
+    21300052: EgoSpriteSheet_26
+    21300054: EgoSpriteSheet_27
+    21300056: EgoSpriteSheet_28
+    21300058: EgoSpriteSheet_29
+    21300060: EgoSpriteSheet_30
+    21300062: EgoSpriteSheet_31
+    21300064: EgoSpriteSheet_32
+    21300066: EgoSpriteSheet_33
+    21300068: EgoSpriteSheet_34
+    21300070: EgoSpriteSheet_35
+    21300072: EgoSpriteSheet_36
+    21300074: EgoSpriteSheet_37
+    21300076: EgoSpriteSheet_38
+    21300078: EgoSpriteSheet_39
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 2
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EgoSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 211.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ec8ca7a4ad0d34c85ab01489df1e05
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 211.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fbdb0468e13c27498e578d8af9d2e00
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 211.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59a6aa045cd880479d3c2cb9e6ccfb8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 211.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c19ae8e65215d4081b7d27e837178d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 211
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cd78e42a208c64597f9e9082727890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 211
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5173c6cb87f144685017c4b07b015b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 211
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec77802ef922a04a9041c75f7a7a2ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 211
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf77ba3cc6fefd479ae9189b58f7a41
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 159.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765d82d26936e1649be7a76204e3c577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 159.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb5bc3ced77ddf4cb8437b977fa820f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 159
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269a5df68889cf34daba96da1c7bdbe3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 159
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efdf151542063a488b5b58ea1fa208e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 159
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e11cda1592fb4845a28bc3e93ee577d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 159.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ef8263880a1614bb8a67a5fadf5994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 159
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d70d8a13f60b834a9c58f84633e21f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 160
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 3, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cbdabd0e189d354ca1506cc7baa3e2e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c8496f20f18e3489d0b38bca190a6d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08771a799003974bbc51ea119d5f4dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3751e0b5b68e140bf0dbe22df35d48
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242307ec01c6cca4aa27e4ea8b5ca393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41550482ae3ce941a9ea4b4cba0faf7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 107
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db29696eba1f74c4d877a09962f91a0b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 107
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab50d091d2f56e8459d9d0774fb69b52
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59682158e2f3cea43a9735506a0b52d2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 107.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338e68f726ec28343b6165ae07298723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee1df4fff21f46f42b5fa28a7aebd2d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 55.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b3fdde4d5e5f84f9b8caa48f5da928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 55.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5020333a5e1861748aa9210de4b491f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 55
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde3b11b26cecee49ab676f8de34adb1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 55.2
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6776bfc9dbc24514eae1f494d9697eff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 54
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2261ddb3bc6364898d4e02d4ae49c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 54
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd2d332c0c2b547488a48f83f79d8c93
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 55
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6b1d4d7a2619246adc066a851086de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.2000008
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d39152e8c7da244b1bbc878b6b4453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 3.2000008
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380a2774b9042414d83c21f400f8b209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 2
+        width: 44
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec23899a0b07f04282d0f243df576c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 3.2000008
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb335bcc3052c91489607b760626fa2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EgoSpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 3.2000008
+        width: 44.444443
+        height: 52.8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c8bb9f97cd04e47aa4236b939f331e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 992219e8ecc16d749a53de1c8bbcde5b
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
