@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,6 +9,16 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 	// Use this for initialization
 	void Start () {
+		switch (sceneData.prevScene)
+        {
+            case 3://Entering town from castle
+                this.transform.position = new Vector3(-8.07f, -4.72f, 0);//Set position to path leaving castle
+                break;
+			case 4://Entering town from bounty area
+                this.transform.position = new Vector3(.36f, 6.84f, 0);//Set position to path leaving bounty
+                break;
+
+		}
 		anim = GetComponent<Animator>();
 	}
 	
