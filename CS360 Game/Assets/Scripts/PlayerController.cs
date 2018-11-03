@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		switch (sceneData.prevScene)
         {
+			case 0://Leaving title screen, initial start of game
+				this.transform.position = new Vector3(-1.57f, 1.06f, 0);//Set position to path leaving castle
+                break;
             case 3://Entering town from castle
                 this.transform.position = new Vector3(-8.07f, -4.72f, 0);//Set position to path leaving castle
                 break;

@@ -8,8 +8,8 @@ public class wall : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		if(interactable){
-			EditorUtility.DisplayDialog("Bounty Board",
-                "Interacting with Bounty Board!", "OK", "Cancel");
+			EditorUtility.DisplayDialog("Interaction",
+                "Interacting with Board!", "OK", "Cancel");
 		}
 	}
 
