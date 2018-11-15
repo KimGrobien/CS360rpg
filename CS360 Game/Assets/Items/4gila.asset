@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e1066fe516ca499022530db957a28, type: 3}
+  m_Name: 4gila
+  m_EditorClassIdentifier: 
+  itemName: gila
+  itemID: 4
+  Icon: {fileID: 21300000, guid: a5e94cfc2c167c148abdccff0f7d65fa, type: 3}
+  attack_bonus: 10
+  defense_bonus: 0
+  heal: 0

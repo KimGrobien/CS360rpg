@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e1066fe516ca499022530db957a28, type: 3}
+  m_Name: 12rock
+  m_EditorClassIdentifier: 
+  itemName: rockBounty
+  itemID: 12
+  Icon: {fileID: 21300000, guid: 4ba3cbf663b7de848bdb3778c1ee43a4, type: 3}
+  attack_bonus: 0
+  defense_bonus: 0
+  heal: 0
+  bountyPrice: 10
