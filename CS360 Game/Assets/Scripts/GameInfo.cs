@@ -19,7 +19,8 @@ public class GameInfo : MonoBehaviour
     // Christian will just generate a number between these two 
     private int AttackRangeMIN = 2;
     private int AttackRangeMAX = 17;
-    private int Attack;
+    private int PrimaryAttack;
+    private int SecondaryAttack;
 
     private int money = 0;
     private bool isAlive = true;
