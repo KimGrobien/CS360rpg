@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameInfo
+public class GameInfo : MonoBehaviour
 {
     //VeryGlobal
     public static int prevScene;
@@ -31,4 +31,20 @@ public static class GameInfo
     // Heath, Set Attack, additional Attack Range to be added to Attack, RunRange (last 7(6 to 10 ID indexes) enemy NPCs)
     private static int[,] NPCintData = new int[11, 4] { { 25, 50, 0, 1 }, { 150, 150, 35, 10 }, { 75, 25, 30, 6 }, { 35, 50, 20, 8 }, { 65, 15, 5, 5 }, { 100, 35, 10, 10 }, { 120, 25, 7, 7 }, { 250, 75, 10, 100 }, { 25, 5, 2, 3 }, { 50, 10, 10, 5 }, { 25, 3, 2, 1 } };
     public static Sprite[] NPCsprites = new Sprite[11];
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        int i = 0;
+        int j = 0;
+        for (; i < 11; i++)
+        {
+            for(j=0;j<3;j++)
+            {
+
+            }
+        }
+    }
+
 }
