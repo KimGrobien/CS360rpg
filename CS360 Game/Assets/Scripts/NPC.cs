@@ -8,9 +8,11 @@ public class NPC : MonoBehaviour {
     // May want to make some of these private or public with getters and setters
 	string primaryName;
 	string secondaryName;
+
 	int primaryAttackBNS;
 	int primaryDefenseBNS;
 	int primaryHealthBNS;
+
 	int secondaryAttackBNS;
 	int secondaryDefenseBNS;
 	int secondaryHealthBNS;
