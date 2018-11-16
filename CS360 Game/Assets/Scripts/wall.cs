@@ -9,7 +9,7 @@ public class wall : MonoBehaviour {
 	public int id;
 
 	void OnCollisionEnter2D(Collision2D other){
-		sceneData.engagingNPC = id;
+		GameInfo.currentNPC = id;
 		 SceneManager.LoadScene(5);
 		/*if(interactable){
 			EditorUtility.DisplayDialog("Interaction",
