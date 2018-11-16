@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour {
 
-	private int name;
-    // May want to make some of these private or public with getters and setters
+	public int name;
 	string primaryName;
 	string secondaryName;
-	int primaryAttackBNS;
-	int primaryDefenseBNS;
-	int primaryHealthBNS;
-	int secondaryAttackBNS;
-	int secondaryDefenseBNS;
-	int secondaryHealthBNS;
-    // Probably should add 
-    // public Sprite Image;
+	public int health;
+	public int primaryStat;
+	public int secondaryStat;
+	public int runRange;
+	public int enemyMINDamage;
+	public int enemyMAXDamage;
+
 }
