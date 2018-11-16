@@ -5,22 +5,21 @@ using TMPro;
 using UnityEngine.UI;
 
 public class EngageDialogue : MonoBehaviour {
-
-	public int NPCID;
-	Button btn;
-	Text txt;
+	TextMeshProUGUI npcName;
+	Button choice1, choice2;
+	Text txt1, txt2;
   
 	public void Start() {
-		//GameObject.Find("TestButton").GetComponentInChildren<Text>().text = "something";
+        npcName = GameObject.Find("NPC_Name").GetComponent<TextMeshProUGUI>();
+        npcName.text = "test"; //GameInfo.getName(GameInfo.currentNPC)
 		
-		btn = gameObject.GetComponent<Button>();
-		txt = btn.GetComponentInChildren<Text>();
-		txt.text = "something";
-		btn.onClick.AddListener(clicked);
+		choice1 = GameObject.Find("Choice1").GetComponent<Button>();
+        choice1.onClick.AddListener(clicked);
+		txt1 = choice1.GetComponentInChildren<Text>();
     }
 
 	public void clicked(){
-		txt.text = GameInfo.currentNPC.ToString();
+		txt1.text = GameInfo.currentNPC.ToString();
 	}
 
 }
