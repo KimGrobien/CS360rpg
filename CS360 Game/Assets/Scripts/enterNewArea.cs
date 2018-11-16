@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class enterNewArea : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other) {
-            sceneData.prevScene = SceneManager.GetActiveScene().buildIndex; 
+            GameInfo.prevScene = SceneManager.GetActiveScene().buildIndex; 
             switch (this.name)
             {
                 case "enter_start":

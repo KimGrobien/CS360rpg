@@ -5,6 +5,7 @@ using UnityEngine;
 public class sceneData : MonoBehaviour {
 
 	public static int prevScene; //Holds the last scene loaded 
+	public static int engagingNPC;
 	// Use this for initialization
 	void Start () {
 		

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class wall : MonoBehaviour {
 	public bool interactable;
+	public int id;
 
 	void OnCollisionEnter2D(Collision2D other){
-		if(interactable){
+		sceneData.engagingNPC = id;
+		 SceneManager.LoadScene(5);
+		/*if(interactable){
 			EditorUtility.DisplayDialog("Interaction",
                 "Interacting with Board!", "OK", "Cancel");
-		}
+		}*/
 	}
 
 	// Use this for initialization
