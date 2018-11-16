@@ -20,7 +20,7 @@ public class EngageDialogue : MonoBehaviour {
     }
 
 	public void clicked(){
-		txt.text = "something else";
+		txt.text = GameInfo.currentNPC.ToString();
 	}
 
 }
