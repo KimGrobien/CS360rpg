@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour {
+public class NPC{
 
 	public int name;
 	string primaryName;
