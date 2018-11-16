@@ -11,8 +11,9 @@ public class itemSlot : MonoBehaviour {
         set {
             _item = value;
 
-            if(_item == null)
+            if(!_item.owned)
             {
+                image.sprite = _item.Icon;
                 image.enabled = false;
             } else {
                 image.sprite = _item.Icon;

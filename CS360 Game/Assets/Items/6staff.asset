@@ -14,6 +14,8 @@ MonoBehaviour:
   itemName: staff
   itemID: 6
   Icon: {fileID: 21300000, guid: f78d359a6a5fad54cbaaa3333ce80871, type: 3}
+  owned: 0
   attack_bonus: 50
   defense_bonus: 0
   heal: 0
+  bountyPrice: 0

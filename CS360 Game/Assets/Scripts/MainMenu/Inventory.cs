@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controls the equipment grid, not sure what Transform itemsParent really does
 public class Inventory : MonoBehaviour {
 
     [SerializeField] List<equipment> items;
@@ -18,7 +19,7 @@ public class Inventory : MonoBehaviour {
         RefreshUI();
     }
 
-    private void RefreshUI()
+    public void RefreshUI()
     {
         int i = 0;
         for (; i < items.Count && i < itemSlots.Length; i++)
@@ -30,5 +31,12 @@ public class Inventory : MonoBehaviour {
         {
             itemSlots[i].Item = null;
         }
+    }
+
+    void OnMouseDown()
+    {
+        // this object was clicked - do something
+        items[0].ToggleOwned();
+        RefreshUI();
     }
 }

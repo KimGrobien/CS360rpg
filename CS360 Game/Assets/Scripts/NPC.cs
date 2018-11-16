@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour {
 
 	private int name;
+    // May want to make some of these private or public with getters and setters
 	string primaryName;
 	string secondaryName;
 	int primaryAttackBNS;
@@ -13,9 +14,6 @@ public class NPC : MonoBehaviour {
 	int secondaryAttackBNS;
 	int secondaryDefenseBNS;
 	int secondaryHealthBNS;
-
-	public static string getNPCPrimaryName(int NPCID){
-		return GameInformation.NPCList[NPCID].primaryName;
-	}
-
+    // Probably should add 
+    // public Sprite Image;
 }
