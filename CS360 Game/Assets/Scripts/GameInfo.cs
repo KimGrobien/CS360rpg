@@ -28,10 +28,9 @@ public class GameInfo : MonoBehaviour
     //VeryGlobal
     public static int prevScene;
     public static int currentNPC;
+    public static int bountyOwed = 1;
     
     public static NPCData[] NPCList;
-
-    
     private static string CharacterName = "Ego";
     private static equipment[] equippedItems = new equipment[3];
     private static PartySlot[] party = new PartySlot[2];
