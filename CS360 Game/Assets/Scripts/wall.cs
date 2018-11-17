@@ -7,22 +7,15 @@ using UnityEngine.SceneManagement;
 public class wall : MonoBehaviour {
 	public bool interactable;
 	public int id;
-
+	private bool touching;
 	void OnCollisionEnter2D(Collision2D other){
+		touching = true;
 		if(interactable){
 			GameInfo.currentNPC = id;
-			OnTriggerStay2D();
 		}
-		
-		/*if(interactable){
-			EditorUtility.DisplayDialog("Interaction",
-                "Interacting with Board!", "OK", "Cancel");
-		}*/
 	}
-	void OnTriggerStay2D(){
-		if(Input.GetKeyDown(KeyCode.Q)){
-			SceneManager.LoadScene("Menu");
-		}
+	void OnCollisionExit2D(){
+		touching = false;
 	}
 
 	// Use this for initialization
@@ -32,6 +25,11 @@ public class wall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(touching){
+			if(Input.GetKeyDown(KeyCode.I)){
+				GameInfo.prevScene = SceneManager.GetActiveScene().buildIndex;
+				SceneManager.LoadScene("Menu");
+			}
+		}
 	}
 }

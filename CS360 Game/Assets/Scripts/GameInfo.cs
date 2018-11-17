@@ -91,8 +91,6 @@ public class GameInfo : MonoBehaviour
         Cynthia[3].indexForOption2 = 8;
 
         DialogueTrees[0] = Cynthia;
-        Debug.Log("FINISHED SETTING");
-        Debug.Log(DialogueTrees[0]);
         DontDestroyOnLoad(this.gameObject);
 
         int i = 0;
@@ -113,7 +111,6 @@ public class GameInfo : MonoBehaviour
         return "Cynthia";
     }
     public static Node[] getDialogueTree(int index){
-        Debug.Log(index);
         return DialogueTrees[index];
     }
     //return DialogueTrees[idx]
