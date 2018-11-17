@@ -26,7 +26,7 @@ public struct Node{
 public class GameInfo : MonoBehaviour
 {
     //VeryGlobal
-    public static int prevScene;
+    public static int prevScene = -1;
     public static int currentNPC;
     public static int bountyOwed = 1;
     

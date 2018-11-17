@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,20 +10,27 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 	// Use this for initialization
 	void Start () {
-		switch (sceneData.prevScene)
-        {
-			case 0://Leaving title screen, initial start of game
-				this.transform.position = new Vector3(-1.57f, 1.06f, 0);//Set position to path leaving castle
-                break;
-            case 3://Entering town from castle
-                this.transform.position = new Vector3(-8.07f, -4.72f, 0);//Set position to path leaving castle
-                break;
-			case 4://Entering town from bounty area
-                this.transform.position = new Vector3(.36f, 6.84f, 0);//Set position to path leaving bounty
-                break;
+		if((SceneManager.GetActiveScene().name == "Castle") && (GameInfo.prevScene == 6)){
+			this.transform.position = new Vector3(-.25f, -.43f, 0);//Entering castle scene from inside castle
+		}
+		if (SceneManager.GetActiveScene().name == "Town"){
+			//Town has three entry points so we must set Ego's position in the town scene based on where he entered 
+			switch (GameInfo.prevScene)
+			{
+				case 0://Leaving title screen, initial start of game
+					this.transform.position = new Vector3(-1.57f, 1.06f, 0);//Set position to path leaving castle
+					break;
+				case 3://Entering town from castle
+					this.transform.position = new Vector3(-8.07f, -4.72f, 0);//Set position to path leaving castle
+					break;
+				case 4://Entering town from bounty area
+					this.transform.position = new Vector3(.36f, 6.84f, 0);//Set position to path leaving bounty
+					break;
 
+			}
 		}
 		anim = GetComponent<Animator>();
+		Debug.Log(this.transform.position);
 	}
 	
 	// Update is called once per frame
