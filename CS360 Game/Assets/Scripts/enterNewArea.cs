@@ -20,6 +20,12 @@ public class enterNewArea : MonoBehaviour {
                 case "enter_bounty":
                     SceneManager.LoadScene(4);
                     break;
+                case "black_entrance":
+                    SceneManager.LoadScene("Castle Hall");
+                    break;
+                case "exit_castle":
+                    SceneManager.LoadScene("Castle");
+                    break;
             }
 	}
 }
