@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour {
-
+/*
 	private int playerHp = Player.getHP();
 	private int playerAtkPrimary = Player.getAtkPrimary();
 	private int playerAtkSecondary = Player.getAtkSecondary();
@@ -100,4 +100,5 @@ public class NewBehaviourScript : MonoBehaviour {
 				//SceneManager.LoadScene(int sceneID); Load the Overworld
 		}
 	}
+*/
 }

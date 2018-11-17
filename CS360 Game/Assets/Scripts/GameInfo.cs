@@ -83,6 +83,12 @@ public class GameInfo : MonoBehaviour
         Cynthia[2].option2 = "Yes, yes I did";
         Cynthia[2].indexForOption1 = 5;
         Cynthia[2].indexForOption2 = 6;
+           
+        Cynthia[3].response = "So you picked this one";
+        Cynthia[3].option1 = "yes I did brother bear";
+        Cynthia[3].option2 = "I didn't mean to";
+        Cynthia[3].indexForOption1 = 7;
+        Cynthia[3].indexForOption2 = 8;
 
         DialogueTrees[0] = Cynthia;
         Debug.Log("FINISHED SETTING");

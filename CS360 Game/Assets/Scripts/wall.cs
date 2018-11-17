@@ -11,13 +11,18 @@ public class wall : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other){
 		if(interactable){
 			GameInfo.currentNPC = id;
-			SceneManager.LoadScene(5);
+			OnTriggerStay2D();
 		}
 		
 		/*if(interactable){
 			EditorUtility.DisplayDialog("Interaction",
                 "Interacting with Board!", "OK", "Cancel");
 		}*/
+	}
+	void OnTriggerStay2D(){
+		if(Input.GetKeyDown(KeyCode.Q)){
+			SceneManager.LoadScene("Menu");
+		}
 	}
 
 	// Use this for initialization
