@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Controls the equipment grid, not sure what Transform itemsParent really does
@@ -31,12 +32,5 @@ public class Inventory : MonoBehaviour {
         {
             itemSlots[i].Item = null;
         }
-    }
-
-    void OnMouseDown()
-    {
-        // this object was clicked - do something
-        items[0].ToggleOwned();
-        RefreshUI();
     }
 }

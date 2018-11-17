@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class itemSlot : MonoBehaviour {
+public class itemSlot : Button {
 
     [SerializeField] Image image;
     private equipment _item;
@@ -11,7 +11,7 @@ public class itemSlot : MonoBehaviour {
         set {
             _item = value;
 
-            if(!_item.owned)
+            if (!_item.owned)
             {
                 image.sprite = _item.Icon;
                 image.enabled = false;
@@ -22,7 +22,7 @@ public class itemSlot : MonoBehaviour {
         }
     }
 
-    private void OnValidate()
+    void OnValidate()
     {
         if (image == null)
             image = GetComponent<Image>();
