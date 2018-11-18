@@ -129,7 +129,7 @@ public class GameInfo : MonoBehaviour
             sprites = Resources.Load<Sprite>("Equipment/" + (i+1));
             equipmentList[i].eqImage = sprites;
             equipmentList[i].owned = false;
-            equipmentList[i].Visability = Color.black;
+            equipmentList[i].Visability = Color.clear;
         }
     }
 

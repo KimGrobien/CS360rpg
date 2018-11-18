@@ -48,6 +48,17 @@ public class InventoryController : MonoBehaviour {
     // Make sure to pass id of eaah item
     private void ItemClicked(int i)
     {
+        for (int j = 0; j < 12; j++)
+        {
+            if (!(j == 3 || j == 7 || j == 11))
+            {
+                if (!GameInfo.getEquipment(j).owned && GameInfo.buyingMode)
+                {
+                    GameInfo.setEquipmentColor(j, Color.gray);
+                    equip[j].image.color = GameInfo.getEquipment(j).Visability;
+                }
+            }
+        }
         //Image equipImg;
         //equipImg = GameObject.Find("slot" + (i)).GetComponent<Image>();
         //equipImg.enabled = !equipImg.enabled;
@@ -64,6 +75,7 @@ public class InventoryController : MonoBehaviour {
             secondaryButton.interactable = false;
             buyButton.interactable = true;
             defenseButton.interactable = false;
+            equip[i].image.color = Color.red;
         } else if(GameInfo.getEquipment(i).owned && GameInfo.buyingMode) {
             primaryButton.interactable = false;
             secondaryButton.interactable = false;
@@ -136,12 +148,12 @@ public class InventoryController : MonoBehaviour {
             {
                 if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode)
                 {
-                    GameInfo.setEquipmentColor(i, Color.green);
+                    GameInfo.setEquipmentColor(i, Color.gray);
                     equip[i].image.color = GameInfo.getEquipment(i).Visability;
                 }
                 else if (!GameInfo.getEquipment(i).owned && !GameInfo.buyingMode)
                 {
-                    GameInfo.setEquipmentColor(i, Color.black);
+                    GameInfo.setEquipmentColor(i, Color.clear);
                     equip[i].image.color = GameInfo.getEquipment(i).Visability;
                 }
             }
