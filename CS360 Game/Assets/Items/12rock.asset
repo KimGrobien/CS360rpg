@@ -14,6 +14,7 @@ MonoBehaviour:
   itemName: rockBounty
   itemID: 12
   Icon: {fileID: 21300000, guid: 4ba3cbf663b7de848bdb3778c1ee43a4, type: 3}
+  owned: 1
   attack_bonus: 0
   defense_bonus: 0
   heal: 0

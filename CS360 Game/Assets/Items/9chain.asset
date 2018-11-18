@@ -14,6 +14,8 @@ MonoBehaviour:
   itemName: chain
   itemID: 9
   Icon: {fileID: 21300000, guid: ee2c321b890c93547b5eb4a0e886f2f7, type: 3}
+  owned: 1
   attack_bonus: 30
   defense_bonus: 0
   heal: 0
+  bountyPrice: 0

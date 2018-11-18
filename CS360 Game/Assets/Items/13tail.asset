@@ -14,6 +14,7 @@ MonoBehaviour:
   itemName: tailBounty
   itemID: 13
   Icon: {fileID: 21300000, guid: 46a698b5913fb7c4681f987643f674fa, type: 3}
+  owned: 1
   attack_bonus: 0
   defense_bonus: 0
   heal: 0

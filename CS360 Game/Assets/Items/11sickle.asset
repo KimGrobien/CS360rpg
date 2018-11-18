@@ -14,6 +14,8 @@ MonoBehaviour:
   itemName: sickle
   itemID: 11
   Icon: {fileID: 21300000, guid: 1dc8cdb0b3b83684ab1bb8133c027310, type: 3}
+  owned: 1
   attack_bonus: 35
   defense_bonus: 0
   heal: 0
+  bountyPrice: 0

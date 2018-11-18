@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InventoryController : MonoBehaviour {
     private TextMeshProUGUI equipmentName;
     private Button[] equip = new Button[12];
+    private Sprite empty;
     private Button primaryButton, secondaryButton, defenseButton, buyButton;
     Text stat1, stat2, stat3;
     // Use this for initialization
@@ -45,9 +46,25 @@ public class InventoryController : MonoBehaviour {
         //Image equipImg;
         //equipImg = GameObject.Find("slot" + (i)).GetComponent<Image>();
         //equipImg.enabled = !equipImg.enabled;
-
-        int equipment = i;
         equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
-        equipmentName.text  = "Equipment " + equipment;
+        equipmentName.text  = "Equipment " + i;
+        equipmentName = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+        equipmentName.text = "Info " + i;
+
+        //Check if equipment is attack or defense or buying
+        //if attack
+        if (i >= 0 && i <3)
+        {
+            primaryButton.interactable = false;
+            secondaryButton.interactable = false;
+            buyButton.interactable = false;
+            defenseButton.interactable = true;
+        } else
+        {
+            primaryButton.interactable = true;
+            secondaryButton.interactable = true;
+            buyButton.interactable = false;
+            defenseButton.interactable = false;
+        }
     }
 }
