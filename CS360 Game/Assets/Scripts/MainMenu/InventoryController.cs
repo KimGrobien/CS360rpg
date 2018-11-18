@@ -53,18 +53,18 @@ public class InventoryController : MonoBehaviour {
 
         //Check if equipment is attack or defense or buying
         //if attack
-        if (i >= 0 && i <3)
-        {
-            primaryButton.interactable = false;
-            secondaryButton.interactable = false;
-            buyButton.interactable = false;
-            defenseButton.interactable = true;
-        } else
+        if (i >= 0 && i <8 || i == 11)
         {
             primaryButton.interactable = true;
             secondaryButton.interactable = true;
             buyButton.interactable = false;
             defenseButton.interactable = false;
+        } else
+        {
+            primaryButton.interactable = false;
+            secondaryButton.interactable = false;
+            buyButton.interactable = false;
+            defenseButton.interactable = true;
         }
     }
 }

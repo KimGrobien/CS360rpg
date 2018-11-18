@@ -635,7 +635,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4492e7e757126ad4d9f7bf0c4aebeb75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1dc8cdb0b3b83684ab1bb8133c027310, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1720,11 +1720,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b8fb504a1d8a3145bba15b06e3501ad, type: 2}
   - {fileID: 11400000, guid: 7ce5ab539d0f3d9438c978d00932820f, type: 2}
   - {fileID: 11400000, guid: 1fac975d49961924481d61ceda0cb824, type: 2}
-  - {fileID: 11400000, guid: b955e8b1a0e75b5499a4a2009c7f85e1, type: 2}
+  - {fileID: 11400000, guid: f9a64c5cc63fc1d4b89d772e982672a2, type: 2}
   - {fileID: 11400000, guid: d1c36c0e824d36447ae194820a59a2d7, type: 2}
   - {fileID: 11400000, guid: a8577df89de589348926fa1547b268d6, type: 2}
   - {fileID: 11400000, guid: 574358f2b94f3a9468e65788b9347b79, type: 2}
-  - {fileID: 11400000, guid: f9a64c5cc63fc1d4b89d772e982672a2, type: 2}
+  - {fileID: 11400000, guid: b955e8b1a0e75b5499a4a2009c7f85e1, type: 2}
   itemsParent: {fileID: 1636922408}
   itemSlots:
   - {fileID: 928546207}
@@ -3938,7 +3938,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1dc8cdb0b3b83684ab1bb8133c027310, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4492e7e757126ad4d9f7bf0c4aebeb75, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

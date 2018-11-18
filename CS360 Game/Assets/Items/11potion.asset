@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266e1066fe516ca499022530db957a28, type: 3}
-  m_Name: 11sickle
+  m_Name: 11potion
   m_EditorClassIdentifier: 
-  itemName: sickle
-  itemID: 11
-  Icon: {fileID: 21300000, guid: 1dc8cdb0b3b83684ab1bb8133c027310, type: 3}
+  itemName: potion
+  itemID: 7
+  Icon: {fileID: 21300000, guid: 4492e7e757126ad4d9f7bf0c4aebeb75, type: 3}
   owned: 1
-  attack_bonus: 35
+  attack_bonus: 0
   defense_bonus: 0
-  heal: 0
+  heal: 10
   bountyPrice: 0
