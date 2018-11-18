@@ -36,6 +36,11 @@ public class InventoryController : MonoBehaviour {
         enableBuying = GameObject.Find("enableBuy").GetComponent<Button>();
         enableBuying.onClick.AddListener(() => toggleBuyingMode());
 
+        primaryButton.interactable = false;
+        secondaryButton.interactable = false;
+        buyButton.interactable = false;
+        defenseButton.interactable = false;
+
     }
 	
 	// Update is called once per frame
@@ -48,6 +53,7 @@ public class InventoryController : MonoBehaviour {
     // Make sure to pass id of eaah item
     private void ItemClicked(int i)
     {
+        
         for (int j = 0; j < 12; j++)
         {
             if (!(j == 3 || j == 7 || j == 11))
@@ -62,11 +68,14 @@ public class InventoryController : MonoBehaviour {
         //Image equipImg;
         //equipImg = GameObject.Find("slot" + (i)).GetComponent<Image>();
         //equipImg.enabled = !equipImg.enabled;
-        currentItem = i;
-        equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
-        equipmentName.text  = GameInfo.getEquipment(i).name;
-        equipmentName = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
-        equipmentName.text = GameInfo.getEquipment(i).description;
+        if (GameInfo.getEquipment(i).owned || GameInfo.buyingMode)
+        {
+            currentItem = i;
+            equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+            equipmentName.text = GameInfo.getEquipment(i).name;
+            equipmentName = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+            equipmentName.text = GameInfo.getEquipment(i).description;
+        }
 
         //Check if equipment is attack or defense or buying
         if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode)
@@ -137,6 +146,7 @@ public class InventoryController : MonoBehaviour {
         GameInfo.setEquipmentColor(i, Color.white);
         GameInfo.setEquipmentOwned(i);
         equip[i].image.color = GameInfo.getEquipment(i).Visability;
+        buyButton.interactable = false;
     }
 
     private void toggleBuyingMode()
