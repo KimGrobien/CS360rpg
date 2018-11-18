@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Structure layout for NPC Data, which will be used to define each NPC 
 public struct NPCData{
     public string name;
 	public string primaryName;
@@ -11,10 +12,11 @@ public struct NPCData{
 	public int primaryStat;
 	public int secondaryStat;
 	public int runRange;
-	public int enemyMINDamage;
-	public int enemyMAXDamage;
+	public int enemyDamage;
+	public int enemyDamageBonus;
 }
 
+// Dialogue Node that will be used in Communitaction with NPCs
 public struct Node{
     public string option1;
     public string option2;
@@ -23,37 +25,69 @@ public struct Node{
     public int indexForOption2;
 }
 
+// Structure that will be used to give detail to each equipment item in the game, also layout in array
+public struct equipmentData
+{
+    public string name;
+    public string description;
+    public int attackBonus;
+    public int defenseBonus;
+    public int healBonus;
+    public int Price;
+    public Sprite eqImage;
+    public bool owned;
+    public Color Visability;
+}
+
+// Start of Main Class which houses all of the games global information
 public class GameInfo : MonoBehaviour
 {
-    //VeryGlobal
-    public static int prevScene = -1;
-    public static int currentNPC;
-    public static int bountyOwed = 1;
-    
-    public static NPCData[] NPCList;
-    private static string CharacterName = "Ego";
-    private static equipment[] equippedItems = new equipment[3];
-    private static PartySlot[] party = new PartySlot[2];
-    //Ego wil always deal damage from 2 to 17 plue whatever bonus from the equipment
-    // Kurt will adjust the MIN and Max values based on Equipment
-    // Christian will just generate a number between these two 
-    private static int AttackRangeMIN = 2;
-    private static int AttackRangeMAX = 17;
-    private static int Attack;
+    //VeryGlobal Data
 
+    // Ego's Data
+    private static string CharacterName = "Ego";
     private static int money = 0;
     private static bool isAlive = true;
     private static int health = 100;
+    private static PartySlot[] party = new PartySlot[2];
+    private static equipment[] equippedItems = new equipment[3];
 
-    // Name, Move One, Move Two
-    /*NPC ID will be array Index 
-    (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
-    (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
-    (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
+    // Data for overworld Navigation
+    public static int prevScene = -1;
+    public static int currentNPC;
+    public static int bountyOwed = 1;
+
+    //Data for Combat
+    //Ego wil always deal damage from 2 to 17 plus whatever bonus from the equipment
+    private static int AttackRangeMIN = 2;
+    private static int AttackRangeMAX = 17;
+    private static int primaryBonus = 0;
+    private static int secondaryBonus = 0;
+    private static int primarydefenseBonus = 0;
+    private static int secondarydefenseBonus = 0;
+    private static int defenseBonus = 0;
+    private static int egoHeal = 0;
+
+    // For equipment
+    public static bool buyingMode = false;
+    // atk, defense, heal, price (buy or sell for bounty)
+    private static Sprite[] equipmentSprites= new Sprite[15];
+    private static int[,] equipmentStats = new int[15, 4] { { 5, 10, 0, 25 }, { 20, 20, 0, 40 }, { 50, 50, 0, 100 }, { 10, 0, 0, 10 }, { 25, 0, 0, 20 }, { 50, 0, 0, 50 }, { 0, 20, 0, 10 }, { 0, 30, 0, 20 }, { 0, 50, 0, 50 }, { 15, 0, 0, 0 }, { 35, 0, 0, 0 }, { 15, 0, 0, 0 }, { 0, 0, 0, 10 }, { 0, 0, 0, 5 }, { 0, 0, 0, 7 } };
+    private static string[,] equipmentStrings = new string[15, 2] { { "Wooden Shiled", "Little protection\nLittle attack" }, { "Iron Shield", "" }, { "Spiked Shield", "" }, { "Scalpel", "" }, { "Gila Dagger", "" }, { "Sword", "" }, { "Fire Staff", "" }, { "Sickle", "" }, { "Leather Set", "" }, { "Chainmail Set", "" }, { "Knight Set", "" }, { "Heal Spell", "" }, { "Rock Hat", "" }, { "Rabbit Tail", "" }, { "Fox Fur", "" }, };
+    private static equipmentData[] equipmentList = new equipmentData[15];
+
+    //Data for NPC interaction/Combat
+    public static NPCData[] NPCList = new NPCData[11];
+    //NPC Data
+        // Name, Move One, Move Two
+        /*NPC ID will be array Index 
+        (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
+        (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
+        (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
     private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Revive" }, {"Emrik", "Impale", "Kick" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" } };
-    // Heath, PrimaryStat, SecondaryStat, RunRange (FOR first 4 (0 to 3 ID indexes) Recruitable NPCs)
-    // Heath, Set Attack, additional Attack Range to be added to Attack, RunRange (last 7(6 to 10 ID indexes) enemy NPCs)
-    private static int[,] NPCintData = new int[11, 4] { { 25, 50, 0, 1 }, { 150, 150, 35, 10 }, { 75, 25, 30, 6 }, { 35, 50, 20, 8 }, { 65, 15, 5, 5 }, { 100, 35, 10, 10 }, { 120, 25, 7, 7 }, { 250, 75, 10, 100 }, { 25, 5, 2, 3 }, { 50, 10, 10, 5 }, { 25, 3, 2, 1 } };
+    /* Heath, PrimaryStat, SecondaryStat, RunRange (FOR first 4 (0 to 3 ID indexes) Recruitable NPCs)
+        Heath, Set Attack, additional Attack Range to be added to Attack, RunRange (last 7(4 to 10 ID indexes) enemy NPCs)*/
+    private static int[,] NPCintData = new int[11, 4] { { 25, 50, 0, 1 }, { 150, 150, 35, 10 }, { 75, 25, 30, 6 }, { 35, 50, 20, 8 }, { 65, 15, 5, 5 }, { 100, 35, 10, 10 }, { 120, 25, 7, 7 }, { 250, 75, 10, 100 }, { 25, 5, 2, 3 }, { 50, 10, 10, 5 }, { 25, 3, 1, 1 } };
     public static Sprite[] NPCsprites = new Sprite[11];
     
     //DialogueTrees
@@ -65,36 +99,89 @@ public class GameInfo : MonoBehaviour
     public static Node[] Anker = new Node[10];
     public static Node[] Edward = new Node[10];
 
-
-    
-
+    // Used to populate all the initial data of the game
     private void Start()
     {
         
         DontDestroyOnLoad(this.gameObject);
+        PopulateNPCList();
+        LoadDialogueTrees();
+        PopulateEquipmentList();
+    }
 
+    // Populate the Equipment List using array data
+    private void PopulateEquipmentList()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            equipmentList[i].name = equipmentStrings[i, 0];
+            equipmentList[i].description = equipmentStrings[i, 1];
+
+            equipmentList[i].attackBonus = equipmentStats[i, 0];
+            equipmentList[i].defenseBonus = equipmentStats[i, 1];
+            equipmentList[i].healBonus = equipmentStats[i, 2];
+            equipmentList[i].Price = equipmentStats[i, 3];
+        }
+
+        var sprites = Resources.Load<Sprite>("Equipment/1"); ;
+        for (int i = 0; i < 15; i++)
+        {
+            sprites = Resources.Load<Sprite>("Equipment/" + (i+1));
+            equipmentList[i].eqImage = sprites;
+            equipmentList[i].owned = false;
+            equipmentList[i].Visability = Color.black;
+        }
+    }
+
+    // Populate the NPC List using array data
+    private void PopulateNPCList()
+    {
         int i = 0;
-        int j = 0;
         for (; i < 11; i++)
         {
-            for(j=0;j<4;j++)
+            NPCList[i].name = NPCstringData[i, 0];
+            NPCList[i].primaryName = NPCstringData[i, 1];
+            NPCList[i].secondaryName = NPCstringData[i, 2];
+            NPCList[i].health = NPCintData[i, 0];
+            if (i < 4)
             {
-                if(j<4){
-                    //populate npcstringdata
-                }
-                //populate npcintdata
+                NPCList[i].primaryStat = NPCintData[i, 1];
+                NPCList[i].secondaryStat = NPCintData[i, 2];
             }
+            else
+            {
+                NPCList[i].enemyDamage = NPCintData[i, 1];
+                NPCList[i].enemyDamageBonus = NPCintData[i, 2];
+            }
+            NPCList[i].runRange = NPCintData[i, 3];
         }
-        LoadDialogueTrees();
-        
     }
+
+    // Return the requested equipment data from list
+    public static equipmentData getEquipment(int i)
+    {
+        return equipmentList[i];
+    }
+
+    public static void setEquipmentColor(int i,Color color)
+    {
+        equipmentList[i].Visability = color;
+    }
+
+    public static void setEquipmentOwned(int i)
+    {
+        equipmentList[i].owned = true;
+    }
+
     public static string getName(int idx){
-        //return NPCList[idx].name;
-        return "Cynthia";
+        return NPCList[idx].name;
+        //return "Cynthia";
     }
+
     public static Node[] getDialogueTree(int index){
         return DialogueTrees[index];
     }
+
     public static Sprite GetImageOfCurrentNPC(int index){
         //string characterName = getName(index);
         //return Resources.Load<Sprite>("Art/DialogueImages/"+characterName);
@@ -148,5 +235,24 @@ public class GameInfo : MonoBehaviour
 
     public static void UpdateHealth(int heal){
         health+=heal;
+    }
+
+    public static void UpdateEgosPrimary(equipmentData equip)
+    {
+        primaryBonus = equip.attackBonus;
+        primarydefenseBonus = equip.defenseBonus;
+        egoHeal = equip.healBonus;
+    }
+
+    public static void UpdateEgosSecondary(equipmentData equip)
+    {
+        secondaryBonus = equip.attackBonus;
+        secondarydefenseBonus = equip.defenseBonus;
+        egoHeal = equip.healBonus; 
+    }
+
+    public static void UpdateEgosDefense(equipmentData equip)
+    {
+        defenseBonus = equip.defenseBonus;
     }
 }

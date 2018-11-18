@@ -11,14 +11,14 @@ public class itemSlot : Button {
         set {
             _item = value;
 
-            if (!_item.owned)
-            {
-                image.sprite = _item.Icon;
-                image.enabled = false;
-            } else {
-                image.sprite = _item.Icon;
-                image.enabled = true;
-            }
+            //if (!_item.owned)
+            //{
+            //    image.sprite = _item.Icon;
+            //    image.enabled = false;
+            //} else {
+            image.sprite = _item.Icon;
+            image.enabled = true;
+            //}
         }
     }
 
