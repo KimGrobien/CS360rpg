@@ -20,11 +20,23 @@ public class enterNewArea : MonoBehaviour {
                 case "enter_bounty":
                     SceneManager.LoadScene(4);
                     break;
+                case "enter_hospital":
+                    SceneManager.LoadScene("Hospital");
+                    break;
+                case "enter_shop":
+                    SceneManager.LoadScene("Shop");
+                    break;
                 case "black_entrance":
                     SceneManager.LoadScene("Castle Hall");
                     break;
                 case "exit_castle":
                     SceneManager.LoadScene("Castle");
+                    break;
+                case "exit_hospital":
+                    SceneManager.LoadScene("Town");
+                    break;
+                case "exit_shop":
+                    SceneManager.LoadScene("Town");
                     break;
             }
 	}

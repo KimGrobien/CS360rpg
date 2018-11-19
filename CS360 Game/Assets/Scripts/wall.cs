@@ -19,13 +19,14 @@ public class wall : MonoBehaviour {
 			popup = GameObject.Find(popupName).GetComponent<Canvas>();
 			cancel = popup.GetComponentInChildren<Button>();
 			cancel.onClick.AddListener(closePopup);
-			Debug.Log("ADDED");
 		}
 	}
 	void OnCollisionEnter2D(Collision2D other){
 		touching = true;
 		if(interactable){
 			GameInfo.currentNPC = id;
+			GameInfo.prevPos = other.transform.position;
+			
 		}
 		if(popupName != ""){
 			popup.enabled = true;
@@ -33,6 +34,7 @@ public class wall : MonoBehaviour {
 	}
 	void OnCollisionExit2D(){
 		touching = false;
+		GameInfo.currentNPC = -1; //No longer within range of NPC
 	}
 	
 	// Update is called once per frame

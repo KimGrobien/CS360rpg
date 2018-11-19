@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Castle Hall.unity
     guid: 9e3fd9dd59689b14ea59072238aa7a07
+  - enabled: 1
+    path: Assets/Scenes/Hospital.unity
+    guid: efe65861154edcd4da3b973ce1f1bae9
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: b86834aa8fbf46c41b81feb988ff2a78
   m_configObjects: {}

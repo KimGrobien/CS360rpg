@@ -54,7 +54,8 @@ public class GameInfo : MonoBehaviour
 
     // Data for overworld Navigation
     public static int prevScene = -1;
-    public static int currentNPC;
+    public static Vector3 prevPos;
+    public static int currentNPC = -1;
     public static int bountyOwed = 1;
 
     //Data for Combat
