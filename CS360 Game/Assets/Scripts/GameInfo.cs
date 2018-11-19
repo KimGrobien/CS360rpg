@@ -46,7 +46,7 @@ public class GameInfo : MonoBehaviour
 
     // Ego's Data
     private static string CharacterName = "Ego";
-    private static int money = 0;
+    private static int money = 100;
     private static bool isAlive = true;
     private static int health = 100;
     private static PartySlot[] party = new PartySlot[2];
@@ -254,5 +254,15 @@ public class GameInfo : MonoBehaviour
     public static void UpdateEgosDefense(equipmentData equip)
     {
         defenseBonus = equip.defenseBonus;
+    }
+
+    public static int getMoney()
+    {
+        return money;
+    }
+
+    public static void reduceMoney(int price)
+    {
+        money -= price;
     }
 }

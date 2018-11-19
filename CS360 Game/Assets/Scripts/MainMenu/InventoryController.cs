@@ -11,7 +11,7 @@ public class InventoryController : MonoBehaviour {
     private Image EgosPrimary,EgosSecondary,EgosDefense;
     private Button primaryButton, secondaryButton, defenseButton, buyButton, enableBuying;
     private equipmentData buying;
-    Text stat1, stat2, stat3;
+    Text EgosMoney;
     // Use this for initialization
     void Start () {
         for (int i = 0; i < 15; i++)
@@ -41,6 +41,8 @@ public class InventoryController : MonoBehaviour {
         buyButton.interactable = false;
         defenseButton.interactable = false;
 
+        EgosMoney = GameObject.Find("MoneyCount").GetComponent<Text>();
+        //EgosMoney.text = "" + GameInfo.getMoney();
     }
 	
 	// Update is called once per frame
@@ -78,7 +80,7 @@ public class InventoryController : MonoBehaviour {
         }
 
         //Check if equipment is attack or defense or buying
-        if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode)
+        if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode && GameInfo.getEquipment(i).Price < GameInfo.getMoney())
         {
             primaryButton.interactable = false;
             secondaryButton.interactable = false;
@@ -146,6 +148,8 @@ public class InventoryController : MonoBehaviour {
         GameInfo.setEquipmentColor(i, Color.white);
         GameInfo.setEquipmentOwned(i);
         equip[i].image.color = GameInfo.getEquipment(i).Visability;
+        GameInfo.reduceMoney(GameInfo.getEquipment(i).Price);
+        //EgosMoney.text = "" + GameInfo.getMoney();
         buyButton.interactable = false;
     }
 
