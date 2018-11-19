@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour {
-    private TextMeshProUGUI equipmentName, EgosMoney;
+    private TextMeshProUGUI equipmentName, equipmentDetails, EgosMoney;
     private int currentItem;
     private Color TextColor;
     private Button[] equip = new Button[15];
@@ -38,14 +38,16 @@ public class InventoryController : MonoBehaviour {
         enableBuying = GameObject.Find("enableBuy").GetComponent<Button>();
         enableBuying.onClick.AddListener(() => toggleBuyingMode());
 
-        primaryButton.interactable = false;
-        secondaryButton.interactable = false;
-        buyButton.interactable = false;
-        defenseButton.interactable = false;
+        SetButtonsVisablity(false, false, false, false);
+
+        equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+        equipmentName.text = "";
+        equipmentDetails = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+        equipmentDetails.text = "";
 
         EgosMoney = GameObject.Find("MoneyCount").GetComponentInChildren<TextMeshProUGUI>();
         TextColor = EgosMoney.color;
-        EgosMoney.text = "" + GameInfo.getMoney();
+        EgosMoney.text = "$" + GameInfo.getMoney();
     }
 	
 	// Update is called once per frame
@@ -55,7 +57,7 @@ public class InventoryController : MonoBehaviour {
 
     // Display the item name and stats
     // Also enable buttons that are avalible (such as buy, equip as primary, equip as secondary, or equip as defense)
-    // Make sure to pass id of eaah item
+    // Make sure to pass id of each item
     private void ItemClicked(int i)
     {
         // For each object during buying mode (shop items only)
@@ -75,10 +77,8 @@ public class InventoryController : MonoBehaviour {
         if (GameInfo.getEquipment(i).owned || GameInfo.buyingMode)
         {
             currentItem = i;
-            equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
             equipmentName.text = GameInfo.getEquipment(i).name;
-            equipmentName = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
-            equipmentName.text = GameInfo.getEquipment(i).description;
+            equipmentDetails.text = GameInfo.getEquipment(i).description;
         }
 
         //Buying Mood and you have enough Money
@@ -86,7 +86,7 @@ public class InventoryController : MonoBehaviour {
         {
             SetButtonsVisablity(false, false, false, true);
             EgosMoney.color = Color.green;
-            equip[i].image.color = Color.red;
+            equip[i].image.color = Color.green;
         }
         // Dont have enough money
         else if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode && GameInfo.getEquipment(i).Price > GameInfo.getMoney())
@@ -128,8 +128,8 @@ public class InventoryController : MonoBehaviour {
     {
         primaryButton.interactable = pri;
         secondaryButton.interactable = sec;
-        buyButton.interactable = def;
-        defenseButton.interactable = buy;
+        buyButton.interactable = buy;
+        defenseButton.interactable = def;
     }
 
     // Set time to primary combat move
@@ -166,7 +166,7 @@ public class InventoryController : MonoBehaviour {
         GameInfo.setEquipmentOwned(i);
         equip[i].image.color = GameInfo.getEquipment(i).Visability;
         GameInfo.reduceMoney(GameInfo.getEquipment(i).Price);
-        EgosMoney.text = "" + GameInfo.getMoney();
+        EgosMoney.text = "$" + GameInfo.getMoney();
         buyButton.interactable = false;
         EgosMoney.color = TextColor;
     }
@@ -174,6 +174,7 @@ public class InventoryController : MonoBehaviour {
     // For Testing Purposes
     private void toggleBuyingMode()
     {
+        EgosMoney.color = TextColor;
         GameInfo.buyingMode = !GameInfo.buyingMode;
         for (int i = 0; i < 12; i++)
         {
