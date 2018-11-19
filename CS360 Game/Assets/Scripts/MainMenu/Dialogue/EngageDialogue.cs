@@ -13,7 +13,6 @@ public class EngageDialogue : MonoBehaviour {
 	int indexForNextOption1;
 	int indexForNextOption2;
 	Sprite npcImage;
-	GameObject imagePlace;
   
 	public void Start() {
 		//Get cancel button
@@ -21,10 +20,9 @@ public class EngageDialogue : MonoBehaviour {
 		cancel.onClick.AddListener(cancelMenu);
 		//Get NPCName Text Data
         npcName = GameObject.Find("NPC_Name").GetComponent<TextMeshProUGUI>();
-		//GetNPCImage Data
-		//update the image to current npc engaging with THIS DOESN"T WORK CURRENTLY DON"T KNOW WHY
-		npcImage = GameInfo.GetImageOfCurrentNPC(GameInfo.currentNPC);
-		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = npcImage;
+		//update the image to current npc engaging with
+		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
+		
 		//Update the name of the npc to current npc engaging with
         npcName.text = GameInfo.getName(GameInfo.currentNPC);//"test"; //GameInfo.getName(GameInfo.currentNPC)
 		//get Response game object
@@ -84,6 +82,7 @@ public class EngageDialogue : MonoBehaviour {
 		SceneManager.LoadScene(GameInfo.prevScene);
 	}
 	public void Update(){
+
 	}
 
 }

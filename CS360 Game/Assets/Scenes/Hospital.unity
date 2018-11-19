@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 288684664}
   - component: {fileID: 288684663}
   m_Layer: 0
-  m_Name: Doctor
+  m_Name: edward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   popupName: 
-  id: 3
+  id: 2
 --- !u!61 &288684664
 BoxCollider2D:
   m_ObjectHideFlags: 0

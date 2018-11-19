@@ -186,7 +186,7 @@ public class GameInfo : MonoBehaviour
     public static Sprite GetImageOfCurrentNPC(int index){
         //string characterName = getName(index);
         //return Resources.Load<Sprite>("Art/DialogueImages/"+characterName);
-        return Resources.Load<Sprite>("Art/DialogueImages/Ego");
+        return Resources.Load<Sprite>("DialogueImages/Ego");
     }    
 
     private static void LoadDialogueTrees(){
