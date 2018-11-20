@@ -22,21 +22,26 @@ public class InventoryController : MonoBehaviour {
             int set = i;
             equip[set].image.color = GameInfo.getEquipment(set).Visability;
             equip[set].onClick.AddListener(() => ItemClicked(set));
-            
         }
 
-        for (int i = 0; i < 15; i++)
+        EgosPrimary = GameObject.Find("EquipSlot0").GetComponent<Image>();
+        if (GameInfo.getEquipped(0).eqImage != null)
         {
-            int set = i;
-            if (GameInfo.getEquipment(set).owned)
-            {
-                equip[set].image.color = Color.white;
-            }
-            // testing
-            equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
-            equipmentName.text += "" + set;
+            EgosPrimary.color = Color.white;
+            EgosPrimary.sprite = GameInfo.getEquipped(0).eqImage;
         }
-        
+        EgosSecondary = GameObject.Find("EquipSlot1").GetComponent<Image>();
+        if (GameInfo.getEquipped(1).eqImage != null)
+        {
+            EgosSecondary.color = Color.white;
+            EgosSecondary.sprite = GameInfo.getEquipped(1).eqImage;
+        }
+        EgosDefense = GameObject.Find("EquipSlot2").GetComponent<Image>();
+        if (GameInfo.getEquipped(2).eqImage != null)
+        {
+            EgosDefense.color = Color.white;
+            EgosDefense.sprite = GameInfo.getEquipped(2).eqImage;
+        }
 
         primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
         primaryButton.onClick.AddListener(() => PrimaryButtonClicked(currentItem));
@@ -55,8 +60,8 @@ public class InventoryController : MonoBehaviour {
 
         SetButtonsVisablity(false, false, false, false);
 
-        //equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
-        //equipmentName.text = "";
+        equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+        equipmentName.text = "";
         equipmentDetails = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
         equipmentDetails.text = "";
 
@@ -150,7 +155,6 @@ public class InventoryController : MonoBehaviour {
     // Set time to primary combat move
     private void PrimaryButtonClicked(int i)
     {
-        EgosPrimary = GameObject.Find("EquipSlot0").GetComponent<Image>();
         EgosPrimary.color = Color.white;
         EgosPrimary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosPrimary(GameInfo.getEquipment(i));
@@ -160,7 +164,6 @@ public class InventoryController : MonoBehaviour {
     // Set item to secondary combat move
     private void SecondaryButtonClicked(int i)
     {
-        EgosSecondary = GameObject.Find("EquipSlot1").GetComponent<Image>();
         EgosSecondary.color = Color.white;
         EgosSecondary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosSecondary(GameInfo.getEquipment(i));
@@ -170,7 +173,6 @@ public class InventoryController : MonoBehaviour {
     // Set item to defense button 
     private void DefenseButtonClicked(int i)
     {
-        EgosDefense = GameObject.Find("EquipSlot2").GetComponent<Image>();
         EgosDefense.color = Color.white;
         EgosDefense.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosDefense(GameInfo.getEquipment(i));

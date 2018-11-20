@@ -183,6 +183,11 @@ public class GameInfo : MonoBehaviour
         equipmentList[i].owned = true;
     }
 
+    public static equipmentData getEquipped(int i)
+    {
+        return equippedItems[i];
+    }
+
     public static void setEquipment(int index, int item)
     {
         equippedItems[index] = equipmentList[item];

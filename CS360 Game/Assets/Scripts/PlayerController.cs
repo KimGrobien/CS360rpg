@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	private bool destroyed = false; //Needed since OnDestroy is getting called multiple times due to Unity bug
 	void Start () {
-        moveSpeed = 10;
+        moveSpeed = 3;
 		if(GameInfo.currentNPC >= 0){//If interacting with NPC, set position based on before menu scene
 			this.transform.position = GameInfo.prevPos;
 			GameInfo.currentNPC = -1;
