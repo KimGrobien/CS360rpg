@@ -9,6 +9,7 @@ public struct NPCData{
 	public string primaryName;
 	public string secondaryName;
 	public int health;
+    public int MAXhealth;
 	public int primaryStat;
 	public int secondaryStat;
 	public int runRange;
@@ -43,14 +44,15 @@ public struct equipmentData
 public class GameInfo : MonoBehaviour
 {
     //VeryGlobal Data
+    private static bool Gameloaded = false;
 
     // Ego's Data
     private static string CharacterName = "Ego";
-    private static int money = 100;
+    private static int money = 300;
     private static bool isAlive = true;
     private static int health = 100;
     private static PartySlot[] party = new PartySlot[2];
-    private static equipment[] equippedItems = new equipment[3];
+    private static equipmentData[] equippedItems = new equipmentData[3];
 
     // Data for overworld Navigation
     public static int prevScene = -1;
@@ -72,25 +74,25 @@ public class GameInfo : MonoBehaviour
     // For equipment
     public static bool buyingMode = false;
     // atk, defense, heal, price (buy or sell for bounty)
-    private static Sprite[] equipmentSprites= new Sprite[15];
-    private static int[,] equipmentStats = new int[15, 4] { { 5, 10, 0, 25 }, { 20, 20, 0, 40 }, { 50, 50, 0, 100 }, { 15, 0, 0, 0 }, { 10, 0, 0, 10 }, { 25, 0, 0, 20 }, { 50, 0, 0, 50 }, { 35, 0, 0, 0 }, { 0, 20, 0, 10 }, { 0, 30, 0, 20 }, { 0, 50, 0, 50 }, { 15, 0, 0, 0 }, { 0, 0, 10, 0 }, { 0, 0, 0, 5 }, { 0, 0, 0, 7 } };
+    private static Sprite[] equipmentSprites = new Sprite[15];
+    private static int[,] equipmentStats = new int[15, 4] { { 5, 10, 0, 25 }, { 20, 20, 0, 40 }, { 50, 50, 0, 100 }, { 15, 0, 0, 0 }, { 10, 0, 0, 10 }, { 25, 0, 0, 20 }, { 50, 0, 0, 50 }, { 35, 0, 0, 0 }, { 0, 20, 0, 10 }, { 0, 30, 0, 20 }, { 0, 50, 0, 50 }, { 15, 0, 0, 0 }, { 0, 0, 0, 10 }, { 0, 0, 0, 5 }, { 0, 0, 0, 7 } };
     private static string[,] equipmentStrings = new string[15, 2] { { "Wooden Shield", "Low Protection\nLow Attack\nPrice: $25" }, { "Iron Shield", "Medium Protection\nMedium Attack\nPrice: $40" }, { "Spiked Shield", "High Protection\nHigh Attack\nPrice: $100" }, { "Scalpel", "Low Attack\nA Gift" }, { "Gila Dagger", "Low Attack\nPrice: $10" }, { "Sword", "Medium Attack\nPrice: $20" }, { "Fire Staff", "High Attack\nPrice: $50" }, { "Sickle", "Medium Attack\nA Gift" }, { "Leather Set", "Low Protection\nPrice: $10" }, { "Chainmail Set", "Medium Protection\nPrice: $20" }, { "Knight Set", "High Protection\nPrice: $50" }, { "Heal Spell", "Low Ability to Heal\nA Gift" }, { "Rock Hat", "Redeemable Bounty\nReward: $10" }, { "Rabbit Tail", "Redeemable Bounty\nReward: $5" }, { "Fox Fur", "Redeemable Bounty\nReward: $7" }, };
     private static equipmentData[] equipmentList = new equipmentData[15];
 
     //Data for NPC interaction/Combat
     public static NPCData[] NPCList = new NPCData[11];
     //NPC Data
-        // Name, Move One, Move Two
-        /*NPC ID will be array Index 
-        (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
-        (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
-        (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
-    private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Revive" }, {"Emrik", "Impale", "Kick" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" } };
+    // Name, Move One, Move Two
+    /*NPC ID will be array Index 
+    (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
+    (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
+    (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
+    private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Revive" }, { "Emrik", "Impale", "Kick" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" }, { "Cynthia", "Heal", "Revive" } };
     /* Heath, PrimaryStat, SecondaryStat, RunRange (FOR first 4 (0 to 3 ID indexes) Recruitable NPCs)
         Heath, Set Attack, additional Attack Range to be added to Attack, RunRange (last 7(4 to 10 ID indexes) enemy NPCs)*/
     private static int[,] NPCintData = new int[11, 4] { { 25, 50, 0, 1 }, { 150, 150, 35, 10 }, { 75, 25, 30, 6 }, { 35, 50, 20, 8 }, { 65, 15, 5, 5 }, { 100, 35, 10, 10 }, { 120, 25, 7, 7 }, { 250, 75, 10, 100 }, { 25, 5, 2, 3 }, { 50, 10, 10, 5 }, { 25, 3, 1, 1 } };
     public static Sprite[] NPCsprites = new Sprite[11];
-    
+
     //DialogueTrees
     public static Node[][] DialogueTrees = new Node[4][];
 
@@ -103,11 +105,16 @@ public class GameInfo : MonoBehaviour
     // Used to populate all the initial data of the game
     private void Start()
     {
-        
+
         DontDestroyOnLoad(this.gameObject);
-        PopulateNPCList();
-        LoadDialogueTrees();
-        PopulateEquipmentList();
+        //If you are initializing Arrays or data in this start function put it in this if statment so that it isnt reinizalized everytime you reload the start screen
+        if (!Gameloaded)
+        {
+            Gameloaded = true;
+            PopulateNPCList();
+            LoadDialogueTrees();
+            PopulateEquipmentList();
+        }
     }
 
     // Populate the Equipment List using array data
@@ -127,7 +134,7 @@ public class GameInfo : MonoBehaviour
         var sprites = Resources.Load<Sprite>("Equipment/1"); ;
         for (int i = 0; i < 15; i++)
         {
-            sprites = Resources.Load<Sprite>("Equipment/" + (i+1));
+            sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
             equipmentList[i].eqImage = sprites;
             equipmentList[i].owned = false;
             equipmentList[i].Visability = Color.clear;
@@ -143,7 +150,9 @@ public class GameInfo : MonoBehaviour
             NPCList[i].name = NPCstringData[i, 0];
             NPCList[i].primaryName = NPCstringData[i, 1];
             NPCList[i].secondaryName = NPCstringData[i, 2];
+            //Initialize max and current health as the same value
             NPCList[i].health = NPCintData[i, 0];
+            NPCList[i].MAXhealth = NPCintData[i, 0];
             if (i < 4)
             {
                 NPCList[i].primaryStat = NPCintData[i, 1];
@@ -164,7 +173,7 @@ public class GameInfo : MonoBehaviour
         return equipmentList[i];
     }
 
-    public static void setEquipmentColor(int i,Color color)
+    public static void setEquipmentColor(int i, Color color)
     {
         equipmentList[i].Visability = color;
     }
@@ -172,6 +181,11 @@ public class GameInfo : MonoBehaviour
     public static void setEquipmentOwned(int i)
     {
         equipmentList[i].owned = true;
+    }
+
+    public static void setEquipment(int index, int item)
+    {
+        equippedItems[index] = equipmentList[item];
     }
 
     public static string getName(int idx){

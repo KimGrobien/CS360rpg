@@ -20,8 +20,23 @@ public class InventoryController : MonoBehaviour {
         {
             equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
             int set = i;
-            equip[i].onClick.AddListener(() => ItemClicked(set));
+            equip[set].image.color = GameInfo.getEquipment(set).Visability;
+            equip[set].onClick.AddListener(() => ItemClicked(set));
+            
         }
+
+        for (int i = 0; i < 15; i++)
+        {
+            int set = i;
+            if (GameInfo.getEquipment(set).owned)
+            {
+                equip[set].image.color = Color.white;
+            }
+            // testing
+            equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+            equipmentName.text += "" + set;
+        }
+        
 
         primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
         primaryButton.onClick.AddListener(() => PrimaryButtonClicked(currentItem));
@@ -40,8 +55,8 @@ public class InventoryController : MonoBehaviour {
 
         SetButtonsVisablity(false, false, false, false);
 
-        equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
-        equipmentName.text = "";
+        //equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+        //equipmentName.text = "";
         equipmentDetails = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
         equipmentDetails.text = "";
 
@@ -139,6 +154,7 @@ public class InventoryController : MonoBehaviour {
         EgosPrimary.color = Color.white;
         EgosPrimary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosPrimary(GameInfo.getEquipment(i));
+        GameInfo.setEquipment(0, i);
     }
 
     // Set item to secondary combat move
@@ -148,6 +164,7 @@ public class InventoryController : MonoBehaviour {
         EgosSecondary.color = Color.white;
         EgosSecondary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosSecondary(GameInfo.getEquipment(i));
+        GameInfo.setEquipment(1, i);
     }
 
     // Set item to defense button 
@@ -157,6 +174,7 @@ public class InventoryController : MonoBehaviour {
         EgosDefense.color = Color.white;
         EgosDefense.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosDefense(GameInfo.getEquipment(i));
+        GameInfo.setEquipment(2, i);
     }
 
     // Buy item button actions
