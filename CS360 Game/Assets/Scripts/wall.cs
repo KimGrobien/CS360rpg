@@ -26,7 +26,6 @@ public class wall : MonoBehaviour {
 		if(interactable){
 			GameInfo.currentNPC = id;
 			GameInfo.prevPos = other.transform.position;
-			
 		}
 		if(popupName != ""){
 			popup.enabled = true;

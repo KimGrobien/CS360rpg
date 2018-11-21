@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class EngageDialogue : MonoBehaviour {
 	TextMeshProUGUI npcName,npcResponse;
 	Button choice1, choice2, cancel;
+	GameObject trade;
 	Text txt1, txt2;
 	Node[] currentDialogue;
 	int indexForNextOption1;
@@ -16,6 +17,8 @@ public class EngageDialogue : MonoBehaviour {
   
 	public void Start() {
 		//Get cancel button
+		trade = GameObject.Find("Trade");
+		trade.SetActive(false);
 		cancel = GameObject.Find("Cancel").GetComponent<Button>();
 		cancel.onClick.AddListener(cancelMenu);
 		//Get NPCName Text Data
@@ -24,7 +27,11 @@ public class EngageDialogue : MonoBehaviour {
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		
 		//Update the name of the npc to current npc engaging with
-        npcName.text = GameInfo.getName(GameInfo.currentNPC);//"test"; //GameInfo.getName(GameInfo.currentNPC)
+        npcName.text = GameInfo.getName(GameInfo.currentNPC);//
+		if(npcName.text == "Anker"){
+			trade.SetActive(true);
+			trade.GetComponent<Button>().onClick.AddListener(beginTrade);
+		}
 		//get Response game object
 		npcResponse = GameObject.Find("Response").GetComponent<TextMeshProUGUI>();
 		//get choice button game objects
@@ -36,12 +43,31 @@ public class EngageDialogue : MonoBehaviour {
 		//find the tree that needs to be traversed
 		currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
 		//assign base values
-		npcResponse.text = currentDialogue[0].response;
-		txt1.text = currentDialogue[0].option1;
-		txt2.text = currentDialogue[0].option2;
-		
-		indexForNextOption1 = currentDialogue[0].indexForOption1;
-		indexForNextOption2 = currentDialogue[0].indexForOption2;
+		if(npcName.text=="Cynthia"){
+		npcResponse.text = "You approach a small woman standing next to a garden." 
+        +" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
+        +" been working outside all day. She notices you walking up to her. She gives"
+        +" you a kind smile. ";
+		}
+		if(npcName.text=="Anker"){
+		npcResponse.text = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
+        +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
+        +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
+		}
+		if(npcName.text=="Emrik"){
+		npcResponse.text = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
+        +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
+        +" with his field. If this was the town's only source of food, they were in trouble.";
+		}
+		if(npcName.text=="Edward"){
+		npcResponse.text = "The hospital is empty save for a doctor standing near empty beds." 
+        +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
+        +" You wonder if you should talk with him at all. Would he even respond?";
+		}
+		txt1.text = "Talk";
+		txt2.text = "Fight";
+
+		//create the listeners and change the text based on which was clicked.
         choice1.onClick.AddListener(()=>clickedOption1(indexForNextOption1));
         choice2.onClick.AddListener(()=>clickedOption2(indexForNextOption2));
     }
@@ -70,6 +96,11 @@ public class EngageDialogue : MonoBehaviour {
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 	}
 	public void clickedOption2(int index){
+		if(index == 0){
+			//this will be the fight option and will change scenes and pass information about who the enemy is
+			Debug.Log("Fight Begins");
+			return;
+		}
 		npcResponse.text = currentDialogue[index].response;
 		txt1.text = currentDialogue[index].option1;
 		txt2.text = currentDialogue[index].option2;
@@ -81,6 +112,11 @@ public class EngageDialogue : MonoBehaviour {
 	public void cancelMenu(){
 		SceneManager.LoadScene(GameInfo.prevScene);
 	}
+	public void beginTrade(){
+		//make all the left side of the menu interactable
+		Debug.Log("BEGINNING TRADE");
+	}
+
 	public void Update(){
 
 	}
