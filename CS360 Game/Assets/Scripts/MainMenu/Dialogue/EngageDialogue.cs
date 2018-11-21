@@ -14,6 +14,10 @@ public class EngageDialogue : MonoBehaviour {
 	int indexForNextOption1;
 	int indexForNextOption2;
 	Sprite npcImage;
+	public static string textToScreen;
+	Coroutine coroutine;
+	bool isTyping;
+    public float letterPause = 0.05f;
   
 	public void Start() {
 		//Get cancel button
@@ -43,24 +47,25 @@ public class EngageDialogue : MonoBehaviour {
 		//find the tree that needs to be traversed
 		currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
 		//assign base values
+		npcResponse.text = "";
 		if(npcName.text=="Cynthia"){
-		npcResponse.text = "You approach a small woman standing next to a garden." 
+		textToScreen = "You approach a small woman standing next to a garden." 
         +" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
         +" been working outside all day. She notices you walking up to her. She gives"
         +" you a kind smile. ";
 		}
 		if(npcName.text=="Anker"){
-		npcResponse.text = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
+		textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
         +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
         +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
 		}
 		if(npcName.text=="Emrik"){
-		npcResponse.text = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
+		textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
         +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
         +" with his field. If this was the town's only source of food, they were in trouble.";
 		}
 		if(npcName.text=="Edward"){
-		npcResponse.text = "The hospital is empty save for a doctor standing near empty beds." 
+		textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
         +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
         +" You wonder if you should talk with him at all. Would he even respond?";
 		}
@@ -70,13 +75,21 @@ public class EngageDialogue : MonoBehaviour {
 		//create the listeners and change the text based on which was clicked.
         choice1.onClick.AddListener(()=>clickedOption1(indexForNextOption1));
         choice2.onClick.AddListener(()=>clickedOption2(indexForNextOption2));
+		
+		coroutine = StartCoroutine(Example());
     }
 	public void clickedOption1(int index){
-		Debug.Log(index);
+		StopAllCoroutines();
+		npcResponse.text="";
+		if(!isTyping){
+			npcResponse.text = textToScreen;
+			isTyping=true;
+			return;
+		}
 		if(index==0){
 			index++;
-		
-		npcResponse.text = currentDialogue[index].response;
+		textToScreen = currentDialogue[index].response;
+
 		txt1.text = currentDialogue[index].option1;
 		txt2.text = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
@@ -89,24 +102,42 @@ public class EngageDialogue : MonoBehaviour {
 			GameInfo.UpdateHealth(50);
 
 		}
-		npcResponse.text = currentDialogue[index].response;
+		textToScreen = currentDialogue[index].response;
+		StartCoroutine(Example());
 		txt1.text = currentDialogue[index].option1;
 		txt2.text = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
+		
+		isTyping=false;
+
+		if(index==currentDialogue.Length){
+			isTyping=true;
+		}
 	}
 	public void clickedOption2(int index){
+		StopAllCoroutines();
+		npcResponse.text="";
+		if(!isTyping){
+			npcResponse.text = textToScreen;
+			isTyping=true;
+			return;
+		}
 		if(index == 0){
 			//this will be the fight option and will change scenes and pass information about who the enemy is
 			Debug.Log("Fight Begins");
 			return;
 		}
-		npcResponse.text = currentDialogue[index].response;
+		
+		textToScreen = currentDialogue[index].response;
+		
+		StartCoroutine(Example());
 		txt1.text = currentDialogue[index].option1;
 		txt2.text = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 
+		isTyping=false;
 
 	}
 	public void cancelMenu(){
@@ -120,5 +151,12 @@ public class EngageDialogue : MonoBehaviour {
 	public void Update(){
 
 	}
-
+IEnumerator Example()
+    {
+		isTyping=true;
+		foreach (char letter in textToScreen.ToCharArray()) {
+             npcResponse.text += letter;
+             yield return new WaitForSeconds (letterPause);
+         }
+	}
 }

@@ -110,6 +110,7 @@ public class GameInfo : MonoBehaviour
             LoadDialogue.createDialogueTrees();
             PopulateEquipmentList();
         }
+        LoadDialogue.createDialogueTrees();
     }
 
     // Populate the Equipment List using array data
@@ -190,7 +191,6 @@ public class GameInfo : MonoBehaviour
 
     public static string getName(int idx){
         return NPCList[idx].name;
-        //return "Cynthia";
     }
 
     public static Node[] getDialogueTree(int index){
@@ -235,5 +235,4 @@ public class GameInfo : MonoBehaviour
             
             }
         }
-    }
 }
