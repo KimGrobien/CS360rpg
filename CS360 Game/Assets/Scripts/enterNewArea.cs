@@ -17,6 +17,9 @@ public class enterNewArea : MonoBehaviour {
                 case "enter_castle":
                     SceneManager.LoadScene(3);
                     break;
+                case "enter_boss_room":
+                    SceneManager.LoadScene("Boss Room");
+                    break;
                 case "enter_bounty":
                     SceneManager.LoadScene(4);
                     break;
@@ -31,6 +34,9 @@ public class enterNewArea : MonoBehaviour {
                     break;
                 case "exit_castle":
                     SceneManager.LoadScene("Castle");
+                    break;
+                case "exit_boss_room":
+                    SceneManager.LoadScene("Castle Hall");
                     break;
                 case "exit_hospital":
                     SceneManager.LoadScene("Town");

@@ -10,7 +10,7 @@ public class openDoor : MonoBehaviour {
 		anim = GameObject.Find("castle_door").GetComponent<Animator>();
 	}
 	void OnTriggerEnter2D (Collider2D other) {
-       anim.SetBool("playDown", true);
+       anim.SetBool("playOpen", true);
 	}
 
 	void OnTriggerExit2D (Collider2D other){

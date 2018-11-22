@@ -11,7 +11,7 @@ TextureImporter:
     21300012: castle_door_OPENING_done_longer_6
     21300014: castle_door_OPENING_done_longer_7
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -29,6 +29,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,7 +106,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4213b4483a238ff45bf1bf3d40a36e0b
+      spriteID: d9d27f04946bff14eb33412b04f98819
       vertices: []
       indices: 
       edges: []
@@ -124,7 +126,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087a8de8854faf644a62ff9d6a714cbd
+      spriteID: 3ff83bc8a9cf0904b9498c9e65cd7df7
       vertices: []
       indices: 
       edges: []
@@ -144,7 +146,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4e2e0796e9cbc748ad24345e0f07dd7
+      spriteID: d4aa9faf86cd46f4d98645466b3add93
       vertices: []
       indices: 
       edges: []
@@ -164,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c7cfddd8b699814f8783a46222d1b75
+      spriteID: 6c1af87ba7ae3c846856d638c396f10c
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fcbe637cb6e58b4283025df66f8e3d2
+      spriteID: af638427b6401e546a41040af8ca8880
       vertices: []
       indices: 
       edges: []
@@ -204,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e231f50a33566b47b7827fd66af0154
+      spriteID: ce77313f66d2cef40948f52eec781753
       vertices: []
       indices: 
       edges: []
@@ -214,9 +216,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 64
         width: 64
-        height: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c92fb99794a29d49998baf0a6935bd5
+      spriteID: b2845bfb65e784a4f94f0cd06541b4e6
       vertices: []
       indices: 
       edges: []
@@ -244,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b9c023f9962d1f4d90d15b3abfaf592
+      spriteID: 224ab5e7a9280fe4babbf6833cbd503a
       vertices: []
       indices: 
       edges: []
@@ -258,6 +260,8 @@ TextureImporter:
     edges: []
     weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -47,6 +47,9 @@ TagManager:
   - name: Player
     uniqueID: 1682647107
     locked: 0
+  - name: Overlay
+    uniqueID: 3126550421
+    locked: 0
   - name: Popup
     uniqueID: 363223471
     locked: 0
