@@ -14,10 +14,10 @@ public class EngageDialogue : MonoBehaviour {
 	int indexForNextOption1;
 	int indexForNextOption2;
 	Sprite npcImage;
-	public static string textToScreen;
+	public static string textToScreen,temp1, temp2;
 	Coroutine coroutine;
 	bool isTyping;
-    public float letterPause = 0.05f;
+	public int timesEncountered;
   
 	public void Start() {
 		//Get cancel button
@@ -87,6 +87,10 @@ public class EngageDialogue : MonoBehaviour {
 				txt1.text = "Talk";
 				txt2.text = "Fight";
 			}
+			else{
+			txt1.text = temp1;
+			txt2.text = temp2;
+			}
 			npcResponse.text = textToScreen;
 			isTyping=false;
 			return;
@@ -94,18 +98,20 @@ public class EngageDialogue : MonoBehaviour {
 		if(index==-1){
 			txt1.text="Restart?";
 			npcResponse.text="";
+			txt2.text="";
 			index=0;
 			indexForNextOption1=0;
-			indexForNextOption2=0;
+			indexForNextOption2=-1;
 			textToScreen = currentDialogue[0].response;
+			timesEncountered++;
 			return;
 		}
 		if(index==0){
 			index++;
 		textToScreen = currentDialogue[index].response;
 
-		txt1.text = currentDialogue[index].option1;
-		txt2.text = currentDialogue[index].option2;
+		//txt1.text = currentDialogue[index].option1;
+		//txt2.text = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 		index--;
@@ -119,8 +125,8 @@ public class EngageDialogue : MonoBehaviour {
 		}
 		textToScreen = currentDialogue[index].response;
 		StartCoroutine(Example());
-		txt1.text = currentDialogue[index].option1;
-		txt2.text = currentDialogue[index].option2;
+		temp1 = currentDialogue[index].option1;
+		temp2 = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 		
@@ -128,9 +134,28 @@ public class EngageDialogue : MonoBehaviour {
 	public void clickedOption2(int index){
 		StopAllCoroutines();
 		npcResponse.text="";
-		if(!isTyping){
+		
+		if(isTyping){
+			if(index==0){
+				txt1.text = "Talk";
+				txt2.text = "Fight";
+			}
+			else{
+			txt1.text = temp1;
+			txt2.text = temp2;
+			}
 			npcResponse.text = textToScreen;
-			isTyping=true;
+			isTyping=false;
+			return;
+		}
+		if(index==-1){
+			txt1.text="Restart?";
+			txt2.text="";
+			npcResponse.text="";
+			index=0;
+			indexForNextOption1=0;
+			indexForNextOption2=-1;
+			textToScreen = currentDialogue[0].response;
 			return;
 		}
 		if(index == 0){
@@ -139,16 +164,18 @@ public class EngageDialogue : MonoBehaviour {
 			//SceneManager.LoadScene("Combat");
 			return;
 		}
-		
+		if(index==3&&npcName.text=="Cynthia"){
+			//heal Ego
+			GameInfo.UpdateHealth(50);
+			Debug.Log("Heal Ego");
+
+		}
 		textToScreen = currentDialogue[index].response;
-		
 		StartCoroutine(Example());
-		txt1.text = currentDialogue[index].option1;
-		txt2.text = currentDialogue[index].option2;
+		temp1 = currentDialogue[index].option1;
+		temp2 = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
-
-		isTyping=false;
 
 	}
 	public void cancelMenu(){
@@ -169,8 +196,16 @@ IEnumerator Example()
 		txt2.text="";
 		foreach (char letter in textToScreen.ToCharArray()) {
              npcResponse.text += letter;
-             yield return new WaitForSeconds (letterPause);
+             yield return new WaitForSeconds ((float).02);
          }
+		 if(timesEncountered==0){
+			 txt1.text = "Talk";
+			txt2.text = "Fight";
+		 }
+		 else{
+		 txt1.text = temp1;
+		 txt2.text = temp2;
+		 }
 		 isTyping=false;
 	}
 }
