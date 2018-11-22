@@ -48,7 +48,7 @@ public static void createDialogueTrees(){
         Cynthia[3].option1 = "That was amazing! Thank you so much for helping me. "
         +"I don't know a lot of strangers that would be willing to help.";
         Cynthia[3].option2 = "";
-        Cynthia[3].indexForOption1 = 7;
+        Cynthia[3].indexForOption1 = -1;
         Cynthia[3].indexForOption2 = 8;
 
         GameInfo.DialogueTrees[0] = Cynthia;

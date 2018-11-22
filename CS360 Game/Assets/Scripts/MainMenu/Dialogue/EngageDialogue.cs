@@ -81,9 +81,23 @@ public class EngageDialogue : MonoBehaviour {
 	public void clickedOption1(int index){
 		StopAllCoroutines();
 		npcResponse.text="";
-		if(!isTyping){
+		
+		if(isTyping){
+			if(index==0){
+				txt1.text = "Talk";
+				txt2.text = "Fight";
+			}
 			npcResponse.text = textToScreen;
-			isTyping=true;
+			isTyping=false;
+			return;
+		}
+		if(index==-1){
+			txt1.text="Restart?";
+			npcResponse.text="";
+			index=0;
+			indexForNextOption1=0;
+			indexForNextOption2=0;
+			textToScreen = currentDialogue[0].response;
 			return;
 		}
 		if(index==0){
@@ -100,6 +114,7 @@ public class EngageDialogue : MonoBehaviour {
 		if(index==3&&npcName.text=="Cynthia"){
 			//heal Ego
 			GameInfo.UpdateHealth(50);
+			Debug.Log("Heal Ego");
 
 		}
 		textToScreen = currentDialogue[index].response;
@@ -109,11 +124,6 @@ public class EngageDialogue : MonoBehaviour {
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 		
-		isTyping=false;
-
-		if(index==currentDialogue.Length){
-			isTyping=true;
-		}
 	}
 	public void clickedOption2(int index){
 		StopAllCoroutines();
@@ -126,6 +136,7 @@ public class EngageDialogue : MonoBehaviour {
 		if(index == 0){
 			//this will be the fight option and will change scenes and pass information about who the enemy is
 			Debug.Log("Fight Begins");
+			//SceneManager.LoadScene("Combat");
 			return;
 		}
 		
@@ -154,9 +165,12 @@ public class EngageDialogue : MonoBehaviour {
 IEnumerator Example()
     {
 		isTyping=true;
+		txt1.text="";
+		txt2.text="";
 		foreach (char letter in textToScreen.ToCharArray()) {
              npcResponse.text += letter;
              yield return new WaitForSeconds (letterPause);
          }
+		 isTyping=false;
 	}
 }
