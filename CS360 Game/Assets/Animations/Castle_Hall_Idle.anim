@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boss_Room_Idle
+  m_Name: Castle_Hall_Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,13 +19,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ffbfe66809eef664b83415e586878c28, type: 3}
+      value: {fileID: 21300000, guid: d585ec50c59ea064b94f27c821e1a8c5, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 683b0ba7ee590d344939165a9614bf17, type: 3}
+      value: {fileID: 21300000, guid: 8c524de5ca6ea764dbeba0d578a75ede, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: ffbfe66809eef664b83415e586878c28, type: 3}
+      value: {fileID: 21300000, guid: d585ec50c59ea064b94f27c821e1a8c5, type: 3}
     - time: 1.5
-      value: {fileID: 21300000, guid: 683b0ba7ee590d344939165a9614bf17, type: 3}
+      value: {fileID: 21300000, guid: 8c524de5ca6ea764dbeba0d578a75ede, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -45,10 +45,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ffbfe66809eef664b83415e586878c28, type: 3}
-    - {fileID: 21300000, guid: 683b0ba7ee590d344939165a9614bf17, type: 3}
-    - {fileID: 21300000, guid: ffbfe66809eef664b83415e586878c28, type: 3}
-    - {fileID: 21300000, guid: 683b0ba7ee590d344939165a9614bf17, type: 3}
+    - {fileID: 21300000, guid: d585ec50c59ea064b94f27c821e1a8c5, type: 3}
+    - {fileID: 21300000, guid: 8c524de5ca6ea764dbeba0d578a75ede, type: 3}
+    - {fileID: 21300000, guid: d585ec50c59ea064b94f27c821e1a8c5, type: 3}
+    - {fileID: 21300000, guid: 8c524de5ca6ea764dbeba0d578a75ede, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
