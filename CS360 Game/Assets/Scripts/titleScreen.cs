@@ -18,7 +18,7 @@ public class titleScreen : MonoBehaviour {
 		canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 			
     	warningText = GameObject.Find("warning").GetComponent<TextMeshProUGUI>();
-		textForArray = warningText.text;
+		textForArray = "I know you're there...";
 		warningText.text = "";
 		begin = canvas.GetComponentInChildren<Button>();
 		begin.onClick.AddListener(beginGame);

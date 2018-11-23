@@ -1350,7 +1350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choice1
+  m_Text: 
 --- !u!222 &424734818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cba237f8e0c04c41979999899eec227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterPause: 0.05
+  timesEncountered: 0
 --- !u!114 &734469025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,7 +2441,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Response
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2509,13 +2509,13 @@ MonoBehaviour:
   m_margin: {x: 9.828286, y: -53.25323, z: -598.5243, w: -212.42624}
   m_textInfo:
     textComponent: {fileID: 734469025}
-    characterCount: 8
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -4729,7 +4729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choice2
+  m_Text: 
 --- !u!222 &1432413441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4828,12 +4828,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1459054633}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cba237f8e0c04c41979999899eec227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterPause: 0.03
+  timesEncountered: 0
 --- !u!4 &1459054635
 Transform:
   m_ObjectHideFlags: 0
@@ -4966,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cba237f8e0c04c41979999899eec227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterPause: 0.05
+  timesEncountered: 0
 --- !u!114 &1464126519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5102,7 +5102,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: NPC_Name
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5170,13 +5170,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -171.64893, w: 0}
   m_textInfo:
     textComponent: {fileID: 1526507425}
-    characterCount: 8
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 2
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -5214,7 +5214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cba237f8e0c04c41979999899eec227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterPause: 0.05
+  timesEncountered: 0
 --- !u!1 &1551853939
 GameObject:
   m_ObjectHideFlags: 0
