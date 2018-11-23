@@ -11,13 +11,33 @@ public class LoadDialogue : MonoBehaviour {
     public static Node[] Anker = new Node[50];
     public static Node[] Edward = new Node[50];
     public static Node[] Fox = new Node[5];
+    public static Node[] RockCreature = new Node[5];
+    public static Node[] Rabbit = new Node[5];
+    public static Node[] Berndy = new Node[5];
+    public static Node[] Modir = new Node[5];
+    public static Node[] Farenvir = new Node[5];
+    public static Node[] Ozul = new Node[50];
 
 /* 
 SPECIAL INDEX LIST
 -1 means restart
 -2 means exit to overworld
+-3 means add partyMember
 */
 public static void createDialogueTrees(){
+        loadCynthiaDialogue();
+        loadAnkerDialogue();
+        loadEdwardDialogue();
+        loadEmrikDialogue();
+        loadBerndyDialogue();
+        loadModirDialogue();
+        loadFarenvirDialogue();
+        loadOzulDialogue();
+        loadFoxDialogue();
+        loadRockCreatureDialogue();
+        loadRabbitDialogue();
+    }
+public static void loadCynthiaDialogue(){
         //Cynthia
 
         //currentIndex will lead to (currentIndex*2)+1 as option1 and (currentIndex*2)+2 as option2
@@ -52,7 +72,7 @@ public static void createDialogueTrees(){
         +"She says, \"I think I can help. Hold on.\"\n\nShe raises her hands in your direction. "
         +"A bright light emits from her palms. You feel a warmth in your chest and start feeling a little better.";
         Cynthia[3].option1 = "That was amazing! Thank you so much for helping me. "
-        +"I don't know a lot of strangers that would be willing to help. What is your name?";
+        +"I don't know a lot of strangers that would be willing to help. ";
         Cynthia[3].option2 = "";
         Cynthia[3].indexForOption1 = 7;
         Cynthia[3].indexForOption2 = 8;
@@ -75,10 +95,50 @@ public static void createDialogueTrees(){
         Cynthia[5].indexForOption2 = 12;
 
         GameInfo.DialogueTrees[0] = Cynthia;
-
-        loadFoxDialogue();
     }
+    
+    public static void loadAnkerDialogue(){
 
+        
+        GameInfo.DialogueTrees[1] = Anker;
+    }
+    
+    public static void loadEdwardDialogue(){
+
+        
+        GameInfo.DialogueTrees[2] = Edward;
+    }
+    
+    public static void loadEmrikDialogue(){
+
+        
+        GameInfo.DialogueTrees[3] = Emrik;
+    }
+    
+    public static void loadBerndyDialogue(){
+
+        
+        GameInfo.DialogueTrees[4] = Berndy;
+    }
+    
+    public static void loadModirDialogue(){
+
+        
+        GameInfo.DialogueTrees[5] = Modir;
+    }
+    
+    public static void loadFarenvirDialogue(){
+
+        
+        GameInfo.DialogueTrees[6] = Farenvir;
+    }
+    
+    public static void loadOzulDialogue(){
+
+        
+        GameInfo.DialogueTrees[7] = Ozul;
+    }
+    
     public static void loadFoxDialogue(){
 
         //firstEncounter
@@ -91,5 +151,19 @@ public static void createDialogueTrees(){
         GameInfo.DialogueTrees[8] = Fox;
         
     }
+    
+    public static void loadRockCreatureDialogue(){
+
+        
+        GameInfo.DialogueTrees[9] = RockCreature;
+    }
+    
+    public static void loadRabbitDialogue(){
+
+        
+        GameInfo.DialogueTrees[10] = Rabbit;
+    }
+
+    
 
 }

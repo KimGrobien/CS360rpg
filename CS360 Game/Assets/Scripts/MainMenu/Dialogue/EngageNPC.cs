@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class EngageDialogue : MonoBehaviour {
+public class EngageNPC : MonoBehaviour {
 	TextMeshProUGUI npcName,npcResponse;
 	Button choice1, choice2, cancel;
 	GameObject trade;
@@ -76,6 +76,22 @@ public class EngageDialogue : MonoBehaviour {
 		
 			npcResponse.faceColor= new Color32(255, 84, 84,255);
 		}
+		if(GameInfo.currentNPC==4){//Berndy
+			textToScreen = "A small creature emerges from the shadows.";
+		
+			npcResponse.faceColor= new Color32(130,130,130,255);
+		}
+		if(GameInfo.currentNPC==5){//Modir
+			textToScreen = "This creature looks tired.";
+		
+			npcResponse.faceColor= new Color32(130,130,130,255);
+		}
+		if(GameInfo.currentNPC==6){//Farenvir
+			textToScreen = "You feel as though gravity has increased in the presence of this creature."+
+			"\nYou felt this before, somewhere.";
+		
+			npcResponse.faceColor= new Color32(130,130,130,255);
+		}
 		if(GameInfo.currentNPC == 8){
 			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
 			+"It looks at you with regretful eyes.";
@@ -107,16 +123,12 @@ public class EngageDialogue : MonoBehaviour {
 				npcResponse.faceColor= new Color32(183, 189, 255,255);
 			}
 			if(GameInfo.currentNPC==1){
-				textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
-				+" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
-				+" with his field. If this was the town's only source of food, they were in trouble.";
+				textToScreen = "My wife is missing... Go bother someone else.";
 			
 			npcResponse.faceColor= new Color32(182, 255, 170,255);
 			}
 			if(GameInfo.currentNPC==2){
-				textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
-				+" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
-				+" You wonder if you should talk with him at all. Would he even respond?";
+				textToScreen = "Have you noticed that the shadows seem darker?";
 			
 			npcResponse.faceColor= new Color32(255, 84, 84,255);
 			}
@@ -134,11 +146,40 @@ public class EngageDialogue : MonoBehaviour {
 			}
 
 		}
+		if(GameInfo.recruitable[GameInfo.currentNPC]){
+		if(GameInfo.currentNPC==0){
+				textToScreen = "She says,\"I really must be getting back to work. \n\n Unless you need me to go with you?\"";
+				npcResponse.faceColor= new Color32(255, 240, 127,255);
+			}
+			if(npcName.text=="Anker"){
+				textToScreen = "I live for my daughter, I'll die for her too.";
+				
+				npcResponse.faceColor= new Color32(183, 189, 255,255);
+			}
+			if(GameInfo.currentNPC==1){
+				textToScreen = "Take me to the demon that took my wife!";
+			
+			npcResponse.faceColor= new Color32(182, 255, 170,255);
+			}
+			if(GameInfo.currentNPC==2){
+				textToScreen = "Have you noticed that the shadows seem darker?";
+			
+			npcResponse.faceColor= new Color32(255, 84, 84,255);
+			}
+		}
 		coroutine = StartCoroutine(Example());
     }
 	public void clickedOption1(int index){
 		StopAllCoroutines();
 		npcResponse.text="";
+		if(GameInfo.recruitable[GameInfo.currentNPC]){
+			npcResponse.text = textToScreen;
+			indexForNextOption1=-3;
+			indexForNextOption2=0;
+			txt1.text = "Add to Party";
+			txt2.text = "Fight";
+					return;
+		}
 		if(GameInfo.encountered[GameInfo.currentNPC]>3){
 			npcResponse.text = textToScreen;
 			indexForNextOption1=0;
@@ -196,6 +237,9 @@ public class EngageDialogue : MonoBehaviour {
 		
 		if(index==7 &&GameInfo.currentNPC==0){
 			npcName.text="Cynthia";
+		}
+		if(index==-3){
+			//add to party
 		}
 		textToScreen = currentDialogue[index].response;
 		StartCoroutine(Example());
