@@ -40,6 +40,11 @@ public struct equipmentData
     public Color Visability;
 }
 
+public struct PartySlot{
+
+    public int slotID;
+	public NPC currentNPC;
+}
 // Start of Main Class which houses all of the games global information
 public class GameInfo : MonoBehaviour
 {
@@ -51,7 +56,7 @@ public class GameInfo : MonoBehaviour
     private static int money = 300;
     private static bool isAlive = true;
     private static int health = 100;
-    public static NPCData[] party = new NPCData[2];
+    public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
 
     // Data for overworld Navigation}
@@ -87,14 +92,14 @@ public class GameInfo : MonoBehaviour
     (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
     (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
     (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
-    private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Revive" }, { "Emrik", "Impale", "Kick" }, { "Berndy", "", "" }, { "Modir", "", "" }, { "Farenvir", "", "" }, { "Ozul", "", "" }, { "Fox", "", "" }, { "Rock Creature", "", "" }, { "Rabbit", "", "" } };
+    private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Infect" }, { "Emrik", "Impale", "Kick" }, { "Berndy", "", "" }, { "Modir", "", "" }, { "Farenvir", "", "" }, { "Ozul", "", "" }, { "Fox", "", "" }, { "Rock Creature", "", "" }, { "Rabbit", "", "" } };
     /* Heath, PrimaryStat, SecondaryStat, RunRange (FOR first 4 (0 to 3 ID indexes) Recruitable NPCs)
         Heath, Set Attack, additional Attack Range to be added to Attack, RunRange (last 7(4 to 10 ID indexes) enemy NPCs)*/
     private static int[,] NPCintData = new int[11, 4] { { 25, 50, 0, 1 }, { 150, 150, 35, 10 }, { 75, 25, 30, 6 }, { 35, 50, 20, 8 }, { 65, 15, 5, 5 }, { 100, 35, 10, 10 }, { 120, 25, 7, 7 }, { 250, 75, 10, 100 }, { 25, 5, 2, 3 }, { 50, 10, 10, 5 }, { 25, 3, 1, 1 } };
     public static Sprite[] NPCsprites = new Sprite[11];
 
     //DialogueTrees
-    public static Node[][] DialogueTrees = new Node[4][];
+    public static Node[][] DialogueTrees = new Node[10][];
     public static int[] encountered = new int[11];
 
     
@@ -251,7 +256,7 @@ public class GameInfo : MonoBehaviour
 	public static int getEgoHeal(){
 		return egoHeal;
 	}
-	public static NPCData getParty(int index){
+	public static PartySlot getParty(int index){
 		return party [index];
 	}
 	public static NPCData getEnemy(int index){

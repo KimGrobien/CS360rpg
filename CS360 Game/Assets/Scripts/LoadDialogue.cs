@@ -10,12 +10,14 @@ public class LoadDialogue : MonoBehaviour {
     public static Node[] Emrik = new Node[50];
     public static Node[] Anker = new Node[50];
     public static Node[] Edward = new Node[50];
+    public static Node[] Fox = new Node[5];
 
 //index -1 means restart
 public static void createDialogueTrees(){
         //Cynthia
+
         //currentIndex will lead to (currentIndex*2)+1 as option1 and (currentIndex*2)+2 as option2
-       //firstEncounter
+        //firstEncounter
         Cynthia[0].response = "She says, \"You\'re new, aren\'t you? I haven\'t seen you around here at least. Is there something you need traveler?\"";
         Cynthia[0].option1 = "I'm hurt can you help me?";
         Cynthia[0].option2 = "Where is the nearest town?";
@@ -55,9 +57,10 @@ public static void createDialogueTrees(){
         +" She stands tall facing you. "
         +"\nShe says, \"Then move along traveller, strange things have been happening in town.\"\n";
         Cynthia[4].option1 = "I'll be going then.";
-        Cynthia[4].option2 = "";
+        Cynthia[4].option2 = "Restart?";
         Cynthia[4].indexForOption1 = 9;
-        Cynthia[4].indexForOption2 = 10;
+        Cynthia[4].indexForOption2 = -1;
+        /*-------------------------------index 4 does not continue------------------------------------------------------ */
         //response to index 2 option1
         Cynthia[5].response = "With confidence, she says, \"Those townspeople are always getting into trouble, but recently it's been worse."
         +" I've heard over the last few days people have gone missing. So I'd be weary of going to them. Especially since they don't know you."
@@ -68,6 +71,21 @@ public static void createDialogueTrees(){
         Cynthia[5].indexForOption2 = 12;
 
         GameInfo.DialogueTrees[0] = Cynthia;
+
+        loadFoxDialogue();
+    }
+
+    public static void loadFoxDialogue(){
+
+        //firstEncounter
+        Fox[0].response = "You make your best fox chatter at the animal but it doesn't seem to care.";
+        Fox[0].option1 = "Talk";
+        Fox[0].option2 = "Fight";
+        Fox[0].indexForOption1 = 0;
+        Fox[0].indexForOption2 = 0;
+        
+        GameInfo.DialogueTrees[8] = Fox;
+        
     }
 
 }

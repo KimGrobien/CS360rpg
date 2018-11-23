@@ -470,7 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   popupName: 
-  id: 2
+  id: 1
 --- !u!61 &1822919936
 BoxCollider2D:
   m_ObjectHideFlags: 0
