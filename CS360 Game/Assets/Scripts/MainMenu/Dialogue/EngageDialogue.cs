@@ -30,8 +30,8 @@ public class EngageDialogue : MonoBehaviour {
 		//update the image to current npc engaging with
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		
-		//Update the name of the npc to current npc engaging with
-        
+		npcName.text=GameInfo.getName(GameInfo.currentNPC);
+		
 		if(npcName.text == "Anker"){
 			trade.SetActive(true);
 			trade.GetComponent<Button>().onClick.AddListener(beginTrade);
@@ -79,12 +79,15 @@ public class EngageDialogue : MonoBehaviour {
 		if(GameInfo.currentNPC == 8){
 			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
 			+"It looks at you with regretful eyes.";
+			npcName.text="Fox";
 		}
 		if(npcName.text == "Rabbit"){
 			textToScreen = "In the tall grass near a small hole in the ground, you see a rabbit eating a carrot.";
+			npcName.text="Rabbit";
 		}
 		if(npcName.text == "Rock Creature"){
 			textToScreen = "A strange rock creature";
+			npcName.text="Rock Creature";
 		}
 
 		//create the listeners and change the text based on which was clicked.
@@ -94,38 +97,41 @@ public class EngageDialogue : MonoBehaviour {
 		
 		++GameInfo.encountered[GameInfo.currentNPC];
 		if(GameInfo.encountered[GameInfo.currentNPC] > 3){
-					if(npcName.text=="Cynthia"){
-		textToScreen = "She says,\"I really must be getting back to work.";
-		npcResponse.faceColor= new Color32(255, 240, 127,255);
-		}
-		if(npcName.text=="Anker"){
-		textToScreen = "If you're not going to buy anything, please leave me alone...";
-		
-		npcResponse.faceColor= new Color32(183, 189, 255,255);
-		}
-		if(npcName.text=="Emrik"){
-		textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
-        +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
-        +" with his field. If this was the town's only source of food, they were in trouble.";
-		
-		npcResponse.faceColor= new Color32(182, 255, 170,255);
-		}
-		if(npcName.text=="Edward"){
-		textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
-        +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
-        +" You wonder if you should talk with him at all. Would he even respond?";
-		
-		npcResponse.faceColor= new Color32(255, 84, 84,255);
-		}
-		if(GameInfo.currentNPC == 8){
-			textToScreen = "The fox looks at you as if you are the grim reaper himself.";
-		}
-		if(npcName.text == "Rabbit"){
-			textToScreen = "This rabbit is smaller than the others.";
-		}
-		if(npcName.text == "Rock Creature"){
-			textToScreen = "How are there so many of these things?";
-		}
+			if(GameInfo.currentNPC==0){
+				textToScreen = "She says,\"I really must be getting back to work.";
+				npcResponse.faceColor= new Color32(255, 240, 127,255);
+			}
+			if(npcName.text=="Anker"){
+				textToScreen = "If you're not going to buy anything, please leave me alone...";
+				
+				npcResponse.faceColor= new Color32(183, 189, 255,255);
+			}
+			if(GameInfo.currentNPC==1){
+				textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
+				+" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
+				+" with his field. If this was the town's only source of food, they were in trouble.";
+			
+			npcResponse.faceColor= new Color32(182, 255, 170,255);
+			}
+			if(GameInfo.currentNPC==2){
+				textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
+				+" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
+				+" You wonder if you should talk with him at all. Would he even respond?";
+			
+			npcResponse.faceColor= new Color32(255, 84, 84,255);
+			}
+			if(GameInfo.currentNPC == 8){
+				textToScreen = "The fox looks at you as if you are the grim reaper himself.";
+				npcName.text="Fox";
+			}
+			if(npcName.text == "Rabbit"){
+				textToScreen = "This rabbit is smaller than the others.";
+				npcName.text="Rabbit";
+			}
+			if(npcName.text == "Rock Creature"){
+				textToScreen = "How are there so many of these things?";
+				npcName.text="Rock Creature";
+			}
 
 		}
 		coroutine = StartCoroutine(Example());
@@ -151,9 +157,6 @@ public class EngageDialogue : MonoBehaviour {
 			txt1.text = temp1;
 			txt2.text = temp2;
 			
-			if(index==7 &&GameInfo.currentNPC==0){
-			npcName.text="Cynthia";
-		}
 			}
 			npcResponse.text = textToScreen;
 			isTyping=false;
