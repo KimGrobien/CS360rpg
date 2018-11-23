@@ -12,7 +12,11 @@ public class LoadDialogue : MonoBehaviour {
     public static Node[] Edward = new Node[50];
     public static Node[] Fox = new Node[5];
 
-//index -1 means restart
+/* 
+SPECIAL INDEX LIST
+-1 means restart
+-2 means exit to overworld
+*/
 public static void createDialogueTrees(){
         //Cynthia
 
@@ -58,7 +62,7 @@ public static void createDialogueTrees(){
         +"\nShe says, \"Then move along traveller, strange things have been happening in town.\"\n";
         Cynthia[4].option1 = "I'll be going then.";
         Cynthia[4].option2 = "Restart?";
-        Cynthia[4].indexForOption1 = 9;
+        Cynthia[4].indexForOption1 = -2;
         Cynthia[4].indexForOption2 = -1;
         /*-------------------------------index 4 does not continue------------------------------------------------------ */
         //response to index 2 option1
