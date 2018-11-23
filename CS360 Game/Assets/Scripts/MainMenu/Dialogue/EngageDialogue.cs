@@ -49,32 +49,32 @@ public class EngageDialogue : MonoBehaviour {
 		//assign base values
 		npcResponse.text = "";
 		if(GameInfo.currentNPC==0){
-		textToScreen = "You approach a small woman standing next to a garden." 
-        +" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
-        +" been working outside all day. She notices you walking up to her. She gives"
-        +" you a kind smile. ";
-		npcResponse.faceColor= new Color32(255, 240, 127,255);
+			textToScreen = "You approach a small woman standing next to a garden." 
+			+" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
+			+" been working outside all day. She notices you walking up to her. She gives"
+			+" you a kind smile. ";
+			npcResponse.faceColor= new Color32(255, 240, 127,255);
 		}
 		if(GameInfo.currentNPC==1){
-		textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
-        +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
-        +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
+			textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
+			+" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
+			+" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
 		
 		npcResponse.faceColor= new Color32(183, 189, 255,255);
 		}
 		if(GameInfo.currentNPC==3){
-		textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
-        +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
-        +" with his field. If this was the town's only source of food, they were in trouble.";
+			textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
+			+" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
+			+" with his field. If this was the town's only source of food, they were in trouble.";
 		
-		npcResponse.faceColor= new Color32(182, 255, 170,255);
+			npcResponse.faceColor= new Color32(182, 255, 170,255);
 		}
 		if(GameInfo.currentNPC==2){
-		textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
-        +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
-        +" You wonder if you should talk with him at all. Would he even respond?";
+			textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
+			+" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
+			+" You wonder if you should talk with him at all. Would he even respond?";
 		
-		npcResponse.faceColor= new Color32(255, 84, 84,255);
+			npcResponse.faceColor= new Color32(255, 84, 84,255);
 		}
 		if(GameInfo.currentNPC == 8){
 			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
@@ -86,7 +86,7 @@ public class EngageDialogue : MonoBehaviour {
 			npcName.text="Rabbit";
 		}
 		if(npcName.text == "Rock Creature"){
-			textToScreen = "A strange rock creature";
+			textToScreen = "A strange rock creature appears before you. It must have been making all those holes around town.";
 			npcName.text="Rock Creature";
 		}
 
@@ -146,7 +146,7 @@ public class EngageDialogue : MonoBehaviour {
 			txt1.text = "Talk";
 			txt2.text = "Fight";
 					return;
-				}
+		}
 		
 		if(isTyping){
 			if(index==0){
@@ -175,11 +175,11 @@ public class EngageDialogue : MonoBehaviour {
 		}
 		if(index==0){
 			index++;
-		textToScreen = currentDialogue[index].response;
+			textToScreen = currentDialogue[index].response;
 
-		indexForNextOption1 = currentDialogue[index].indexForOption1;
-		indexForNextOption2 = currentDialogue[index].indexForOption2;
-		index--;
+			indexForNextOption1 = currentDialogue[index].indexForOption1;
+			indexForNextOption2 = currentDialogue[index].indexForOption2;
+			index--;
 
 		}
 		if(index==3&& GameInfo.currentNPC==0){
@@ -188,7 +188,7 @@ public class EngageDialogue : MonoBehaviour {
 			Debug.Log("Heal Ego");
 
 		}
-		if((index==9&&GameInfo.currentNPC==0)||(index==0&&GameInfo.currentNPC==3)){
+		if((index==-2&&GameInfo.currentNPC==0)||(index==0&&GameInfo.currentNPC==3)){
 			//Load into the overworld
 			SceneManager.LoadScene(GameInfo.prevScene);
 
@@ -276,8 +276,8 @@ IEnumerator Example()
 			txt2.text = "Fight";
 		 }
 		 else{
-		 txt1.text = temp1;
-		 txt2.text = temp2;
+		 	txt1.text = temp1;
+		 	txt2.text = temp2;
 		 }
 		 isTyping=false;
 	}
