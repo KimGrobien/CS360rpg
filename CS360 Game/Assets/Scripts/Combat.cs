@@ -24,6 +24,7 @@ public class Combat : MonoBehaviour
 	private int playerMinAtkPrimary;
 	private int playerMinAtkSecondary;
 	private System.Random damageCalc = new System.Random();
+	private bool confirm = false;
 
 	public enum battleStates
 	{
@@ -32,7 +33,6 @@ public class Combat : MonoBehaviour
 		ENEMYCHOICE,
 		LOSE,
 		WIN,
-		CALCMDAMAGE,
 		RUN
 	}
 
@@ -65,7 +65,7 @@ public class Combat : MonoBehaviour
 		//START initializes the combat sequence
 		case (battleStates.START):
                //SETUP BATTLE FUNCTION
-			activePlayer = 1;
+			activePlayer = 0;
 			break;
 		//PLAYERCHOICE is the player's turn
 		case (battleStates.PLAYERCHOICE):
@@ -79,9 +79,6 @@ public class Combat : MonoBehaviour
 		//WIN ends combat and returns scene to overworld
 		case (battleStates.WIN):
 			break;
-		//CALCMDAMAGE calculates damage during turns
-		case (battleStates.CALCMDAMAGE):
-			break;
 		//RUN returns to overworld but does not remove the enemy from the overworld
 		case (battleStates.RUN):
 			break;
@@ -93,7 +90,8 @@ public class Combat : MonoBehaviour
 	{
 		
 		//NEXT STATE cycles the states of combat between player's turn and enemies turn. Basically a confirm button. 
-		if (GUILayout.Button ("NEXT STATE")) {
+		if (GUILayout.Button ("Confirm Choice")) {
+			confirm = false;
 			//if player's and enemy's are not 0
 			if (PlayerCurrentHP != 0 && enemyHP != 0) {
 				//if combat just started
@@ -104,6 +102,7 @@ public class Combat : MonoBehaviour
                 //if player's turn
                 else if (currentState == battleStates.PLAYERCHOICE) {
 					//begin enemy's turn
+					PlayerCurrentHP = PlayerCurrentHP - damageCalc.Next(2, enemyAtk);
 					currentState = battleStates.ENEMYCHOICE;
 				}
                 //if enemy's turn
@@ -115,15 +114,16 @@ public class Combat : MonoBehaviour
             //if player's hp is 0
             else if (PlayerCurrentHP == 0) {
 				//INSERT FOR LOOP TO CHECK PARTY'S TOTAL HEALTH AND IF ONE IS STILL ALIVE SWITCH TO THE NEXT PARTY MEMBER
+
 				//Lose game and load title screen
 				currentState = battleStates.LOSE;
-				//SceneManager.LoadScene(int sceneID); Load Title Menu
+				//SceneManager.LoadScene(int titlescreen); Load Title Menu
 			}
             //if enemy's hp is 0
             else if (enemyHP == 0) {
 				//win fight and load back into overworld
 				currentState = battleStates.WIN;
-				//SceneManager.LoadScene(int sceneID); Load the Overworld
+				//SceneManager.LoadScene (GameInfo.prevScene); Load the Overworld
 			}
 		}
 		//primary attack/action
@@ -131,7 +131,9 @@ public class Combat : MonoBehaviour
 			//IF STATEMENT TO CHECK IF CYNTHIA OR NOT
 			//IF CYNTHIA, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
-
+			while (confirm == false) {
+				//loops until the player confirms his/her choice
+			}
 			enemyHP = enemyHP - damageCalc.Next(playerMinAtkPrimary, playerAtkPrimary);
 
 		}
@@ -139,6 +141,9 @@ public class Combat : MonoBehaviour
 			//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
 			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
+			while (confirm == false) {
+				//loops until the player confirms his/her choice
+			}
 			enemyHP = enemyHP - damageCalc.Next(playerMinAtkSecondary, playerAtkSecondary);
 
 		}
@@ -146,15 +151,15 @@ public class Combat : MonoBehaviour
 		//party member
 		if (GUILayout.Button ("Switch")) {
 			//active player is ego if activePlayer = 1
-			if (activePlayer == 1) {
+			if (activePlayer == 0) {
 				//switch to next party member
-				activePlayer = 2;
+				activePlayer = 1;
 				//STATEMENT CHANGING CHARACTER SPRITE
 			}
 			//second party member is 2
-			if (activePlayer == 2) {
+			if (activePlayer == 1) {
 				//switch active player to next
-				activePlayer = 3;
+				activePlayer = 2;
 				//STATEMENT CHANGING SPRITE
 			}
 			//third party member is 3
