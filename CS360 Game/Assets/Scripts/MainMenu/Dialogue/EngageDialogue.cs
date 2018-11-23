@@ -53,30 +53,36 @@ public class EngageDialogue : MonoBehaviour {
         +" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
         +" been working outside all day. She notices you walking up to her. She gives"
         +" you a kind smile. ";
+		npcResponse.faceColor= new Color32(255, 240, 127,255);
 		}
 		if(npcName.text=="Anker"){
 		textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
         +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
         +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
+		
+		npcResponse.faceColor= new Color32(183, 189, 255,255);
 		}
 		if(npcName.text=="Emrik"){
 		textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
         +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
         +" with his field. If this was the town's only source of food, they were in trouble.";
+		
+		npcResponse.faceColor= new Color32(182, 255, 170,255);
 		}
 		if(npcName.text=="Edward"){
 		textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
         +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
         +" You wonder if you should talk with him at all. Would he even respond?";
+		
+		npcResponse.faceColor= new Color32(255, 84, 84,255);
 		}
-		txt1.text = "Talk";
-		txt2.text = "Fight";
 
 		//create the listeners and change the text based on which was clicked.
         choice1.onClick.AddListener(()=>clickedOption1(indexForNextOption1));
         choice2.onClick.AddListener(()=>clickedOption2(indexForNextOption2));
 		
 		coroutine = StartCoroutine(Example());
+		
     }
 	public void clickedOption1(int index){
 		StopAllCoroutines();
@@ -110,8 +116,6 @@ public class EngageDialogue : MonoBehaviour {
 			index++;
 		textToScreen = currentDialogue[index].response;
 
-		//txt1.text = currentDialogue[index].option1;
-		//txt2.text = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 		index--;

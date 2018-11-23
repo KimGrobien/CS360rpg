@@ -95,6 +95,7 @@ public class GameInfo : MonoBehaviour
 
     //DialogueTrees
     public static Node[][] DialogueTrees = new Node[4][];
+    public static int[] encountered = new int[11];
 
     
     // Used to populate all the initial data of the game
