@@ -117,7 +117,7 @@ public class GameInfo : MonoBehaviour
             LoadDialogue.createDialogueTrees();
             PopulateEquipmentList();
         }
-        LoadDialogue.createDialogueTrees();
+       // LoadDialogue.createDialogueTrees();
     }
 
     // Populate the Equipment List using array data

@@ -25,11 +25,11 @@ public class titleScreen : MonoBehaviour {
 		exit = canvas.GetComponentInChildren<Button>();
 		exit.onClick.AddListener(endGame);
 
-   		StartCoroutine(Example());
+   		StartCoroutine(egg());
 
     		}
 
-    IEnumerator Example()
+    IEnumerator egg()
     {
         yield return new WaitForSeconds(30);
 

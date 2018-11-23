@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 
 public class EngageNPC : MonoBehaviour {
+
 	TextMeshProUGUI npcName,npcResponse;
 	Button choice1, choice2, cancel;
 	GameObject trade;
@@ -14,8 +15,7 @@ public class EngageNPC : MonoBehaviour {
 	int indexForNextOption1;
 	int indexForNextOption2;
 	Sprite npcImage;
-	public static string textToScreen,temp1, temp2;
-	Coroutine coroutine;
+	string textToScreen,temp1, temp2;
 	bool isTyping;
 	public int timesEncountered;
   
@@ -167,7 +167,7 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.faceColor= new Color32(255, 84, 84,255);
 			}
 		}
-		coroutine = StartCoroutine(Example());
+		StartCoroutine(Example());
     }
 	public void clickedOption1(int index){
 		StopAllCoroutines();
@@ -243,11 +243,12 @@ public class EngageNPC : MonoBehaviour {
 		}
 		textToScreen = currentDialogue[index].response;
 		StartCoroutine(Example());
+		
 		temp1 = currentDialogue[index].option1;
 		temp2 = currentDialogue[index].option2;
 		indexForNextOption1 = currentDialogue[index].indexForOption1;
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
-		
+		return;
 	}
 	public void clickedOption2(int index){
 		StopAllCoroutines();
@@ -301,6 +302,7 @@ public class EngageNPC : MonoBehaviour {
 	public void beginTrade(){
 		//make all the left side of the menu interactable
 		Debug.Log("BEGINNING TRADE");
+		//InventoryController.toggleBuyingMode();
 	}
 
 	public void Update(){
