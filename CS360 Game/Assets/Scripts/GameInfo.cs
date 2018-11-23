@@ -43,7 +43,7 @@ public struct equipmentData
 public struct PartySlot{
 
     public int slotID;
-	public NPC currentNPC;
+	public NPCData npc;
 }
 // Start of Main Class which houses all of the games global information
 public class GameInfo : MonoBehaviour

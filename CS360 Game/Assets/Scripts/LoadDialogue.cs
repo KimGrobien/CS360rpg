@@ -48,7 +48,7 @@ public static void createDialogueTrees(){
         +"She says, \"I think I can help. Hold on.\"\n\nShe raises her hands in your direction. "
         +"A bright light emits from her palms. You feel a warmth in your chest and start feeling a little better.";
         Cynthia[3].option1 = "That was amazing! Thank you so much for helping me. "
-        +"I don't know a lot of strangers that would be willing to help.";
+        +"I don't know a lot of strangers that would be willing to help. What is your name?";
         Cynthia[3].option2 = "";
         Cynthia[3].indexForOption1 = 7;
         Cynthia[3].indexForOption2 = 8;

@@ -31,7 +31,7 @@ public class EngageDialogue : MonoBehaviour {
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		
 		//Update the name of the npc to current npc engaging with
-        npcName.text = GameInfo.getName(GameInfo.currentNPC);//
+        
 		if(npcName.text == "Anker"){
 			trade.SetActive(true);
 			trade.GetComponent<Button>().onClick.AddListener(beginTrade);
@@ -48,28 +48,28 @@ public class EngageDialogue : MonoBehaviour {
 		currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
 		//assign base values
 		npcResponse.text = "";
-		if(npcName.text=="Cynthia"){
+		if(GameInfo.currentNPC==0){
 		textToScreen = "You approach a small woman standing next to a garden." 
         +" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
         +" been working outside all day. She notices you walking up to her. She gives"
         +" you a kind smile. ";
 		npcResponse.faceColor= new Color32(255, 240, 127,255);
 		}
-		if(npcName.text=="Anker"){
+		if(GameInfo.currentNPC==1){
 		textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
         +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
         +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
 		
 		npcResponse.faceColor= new Color32(183, 189, 255,255);
 		}
-		if(npcName.text=="Emrik"){
+		if(GameInfo.currentNPC==3){
 		textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
         +" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
         +" with his field. If this was the town's only source of food, they were in trouble.";
 		
 		npcResponse.faceColor= new Color32(182, 255, 170,255);
 		}
-		if(npcName.text=="Edward"){
+		if(GameInfo.currentNPC==2){
 		textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
         +" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
         +" You wonder if you should talk with him at all. Would he even respond?";
@@ -81,10 +81,10 @@ public class EngageDialogue : MonoBehaviour {
 			+"It looks at you with regretful eyes.";
 		}
 		if(npcName.text == "Rabbit"){
-
+			textToScreen = "In the tall grass near a small hole in the ground, you see a rabbit eating a carrot.";
 		}
 		if(npcName.text == "Rock Creature"){
-
+			textToScreen = "A strange rock creature";
 		}
 
 		//create the listeners and change the text based on which was clicked.
@@ -99,9 +99,7 @@ public class EngageDialogue : MonoBehaviour {
 		npcResponse.faceColor= new Color32(255, 240, 127,255);
 		}
 		if(npcName.text=="Anker"){
-		textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
-        +" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
-        +" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
+		textToScreen = "If you're not going to buy anything, please leave me alone...";
 		
 		npcResponse.faceColor= new Color32(183, 189, 255,255);
 		}
@@ -120,14 +118,13 @@ public class EngageDialogue : MonoBehaviour {
 		npcResponse.faceColor= new Color32(255, 84, 84,255);
 		}
 		if(GameInfo.currentNPC == 8){
-			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
-			+"It looks at you with regretful eyes.";
+			textToScreen = "The fox looks at you as if you are the grim reaper himself.";
 		}
 		if(npcName.text == "Rabbit"){
-
+			textToScreen = "This rabbit is smaller than the others.";
 		}
 		if(npcName.text == "Rock Creature"){
-
+			textToScreen = "How are there so many of these things?";
 		}
 
 		}
@@ -153,6 +150,10 @@ public class EngageDialogue : MonoBehaviour {
 			else{
 			txt1.text = temp1;
 			txt2.text = temp2;
+			
+			if(index==7 &&GameInfo.currentNPC==0){
+			npcName.text="Cynthia";
+		}
 			}
 			npcResponse.text = textToScreen;
 			isTyping=false;
@@ -178,16 +179,20 @@ public class EngageDialogue : MonoBehaviour {
 		index--;
 
 		}
-		if(index==3&&npcName.text=="Cynthia"){
+		if(index==3&& GameInfo.currentNPC==0){
 			//heal Ego
 			GameInfo.UpdateHealth(50);
 			Debug.Log("Heal Ego");
 
 		}
-		if((index==9&&npcName.text=="Cynthia")||(index==0&&npcName.text=="Emrik")){
+		if((index==9&&GameInfo.currentNPC==0)||(index==0&&GameInfo.currentNPC==3)){
 			//Load into the overworld
 			SceneManager.LoadScene(GameInfo.prevScene);
 
+		}
+		
+		if(index==7 &&GameInfo.currentNPC==0){
+			npcName.text="Cynthia";
 		}
 		textToScreen = currentDialogue[index].response;
 		StartCoroutine(Example());
@@ -264,7 +269,7 @@ IEnumerator Example()
              yield return new WaitForSeconds ((float).02);
          }
 		 if(timesEncountered==0){
-			 txt1.text = "Talk";
+			txt1.text = "Talk";
 			txt2.text = "Fight";
 		 }
 		 else{

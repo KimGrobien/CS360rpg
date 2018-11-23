@@ -49,8 +49,8 @@ public class Combat : MonoBehaviour
 		playerMinAtkSecondary = 2 + playerAtkSecondary;
 		enemyHP = GameInfo.getEnemy(GameInfo.currentNPC).health;
 		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
-		PartyOnecurrentHP = GameInfo.getParty(0).health;
-		PartyTwocurrentHP = GameInfo.getParty(1).health;
+		PartyOnecurrentHP = GameInfo.getParty(0).npc.health;
+		PartyTwocurrentHP = GameInfo.getParty(1).npc.health;
 		currentState = battleStates.START;
 
 	}
