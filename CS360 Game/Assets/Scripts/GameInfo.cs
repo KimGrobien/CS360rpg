@@ -236,28 +236,28 @@ public class GameInfo : MonoBehaviour
             
             }
         }
-	public int getEgoHealth(){
+	public static int getEgoHealth(){
 		return health;
 	}
-	public int getEgoPrimary(){
+	public static int getEgoPrimary(){
 		return primaryBonus;
 	}
-	public int getEgoSecondary(){
+	public static int getEgoSecondary(){
 		return secondaryBonus;
 	}
-	public int getEgoDefense(){
+	public static int getEgoDefense(){
 		return defenseBonus;
 	}
-	public int getEgoHeal(){
+	public static int getEgoHeal(){
 		return egoHeal;
 	}
-	public NPCData getParty(int index){
+	public static NPCData getParty(int index){
 		return party [index];
 	}
-	public NPCData getEnemy(int index){
+	public static NPCData getEnemy(int index){
 		return NPCList [index];
 	}
-	public int getEgoMaxAtk(){
+	public static int getEgoMaxAtk(){
 		return AttackRangeMAX;
 	}
 }

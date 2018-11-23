@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,13 +42,13 @@ public class Combat : MonoBehaviour
 	void Start ()
 	{
 		playerHp = GameInfo.getEgoHealth();
-		playerMaxAtk = GameInfo.getEgoMaxAtk;
+		playerMaxAtk = GameInfo.getEgoMaxAtk();
 		playerAtkPrimary = GameInfo.getEgoPrimary() + playerMaxAtk;
 		playerAtkSecondary = GameInfo.getEgoSecondary() + playerMaxAtk;
 		playerMinAtkPrimary = 2 + playerAtkPrimary;
 		playerMinAtkSecondary = 2 + playerAtkSecondary;
-		enemyHP = GameInfo.getEnemy().health;
-		enemyAtk = GameInfo.getEnemy().enemyDamage;
+		enemyHP = GameInfo.getEnemy(GameInfo.currentNPC).health;
+		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
 		PartyOnecurrentHP = GameInfo.getParty(0).health;
 		PartyTwocurrentHP = GameInfo.getParty(1).health;
 		currentState = battleStates.START;
@@ -172,4 +172,3 @@ public class Combat : MonoBehaviour
 		}
 	}
 }
-*/
