@@ -134,7 +134,17 @@ public class Combat : MonoBehaviour
 			while (confirm == false) {
 				//loops until the player confirms his/her choice
 			}
-			enemyHP = enemyHP - damageCalc.Next(playerMinAtkPrimary, playerAtkPrimary);
+			if(activePlayer > 0){
+				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
+					enemyHP = enemyHP - damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
+				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
+					if (playerHp - PlayerCurrentHP >= 50) {
+						PlayerCurrentHP + 50;
+					} else {
+						PlayerCurrentHP = playerHp;
+					}
+				}
+					}
 
 		}
 		if (GUILayout.Button ("Secondary Action")) {
