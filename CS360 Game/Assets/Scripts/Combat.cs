@@ -138,7 +138,7 @@ public class Combat : MonoBehaviour
 					enemyHP = enemyHP - damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
 				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
 					if (playerHp - PlayerCurrentHP >= 50) {
-						PlayerCurrentHP + 50;
+						PlayerCurrentHP += 50;
 					} else {
 						PlayerCurrentHP = playerHp;
 					}
