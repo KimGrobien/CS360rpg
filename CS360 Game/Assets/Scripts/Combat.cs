@@ -112,8 +112,7 @@ public class Combat : MonoBehaviour
 				}
 			}
             //if player's hp is 0
-            else if (PlayerCurrentHP == 0) {
-				//INSERT FOR LOOP TO CHECK PARTY'S TOTAL HEALTH AND IF ONE IS STILL ALIVE SWITCH TO THE NEXT PARTY MEMBER
+			else if (PlayerCurrentHP == 0){
 
 				//Lose game and load title screen
 				currentState = battleStates.LOSE;
@@ -154,7 +153,15 @@ public class Combat : MonoBehaviour
 			while (confirm == false) {
 				//loops until the player confirms his/her choice
 			}
-			enemyHP = enemyHP - damageCalc.Next(playerMinAtkSecondary, playerAtkSecondary);
+			if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
+				if (PartyOnecurrentHP < 0) {
+					PartyOnecurrentHP = 1;
+				} else if (PartyTwocurrentHP < 0) {
+					PartyTwocurrentHP = 1;
+				}
+			} else {
+				enemyHP = enemyHP - damageCalc.Next (playerMinAtkSecondary, playerAtkSecondary);
+			}
 
 		}
 		//switch action does not take a turn or change the state in order to take effect. Swaps active character for next
