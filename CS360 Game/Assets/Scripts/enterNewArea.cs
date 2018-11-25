@@ -59,6 +59,7 @@ public class enterNewArea : MonoBehaviour {
                 case "exit_boss_room":
                     GameInfo.prevPos = new Vector3(-.3f, 3.02f, 0);
                     SceneManager.LoadScene("Castle Hall");
+                    GameObject.Find("castle_door").GetComponent<Animator>().SetBool("playOpen", true);//Door should appear open
                     break;
                 case "exit_hospital":
                     SceneManager.LoadScene("Town");
