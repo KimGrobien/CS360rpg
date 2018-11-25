@@ -23,6 +23,8 @@ SPECIAL INDEX LIST
 -1 means restart
 -2 means exit to overworld
 -3 means add partyMember
+-4 means changing party slots
+-5 means already in party
 */
 public static void createDialogueTrees(){
         loadCynthiaDialogue();
@@ -126,13 +128,25 @@ public static void loadCynthiaDialogue(){
         Cynthia[11].indexForOption1 = -2;
         Cynthia[11].indexForOption2 = -1;
 
-        Cynthia[12].response = "";
-        Cynthia[12].option1 = "Talk";
-        Cynthia[12].option2 = "Fight";
+        //response to index 5 option 2 
+        Cynthia[12].response = "She says, \"Are you some kind of Knight or hero or something?\" You know she meant it to mock you. "
+        +"\n\nShe gives you a look over implying that maybe you couldn't even help yourself."
+        +" She then says, \"You look like you could use some help. Let me try this.\" As she says this she waves her hands and a white light blinds you."
+        + "You feel much better.";
+        Cynthia[12].option1 = "Thank you for that, but I'm not the only one that needs help.";
+        Cynthia[12].option2 = "Thanks, I'll be on my way. It seems like people need me.";
         Cynthia[12].indexForOption1 = 25;
-        Cynthia[12].indexForOption2 = 26;
-
+        Cynthia[12].indexForOption2 = -2;
         
+        //response to index 7 option 1
+        Cynthia[15].response = "She gives you a weird look. \n\nShe says, \"You must've hit your head pretty hard. "
+        +"What will you do now? Are you going to be okay travelling alone?\"";
+        Cynthia[15].option1 = "I'll be fine. Thank you for everything.";
+        Cynthia[15].option2 = "Would you like to come with me.";
+        Cynthia[15].indexForOption1 = -2;
+        Cynthia[15].indexForOption2 = -3;
+
+        //response to index 7 option 2
 
         GameInfo.DialogueTrees[0] = Cynthia;
         
