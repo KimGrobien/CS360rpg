@@ -55,7 +55,7 @@ public class InventoryController : MonoBehaviour {
         buyButton = GameObject.Find("BuyB").GetComponent<Button>();
         buyButton.onClick.AddListener(() => BuyButtonClicked(currentItem));
 
-        enableBuying = GameObject.Find("enableBuy").GetComponent<Button>();
+        enableBuying = GameObject.Find("Trade").GetComponent<Button>();
         enableBuying.onClick.AddListener(() => toggleBuyingMode());
 
         SetButtonsVisablity(false, false, false, false);

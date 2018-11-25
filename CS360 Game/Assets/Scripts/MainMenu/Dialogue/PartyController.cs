@@ -46,7 +46,7 @@ public class PartyController : MonoBehaviour {
 		textToScreen = "Which Slot would you like to add "+GameInfo.getName(GameInfo.currentNPC);
 		temp1 = "Slot 1";
 		temp2 = "Slot 2";
-		StartCoroutine(Example());
+		StartCoroutine(type());
 
 
 	}
@@ -79,7 +79,7 @@ public class PartyController : MonoBehaviour {
 		SceneManager.LoadScene(GameInfo.prevScene);
 	}
 
-	IEnumerator Example()
+	IEnumerator type()
     {
 		isTyping=true;
 		txt1.text="";
@@ -101,7 +101,7 @@ public class PartyController : MonoBehaviour {
 		choice1.onClick.RemoveListener(AddToSlot1);
 		choice2.onClick.RemoveListener(AddToSlot2);
 		choice1.onClick.AddListener(cancelMenu);
-		StartCoroutine(Example());
+		StartCoroutine(type());
 	}
 }
 

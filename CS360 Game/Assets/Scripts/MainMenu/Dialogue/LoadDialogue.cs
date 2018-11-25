@@ -222,9 +222,99 @@ template
         GameInfo.DialogueTrees[10] = Rabbit;
     }
 
+    public static string SetBaseNPCResponses(){
+        string textToScreen="";
+		if(GameInfo.currentNPC==0){
+			textToScreen = "You approach a small woman standing next to a garden." 
+			+" Her hands are covered in dirt and her forehead in sweat. You can tell she's" 
+			+" been working outside all day. She notices you walking up to her. She gives"
+			+" you a kind smile. ";
+		}
+		if(GameInfo.currentNPC==1){
+			textToScreen = "An old man stands before you, broken. Both in body and soul. The look in his eyes says he's given up a long time ago." 
+			+" The room is filled with many rare items, and a few common. He's clearly an old adventurer." 
+			+" \n\nYou wonder why he's selling his treasures. You also consider that it might be easier just to kill him and take all the loot for yourself.";
+		
+		}
+		if(GameInfo.currentNPC==3){
+			textToScreen = "You walk into the gates of a supposed farm. The crop here is wilted and lifeless, and the person you assume is a farmer" 
+			+" is standing near the gate looking down the road. It was as if he was expecting someone soon. He was tall and strong, but very unconcerned" 
+			+" with his field. If this was the town's only source of food, they were in trouble.";
+		
+		}
+		if(GameInfo.currentNPC==2){
+			textToScreen = "The hospital is empty save for a doctor standing near empty beds." 
+			+" He doesn't seem too concerned with you. He stands in silence, lost in his mind." 
+			+" You wonder if you should talk with him at all. Would he even respond?";
+		}
+		if(GameInfo.currentNPC==4){//Berndy
+			textToScreen = "A small creature emerges from the shadows.";
+		}
+		if(GameInfo.currentNPC==5){//Modir
+			textToScreen = "This creature looks tired.";
+		}
+		if(GameInfo.currentNPC==6){//Farenvir
+			textToScreen = "You feel as though gravity has increased in the presence of this creature."+
+			"\nYou felt this before, somewhere.";
+		}
+		if(GameInfo.currentNPC == 8){
+			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
+			+"It looks at you with regretful eyes.";
+		}
+		if(GameInfo.currentNPC== 9){
+			textToScreen = "In the tall grass near a small hole in the ground, you see a rabbit eating a carrot.";
+		}
+		if(GameInfo.currentNPC == 10){
+			textToScreen = "A strange rock creature appears before you. It must have been making all those holes around town.";
+		}
+        return textToScreen;
+    }
     
+    public static string setNPCResponseIfEncounteredAlot(){
+        string textToScreen="";
+			if(GameInfo.currentNPC==0){
+				textToScreen = "She says,\"I really must be getting back to work.\"";
+			}
+			if(GameInfo.currentNPC==1){
+				textToScreen = "If you're not going to buy anything, please leave me alone...";
+			}
+			if(GameInfo.currentNPC==2){
+				textToScreen = "My wife is missing... Go bother someone else.";
+			}
+			if(GameInfo.currentNPC==3){
+				textToScreen = "Have you noticed that the shadows seem darker?";
+			}
+			if(GameInfo.currentNPC == 8){
+				textToScreen = "The fox looks at you as if you are the grim reaper himself.";
+			}
+			if(GameInfo.currentNPC==10){
+				textToScreen = "This rabbit is smaller than the others.";
+			}
+			if(GameInfo.currentNPC==9){
+				textToScreen = "How are there so many of these things?";
+			}
+            return textToScreen;
 
+	}
+
+    public static string setNPCResponseIfRecruitable(){
+        string textToScreen = "";
+        	if(GameInfo.currentNPC==0){
+				textToScreen = "She says,\"I really must be getting back to work. \n\n Unless you need me to go with you?\"";
+			}
+			if(GameInfo.currentNPC==1){
+				textToScreen = "I live for my daughter, I'll die for her too.";
+			}
+			if(GameInfo.currentNPC==3){
+				textToScreen = "Take me to the demon that took my wife!";
+			}
+			if(GameInfo.currentNPC==2){
+				textToScreen = "Have you noticed that the shadows seem darker?";
+			}
+            return textToScreen;
+    }
 }
+
 /*
 template
         Fox[0].response = "";
