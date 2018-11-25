@@ -101,7 +101,7 @@ public class GameInfo : MonoBehaviour
     //DialogueTrees
     public static Node[][] DialogueTrees = new Node[11][];
     public static int[] encountered = new int[11];
-    public static bool[] recruitable = new bool[4];
+    public static bool[] recruitable = {false,false,false,false,false,false,false,false,false,false,false};
 
     
     // Used to populate all the initial data of the game

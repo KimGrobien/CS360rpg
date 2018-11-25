@@ -84,7 +84,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[4].option2 = "Restart?";
         Cynthia[4].indexForOption1 = -2;
         Cynthia[4].indexForOption2 = -1;
-        /*-------------------------------index 4 does not continue------------------------------------------------------ */
+        /*-------------------------------index 4 does not continue index 9 and 10 are empty------------------------------------------------------ */
         //response to index 2 option 1
         Cynthia[5].response = "With confidence, she says, \"Those townspeople are always getting into trouble, but recently it's been worse."
         +" I've heard over the last few days people have gone missing. So I'd be weary of going to them. Especially since they don't know you."
@@ -100,7 +100,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[6].option2 = "Restart?";
         Cynthia[6].indexForOption1 = -2;
         Cynthia[6].indexForOption2 = -1;
-        /*-------------------------------index 6 does not continue------------------------------------------------------ */
+        /*-------------------------------index 6 does not continue index 13 and 14 are empty------------------------------------------------------ */
 
         //response to index 3 option 1
         Cynthia[7].response = "She proudly says, \"Well my parents taught me to help those in need. I've learned you can't trust everyone."
@@ -126,7 +126,6 @@ public static void loadCynthiaDialogue(){
         Cynthia[11].indexForOption1 = -2;
         Cynthia[11].indexForOption2 = -1;
 
-        
         Cynthia[12].response = "";
         Cynthia[12].option1 = "Talk";
         Cynthia[12].option2 = "Fight";

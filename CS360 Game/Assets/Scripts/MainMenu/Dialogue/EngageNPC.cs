@@ -27,10 +27,16 @@ public class EngageNPC : MonoBehaviour {
 		cancel.onClick.AddListener(cancelMenu);
 		//Get NPCName Text Data
         npcName = GameObject.Find("NPC_Name").GetComponent<TextMeshProUGUI>();
+
+		npcName.text=GameInfo.getName(GameInfo.currentNPC);
+		
+		Debug.Log(GameInfo.currentNPC);
+		Debug.Log(GameInfo.getName(GameInfo.currentNPC));
 		//update the image to current npc engaging with
+
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		
-		npcName.text=GameInfo.getName(GameInfo.currentNPC);
+		
 		
 		if(npcName.text == "Anker"){
 			trade.SetActive(true);
@@ -178,6 +184,10 @@ public class EngageNPC : MonoBehaviour {
 			indexForNextOption2=0;
 			txt1.text = "Add to Party";
 			txt2.text = "Fight";
+			PartyController controller = new PartyController();
+			PartySlot engagingNPC = new PartySlot();
+			engagingNPC.npc = GameInfo.NPCList[GameInfo.currentNPC];
+			controller.addToParty(engagingNPC);
 					return;
 		}
 		if(GameInfo.encountered[GameInfo.currentNPC]>3){
@@ -229,17 +239,12 @@ public class EngageNPC : MonoBehaviour {
 			Debug.Log("Heal Ego");
 
 		}
-		if((index==-2&&GameInfo.currentNPC==0)||(index==0&&GameInfo.currentNPC==3)){
+		if((index==-2)){
 			//Load into the overworld
 			SceneManager.LoadScene(GameInfo.prevScene);
 
 		}
-		
-		if(index==7 &&GameInfo.currentNPC==0){
-			npcName.text="Cynthia";
-		}
 		if(index==-3){
-			//add to party
 		}
 		textToScreen = currentDialogue[index].response;
 		StartCoroutine(Example());
