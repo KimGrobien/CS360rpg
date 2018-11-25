@@ -25,7 +25,6 @@ public class wall : MonoBehaviour {
 		touching = true;
 		if(interactable){
 			GameInfo.currentNPC = id;
-			GameInfo.prevPos = other.transform.position;
 		}
 		if(popupName != ""){
 			popup.enabled = true;
@@ -35,19 +34,18 @@ public class wall : MonoBehaviour {
 		touching = false;
 		GameInfo.currentNPC = -1; //No longer within range of NPC
 	}
-	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		if(touching && interactable){
-			if(Input.GetKeyDown(KeyCode.I)){
+			if(Input.GetKeyDown(KeyCode.S)){
 				GameInfo.prevScene = SceneManager.GetActiveScene().buildIndex;
+				GameInfo.prevPos = GameObject.Find("Player").GetComponent<SpriteRenderer>().transform.position;
 				SceneManager.LoadScene("Menu");
 			}
 		}
 	}
 
 	private void closePopup(){
-		Debug.Log("REACHED");
 		popup.enabled = false;
 	}
 }

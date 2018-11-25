@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 2043925092}
   - component: {fileID: 2043925091}
   m_Layer: 0
-  m_Name: exit_shop
+  m_Name: enter_town
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

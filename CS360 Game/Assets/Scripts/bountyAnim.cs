@@ -10,8 +10,10 @@ public class bountyAnim : MonoBehaviour {
 		showMoney = GameObject.Find("show_money").GetComponent<SpriteRenderer>();
 	}
 	void OnTriggerEnter2D (Collider2D other) {
-        if(GameInfo.bountyOwed > 0){
+       Debug.Log("ENTERED");
+	    if(GameInfo.bountyOwed > 0){
 			showMoney.enabled = true;
+			Debug.Log("True");
 		}
 	}
 

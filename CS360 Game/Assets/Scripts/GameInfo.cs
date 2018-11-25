@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Structure layout for NPC Data, which will be used to define each NPC 
 public struct NPCData{
@@ -120,6 +121,18 @@ public class GameInfo : MonoBehaviour
        // LoadDialogue.createDialogueTrees();
     }
 
+    private void Update(){
+        if (Input.GetKeyDown(KeyCode.D)){
+            //Toggle Menu
+            if (SceneManager.GetActiveScene().name == "Menu"){
+                SceneManager.LoadScene(prevScene);
+            }else{
+                prevScene = SceneManager.GetActiveScene().buildIndex;
+                prevPos = GameObject.Find("Player").GetComponent<SpriteRenderer>().transform.position;
+                SceneManager.LoadScene("Menu");
+            }
+        }
+    }
     // Populate the Equipment List using array data
     private void PopulateEquipmentList()
     {
