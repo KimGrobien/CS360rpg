@@ -1016,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  frozen: 0
 --- !u!212 &1156504982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1049,7 +1050,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1682647107
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300032, guid: 6660f80f3cf05484ba95a172082e8d50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
