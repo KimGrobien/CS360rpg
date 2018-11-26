@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 936329668}
   - component: {fileID: 936329667}
   m_Layer: 0
-  m_Name: mom
+  m_Name: Modir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1603,7 +1603,7 @@ GameObject:
   - component: {fileID: 1226496426}
   - component: {fileID: 1226496425}
   m_Layer: 0
-  m_Name: dad
+  m_Name: Farenvir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

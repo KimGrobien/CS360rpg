@@ -12,15 +12,14 @@ public class EngageNPC : MonoBehaviour {
 	GameObject trade;
 	Text txt1, txt2;
 	Node[] currentDialogue;
-	int indexForNextOption1;
-	int indexForNextOption2;
+	int indexForNextOption1, indexForNextOption2;
 	Sprite npcImage;
 	string textToScreen,temp1, temp2;
 	bool isTyping;
-	public int timesEncountered;
-	static PartySlot PartyMember;
-  
-	public void Start() {
+	int restarts;
+	PartySlot PartyMember;
+
+    public void Start() {
 		//Get button objects
 		trade = GameObject.Find("Trade");
 		choice1 = GameObject.Find("Choice1").GetComponent<Button>();
@@ -55,11 +54,9 @@ public class EngageNPC : MonoBehaviour {
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		}
 		if(GameInfo.party[0].isAssigned){
-			Debug.Log("Here");
 			GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[0].npc.name);
 		}
 		if(GameInfo.party[1].isAssigned){
-			Debug.Log("Here");
 			GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[1].npc.name);
 		}
 		//find the tree that needs to be traversed
@@ -85,12 +82,18 @@ public class EngageNPC : MonoBehaviour {
 		if(GameInfo.recruitable[GameInfo.currentNPC]){
 			textToScreen = LoadDialogue.setNPCResponseIfRecruitable();
 		}
+
 		StartCoroutine(type());
 		}
     }
+	
 	public void clickedOption1(int index){
 		StopAllCoroutines();
 		npcResponse.text="";
+		if(index==0){
+				txt1.text = "Talk";
+				txt2.text = "Fight";
+			}
 		if(index==-3){
 			GameInfo.recruitable[GameInfo.currentNPC] = true;
 		}
@@ -145,7 +148,7 @@ public class EngageNPC : MonoBehaviour {
 			indexForNextOption1=0;
 			indexForNextOption2=0;
 			textToScreen = currentDialogue[0].response;
-			timesEncountered++;
+			restarts++;
 			return;
 		}
 		if(index==0){
@@ -240,7 +243,7 @@ public class EngageNPC : MonoBehaviour {
 			indexForNextOption1=0;
 			indexForNextOption2=-1;
 			textToScreen = currentDialogue[0].response;
-			timesEncountered++;
+			restarts++;
 			return;
 		}
 		if(index==0){
@@ -299,9 +302,14 @@ IEnumerator type()
              npcResponse.text += letter;
              yield return new WaitForSeconds ((float).02);
          }
+		 if(indexForNextOption1==0||indexForNextOption2==0){
+			txt1.text = "Talk";
+			txt2.text = "Fight";
+		 }
+		 else{
 		 	txt1.text = temp1;
 		 	txt2.text = temp2;
-		 
+		 }
 		 isTyping=false;
 	}
 
@@ -336,9 +344,6 @@ IEnumerator type()
 		npcResponse.text = "Which Slot would you like to add "+GameInfo.getName(GameInfo.currentNPC)+"?";
 		txt1.text = "Slot 1";
 		txt2.text = "Slot 2";
-		//StartCoroutine(co;
-
-
 	}
 
 	public void AddToSlot1(){
@@ -381,3 +386,4 @@ IEnumerator type()
 	}
 
 }
+

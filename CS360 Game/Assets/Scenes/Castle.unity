@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 1068465971}
   - component: {fileID: 1068465970}
   m_Layer: 0
-  m_Name: shadow_monster
+  m_Name: berndy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   popupName: 
-  id: 10
+  id: 4
 --- !u!61 &1068465971
 BoxCollider2D:
   m_ObjectHideFlags: 0

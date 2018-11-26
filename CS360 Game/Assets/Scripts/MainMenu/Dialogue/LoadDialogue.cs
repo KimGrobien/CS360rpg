@@ -142,7 +142,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[15].response = "She gives you a weird look. \n\nShe says, \"You must've hit your head pretty hard. "
         +"What will you do now? Are you going to be okay travelling alone?\"";
         Cynthia[15].option1 = "I'll be fine. Thank you for everything.";
-        Cynthia[15].option2 = "Would you like to come with me.";
+        Cynthia[15].option2 = "Would you like to come with me?";
         Cynthia[15].indexForOption1 = -2;
         Cynthia[15].indexForOption2 = -3;
 
@@ -180,19 +180,36 @@ template
     
     public static void loadBerndyDialogue(){
 
+        Berndy[0].response = "The creature makes a sound you think you've heard in a dream once, but other than that"
+        +" didn't seem to understand you.";
+        Berndy[0].option1 = "Talk";
+        Berndy[0].option2 = "Fight";
+        Berndy[0].indexForOption1 = 0;
+        Berndy[0].indexForOption2 = 0;
+
         
         GameInfo.DialogueTrees[4] = Berndy;
     }
     
     public static void loadModirDialogue(){
-
+        Modir[0].response = "You begin to speak but for some reason the way it's looking at you, you choose not to."
+        +"\n\nYou feel like you've seen this creature before. You can remember the warm embrace of your mother."
+        +" This creature staring at you feels much colder.";
+        Modir[0].option1 = "Talk";
+        Modir[0].option2 = "Fight";
+        Modir[0].indexForOption1 = 0;
+        Modir[0].indexForOption2 = 0;
         
         GameInfo.DialogueTrees[5] = Modir;
     }
     
     public static void loadFarenvirDialogue(){
+        Farenvir[0].response = "You cannot speak.";
+        Farenvir[0].option1 = "Talk";
+        Farenvir[0].option2 = "Fight";
+        Farenvir[0].indexForOption1 = 0;
+        Farenvir[0].indexForOption2 = 0;
 
-        
         GameInfo.DialogueTrees[6] = Farenvir;
     }
     
@@ -212,25 +229,27 @@ template
         Fox[0].indexForOption2 = 0;
         
         GameInfo.DialogueTrees[8] = Fox;
-        
-/*
-template
-        Fox[0].response = "";
-        Fox[0].option1 = "Talk";
-        Fox[0].option2 = "Fight";
-        Fox[0].indexForOption1 = 0;
-        Fox[0].indexForOption2 = 0;
- */
-        
+                
     }
     
     public static void loadRockCreatureDialogue(){
+        RockCreature[0].response = "What kind of noise would this make? You try to imitate the sounds of a kickdrum. Nothing happens.";
+        RockCreature[0].option1 = "Talk";
+        RockCreature[0].option2 = "Fight";
+        RockCreature[0].indexForOption1 = 0;
+        RockCreature[0].indexForOption2 = 0;
 
         
         GameInfo.DialogueTrees[9] = RockCreature;
     }
     
     public static void loadRabbitDialogue(){
+        Rabbit[0].response = "You say, \"Hey rabbit leave those carrots alone, they're not yours.\""
+        +"\n\nThe fluff ball ignores you and continues to eat the carrots.";
+        Rabbit[0].option1 = "Talk";
+        Rabbit[0].option2 = "Fight";
+        Rabbit[0].indexForOption1 = 0;
+        Rabbit[0].indexForOption2 = 0;
 
         
         GameInfo.DialogueTrees[10] = Rabbit;
@@ -276,10 +295,10 @@ template
 			+"It looks at you with regretful eyes.";
 		}
 		if(GameInfo.currentNPC== 9){
-			textToScreen = "In the tall grass near a small hole in the ground, you see a rabbit eating a carrot.";
-		}
-		if(GameInfo.currentNPC == 10){
 			textToScreen = "A strange rock creature appears before you. It must have been making all those holes around town.";
+        }
+		if(GameInfo.currentNPC == 10){
+			textToScreen = "In the tall grass near a small hole in the ground, you see a rabbit eating a carrot.";
 		}
         return textToScreen;
     }

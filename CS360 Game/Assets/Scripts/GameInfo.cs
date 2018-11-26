@@ -92,7 +92,7 @@ public class GameInfo : MonoBehaviour
     // Name, Move One, Move Two
     /*NPC ID will be array Index 
     (RECRUITABLES) Cynthia = 0, Anker(ShopKeeper) = 1, Edward(Doctor) = 2, Emrick(Farmer) = 3, 
-    (SHADOWS)      Berndy(Bunny) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
+    (SHADOWS)      Berndy(ShadowCreature) = 4, Modir(Mother) = 5, Farenvir(Father) = 6, Ozul(Antagonist) = 7,
     (BOUNTY)       Fox = 8, Rock Creature = 9, Rabbit = 10*/
     private static string[,] NPCstringData = new string[11, 3] { { "Cynthia", "Heal", "Revive" }, { "Anker", "Use Item", "Rage" }, { "Edward", "Heal", "Infect" }, { "Emrik", "Impale", "Kick" }, { "Berndy", "", "" }, { "Modir", "", "" }, { "Farenvir", "", "" }, { "Ozul", "", "" }, { "Fox", "", "" }, { "Rock Creature", "", "" }, { "Rabbit", "", "" } };
     /* Heath, PrimaryStat, SecondaryStat, RunRange (FOR first 4 (0 to 3 ID indexes) Recruitable NPCs)
