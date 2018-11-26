@@ -130,6 +130,7 @@ public class Combat : MonoBehaviour
 			//IF STATEMENT TO CHECK IF CYNTHIA OR NOT
 			//IF CYNTHIA, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
+			//REPLACE WHILE LOOP WITH COROUTINE
 			while (confirm == false) {
 				//loops until the player confirms his/her choice
 			}
