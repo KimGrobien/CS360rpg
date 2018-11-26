@@ -192,7 +192,7 @@ public class InventoryController : MonoBehaviour {
     }
 
     // For Testing Purposes
-    private void toggleBuyingMode()
+    public void toggleBuyingMode()
     {
         EgosMoney.color = TextColor;
         GameInfo.buyingMode = !GameInfo.buyingMode;

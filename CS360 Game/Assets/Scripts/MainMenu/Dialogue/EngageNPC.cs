@@ -18,6 +18,7 @@ public class EngageNPC : MonoBehaviour {
 	bool isTyping;
 	int restarts;
 	PartySlot PartyMember;
+    InventoryController control;
 
     public void Start() {
 		if(GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
@@ -43,8 +44,18 @@ public class EngageNPC : MonoBehaviour {
 		txt1 = choice1.GetComponentInChildren<Text>();
 		txt2 = choice2.GetComponentInChildren<Text>();
 
-		//Set the name of the NPC
-		if(GameInfo.currentNPC==-1){
+        Button primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
+        Button secondaryButton = GameObject.Find("SecondaryB").GetComponent<Button>();
+        Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
+        Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
+
+        primaryButton.interactable = false;
+        secondaryButton.interactable = false;
+        buyButton.interactable = false;
+        defenseButton.interactable = false;
+
+        //Set the name of the NPC
+        if (GameInfo.currentNPC==-1){
 			npcName.text = "";
 		}
 		else{
@@ -286,7 +297,7 @@ public class EngageNPC : MonoBehaviour {
 	public void beginTrade(){
 		//make all the left side of the menu interactable
 		Debug.Log("BEGINNING TRADE");
-		//InventoryController.toggleBuyingMode();
+        //InventoryController.toggleBuyingMode();
 	}
 
 /*
