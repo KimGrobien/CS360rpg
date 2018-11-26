@@ -78,6 +78,8 @@ public class GameInfo : MonoBehaviour
     public static int currentNPC = -1;
     public static int bountyOwed = 1;
 
+    public static bool[] bountiesOwed = {true, true, true};
+
     // For equipment
     public static bool buyingMode = false;
     // atk, defense, heal, price (buy or sell for bounty)

@@ -5,15 +5,24 @@ using UnityEngine;
 public class bountyAnim : MonoBehaviour {
 
 	private SpriteRenderer showMoney;
+	public int idx; //Idx of bounty
 
 	void Start() {
-		showMoney = GameObject.Find("show_money").GetComponent<SpriteRenderer>();
+		switch (idx) {
+			case 0:
+				showMoney = GameObject.Find("show_money_0").GetComponent<SpriteRenderer>();
+				break;
+			case 1:
+				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
+				break;
+			case 2:
+				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
+				break;
+		}
 	}
 	void OnTriggerEnter2D (Collider2D other) {
-       Debug.Log("ENTERED");
-	    if(GameInfo.bountyOwed > 0){
+	    if(GameInfo.bountiesOwed[idx]){
 			showMoney.enabled = true;
-			Debug.Log("True");
 		}
 	}
 
