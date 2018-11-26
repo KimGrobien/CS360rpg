@@ -46,6 +46,7 @@ public struct PartySlot{
 	public NPCData npc;
     public bool isAssigned;
 }
+
 // Start of Main Class which houses all of the games global information
 public class GameInfo : MonoBehaviour
 {
@@ -60,14 +61,7 @@ public class GameInfo : MonoBehaviour
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
 
-
-    // Data for overworld Navigation}
-    public static int prevScene = -1;
-    public static Vector3 prevPos;
-    public static int currentNPC = -1;
-    public static int bountyOwed = 1;
-
-    //Data for Combat
+    //Egos Data for Combat
     //Ego wil always deal damage from 2 to 17 plus whatever bonus from the equipment
     private static int AttackRangeMIN = 2;
     private static int AttackRangeMAX = 17;
@@ -77,6 +71,12 @@ public class GameInfo : MonoBehaviour
     private static int secondarydefenseBonus = 0;
     private static int defenseBonus = 0;
     private static int egoHeal = 0;
+
+    // Data for overworld Navigation}
+    public static int prevScene = -1;
+    public static Vector3 prevPos;
+    public static int currentNPC = -1;
+    public static int bountyOwed = 1;
 
     // For equipment
     public static bool buyingMode = false;
@@ -194,38 +194,46 @@ public class GameInfo : MonoBehaviour
         return equipmentList[i];
     }
 
+    // Set Color Visability of an item
     public static void setEquipmentColor(int i, Color color)
     {
         equipmentList[i].Visability = color;
     }
 
+    // Set item to owned (can never sell an item so no need to toggle this bool
     public static void setEquipmentOwned(int i)
     {
         equipmentList[i].owned = true;
     }
 
+    // Return which item Ego has equipped in index i
     public static equipmentData getEquipped(int i)
     {
         return equippedItems[i];
     }
 
+    // When an item is equipped place it in the list
     public static void setEquipment(int index, int item)
     {
         equippedItems[index] = equipmentList[item];
     }
 
+    // Return name of NPC in List
     public static string getName(int idx){
         return NPCList[idx].name;
     }
 
+    // Return which dialogue tree is being used
     public static Node[] getDialogueTree(int index){
         return DialogueTrees[index];
     }
 
+    // Update health of Ego
     public static void UpdateHealth(int heal){
         health+=heal;
     }
 
+    // Update Egos Primary item bonuses
     public static void UpdateEgosPrimary(equipmentData equip)
     {
         primaryBonus = equip.attackBonus;
@@ -233,6 +241,7 @@ public class GameInfo : MonoBehaviour
         egoHeal = equip.healBonus;
     }
 
+    // Update Egos Secondary item Bonuses
     public static void UpdateEgosSecondary(equipmentData equip)
     {
         secondaryBonus = equip.attackBonus;
@@ -240,21 +249,25 @@ public class GameInfo : MonoBehaviour
         egoHeal = equip.healBonus; 
     }
 
+    // Update his defense bonus
     public static void UpdateEgosDefense(equipmentData equip)
     {
         defenseBonus = equip.defenseBonus;
     }
 
+    // Return the amount of money Ego has
     public static int getMoney()
     {
         return money;
     }
 
+    // an item has been bought
     public static void reduceMoney(int price)
     {
         money -= price;
     }
 
+    //
     public static void updateParty(int id){
         }
 	public static int getEgoHealth(){

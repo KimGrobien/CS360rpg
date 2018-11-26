@@ -55,10 +55,12 @@ public class EngageNPC : MonoBehaviour {
 		}
 		if(GameInfo.party[0].isAssigned){
 			GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[0].npc.name);
-		}
+            GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
+        }
 		if(GameInfo.party[1].isAssigned){
 			GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[1].npc.name);
-		}
+            GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
+        }
 		//find the tree that needs to be traversed
 		if(GameInfo.currentNPC!=-1){
  			currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
@@ -355,10 +357,11 @@ IEnumerator type()
 		}
 		GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite =
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
-		PartyMember.isAssigned=true;
+        PartyMember.isAssigned=true;
 		GameInfo.party[0] = PartyMember;
-		afterAdding();
-	}
+        GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
+        afterAdding();
+    }
 
 	public void AddToSlot2(){
 	//	StopAllCoroutines();
@@ -369,9 +372,10 @@ IEnumerator type()
 		}
 		GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite =
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
-		PartyMember.isAssigned=true;
+        PartyMember.isAssigned=true;
 		GameInfo.party[1] = PartyMember;
-		afterAdding();
+        GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
+        afterAdding();
 	}
 	
 
