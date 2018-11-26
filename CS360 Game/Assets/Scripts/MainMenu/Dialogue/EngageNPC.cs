@@ -20,6 +20,10 @@ public class EngageNPC : MonoBehaviour {
 	PartySlot PartyMember;
 
     public void Start() {
+		if(GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
+			GameObject.Find("Dialogue").SetActive(false);
+			return;
+		}
 		//Get button objects
 		trade = GameObject.Find("Trade");
 		choice1 = GameObject.Find("Choice1").GetComponent<Button>();

@@ -134,6 +134,7 @@ public class GameInfo : MonoBehaviour
             }else{
                 prevScene = SceneManager.GetActiveScene().buildIndex;
                 prevPos = GameObject.Find("Player").GetComponent<SpriteRenderer>().transform.position;
+                currentNPC = -1; //Not interacting with NPC with code D
                 SceneManager.LoadScene("Menu");
             }
         }

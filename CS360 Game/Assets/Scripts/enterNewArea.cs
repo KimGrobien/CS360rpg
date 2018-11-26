@@ -10,6 +10,9 @@ public class enterNewArea : MonoBehaviour {
             switch (this.name)
             {
                 case "enter_start":
+                    if(SceneManager.GetActiveScene().name == "Town"){//Different entry point if coming from town
+                        GameInfo.prevPos = new Vector3(-1.55f, 6.76f, 0);
+                    }
                     SceneManager.LoadScene(1);
                     break;
                 case "enter_town":
