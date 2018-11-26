@@ -12,7 +12,7 @@ public class openDoor : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other) {
 		anim.SetBool("playOpen", true);
 		GameObject.Find("Player").GetComponent<PlayerController>().frozen = true;
-		wait();
+		StartCoroutine(wait());
 	}
 
 	void OnTriggerExit2D (Collider2D other){
@@ -21,7 +21,6 @@ public class openDoor : MonoBehaviour {
 
 	IEnumerator wait(){
 		yield return new WaitForSeconds (2);
-		
 		GameObject.Find("Player").GetComponent<PlayerController>().frozen = false;
 	}
 }
