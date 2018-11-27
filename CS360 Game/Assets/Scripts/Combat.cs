@@ -1,4 +1,4 @@
-﻿thats
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +34,8 @@ public class Combat : MonoBehaviour
 	private bool start = false;
 	private int damagehold;
 	private int healhold;
-	private TextMeshPro updaterText;
+	public TextMeshPro updaterText;
+	private string text;
 
 	public enum battleStates
 	{
@@ -51,7 +52,10 @@ public class Combat : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		updaterText = GetComponent<TextMeshPro>();
+		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
+		//updaterText = FindObjectOfType<TextMeshPro> ();
+		//updaterText = GetComponent<TextMeshPro> ();
+		//updaterText = gameObject.AddComponent<TextMeshPro>();
 		playerHp = GameInfo.getEgoHealth();
 		PlayerCurrentHP = playerHp;
 		playerAtkPrimary = GameInfo.getEgoPrimary();
@@ -70,8 +74,9 @@ public class Combat : MonoBehaviour
 		PartyTwoAtkSecondary = GameInfo.getParty (1).npc.secondaryStat;
 		damagehold = 0;
 		healhold = 0;
+		//updaterText.text = "Press the Confirm Button to Begin Combat";
 		currentState = battleStates.START;
-		updaterText.text = "Press the Confirm Button to Begin Combat";
+
 	}
 	// Update is called once per frame
 	void Update ()
@@ -114,6 +119,8 @@ public class Combat : MonoBehaviour
 				//if combat just started
 				if (currentState == battleStates.START) {
 					//begin player's turn
+					text = "Player's Turn, Select Primary, Secondary and Confirm or Switch/Run";
+					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
 					currentState = battleStates.PLAYERCHOICE;
 				}
                 //if player's turn
@@ -123,13 +130,17 @@ public class Combat : MonoBehaviour
 						start = true;
 					} else {
 						if (damagehold > 0) {
-							PlayerCurrentHP -= damagehold;
+							enemyHP -= damagehold;
+							text = "Enemy takes " + damagehold.ToString() + " damage. Confirm to continue.";
+							GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
 							damagehold = 0;
 							healhold = 0;
 							currentState = battleStates.ENEMYCHOICE;
 						} else {
 							if (healhold > 0) {
 								PlayerCurrentHP += healhold;
+								text =  "Player recovers " + healhold.ToString() + " damage. Confirm to continue.";
+								GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
 								damagehold = 0;
 								healhold = 0;
 								currentState = battleStates.ENEMYCHOICE;
@@ -141,6 +152,8 @@ public class Combat : MonoBehaviour
                 else if (currentState == battleStates.ENEMYCHOICE) {
 					//begin player's turn
 					playerHp -= damagehold;
+					text = "Player takes " + damagehold.ToString() + " damage. Confirm to continue.";
+					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
 					damagehold = 0;
 					healhold = 0;
 					currentState = battleStates.PLAYERCHOICE;
