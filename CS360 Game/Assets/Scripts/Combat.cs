@@ -53,6 +53,7 @@ public class Combat : MonoBehaviour
 	void Start ()
 	{
 		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
+		GameObject.Find ("Enemyname").GetComponent<TextMeshProUGUI> ().text = GameInfo.getEnemy(GameInfo.currentNPC).name;
 		//updaterText = FindObjectOfType<TextMeshPro> ();
 		//updaterText = GetComponent<TextMeshPro> ();
 		//updaterText = gameObject.AddComponent<TextMeshPro>();
