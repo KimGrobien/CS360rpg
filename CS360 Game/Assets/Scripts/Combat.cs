@@ -24,7 +24,9 @@ public class Combat : MonoBehaviour
 	private int playerMinAtkPrimary;
 	private int playerMinAtkSecondary;
 	private System.Random damageCalc = new System.Random();
-	private bool confirm = false;
+	private bool start = false;
+	private int damagehold;
+	private int healhold;
 
 	public enum battleStates
 	{
@@ -51,6 +53,8 @@ public class Combat : MonoBehaviour
 		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
 		PartyOnecurrentHP = GameInfo.getParty(0).npc.health;
 		PartyTwocurrentHP = GameInfo.getParty(1).npc.health;
+		damagehold = 0;
+		healhold = 0;
 		currentState = battleStates.START;
 
 	}
@@ -91,7 +95,6 @@ public class Combat : MonoBehaviour
 		
 		//NEXT STATE cycles the states of combat between player's turn and enemies turn. Basically a confirm button. 
 		if (GUILayout.Button ("Confirm Choice")) {
-			confirm = false;
 			//if player's and enemy's are not 0
 			if (PlayerCurrentHP != 0 && enemyHP != 0) {
 				//if combat just started
@@ -102,12 +105,30 @@ public class Combat : MonoBehaviour
                 //if player's turn
                 else if (currentState == battleStates.PLAYERCHOICE) {
 					//begin enemy's turn
-					PlayerCurrentHP = PlayerCurrentHP - damageCalc.Next(2, enemyAtk);
-					currentState = battleStates.ENEMYCHOICE;
+					if (start == false) {
+						start = true;
+					} else {
+						if (damagehold > 0) {
+							PlayerCurrentHP -= damagehold;
+							damagehold = 0;
+							healhold = 0;
+							currentState = battleStates.ENEMYCHOICE;
+						} else {
+							if (healhold > 0) {
+								PlayerCurrentHP += healhold;
+								damagehold = 0;
+								healhold = 0;
+								currentState = battleStates.ENEMYCHOICE;
+							}
+						}
+					}
 				}
                 //if enemy's turn
                 else if (currentState == battleStates.ENEMYCHOICE) {
 					//begin player's turn
+					playerHp -= damagehold;
+					damagehold = 0;
+					healhold = 0;
 					currentState = battleStates.PLAYERCHOICE;
 				}
 			}
@@ -116,13 +137,13 @@ public class Combat : MonoBehaviour
 
 				//Lose game and load title screen
 				currentState = battleStates.LOSE;
-				//SceneManager.LoadScene(int titlescreen); Load Title Menu
+				SceneManager.LoadScene("Title Screen", LoadSceneMode.Additive);
 			}
             //if enemy's hp is 0
             else if (enemyHP == 0) {
 				//win fight and load back into overworld
 				currentState = battleStates.WIN;
-				//SceneManager.LoadScene (GameInfo.prevScene); Load the Overworld
+				SceneManager.LoadScene (GameInfo.prevScene);
 			}
 		}
 		//primary attack/action
@@ -130,38 +151,34 @@ public class Combat : MonoBehaviour
 			//IF STATEMENT TO CHECK IF CYNTHIA OR NOT
 			//IF CYNTHIA, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
-			//REPLACE WHILE LOOP WITH COROUTINE
-			while (confirm == false) {
-				//loops until the player confirms his/her choice
-			}
-			if(activePlayer > 0){
+
+			if (activePlayer > 0) {
 				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
-					enemyHP = enemyHP - damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
+					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
 				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
 					if (playerHp - PlayerCurrentHP >= 50) {
-						PlayerCurrentHP += 50;
+						healhold = 50;
 					} else {
-						PlayerCurrentHP = playerHp;
+						healhold = playerHp;
 					}
 				}
-					}
+			} else if(activePlayer == 0){
+				damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
+			}
 
 		}
 		if (GUILayout.Button ("Secondary Action")) {
 			//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
 			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
-			while (confirm == false) {
-				//loops until the player confirms his/her choice
-			}
 			if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
 				if (PartyOnecurrentHP < 0) {
-					PartyOnecurrentHP = 1;
+					healhold = 1;
 				} else if (PartyTwocurrentHP < 0) {
 					PartyTwocurrentHP = 1;
 				}
 			} else {
-				enemyHP = enemyHP - damageCalc.Next (playerMinAtkSecondary, playerAtkSecondary);
+				damagehold = damageCalc.Next (playerMinAtkSecondary, playerAtkSecondary);
 			}
 
 		}
@@ -191,7 +208,7 @@ public class Combat : MonoBehaviour
 		//Run leaves combat and returns to overworld with the npc remaining in the overworld
 		if (GUILayout.Button ("Run")) {
 			currentState = battleStates.RUN;
-			//SceneManager.LoadScene (GameInfo.prevScene); //Load the Overworld
+			SceneManager.LoadScene (GameInfo.prevScene);
 		}
 	}
 }
