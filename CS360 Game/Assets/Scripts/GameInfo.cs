@@ -9,6 +9,7 @@ public struct NPCData{
     public string name;
 	public string primaryName;
 	public string secondaryName;
+    public int giftItemID;
 	public int health;
     public int MAXhealth;
 	public int primaryStat;
@@ -78,6 +79,7 @@ public class GameInfo : MonoBehaviour
     public static int currentNPC = -1;
     public static int bountyOwed = 1;
 
+    // Dont need this! bounty items are in equipmentList (ids 12, 13, 14) use equipmentList[i].owned to check and set
     public static bool[] bountiesOwed = {true, true, true};
 
     // For equipment
@@ -189,6 +191,10 @@ public class GameInfo : MonoBehaviour
             }
             NPCList[i].runRange = NPCintData[i, 3];
         }
+
+        NPCList[0].giftItemID = 11;
+        NPCList[2].giftItemID = 3;
+        NPCList[3].giftItemID = 7;
     }
 
     // Return the requested equipment data from list
@@ -203,10 +209,16 @@ public class GameInfo : MonoBehaviour
         equipmentList[i].Visability = color;
     }
 
-    // Set item to owned (can never sell an item so no need to toggle this bool
+    // Set item to owned
     public static void setEquipmentOwned(int i)
     {
         equipmentList[i].owned = true;
+    }
+
+    // Use to set bounty item not owned after reedeeming money
+    public static void setBountyNotOwned(int i)
+    {
+        equipmentList[i].owned = false;
     }
 
     // Return which item Ego has equipped in index i

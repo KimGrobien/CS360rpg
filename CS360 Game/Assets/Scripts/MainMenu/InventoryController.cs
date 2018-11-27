@@ -13,15 +13,46 @@ public class InventoryController : MonoBehaviour {
     private Button primaryButton, secondaryButton, defenseButton, buyButton, enableBuying;
     private equipmentData buying;
 
+    private void OnDestroy()
+    {
+        // if buying mode was left on, reset everything
+        if (GameInfo.buyingMode)
+        {
+            GameInfo.buyingMode = false;
+            for (int i = 0; i < 12; i++)
+            {
+                if (!(i == 3 || i == 7 || i == 11))
+                {
+                    if (!GameInfo.getEquipment(i).owned)
+                    {
+                        GameInfo.setEquipmentColor(i, Color.clear);
+                        equip[i].image.color = GameInfo.getEquipment(i).Visability;
+                    }
+                }
+            }
+        }
+    }
+
     // Used for initialization of menu
     void Start () {
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 12; i++)
         {
             equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
             int set = i;
             equip[set].image.color = GameInfo.getEquipment(set).Visability;
             equip[set].onClick.AddListener(() => ItemClicked(set));
+        }
+        
+        for (int i = 12; i <15; i++)
+        {
+            equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
+            int set = i;
+            if (GameInfo.getEquipment(set).owned)
+            {
+                GameInfo.setEquipmentColor(set, Color.white);
+            }
+            equip[set].image.color = GameInfo.getEquipment(set).Visability;
         }
 
         EgosPrimary = GameObject.Find("EquipSlot0").GetComponent<Image>();
@@ -80,6 +111,13 @@ public class InventoryController : MonoBehaviour {
     // Make sure to pass id of each item
     private void ItemClicked(int i)
     {
+        // are you clicking on a bounty object?
+        bool bountyItem = false;
+        if (i == 3 || i == 7 || i == 11)
+        {
+            bountyItem = true;
+        }
+
         // For each object during buying mode (shop items only)
         for (int j = 0; j < 12; j++)
         {
@@ -92,35 +130,41 @@ public class InventoryController : MonoBehaviour {
                 }
             }
         }
-        
-        //You own the object or in buying mode
-        if (GameInfo.getEquipment(i).owned || GameInfo.buyingMode)
+
+        // Buying mode ignore gift items
+        // You own the object or in buying mode
+        if (GameInfo.getEquipment(i).owned || (GameInfo.buyingMode && !bountyItem))
         {
             currentItem = i;
             equipmentName.text = GameInfo.getEquipment(i).name;
             equipmentDetails.text = GameInfo.getEquipment(i).description;
         }
 
-        //Buying Mood and you have enough Money
-        if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode && GameInfo.getEquipment(i).Price <= GameInfo.getMoney())
+        // Buying Mode
+        if (GameInfo.buyingMode && !bountyItem)
         {
-            SetButtonsVisablity(false, false, false, true);
-            EgosMoney.color = Color.green;
-            equip[i].image.color = Color.green;
+            // and you have enough Money
+            if (!GameInfo.getEquipment(i).owned && GameInfo.getEquipment(i).Price <= GameInfo.getMoney())
+            {
+                SetButtonsVisablity(false, false, false, true);
+                EgosMoney.color = Color.green;
+                equip[i].image.color = Color.green;
+            }
+            // Dont have enough money
+            else if (!GameInfo.getEquipment(i).owned && GameInfo.getEquipment(i).Price > GameInfo.getMoney())
+            {
+                SetButtonsVisablity(false, false, false, false);
+                EgosMoney.color = Color.red;
+                equip[i].image.color = Color.red;
+            }
+            // Buying mode but you already own the object
+            else if (GameInfo.getEquipment(i).owned)
+            {
+                SetButtonsVisablity(false, false, false, false);
+                EgosMoney.color = TextColor;
+            }
         }
-        // Dont have enough money
-        else if (!GameInfo.getEquipment(i).owned && GameInfo.buyingMode && GameInfo.getEquipment(i).Price > GameInfo.getMoney())
-        {
-            SetButtonsVisablity(false, false, false, false);
-            EgosMoney.color = Color.red;
-            equip[i].image.color = Color.red;
-        }
-        // Buying mode but you already own the object
-        else if (GameInfo.getEquipment(i).owned && GameInfo.buyingMode)
-        {
-            SetButtonsVisablity(false, false, false, false);
-            EgosMoney.color = TextColor;
-        }
+
         // you own the object and its not in buying mode
         else if (GameInfo.getEquipment(i).owned && !GameInfo.buyingMode)
         {
@@ -195,6 +239,9 @@ public class InventoryController : MonoBehaviour {
     public void toggleBuyingMode()
     {
         EgosMoney.color = TextColor;
+        SetButtonsVisablity(false, false, false, false);
+        equipmentName.text = "";
+        equipmentDetails.text = "";
         GameInfo.buyingMode = !GameInfo.buyingMode;
         for (int i = 0; i < 12; i++)
         {

@@ -21,8 +21,19 @@ public class EngageNPC : MonoBehaviour {
     InventoryController control;
 
     public void Start() {
-		if(GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
-			GameObject.Find("Dialogue").SetActive(false);
+
+        // Kurt added this so buttons are not interactable
+        Button primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
+        Button secondaryButton = GameObject.Find("SecondaryB").GetComponent<Button>();
+        Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
+        Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
+
+        if (GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
+            primaryButton.interactable = false;
+            secondaryButton.interactable = false;
+            buyButton.interactable = false;
+            defenseButton.interactable = false;
+            GameObject.Find("Dialogue").SetActive(false);
 			return;
 		}
 		//Get button objects
@@ -43,11 +54,6 @@ public class EngageNPC : MonoBehaviour {
 		//get Player Choice text areas	
 		txt1 = choice1.GetComponentInChildren<Text>();
 		txt2 = choice2.GetComponentInChildren<Text>();
-
-        Button primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
-        Button secondaryButton = GameObject.Find("SecondaryB").GetComponent<Button>();
-        Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
-        Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
 
         primaryButton.interactable = false;
         secondaryButton.interactable = false;
@@ -375,6 +381,15 @@ IEnumerator type()
         PartyMember.isAssigned=true;
 		GameInfo.party[0] = PartyMember;
         GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
+        //Added to gift item - Kurt
+        int giftID = GameInfo.party[0].npc.giftItemID;
+        if(giftID > 0)
+        {
+            GameInfo.setEquipmentOwned(giftID);
+            GameInfo.setEquipmentColor(giftID, Color.white);
+            Button Gift = GameObject.Find("slot" + giftID).GetComponent<Button>();
+            Gift.image.color = GameInfo.getEquipment(giftID).Visability;
+        }
         afterAdding();
     }
 
@@ -390,6 +405,15 @@ IEnumerator type()
         PartyMember.isAssigned=true;
 		GameInfo.party[1] = PartyMember;
         GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
+        //Added to gift item - Kurt
+        int giftID = GameInfo.party[1].npc.giftItemID;
+        if (giftID > 0)
+        {
+            GameInfo.setEquipmentOwned(giftID);
+            GameInfo.setEquipmentColor(giftID, Color.white);
+            Button Gift = GameObject.Find("slot" + giftID).GetComponent<Button>();
+            Gift.image.color = GameInfo.getEquipment(giftID).Visability;
+        }
         afterAdding();
 	}
 	
