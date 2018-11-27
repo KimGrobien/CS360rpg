@@ -21,6 +21,10 @@ public class Combat : MonoBehaviour
 	private int PlayerCurrentHP;
 	private int PartyOnecurrentHP;
 	private int PartyTwocurrentHP;
+	private int PartyOneAtkPrimary;
+	private int PartyTwoAtkSecondary;
+	private int PartyOneAtkSecondary;
+	private int PartyTwoAtkPrimary;
 	private int playerMinAtkPrimary;
 	private int playerMinAtkSecondary;
 	private System.Random damageCalc = new System.Random();
@@ -44,15 +48,20 @@ public class Combat : MonoBehaviour
 	void Start ()
 	{
 		playerHp = GameInfo.getEgoHealth();
+		PlayerCurrentHP = playerHp;
 		playerMaxAtk = GameInfo.getEgoMaxAtk();
-		playerAtkPrimary = GameInfo.getEgoPrimary() + playerMaxAtk;
-		playerAtkSecondary = GameInfo.getEgoSecondary() + playerMaxAtk;
+		playerAtkPrimary = GameInfo.getEgoPrimary();
+		playerAtkSecondary = GameInfo.getEgoSecondary();
 		playerMinAtkPrimary = 2 + playerAtkPrimary;
 		playerMinAtkSecondary = 2 + playerAtkSecondary;
 		enemyHP = GameInfo.getEnemy(GameInfo.currentNPC).health;
 		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
 		PartyOnecurrentHP = GameInfo.getParty(0).npc.health;
 		PartyTwocurrentHP = GameInfo.getParty(1).npc.health;
+		PartyOneAtkPrimary = GameInfo.getParty (0).npc.primaryStat;
+		PartyTwoAtkPrimary = GameInfo.getParty (1).npc.primaryStat;
+		PartyOneAtkSecondary = GameInfo.getParty (0).npc.secondaryStat;
+		PartyTwoAtkSecondary = GameInfo.getParty (1).npc.secondaryStat;
 		damagehold = 0;
 		healhold = 0;
 		currentState = battleStates.START;
