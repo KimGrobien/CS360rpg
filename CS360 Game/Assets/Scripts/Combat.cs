@@ -1,8 +1,10 @@
-﻿
+﻿thats
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 //Comments below should describe the code decently
 //CAPS = code to be added
@@ -32,6 +34,7 @@ public class Combat : MonoBehaviour
 	private bool start = false;
 	private int damagehold;
 	private int healhold;
+	private TextMeshPro updaterText;
 
 	public enum battleStates
 	{
@@ -48,6 +51,7 @@ public class Combat : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		updaterText = GetComponent<TextMeshPro>();
 		playerHp = GameInfo.getEgoHealth();
 		PlayerCurrentHP = playerHp;
 		playerAtkPrimary = GameInfo.getEgoPrimary();
@@ -67,13 +71,13 @@ public class Combat : MonoBehaviour
 		damagehold = 0;
 		healhold = 0;
 		currentState = battleStates.START;
-
+		updaterText.text = "Press the Confirm Button to Begin Combat";
 	}
 	// Update is called once per frame
 	void Update ()
 	{
-		//logs which state is active for testing
-		Debug.Log (currentState);
+		//logs which state is active for  testing
+		//Debug.Log (currentState);
 		//switch case to set state to specific combat state pending on circumstances of combat and break's infinitely until
 		//player procs next state
 		switch (currentState) {
@@ -103,7 +107,6 @@ public class Combat : MonoBehaviour
 
 	void OnGUI ()
 	{
-		
 		//NEXT STATE cycles the states of combat between player's turn and enemies turn. Basically a confirm button. 
 		if (GUILayout.Button ("Confirm Choice")) {
 			//if player's and enemy's are not 0
