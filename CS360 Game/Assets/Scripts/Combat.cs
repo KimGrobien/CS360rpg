@@ -14,7 +14,8 @@ public class Combat : MonoBehaviour
 	private int playerHp;
 	private int playerAtkPrimary;
 	private int playerAtkSecondary;
-	private int playerMaxAtk;
+	private int playerMaxAtkPrimary;
+	private int playerMaxAtkSecondary;
 	private int enemyHP;
 	private int enemyAtk;
 	private int activePlayer;
@@ -49,11 +50,12 @@ public class Combat : MonoBehaviour
 	{
 		playerHp = GameInfo.getEgoHealth();
 		PlayerCurrentHP = playerHp;
-		playerMaxAtk = GameInfo.getEgoMaxAtk();
 		playerAtkPrimary = GameInfo.getEgoPrimary();
 		playerAtkSecondary = GameInfo.getEgoSecondary();
 		playerMinAtkPrimary = 2 + playerAtkPrimary;
 		playerMinAtkSecondary = 2 + playerAtkSecondary;
+		playerMaxAtkPrimary = 17 + playerAtkPrimary;
+		playerMaxAtkSecondary = 17 + playerAtkSecondary;
 		enemyHP = GameInfo.getEnemy(GameInfo.currentNPC).health;
 		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
 		PartyOnecurrentHP = GameInfo.getParty(0).npc.health;
@@ -172,7 +174,7 @@ public class Combat : MonoBehaviour
 					}
 				}
 			} else if(activePlayer == 0){
-				damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
+				damagehold = damageCalc.Next (playerMinAtkPrimary, playerMaxAtkPrimary);
 			}
 
 		}
@@ -187,7 +189,7 @@ public class Combat : MonoBehaviour
 					PartyTwocurrentHP = 1;
 				}
 			} else {
-				damagehold = damageCalc.Next (playerMinAtkSecondary, playerAtkSecondary);
+				damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
 			}
 
 		}

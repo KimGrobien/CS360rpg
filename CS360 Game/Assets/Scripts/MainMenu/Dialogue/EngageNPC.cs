@@ -201,7 +201,7 @@ public class EngageNPC : MonoBehaviour {
 		if(index == 0){
 			//this will be the fight option and will change scenes and pass information about who the enemy is
 			Debug.Log("Fight Begins");
-			//SceneManager.LoadScene("Combat");
+			SceneManager.LoadScene("Combat");
 			return;
 		}
 	StopAllCoroutines();
