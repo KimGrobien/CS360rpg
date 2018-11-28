@@ -28,11 +28,23 @@ public class EngageNPC : MonoBehaviour {
         Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
         Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
 
+        if (GameInfo.party[0].isAssigned)
+        {
+            GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[0].npc.name);
+            GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
+        }
+        if (GameInfo.party[1].isAssigned)
+        {
+            GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[1].npc.name);
+            GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
+        }
+
         if (GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
             primaryButton.interactable = false;
             secondaryButton.interactable = false;
             buyButton.interactable = false;
             defenseButton.interactable = false;
+            GameObject.Find("Inventory").SetActive(true);
             GameObject.Find("Dialogue").SetActive(false);
 			return;
 		}
@@ -74,14 +86,7 @@ public class EngageNPC : MonoBehaviour {
 		else{
 		GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
 		}
-		if(GameInfo.party[0].isAssigned){
-			GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[0].npc.name);
-            GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
-        }
-		if(GameInfo.party[1].isAssigned){
-			GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/"+GameInfo.party[1].npc.name);
-            GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
-        }
+
 		//find the tree that needs to be traversed
 		if(GameInfo.currentNPC!=-1){
  			currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
@@ -297,10 +302,12 @@ public class EngageNPC : MonoBehaviour {
 		indexForNextOption2 = currentDialogue[index].indexForOption2;
 		return;
 	}
-	public void cancelMenu(){
+
+    public void cancelMenu(){
 		SceneManager.LoadScene(GameInfo.prevScene);
 	}
-	public void beginTrade(){
+
+    public void beginTrade(){
 		//make all the left side of the menu interactable
 		Debug.Log("BEGINNING TRADE");
         //InventoryController.toggleBuyingMode();
@@ -417,7 +424,6 @@ IEnumerator type()
         afterAdding();
 	}
 	
-
 	public void afterAdding(){
 		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!";
 		txt1.text = "Leave";
@@ -427,6 +433,5 @@ IEnumerator type()
 		choice1.onClick.AddListener(cancelMenu);
 	//	StartCoroutine(co);
 	}
-
 }
 

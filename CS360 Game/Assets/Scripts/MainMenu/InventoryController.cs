@@ -34,7 +34,7 @@ public class InventoryController : MonoBehaviour {
     }
 
     // Used for initialization of menu
-    void Start () {
+    void OnEnable () {
 
         for (int i = 0; i < 12; i++)
         {
