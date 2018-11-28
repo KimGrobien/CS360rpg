@@ -309,13 +309,13 @@ template
 				textToScreen = "She says,\"I really must be getting back to work.\"";
 			}
 			if(GameInfo.currentNPC==1){
-				textToScreen = "If you're not going to buy anything, please leave me alone...";
+				textToScreen = "He says, \"If you're not going to buy anything, please leave me alone...\"";
 			}
 			if(GameInfo.currentNPC==2){
-				textToScreen = "My wife is missing... Go bother someone else.";
+				textToScreen = "He gives you an angry look and turns away from you.";
 			}
 			if(GameInfo.currentNPC==3){
-				textToScreen = "Have you noticed that the shadows seem darker?";
+				textToScreen = "He doesn't seem to notice you standing there. He only stares out over the empty beds.";
 			}
 			if(GameInfo.currentNPC == 8){
 				textToScreen = "The fox looks at you as if you are the grim reaper himself.";
@@ -333,16 +333,33 @@ template
     public static string setNPCResponseIfRecruitable(){
         string textToScreen = "";
         	if(GameInfo.currentNPC==0){
-				textToScreen = "She says,\"I really must be getting back to work. \n\n Unless you need me to go with you?\"";
+				textToScreen = "She says,\"I really must be getting back to work. \n Unless you need me to go with you?\"";
 			}
 			if(GameInfo.currentNPC==1){
-				textToScreen = "I live for my daughter, I'll die for her too.";
+				textToScreen = "He says, \"I live for my daughter, I'll die for her too. I'm ready to go when you are.\"";
 			}
 			if(GameInfo.currentNPC==3){
-				textToScreen = "Take me to the demon that took my wife!";
+				textToScreen = "He says, \"Take me to the demon that took my wife!\"";
 			}
 			if(GameInfo.currentNPC==2){
-				textToScreen = "Have you noticed that the shadows seem darker?";
+				textToScreen = "He says, \"I've failed everyone I've tried to take care of, you can't trust me.\"";
+			}
+            return textToScreen;
+    }
+
+public static string setNPCResponseIfOnTeam(){
+        string textToScreen = "";
+        	if(GameInfo.currentNPC==0){
+				textToScreen = "She says,\"This is my home, I'll be here until you need me to fight.\"";
+			}
+			if(GameInfo.currentNPC==1){
+				textToScreen = "He says, \"I'll be here at the shop if you want to buy anything.\"";
+			}
+			if(GameInfo.currentNPC==3){
+				textToScreen = "He says, \"Can I trust you to save my wife?\"";
+			}
+			if(GameInfo.currentNPC==2){
+				textToScreen = "He says, \"Have you noticed that the shadows seem darker?\nI wonder if it has to do with those monsters\"";
 			}
             return textToScreen;
     }

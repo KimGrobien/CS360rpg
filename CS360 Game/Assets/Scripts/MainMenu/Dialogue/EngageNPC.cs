@@ -105,12 +105,17 @@ public class EngageNPC : MonoBehaviour {
 		
 		
 		++GameInfo.encountered[GameInfo.currentNPC];
-
+		//check if npc is being encountered a lot
         if(GameInfo.encountered[GameInfo.currentNPC] > 3){
 			textToScreen = LoadDialogue.setNPCResponseIfEncounteredAlot();
 		}
+		//check if npc is recruitable
 		if(GameInfo.recruitable[GameInfo.currentNPC]){
 			textToScreen = LoadDialogue.setNPCResponseIfRecruitable();
+		}
+		//check if npc is on the team
+		if((GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
+			textToScreen = LoadDialogue.setNPCResponseIfOnTeam();
 		}
 
 		StartCoroutine(type());
@@ -120,6 +125,17 @@ public class EngageNPC : MonoBehaviour {
 	public void clickedOption1(int index){
 		StopAllCoroutines();
 		npcResponse.text="";
+		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3
+		|| (GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
+			npcResponse.text = textToScreen;
+			indexForNextOption1=-2;
+			indexForNextOption2=0;
+			choice1.onClick.RemoveAllListeners();
+			choice1.onClick.AddListener(cancelMenu);
+			txt1.text = "Leave";
+			txt2.text = "Fight";
+					return;
+		}
 		if(index==0){
 				txt1.text = "Talk";
 				txt2.text = "Fight";
@@ -130,16 +146,11 @@ public class EngageNPC : MonoBehaviour {
 		if(index==-4){
 			npcResponse.text = textToScreen;
 			addToParty();
+			indexForNextOption1=-2;
+			indexForNextOption2=0;
 			return;
 		}
-		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3){
-			npcResponse.text = textToScreen;
-			indexForNextOption1=-4;
-			indexForNextOption2=0;
-			txt1.text = "Add to Party";
-			txt2.text = "Fight";
-					return;
-		}
+		
 		if(GameInfo.recruitable[GameInfo.currentNPC]){
 			npcResponse.text = textToScreen;
 			indexForNextOption1=-4;
@@ -158,9 +169,18 @@ public class EngageNPC : MonoBehaviour {
 		}
 		
 		if(isTyping){
-			if(index==0){
-				txt1.text = "Talk";
-				txt2.text = "Fight";
+			if(checkIfInParty()){
+			txt1.text = "Leave";
+			txt2.text = "Fight";
+			
+			indexForNextOption1=-2;
+			indexForNextOption2=0;
+			choice1.onClick.RemoveAllListeners();
+			choice1.onClick.AddListener(cancelMenu);
+			}
+			else if(indexForNextOption1==0&&indexForNextOption2==0){
+			txt1.text = "Talk";
+			txt2.text = "Fight";
 			}
 			else{
 			txt1.text = temp1;
@@ -211,13 +231,31 @@ public class EngageNPC : MonoBehaviour {
 	}
 
 	public void clickedOption2(int index){
+		StopAllCoroutines();
+		if(isTyping){
+			if(index==0){
+				txt1.text = "Talk";
+				txt2.text = "Fight";
+			}
+			else{
+			txt1.text = temp1;
+			txt2.text = temp2;
+			}
+			npcResponse.text = textToScreen;
+			isTyping=false;
+			return;
+		}
 		if(index == 0){
+			npcResponse.text = textToScreen;
+			
+			txt1.text = temp1;
+			txt2.text = temp2;
 			//this will be the fight option and will change scenes and pass information about who the enemy is
 			Debug.Log("Fight Begins");
 			SceneManager.LoadScene("Combat");
 			return;
 		}
-	StopAllCoroutines();
+	
 		npcResponse.text="";
 		if(index==-3){
 			GameInfo.recruitable[GameInfo.currentNPC] = true;
@@ -225,9 +263,12 @@ public class EngageNPC : MonoBehaviour {
 		if(index==-4){
 			npcResponse.text = "I can go with you.";
 			addToParty();
+			indexForNextOption1=-2;
+			indexForNextOption2=0;
 			return;
 		}
-		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3){
+		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3
+		&& (GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
 			npcResponse.text = textToScreen;
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
@@ -252,19 +293,6 @@ public class EngageNPC : MonoBehaviour {
 					return;
 		}
 		
-		if(isTyping){
-			if(index==0){
-				txt1.text = "Talk";
-				txt2.text = "Fight";
-			}
-			else{
-			txt1.text = temp1;
-			txt2.text = temp2;
-			}
-			npcResponse.text = textToScreen;
-			isTyping=false;
-			return;
-		}
 		if(index==-1){
 			txt1.text="Restart?";
 			npcResponse.text="";
@@ -330,11 +358,20 @@ IEnumerator type()
 		isTyping=true;
 		txt1.text="";
 		txt2.text="";
+		npcResponse.text="";
 		foreach (char letter in textToScreen.ToCharArray()) {
              npcResponse.text += letter;
              yield return new WaitForSeconds ((float).02);
          }
-		 if(indexForNextOption1==0||indexForNextOption2==0){
+		 if(checkIfInParty()){
+			 
+			txt1.text = "Leave";
+			txt2.text = "Fight";
+			
+			choice1.onClick.RemoveAllListeners();
+			choice1.onClick.AddListener(cancelMenu);
+		 }
+		 else if(indexForNextOption1==0&&indexForNextOption2==0){
 			txt1.text = "Talk";
 			txt2.text = "Fight";
 		 }
@@ -343,6 +380,10 @@ IEnumerator type()
 		 	txt2.text = temp2;
 		 }
 		 isTyping=false;
+	}
+
+	public bool checkIfInParty(){
+		return(GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC));
 	}
 
 	public void setTextColor(){
@@ -367,8 +408,12 @@ IEnumerator type()
 	}
 
 	public void addToParty(){
+		StopAllCoroutines();
 		PartyMember = GameInfo.potentialNPC[GameInfo.currentNPC];
-			
+		if((PartyMember.npc.name == GameInfo.party[0].npc.name) || (PartyMember.npc.name == GameInfo.party[1].npc.name)){
+			alreadyAdded();
+			return;
+		}
 		choice1.onClick.RemoveAllListeners();
 		choice2.onClick.RemoveAllListeners();
         choice1.onClick.AddListener(AddToSlot1);
@@ -378,13 +423,23 @@ IEnumerator type()
 		txt2.text = "Slot 2";
 	}
 
+	public void alreadyAdded(){
+		choice1.onClick.RemoveAllListeners();
+		choice2.onClick.RemoveAllListeners();
+        choice1.onClick.AddListener(cancelMenu);
+        choice2.onClick.AddListener(doNothing);
+		npcResponse.text = GameInfo.getName(GameInfo.currentNPC)+" is already a part of the team.";
+		txt1.text = "Leave";
+		txt2.text = "";
+		return;
+	}
+
+	public void doNothing(){
+		choice2.interactable=false;
+	}
+
 	public void AddToSlot1(){
-		//StopAllCoroutines();
-		if(isTyping){
-			npcResponse.text = textToScreen;
-			isTyping=false;
-			return;
-		}
+	
 		GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite =
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
         PartyMember.isAssigned=true;
@@ -403,12 +458,7 @@ IEnumerator type()
     }
 
 	public void AddToSlot2(){
-	//	StopAllCoroutines();
-		if(isTyping){
-			npcResponse.text = textToScreen;
-			isTyping=false;
-			return;
-		}
+
 		GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite =
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
         PartyMember.isAssigned=true;
@@ -427,13 +477,29 @@ IEnumerator type()
 	}
 	
 	public void afterAdding(){
-		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!";
+		int i = 0;
+		if(GameInfo.currentNPC==0){
+			i=11;
+		}
+		if(GameInfo.currentNPC==2){
+			i=3;
+		}
+		if(GameInfo.currentNPC==3){
+			i=7;
+		}
+		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!"
+		+" You received "+GameInfo.equipmentStrings[i, 0]+" as a gift!";
 		txt1.text = "Leave";
 		txt2.text = "";
+		
 		choice1.onClick.RemoveListener(AddToSlot1);
 		choice2.onClick.RemoveListener(AddToSlot2);
 		choice1.onClick.AddListener(cancelMenu);
-	//	StartCoroutine(co);
+	}
+	public void displayAllText(){
+		npcResponse.text = textToScreen;
+		txt1.text = temp1;
+		txt2.text = temp2;
 	}
 }
 
