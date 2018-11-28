@@ -16,13 +16,12 @@ public class titleScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-			
+		begin=	GameObject.Find("BeginButton").GetComponent<Button>();
+		exit = GameObject.Find("Exit").GetComponent<Button>();
     	warningText = GameObject.Find("warning").GetComponent<TextMeshProUGUI>();
 		textForArray = "I know you're there...";
 		warningText.text = "";
-		begin = canvas.GetComponentInChildren<Button>();
 		begin.onClick.AddListener(beginGame);
-		exit = canvas.GetComponentInChildren<Button>();
 		exit.onClick.AddListener(endGame);
 
    		StartCoroutine(egg());
@@ -57,7 +56,4 @@ public class titleScreen : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	}
 }
