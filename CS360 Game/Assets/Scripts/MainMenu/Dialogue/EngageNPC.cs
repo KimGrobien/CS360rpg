@@ -28,6 +28,7 @@ public class EngageNPC : MonoBehaviour {
         Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
         Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
 
+        // KURT MOVED THIS UP HERE
         if (GameInfo.party[0].isAssigned)
         {
             GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[0].npc.name);
@@ -38,6 +39,7 @@ public class EngageNPC : MonoBehaviour {
             GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[1].npc.name);
             GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
         }
+        ////////////////////////////
 
         if (GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
             primaryButton.interactable = false;
