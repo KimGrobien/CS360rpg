@@ -120,17 +120,17 @@ public class InventoryController : MonoBehaviour {
         }
 
         // For each object during buying mode (shop items only)
-        //for (int j = 0; j < 12; j++)
-        //{
-        //    if (!(j == 3 || j == 7 || j == 11))
-        //    {
-        //        if (!GameInfo.getEquipment(j).owned && GameInfo.buyingMode)
-        //        {
-        //            GameInfo.setEquipmentColor(j, Color.gray);
-        //            equip[j].image.color = GameInfo.getEquipment(j).Visability;
-        //        }
-        //    }
-        //}
+        for (int j = 0; j < 12; j++)
+        {
+            if (!(j == 3 || j == 7 || j == 11))
+            {
+                if (!GameInfo.getEquipment(j).owned && GameInfo.buyingMode)
+                {
+                    GameInfo.setEquipmentColor(j, Color.gray);
+                    equip[j].image.color = GameInfo.getEquipment(j).Visability;
+                }
+            }
+        }
 
         // Buying mode ignore gift items
         // You own the object or in buying mode
@@ -245,6 +245,8 @@ public class InventoryController : MonoBehaviour {
         SetButtonsVisablity(false, false, false, false);
         equipmentName.text = "";
         equipmentDetails.text = "";
+        equipmentImage.color = Color.clear;
+
         GameInfo.buyingMode = !GameInfo.buyingMode;
         for (int i = 0; i < 12; i++)
         {
