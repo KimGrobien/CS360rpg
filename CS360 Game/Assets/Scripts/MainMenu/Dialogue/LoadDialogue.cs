@@ -189,14 +189,55 @@ public static void loadCynthiaDialogue(){
 /*-------------------------------index 25 option 2 does not continue index 52 is empty------------------------------------------------------ */
 
         //response to index 16 option 1
-        Cynthia[33].response = "She says, \"The people in town don't like me very much, not since that doctor came. They think I'm a witch."
-        +" The only one who is remotely kind to me is Emrik but that's because we trade food every now and then. No one can grow peaches like me."
-        +" So, like I said, I don't owe them anything. If you are fine I'd like it if you left.\""
-        +"\n\n She turned her attention back to her garden.";
-        Cynthia[33].option1 = "You could be a hero. Instead you turn your back on people who need you.";
-        Cynthia[33].option2 = "Fine be selfish. I'll be going.";
-        Cynthia[33].indexForOption1 = 51;
+        Cynthia[33].response = "She says, \"Honestly? No one knows, they just up and disappeared last week. Even more have gone missing since then."
+        +" The doctor's boy and Emrik's wife. I feel really bad for Emrik. She was everything to him. So just be careful out there, okay?\"";
+        Cynthia[33].option1 = "I'll take care of myself, if you take care of yourself.";
+        Cynthia[33].option2 = "Thank you for everything.";
+        Cynthia[33].indexForOption1 = -2;
         Cynthia[33].indexForOption2 = -2;
+/*-------------------------------index 33 option 2 does not continue index 68 is empty------------------------------------------------------ */
+       
+        //response to index 17 option 1
+        Cynthia[35].response = "She goes quiet for a moment. You can tell the question is hard for her." 
+        +"\n\nShe says, \"They died a long time ago, suddenly. I don't really want to talk about it. It happened when I was young, but they"
+        +" were everything to me.\""
+        +"\n\nYou both stand there in silence for a moment not sure what to say.";
+        Cynthia[35].option1 = "I bet if you came with me and helped all these people they would be so proud of you.";
+        Cynthia[35].option2 = "I didn't mean to disturb you ma'am. I'll leave you be.";
+        Cynthia[35].indexForOption1 = 71;
+        Cynthia[35].indexForOption2 = -2;
+/*-------------------------------index 35 option 2 does not continue index 72 is empty------------------------------------------------------ */
+        
+        //response to index 17 option 2
+        Cynthia[36].response = "She gets defensive and says, \"What I do is really none of your business. I've made my choices.\"";
+        Cynthia[36].option1 = "Fine then! I'll leave you here alone.";
+        Cynthia[36].option2 = "Restart?";
+        Cynthia[36].indexForOption1 = -2;
+        Cynthia[36].indexForOption2 = -1;
+/*-------------------------------index 36 does not continue index 73 and 74 are empty------------------------------------------------------ */
+        //response to index 18 option 1
+        Cynthia[37].response = "She says, \"It's just dumb luck. Be more careful next time.\"";
+        Cynthia[37].option1 = "Thank you for everything I'll be going.";
+        Cynthia[37].option2 = "Restart?";
+        Cynthia[37].indexForOption1 = -2;
+        Cynthia[37].indexForOption2 = -1;
+/*-------------------------------index 37 does not continue index 75 and 76 are empty------------------------------------------------------ */
+        //response to index 18 option 2
+        Cynthia[38].response = "She seems hesitant to answer. Then she says, \"I'll help you, but only because those children that are missing"
+        +" could need me. NOT because I think it's the right thing to do.\"";
+        Cynthia[38].option1 = "We'll find them.";
+        Cynthia[38].option2 = "Restart?";
+        Cynthia[38].indexForOption1 = -3;
+        Cynthia[38].indexForOption2 = -1;
+/*-------------------------------index 37 does not continue index 75 and 76 are empty------------------------------------------------------ */
+        //response to index 25 option 1
+        Cynthia[51].response = "Angrily she says, \"What I do is none of your business. Leave.\"";
+        Cynthia[51].option1 = "Leave";
+        Cynthia[51].option2 = "Restart?";
+        Cynthia[51].indexForOption1 = -2;
+        Cynthia[51].indexForOption2 = -1;
+/*-------------------------------index 51 does not continue ------------------------------------------------------ */
+
 
 
         GameInfo.DialogueTrees[0] = Cynthia;
