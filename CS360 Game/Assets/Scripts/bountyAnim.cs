@@ -9,19 +9,19 @@ public class bountyAnim : MonoBehaviour {
 
 	void Start() {
 		switch (idx) {
-			case 0:
+			case 13:
 				showMoney = GameObject.Find("show_money_0").GetComponent<SpriteRenderer>();
 				break;
-			case 1:
+			case 12:
 				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
 				break;
-			case 2:
-				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
+			case 14:
+				showMoney = GameObject.Find("show_money_2").GetComponent<SpriteRenderer>();
 				break;
 		}
 	}
 	void OnTriggerEnter2D (Collider2D other) {
-	    if(GameInfo.bountiesOwed[idx]){
+	    if(GameInfo.getEquipment(idx).owned){
 			showMoney.enabled = true;
 		}
 	}

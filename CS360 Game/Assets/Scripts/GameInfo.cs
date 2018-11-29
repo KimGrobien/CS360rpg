@@ -79,11 +79,6 @@ public class GameInfo : MonoBehaviour
     public static int prevScene = -1;
     public static Vector3 prevPos;
     public static int currentNPC = -1;
-    public static int bountyOwed = 1;
-
-    // Dont need this! bounty items are in equipmentList (ids 12, 13, 14) use equipmentList[i].owned to check and set
-    public static bool[] bountiesOwed = {true, true, true};
-
     // For equipment
     public static bool buyingMode = false;
     // atk, defense, heal, price (buy or sell for bounty)
@@ -164,7 +159,11 @@ public class GameInfo : MonoBehaviour
             equipmentList[i].healBonus = equipmentStats[i, 2];
             equipmentList[i].Price = equipmentStats[i, 3];
         }
-
+         
+        //TODO: Remove owned = true; for testing bountyAnims
+        equipmentList[12].owned = true;
+        equipmentList[13].owned = true;    
+        equipmentList[14].owned = true;
         //var sprites = Resources.Load<Sprite>("Equipment/1"); ;
         //for (int i = 0; i < 15; i++)
         //{
