@@ -237,9 +237,13 @@ public static void loadCynthiaDialogue(){
         Cynthia[51].indexForOption1 = -2;
         Cynthia[51].indexForOption2 = -1;
 /*-------------------------------index 51 does not continue ------------------------------------------------------ */
-
-
-
+        //response to index 35 option 1
+        Cynthia[71].response = "She stands there still for a moment. She then looks at you with watery eyes and says, "
+        +"\"You don't know what they would want. They're dead. Leave me alone.\"";
+        Cynthia[71].option1 = "Leave";
+        Cynthia[71].option2 = "Restart?";
+        Cynthia[71].indexForOption1 = -2;
+        Cynthia[71].indexForOption2 = -1;
         GameInfo.DialogueTrees[0] = Cynthia;
         
 /*
