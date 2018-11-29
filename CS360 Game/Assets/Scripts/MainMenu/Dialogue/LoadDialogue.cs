@@ -86,7 +86,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[4].option2 = "Restart?";
         Cynthia[4].indexForOption1 = -2;
         Cynthia[4].indexForOption2 = -1;
-        /*-------------------------------index 4 does not continue index 9 and 10 are empty------------------------------------------------------ */
+    /*-------------------------------index 4 does not continue index 9 and 10 are empty------------------------------------------------------ */
         //response to index 2 option 1
         Cynthia[5].response = "With confidence, she says, \"Those townspeople are always getting into trouble, but recently it's been worse."
         +" I've heard over the last few days people have gone missing. So I'd be weary of going to them. Especially since they don't know you."
@@ -102,7 +102,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[6].option2 = "Restart?";
         Cynthia[6].indexForOption1 = -2;
         Cynthia[6].indexForOption2 = -1;
-        /*-------------------------------index 6 does not continue index 13 and 14 are empty------------------------------------------------------ */
+    /*-------------------------------index 6 does not continue index 13 and 14 are empty------------------------------------------------------ */
 
         //response to index 3 option 1
         Cynthia[7].response = "She proudly says, \"Well my parents taught me to help those in need. I've learned you can't trust everyone."
@@ -145,8 +145,36 @@ public static void loadCynthiaDialogue(){
         Cynthia[15].option2 = "Would you like to come with me?";
         Cynthia[15].indexForOption1 = -2;
         Cynthia[15].indexForOption2 = -3;
+/*-------------------------------index 15 does not continue index 31 and 32 are empty------------------------------------------------------ */
 
         //response to index 7 option 2
+        Cynthia[16].response = "She says, \"You need to be more careful. Do you think you're going to be okay moving on"
+        +" I think the inn is closed in town. Not many people would be willing to let you stay with them. Not since that family disappeared.\"";
+        Cynthia[16].option1 = "What happened to them?";
+        Cynthia[16].option2 = "I think I can make it. Thank you so much for your help.";
+        Cynthia[16].indexForOption1 = 33;
+        Cynthia[16].indexForOption2 = -2;
+/*-------------------------------index 16 option 2 ends here index 34 is empty------------------------------------------------------ */
+
+        //response to index 8 option 1
+        Cynthia[17].response = "She says, \"I don't really understand how I do it myself. Maybe one day I could let you look at some of"
+        +" my parents old spell books. I don't know if people other than my family can learn them though."
+        +"\nThey have this book, you see, that's full of all the techniques they've ever used, but it was written by them, for them."
+        +" So, it's a real mystery for me to wrap my head around.\"";
+        Cynthia[17].option1 = "What happened to your parents?";
+        Cynthia[17].option2 = "You could be helping people, why are you here?";
+        Cynthia[17].indexForOption1 = 35;
+        Cynthia[17].indexForOption2 = 36;
+        
+        //response to index 8 option 2
+        Cynthia[18].response = "She says, \"I don't really understand how I do it myself. Maybe one day I could let you look at some of"
+        +" my parents old spell books. I don't know if people other than my family can learn them though."
+        +"\nThey have this book, you see, that's full of all the techniques they've ever used, but it was written by them, for them."
+        +" So, it's a real mystery for me to wrap my head around.\"";
+        Cynthia[18].option1 = "What happened to your parents?";
+        Cynthia[18].option2 = "You could be helping people, why are you here?";
+        Cynthia[18].indexForOption1 = 37;
+        Cynthia[18].indexForOption2 = 38;
 
         GameInfo.DialogueTrees[0] = Cynthia;
         
