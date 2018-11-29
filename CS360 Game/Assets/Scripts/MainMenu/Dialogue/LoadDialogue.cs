@@ -6,7 +6,7 @@ public class LoadDialogue : MonoBehaviour {
 
 
 	//Cynthia
-    public static Node[] Cynthia = new Node[50];
+    public static Node[] Cynthia = new Node[100];
     public static Node[] Emrik = new Node[50];
     public static Node[] Anker = new Node[50];
     public static Node[] Edward = new Node[50];
@@ -127,6 +127,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[11].option2 = "Restart?";
         Cynthia[11].indexForOption1 = -2;
         Cynthia[11].indexForOption2 = -1;
+/*-------------------------------index 11 does not continue index 23 and 24 are empty------------------------------------------------------ */
 
         //response to index 5 option 2 
         Cynthia[12].response = "She says, \"Are you some kind of Knight or hero or something?\" You know she meant it to mock you. "
@@ -137,7 +138,8 @@ public static void loadCynthiaDialogue(){
         Cynthia[12].option2 = "Thanks, I'll be on my way. It seems like people need me.";
         Cynthia[12].indexForOption1 = 25;
         Cynthia[12].indexForOption2 = -2;
-        
+    /*-------------------------------index 12 option 2 does not continue index 26 is empty------------------------------------------------------ */
+
         //response to index 7 option 1
         Cynthia[15].response = "She gives you a weird look. \n\nShe says, \"You must've hit your head pretty hard. "
         +"What will you do now? Are you going to be okay travelling alone?\"";
@@ -148,8 +150,8 @@ public static void loadCynthiaDialogue(){
 /*-------------------------------index 15 does not continue index 31 and 32 are empty------------------------------------------------------ */
 
         //response to index 7 option 2
-        Cynthia[16].response = "She says, \"You need to be more careful. Do you think you're going to be okay moving on"
-        +" I think the inn is closed in town. Not many people would be willing to let you stay with them. Not since that family disappeared.\"";
+        Cynthia[16].response = "She says, \"You need to be more careful. Do you think you're going to be okay moving on?"
+        +" I wonder if the inn is still closed in town. Not many people would be willing to let you stay with them. Not since that family disappeared.\"";
         Cynthia[16].option1 = "What happened to them?";
         Cynthia[16].option2 = "I think I can make it. Thank you so much for your help.";
         Cynthia[16].indexForOption1 = 33;
@@ -167,14 +169,35 @@ public static void loadCynthiaDialogue(){
         Cynthia[17].indexForOption2 = 36;
         
         //response to index 8 option 2
-        Cynthia[18].response = "She says, \"I don't really understand how I do it myself. Maybe one day I could let you look at some of"
-        +" my parents old spell books. I don't know if people other than my family can learn them though."
-        +"\nThey have this book, you see, that's full of all the techniques they've ever used, but it was written by them, for them."
-        +" So, it's a real mystery for me to wrap my head around.\"";
-        Cynthia[18].option1 = "What happened to your parents?";
-        Cynthia[18].option2 = "You could be helping people, why are you here?";
+        Cynthia[18].response = "Cynthia stands there for a moment and looks over toward the back of her house. She says, "
+            +"\"This is my home.  I take care of myself. If for some reason people need my help and make it to me, I will never hesitate to help.\""
+            +"\n\nShe seems annoyed that you asked.";
+        Cynthia[18].option1 = "Well I'm glad I found you when I did.";
+        Cynthia[18].option2 = "Do you want to come with me and help people?";
         Cynthia[18].indexForOption1 = 37;
         Cynthia[18].indexForOption2 = 38;
+
+        //repsonse to index 12 option 1
+        Cynthia[25].response = "She says, \"The people in town don't like me very much, not since that doctor came. They think I'm a witch."
+        +" The only one who is remotely kind to me is Emrik but that's because we trade food every now and then. No one can grow peaches like me."
+        +" So, like I said, I don't owe them anything. If you are fine I'd like it if you left.\""
+        +"\n\n She turned her attention back to her garden.";
+        Cynthia[25].option1 = "You could be a hero. Instead you turn your back on people who need you.";
+        Cynthia[25].option2 = "Fine be selfish. I'll be going.";
+        Cynthia[25].indexForOption1 = 51;
+        Cynthia[25].indexForOption2 = -2;
+/*-------------------------------index 25 option 2 does not continue index 52 is empty------------------------------------------------------ */
+
+        //response to index 16 option 1
+        Cynthia[33].response = "She says, \"The people in town don't like me very much, not since that doctor came. They think I'm a witch."
+        +" The only one who is remotely kind to me is Emrik but that's because we trade food every now and then. No one can grow peaches like me."
+        +" So, like I said, I don't owe them anything. If you are fine I'd like it if you left.\""
+        +"\n\n She turned her attention back to her garden.";
+        Cynthia[33].option1 = "You could be a hero. Instead you turn your back on people who need you.";
+        Cynthia[33].option2 = "Fine be selfish. I'll be going.";
+        Cynthia[33].indexForOption1 = 51;
+        Cynthia[33].indexForOption2 = -2;
+
 
         GameInfo.DialogueTrees[0] = Cynthia;
         
