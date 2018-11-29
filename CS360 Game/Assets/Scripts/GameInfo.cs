@@ -38,6 +38,7 @@ public struct equipmentData
     public int healBonus;
     public int Price;
     public Sprite eqImage;
+    public bool equipped;
     public bool owned;
     public Color Visability;
 }
@@ -61,6 +62,7 @@ public class GameInfo : MonoBehaviour
     private static int health = 100;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
+    public static int[] equippedIndexes = new int[3];
 
     //Egos Data for Combat
     //Ego wil always deal damage from 2 to 17 plus whatever bonus from the equipment
@@ -146,25 +148,31 @@ public class GameInfo : MonoBehaviour
     // Populate the Equipment List using array data
     private void PopulateEquipmentList()
     {
+        var sprites = Resources.Load<Sprite>("Equipment/1"); ;
         for (int i = 0; i < 15; i++)
         {
+            sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
+            equipmentList[i].eqImage = sprites;
+            equipmentList[i].equipped = false;
+            equipmentList[i].owned = false;
+            equipmentList[i].Visability = Color.clear;
+
             equipmentList[i].name = equipmentStrings[i, 0];
             equipmentList[i].description = equipmentStrings[i, 1];
-
             equipmentList[i].attackBonus = equipmentStats[i, 0];
             equipmentList[i].defenseBonus = equipmentStats[i, 1];
             equipmentList[i].healBonus = equipmentStats[i, 2];
             equipmentList[i].Price = equipmentStats[i, 3];
         }
 
-        var sprites = Resources.Load<Sprite>("Equipment/1"); ;
-        for (int i = 0; i < 15; i++)
-        {
-            sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
-            equipmentList[i].eqImage = sprites;
-            equipmentList[i].owned = false;
-            equipmentList[i].Visability = Color.clear;
-        }
+        //var sprites = Resources.Load<Sprite>("Equipment/1"); ;
+        //for (int i = 0; i < 15; i++)
+        //{
+        //    sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
+        //    equipmentList[i].eqImage = sprites;
+        //    equipmentList[i].owned = false;
+        //    equipmentList[i].Visability = Color.clear;
+        //}
     }
 
     // Populate the NPC List using array data
@@ -280,6 +288,11 @@ public class GameInfo : MonoBehaviour
     public static void reduceMoney(int price)
     {
         money -= price;
+    }
+
+    public static void toggleEquipped(int i)
+    {
+        equipmentList[i].equipped = !equipmentList[i].equipped;
     }
 
     //

@@ -168,8 +168,8 @@ public class InventoryController : MonoBehaviour {
             }
         }
 
-        // you own the object and its not in buying mode
-        else if (GameInfo.getEquipment(i).owned && !GameInfo.buyingMode)
+        // you own the object and its not in buying mode and its not already equipped
+        else if (GameInfo.getEquipment(i).owned && !GameInfo.buyingMode && !GameInfo.getEquipment(i).equipped)
         {
             EgosMoney.color = TextColor;
             //if attack object
@@ -188,6 +188,11 @@ public class InventoryController : MonoBehaviour {
                 SetButtonsVisablity(false, false, false, false);
             }
         }
+
+        if (GameInfo.getEquipment(i).equipped)
+        {
+            SetButtonsVisablity(false, false, false, false);
+        }
     }
 
     // Sets Visablity of the four option buttons for equipment
@@ -202,28 +207,42 @@ public class InventoryController : MonoBehaviour {
     // Set time to primary combat move
     private void PrimaryButtonClicked(int i)
     {
+        primaryButton.interactable = false;
+        secondaryButton.interactable = false;
         EgosPrimary.color = Color.white;
         EgosPrimary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosPrimary(GameInfo.getEquipment(i));
         GameInfo.setEquipment(0, i);
+        GameInfo.toggleEquipped(GameInfo.equippedIndexes[0]);
+        GameInfo.equippedIndexes[0] = i;
+        GameInfo.toggleEquipped(i);
     }
 
     // Set item to secondary combat move
     private void SecondaryButtonClicked(int i)
     {
+        primaryButton.interactable = false;
+        secondaryButton.interactable = false;
         EgosSecondary.color = Color.white;
         EgosSecondary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosSecondary(GameInfo.getEquipment(i));
         GameInfo.setEquipment(1, i);
+        GameInfo.toggleEquipped(GameInfo.equippedIndexes[1]);
+        GameInfo.equippedIndexes[1] = i;
+        GameInfo.toggleEquipped(i);
     }
 
     // Set item to defense button 
     private void DefenseButtonClicked(int i)
     {
+        defenseButton.interactable = false;
         EgosDefense.color = Color.white;
         EgosDefense.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosDefense(GameInfo.getEquipment(i));
         GameInfo.setEquipment(2, i);
+        GameInfo.toggleEquipped(GameInfo.equippedIndexes[2]);
+        GameInfo.equippedIndexes[2] = i;
+        GameInfo.toggleEquipped(i);
     }
 
     // Buy item button actions
