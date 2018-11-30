@@ -128,6 +128,8 @@ public class Combat : MonoBehaviour
 					//begin player's turn
 					text = "Player's Turn, Select Primary, Secondary and Confirm or Switch/Run";
 					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
+					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
+					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 					currentState = battleStates.PLAYERCHOICE;
@@ -136,6 +138,8 @@ public class Combat : MonoBehaviour
                 else if (currentState == battleStates.PLAYERCHOICE) {
 					text = "Player's Turn, Select Primary, Secondary and Confirm or Switch/Run";
 					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
+					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
+					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 					//begin enemy's turn
@@ -146,6 +150,8 @@ public class Combat : MonoBehaviour
 							enemyHP -= damagehold;
 							text = "Enemy takes " + damagehold.ToString() + " damage. Confirm to continue.";
 							GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
+							hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
+							hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 							GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 							GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 							damagehold = 0;
@@ -156,6 +162,8 @@ public class Combat : MonoBehaviour
 								PlayerCurrentHP += healhold;
 								text =  "Player recovers " + healhold.ToString() + " damage. Confirm to continue.";
 								GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
+								hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
+								hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 								GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 								GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 								damagehold = 0;
@@ -171,6 +179,8 @@ public class Combat : MonoBehaviour
 					playerHp -= damagehold;
 					text = "Player takes " + damagehold.ToString() + " damage. Confirm to continue.";
 					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
+					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
+					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 					damagehold = 0;
