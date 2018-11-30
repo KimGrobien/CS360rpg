@@ -132,7 +132,7 @@ public static void loadCynthiaDialogue(){
         //response to index 5 option 2 
         Cynthia[12].response = "She says, \"Are you some kind of Knight or hero or something?\" You know she meant it to mock you. "
         +"\n\nShe gives you a look over implying that maybe you couldn't even help yourself."
-        +" She then says, \"You look like you could use some help. Let me try this.\" As she says this she waves her hands and a white light blinds you."
+        +" She then says, \"You look like you could use some help. Let me try this.\" \nAs she says this she waves her hands and a white light blinds you."
         + "You feel much better.";
         Cynthia[12].option1 = "Thank you for that, but I'm not the only one that needs help.";
         Cynthia[12].option2 = "Thanks, I'll be on my way. It seems like people need me.";
@@ -257,7 +257,25 @@ template
     }
     
     public static void loadAnkerDialogue(){
+        //Anker
 
+        //currentIndex will lead to (currentIndex*2)+1 as option1 and (currentIndex*2)+2 as option2
+        //firstEncounter after pressing talk
+        Anker[0].response = "The old man glares at you through his unique glasses waiting for you to say something."
+        +" \nHe waits nearly a minute before saying, \"I don't really feel like talking. But if you'd like to buy something."
+        +" I think I could find something you may like.\"";
+        Anker[0].option1 = "What's the news around town?";
+        Anker[0].option2 = "Is everything okay?";
+        Anker[0].indexForOption1 = 1;
+        Anker[0].indexForOption2 = 2;
+        //response to index 0 option 1
+        Anker[1].response = "The old man glares at you through his unique glasses waiting for you to say something."
+        +" \nHe waits nearly a minute before saying, \"I don't really feel like talking. But if you'd like to buy something."
+        +" I think I could find something you may like.\"";
+        Anker[1].option1 = "What's the news around town?";
+        Anker[1].option2 = "Is everything okay?";
+        Anker[1].indexForOption1 = 1;
+        Anker[1].indexForOption2 = 2;
         
         GameInfo.DialogueTrees[1] = Anker;
     }

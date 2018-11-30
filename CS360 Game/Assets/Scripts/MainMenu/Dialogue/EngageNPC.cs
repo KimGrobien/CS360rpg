@@ -210,7 +210,7 @@ public class EngageNPC : MonoBehaviour {
 			index--;
 
 		}
-		if(index==3&& GameInfo.currentNPC==0){
+		if((index==3 || index == 12)&& GameInfo.currentNPC==0){
 			//heal Ego
 			GameInfo.UpdateHealth(50);
 			Debug.Log("Heal Ego");
@@ -313,7 +313,7 @@ public class EngageNPC : MonoBehaviour {
 			index--;
 
 		}
-		if(index==3&& GameInfo.currentNPC==0){
+		if((index==3 || index == 12)&& GameInfo.currentNPC==0){
 			//heal Ego
 			GameInfo.UpdateHealth(50);
 			Debug.Log("Heal Ego");
@@ -361,7 +361,7 @@ IEnumerator type()
 		npcResponse.text="";
 		foreach (char letter in textToScreen.ToCharArray()) {
              npcResponse.text += letter;
-             yield return new WaitForSeconds ((float).02);
+             yield return new WaitForSeconds ((float).01);
          }
 		 if(checkIfInParty()){
 			 
