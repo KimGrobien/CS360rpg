@@ -83,7 +83,8 @@ public class Combat : MonoBehaviour
 		hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 		GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-		GameObject.Find("Enemy").GetComponent<Image>().sprite = Resources.Load<Sprite>(GameInfo.getName(GameInfo.currentNPC));
+		GameObject.Find("Enemy").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
+		GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
 		//updaterText.text = "Press the Confirm Button to Begin Combat";
 		currentState = battleStates.START;
 
@@ -179,8 +180,16 @@ public class Combat : MonoBehaviour
                 //if enemy's turn
                 else if (currentState == battleStates.ENEMYCHOICE) {
 					//begin player's turn
+					if(string.Equals(GameInfo.getEnemy(GameInfo.currentNPC).name, "Cynthia")){
+						enemyHP += 10;
+						text = "Enemy heals 10 damage. Confirm to continue.";
+					}
+					else{
+					damagehold = damageCalc.Next (2, 17) + enemyAtk;
 					playerHp -= damagehold;
 					text = "Player takes " + damagehold.ToString() + " damage. Confirm to continue.";
+					}
+
 					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
 					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
 					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
