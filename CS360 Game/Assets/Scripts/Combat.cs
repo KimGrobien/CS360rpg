@@ -81,6 +81,9 @@ public class Combat : MonoBehaviour
 		healhold = 0;
 		hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
 		hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
+		GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
+		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
+		GameObject.Find("Enemy").GetComponent<Image>().sprite = Resources.Load<Sprite>(GameInfo.getName(GameInfo.currentNPC));
 		//updaterText.text = "Press the Confirm Button to Begin Combat";
 		currentState = battleStates.START;
 
