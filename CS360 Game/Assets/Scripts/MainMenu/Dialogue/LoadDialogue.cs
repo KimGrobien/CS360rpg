@@ -283,7 +283,6 @@ template
         Berndy[0].indexForOption1 = 0;
         Berndy[0].indexForOption2 = 0;
 
-        
         GameInfo.DialogueTrees[4] = Berndy;
     }
     
@@ -385,6 +384,9 @@ template
 		if(GameInfo.currentNPC==6){//Farenvir
 			textToScreen = "You feel as though gravity has increased in the presence of this creature."+
 			"\nYou felt this before, somewhere.";
+		}
+        if(GameInfo.currentNPC==7){//Ozul
+			textToScreen = "Before you stands a man, he says, \"\"";
 		}
 		if(GameInfo.currentNPC == 8){
 			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
