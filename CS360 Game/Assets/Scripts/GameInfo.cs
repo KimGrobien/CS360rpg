@@ -17,6 +17,7 @@ public struct NPCData{
 	public int runRange;
 	public int enemyDamage;
 	public int enemyDamageBonus;
+    public bool dead;
 }
 
 // Dialogue Node that will be used in Communitaction with NPCs
@@ -109,10 +110,14 @@ public class GameInfo : MonoBehaviour
     public static int[] encountered = new int[11];
     public static bool[] recruitable = {false,false,false,false,false,false,false,false,false,false,false};
 
+    //Fordeath
+    GameObject livingNPC;
+    string NPCObjectName;
     
     // Used to populate all the initial data of the game
     private void Start()
     {
+        
 
         DontDestroyOnLoad(this.gameObject);
         //If you are initializing Arrays or data in this start function put it in this if statment so that it isnt reinizalized everytime you reload the start screen
@@ -123,6 +128,25 @@ public class GameInfo : MonoBehaviour
             LoadDialogue.createDialogueTrees();
             PopulateEquipmentList();
             PopulatePotentialNPCPartSlot();
+        }
+        for(int i = 0;i<NPCList.Length;i++){
+            if(NPCList[i].dead){
+                if(NPCList[0].dead){
+                    NPCObjectName = "cynthia";
+                }
+                if(NPCList[1].dead){
+                    NPCObjectName = "shopkeeper";
+                }
+                if(NPCList[2].dead){
+                    NPCObjectName = "doctor";
+                }
+                if(NPCList[3].dead){
+                    NPCObjectName = "farmer";
+                }
+                livingNPC = GameObject.Find(NPCObjectName);
+                livingNPC.SetActive(false);
+                
+            }
         }
        // LoadDialogue.createDialogueTrees();
     }
@@ -197,6 +221,7 @@ public class GameInfo : MonoBehaviour
                 NPCList[i].enemyDamageBonus = NPCintData[i, 2];
             }
             NPCList[i].runRange = NPCintData[i, 3];
+            NPCList[i].dead = false;
         }
 
         NPCList[0].giftItemID = 11;
