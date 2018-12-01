@@ -8,7 +8,7 @@ public class LoadDialogue : MonoBehaviour {
 	//Cynthia
     public static Node[] Cynthia = new Node[100];
     public static Node[] Emrik = new Node[50];
-    public static Node[] Anker = new Node[50];
+    public static Node[] Anker = new Node[100];
     public static Node[] Edward = new Node[50];
     public static Node[] Fox = new Node[5];
     public static Node[] RockCreature = new Node[5];
@@ -283,10 +283,10 @@ template
         Anker[2].option2 = "I'm sorry I asked.(Restart?)";
         Anker[2].indexForOption1 = 5;
         Anker[2].indexForOption2 = -1;
-/*-------------------------------index 6 option 2 does not continue 6 is empty------------------------------------------------------ */
+/*-------------------------------index 6 option 2 does not continue index 6 is empty------------------------------------------------------ */
         //response to index 1 option 1
         Anker[3].response = "He says, \"Could be because we're out here in the middle of nowhere and no one wants to live here."+
-        " Who would blame them for up and leaving? People don't usually seek their way out here."
+        " Who would blame them for up and leaving? People don't usually make their way out here."
         +" They get lost, or get abandoned and end up here. Yeah that could be it or whatever is eating Sal's chicken's finally got real hungry. \""
         + "\n\nHe kind of laughed at this. \n\"There's always that castle that sprung up a few years ago. No one goes there.\"";
         Anker[3].option1 = "How did you end up here?";
@@ -297,13 +297,13 @@ template
         Anker[5].response = "The old man looks you directly in the eyes and says, \"That is a very rude question."
         +" Do you go to other shops and treat them like this too? Where are you from? What are you doing here? If you're just passing through"
         +" please keep going.";
-        Anker[5].option1 = "How did you end up here?";
-        Anker[5].option2 = "What's the story with the castle?";
+        Anker[5].option1 = "I'm here to save those missing people.";
+        Anker[5].option2 = "Fine I will be going.";
         Anker[5].indexForOption1 = 11;
-        Anker[5].indexForOption2 = 12;
+        Anker[5].indexForOption2 = -2;
         //response to index 3 option 1
         Anker[7].response = "He says, \"I came here a long time ago, back when my daughter was born. Things were different back then, easier. "
-        +" That was before the war... Once I sell all of my stock I plan to take me and my daughter far away from here.\""
+        +" That was before the war ended... Once I sell all of my stock I plan to take me and my daughter far away from here.\""
         +"\n\nThe old man looked back at his items for sell. \"I don't have a use for those anymore.\"";
         Anker[7].option1 = "What war?";
         Anker[7].option2 = "I hope that you can find a better life outside of here.";
@@ -315,9 +315,89 @@ template
         +" missing people are there, I wouldn't think about it. You don't seem strong enough to go take on the place. If they went there"
         +" they're already dead.\"";
         Anker[8].option1 = "Maybe if you came with me I could take them on.";
-        Anker[8].option2 = "";
+        Anker[8].option2 = "I'm stronger than I look.";
         Anker[8].indexForOption1 = 17;
         Anker[8].indexForOption2 = 18;
+        //response to index 5 option 1
+        Anker[11].response = "He laughs and says, \"Good luck!\"\n\nHe doesn't seem like talking anymore.";
+        Anker[11].option1 = "Leave";
+        Anker[11].option2 = "Restart?";
+        Anker[11].indexForOption1 = -2;
+        Anker[11].indexForOption2 = -1;
+        //response to index 7 option 1
+        Anker[15].response = "The old man grips his can tighter then says, \"You don't know about the war? Where are you from?\"";
+        Anker[15].option1 = "From far away.";
+        Anker[15].option2 = "I don't know. I was attacked. I can't remember anything.";
+        Anker[15].indexForOption1 = 31;
+        Anker[15].indexForOption2 = 32;
+        //response to index 7 option 2
+        Anker[16].response = "He says, \"This place has been slowly dying anyways. Everyone wants to act like everything is okay"
+        +" but if people just opened their eyes. This are starting to feel like they used to back when those things roamed freely."
+        +"\n\nSince those of us who were able to fight got rid of them, it's easy for people to forget how things used to be."
+        +" So, anywhere would be better than staying here and watch everyone else I know die. I just want to keep my daughter safe."
+        +"\nShe looks so much like her mother.\"";
+        Anker[16].option1 = "Where is her mother now?";
+        Anker[16].option2 = "You'd rather leave everyone behind and not know their fates, when you could stay and protect them?";
+        Anker[16].indexForOption1 = 33;
+        Anker[16].indexForOption2 = 34;
+        //response to index 8 option 1
+        Anker[17].response = "He asks, \"Why would I do that? I told you it's hopeless.\"";
+        Anker[17].option1 = "You seem strong, and protective. You could save these people.";
+        Anker[17].option2 = "You could save your daughter from a similar fate.";
+        Anker[17].indexForOption1 = 35;
+        Anker[17].indexForOption2 = 36;
+        //response to index 8 option 2
+        Anker[18].response = "He says, \"Then go be strong somewhere else.\"";
+        Anker[18].option1 = "Leave";
+        Anker[18].option2 = "Restart?";
+        Anker[18].indexForOption1 = -2;
+        Anker[18].indexForOption2 = -1;
+        //response to index 15 option 1
+        Anker[31].response = "He says, \"If you're not going to buy anything then please go back to where you came from. I don't know you."
+        +" And what you don't seem right. I don't trust you.\"";
+        Anker[31].option1 = "Leave";
+        Anker[31].option2 = "Restart?";
+        Anker[31].indexForOption1 = -2;
+        Anker[31].indexForOption2 = -1;
+        //response to index 15 option 2
+        Anker[32].response = "At first it seemed the old man was going to get angry with you, but then he says, "
+        +"\"I'm sorry you've been through that. This world must seem strange then. I must seem very unkind. Life has not been kind to me. "
+        +"It's been very unforgiving actually. Forgive me. I hope you understand.\"";
+        Anker[32].option1 = "Will you help me find the missing people?";
+        Anker[32].option2 = "Acting like that won't get people to buy things from you.";
+        Anker[32].indexForOption1 = 63;
+        Anker[32].indexForOption2 = -2;
+        //response to index 16 option 1
+        Anker[33].response = "He stands there silent staring at you.";
+        Anker[33].option1 = "Sir?";
+        Anker[33].option2 = "Leave";
+        Anker[33].indexForOption1 = 33;
+        Anker[33].indexForOption2 = -2;
+        //response to index 16 option 2
+        Anker[34].response = "He says, \"At least then I won't feel the loss. Look if you're not going to buy anything please leave.\"";
+        Anker[34].option1 = "Leave";
+        Anker[34].option2 = "Restart?";
+        Anker[34].indexForOption1 = -2;
+        Anker[34].indexForOption2 = -1;
+        //response to index 17 option 1
+        Anker[35].response = "He says, \"They are not my problem. Buy something or get out.\"";
+        Anker[35].option1 = "Leave";
+        Anker[35].option2 = "Restart?";
+        Anker[35].indexForOption1 = -2;
+        Anker[35].indexForOption2 = -1;
+        //response to index 17 option 2
+        Anker[36].response = "The shopkeeper gets angry that you mentioned his daughter. He yells at you, \"Don't ever talk about her "
+        +" she is not your business. I will take care of her how I need. Fight me.\"";
+        Anker[36].option1 = "Leave";
+        Anker[36].option2 = "Fight";
+        Anker[36].indexForOption1 = -2;
+        Anker[36].indexForOption2 = 0;
+        //response to index 32 option 1
+        Anker[36].response = "He says, \"I'll help you, but only to protect my daughter.\"";
+        Anker[36].option1 = "Add to Party";
+        Anker[36].option2 = "Leave";
+        Anker[36].indexForOption1 = -3;
+        Anker[36].indexForOption2 = 0;
 
         GameInfo.DialogueTrees[1] = Anker;
     }
@@ -376,7 +456,6 @@ template
     
     public static void loadFoxDialogue(){
 
-        //firstEncounter
         Fox[0].response = "You make your best fox chatter at the animal but it doesn't seem to care.";
         Fox[0].option1 = "Talk";
         Fox[0].option2 = "Fight";
@@ -384,7 +463,6 @@ template
         Fox[0].indexForOption2 = 0;
         
         GameInfo.DialogueTrees[8] = Fox;
-                
     }
     
     public static void loadRockCreatureDialogue(){
@@ -393,7 +471,6 @@ template
         RockCreature[0].option2 = "Fight";
         RockCreature[0].indexForOption1 = 0;
         RockCreature[0].indexForOption2 = 0;
-
         
         GameInfo.DialogueTrees[9] = RockCreature;
     }
@@ -406,7 +483,6 @@ template
         Rabbit[0].indexForOption1 = 0;
         Rabbit[0].indexForOption2 = 0;
 
-        
         GameInfo.DialogueTrees[10] = Rabbit;
     }
 
@@ -446,7 +522,8 @@ template
 			"\nYou felt this before, somewhere.";
 		}
         if(GameInfo.currentNPC==7){//Ozul
-			textToScreen = "Before you stands a man, he says, \"\"";
+			textToScreen = "The flapping of his wings causes air to rush past you. Before you stands a man he says, "
+            +"\n\"You must be it.\"";
 		}
 		if(GameInfo.currentNPC == 8){
 			textToScreen = "Through the thick trees you see a fox tearing through a pile of feathers.\n\n"
@@ -485,7 +562,6 @@ template
 				textToScreen = "How are there so many of these things?";
 			}
             return textToScreen;
-
 	}
 
     public static string setNPCResponseIfRecruitable(){
