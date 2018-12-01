@@ -269,14 +269,56 @@ template
         Anker[0].indexForOption1 = 1;
         Anker[0].indexForOption2 = 2;
         //response to index 0 option 1
-        Anker[1].response = "The old man glares at you through his unique glasses waiting for you to say something."
-        +" \nHe waits nearly a minute before saying, \"I don't really feel like talking. But if you'd like to buy something."
-        +" I think I could find something you may like.\"";
-        Anker[1].option1 = "What's the news around town?";
-        Anker[1].option2 = "Is everything okay?";
-        Anker[1].indexForOption1 = 1;
-        Anker[1].indexForOption2 = 2;
-        
+        Anker[1].response = "The old man says, \"What I've heard is people are disappearing lately. Most people've been staying home."
+        +" Not much going on though. I've heard some people been havin' trouble with some pests just north of here. I wonder how much longer"
+        +" this town will last.\"";
+        Anker[1].option1 = "What do you think could be making people disappear?";
+        Anker[1].option2 = "I'm going to go look into those pests.";
+        Anker[1].indexForOption1 = 3;
+        Anker[1].indexForOption2 = -2;
+/*-------------------------------index 1 option 2 does not continue index 4 is empty----------------------------------------------------- */
+        //response to index 0 option 2
+        Anker[2].response = "He says, \"Even if everything wasn't okay. I wouldn't want to talk to a stranger about it.\"";
+        Anker[2].option1 = "Why are the prices so high?";
+        Anker[2].option2 = "I'm sorry I asked.(Restart?)";
+        Anker[2].indexForOption1 = 5;
+        Anker[2].indexForOption2 = -1;
+/*-------------------------------index 6 option 2 does not continue 6 is empty------------------------------------------------------ */
+        //response to index 1 option 1
+        Anker[3].response = "He says, \"Could be because we're out here in the middle of nowhere and no one wants to live here."+
+        " Who would blame them for up and leaving? People don't usually seek their way out here."
+        +" They get lost, or get abandoned and end up here. Yeah that could be it or whatever is eating Sal's chicken's finally got real hungry. \""
+        + "\n\nHe kind of laughed at this. \n\"There's always that castle that sprung up a few years ago. No one goes there.\"";
+        Anker[3].option1 = "How did you end up here?";
+        Anker[3].option2 = "What's the story with the castle?";
+        Anker[3].indexForOption1 = 7;
+        Anker[3].indexForOption2 = 8;
+        //response to index 2 option 1
+        Anker[5].response = "The old man looks you directly in the eyes and says, \"That is a very rude question."
+        +" Do you go to other shops and treat them like this too? Where are you from? What are you doing here? If you're just passing through"
+        +" please keep going.";
+        Anker[5].option1 = "How did you end up here?";
+        Anker[5].option2 = "What's the story with the castle?";
+        Anker[5].indexForOption1 = 11;
+        Anker[5].indexForOption2 = 12;
+        //response to index 3 option 1
+        Anker[7].response = "He says, \"I came here a long time ago, back when my daughter was born. Things were different back then, easier. "
+        +" That was before the war... Once I sell all of my stock I plan to take me and my daughter far away from here.\""
+        +"\n\nThe old man looked back at his items for sell. \"I don't have a use for those anymore.\"";
+        Anker[7].option1 = "What war?";
+        Anker[7].option2 = "I hope that you can find a better life outside of here.";
+        Anker[7].indexForOption1 = 15;
+        Anker[7].indexForOption2 = 16;
+        //response to index 3 option 2
+        Anker[8].response = "He says, \"That kind of just showed up overnight a few years ago. There are monsters guarding the place most"
+        +" people stay away from it. I've never seen anyone coming or going from it though. If you're thinking that maybe the"
+        +" missing people are there, I wouldn't think about it. You don't seem strong enough to go take on the place. If they went there"
+        +" they're already dead.\"";
+        Anker[8].option1 = "Maybe if you came with me I could take them on.";
+        Anker[8].option2 = "";
+        Anker[8].indexForOption1 = 17;
+        Anker[8].indexForOption2 = 18;
+
         GameInfo.DialogueTrees[1] = Anker;
     }
     
