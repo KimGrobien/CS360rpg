@@ -13,6 +13,10 @@ public class InventoryController : MonoBehaviour {
     private Button primaryButton, secondaryButton, defenseButton, buyButton, enableBuying;
     private equipmentData buying;
 
+    /// <summary>
+    /// When ever the main menu is closed, if buying mode is currently enabled, disable it 
+    /// and set all unowned items back to invisable
+    /// </summary>
     private void OnDestroy()
     {
         // if buying mode was left on, reset everything
@@ -33,9 +37,14 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
-    // Used for initialization of menu
+    /// <summary>
+    /// Used for initialization of menu, can enable it to refresh everything, this refresh is done 
+    /// in engage in dialogue when not interacting with an NPC
+    /// sets up all the button listeners and displays the correct items in inventory
+    /// </summary>
     void OnEnable () {
 
+        // Set on Click-listener for each item slot and set the correct visability color
         for (int i = 0; i < 12; i++)
         {
             equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
@@ -44,6 +53,7 @@ public class InventoryController : MonoBehaviour {
             equip[set].onClick.AddListener(() => ItemClicked(set));
         }
         
+        // Determine if bounty object is owned and display them, set bountyListener
         for (int i = 12; i <15; i++)
         {
             equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
@@ -53,8 +63,10 @@ public class InventoryController : MonoBehaviour {
                 GameInfo.setEquipmentColor(set, Color.white);
             }
             equip[set].image.color = GameInfo.getEquipment(set).Visability;
+            equip[set].onClick.AddListener(() => BountyClicked(set));
         }
 
+        // Display Ego's Equipped Items
         EgosPrimary = GameObject.Find("EquipSlot0").GetComponent<Image>();
         if (GameInfo.getEquipped(0).eqImage != null)
         {
@@ -74,6 +86,7 @@ public class InventoryController : MonoBehaviour {
             EgosDefense.sprite = GameInfo.getEquipped(2).eqImage;
         }
 
+        // Set Listeners for each button in the equipment side of main menu
         primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
         primaryButton.onClick.AddListener(() => PrimaryButtonClicked(currentItem));
 
@@ -89,34 +102,32 @@ public class InventoryController : MonoBehaviour {
         enableBuying = GameObject.Find("Trade").GetComponent<Button>();
         enableBuying.onClick.AddListener(() => toggleBuyingMode());
 
+        // Set each of these buttons to not interactable to start
         SetButtonsVisablity(false, false, false, false);
 
+        // Set all information section to empty strings and images when loading
         equipmentName = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
         equipmentName.text = "";
         equipmentDetails = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
         equipmentDetails.text = "";
         equipmentImage = GameObject.Find("EqImage").GetComponent<Image>();
 
+        // Display Ego's current money count
         EgosMoney = GameObject.Find("MoneyCount").GetComponentInChildren<TextMeshProUGUI>();
         TextColor = EgosMoney.color;
         EgosMoney.text = "$" + GameInfo.getMoney();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     // Display the item name and stats
     // Also enable buttons that are avalible (such as buy, equip as primary, equip as secondary, or equip as defense)
     // Make sure to pass id of each item
     private void ItemClicked(int i)
     {
-        // are you clicking on a bounty object?
-        bool bountyItem = false;
+        // are you clicking on a gift?
+        bool gift = false;
         if (i == 3 || i == 7 || i == 11)
         {
-            bountyItem = true;
+            gift = true;
         }
 
         // For each object during buying mode (shop items only)
@@ -132,9 +143,8 @@ public class InventoryController : MonoBehaviour {
             }
         }
 
-        // Buying mode ignore gift items
-        // You own the object or in buying mode
-        if (GameInfo.getEquipment(i).owned || (GameInfo.buyingMode && !bountyItem))
+        // You own the object or in buying mode and not gift
+        if (GameInfo.getEquipment(i).owned || (GameInfo.buyingMode && !gift))
         {
             currentItem = i;
             equipmentName.text = GameInfo.getEquipment(i).name;
@@ -143,8 +153,8 @@ public class InventoryController : MonoBehaviour {
             equipmentImage.color = Color.white;
         }
 
-        // Buying Mode
-        if (GameInfo.buyingMode && !bountyItem)
+        // Buying Mode, ignore gifts
+        if (GameInfo.buyingMode && !gift)
         {
             // and you have enough Money
             if (!GameInfo.getEquipment(i).owned && GameInfo.getEquipment(i).Price <= GameInfo.getMoney())
@@ -195,7 +205,29 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
-    // Sets Visablity of the four option buttons for equipment
+    /// <summary>
+    /// If a bounty item that is owned is clicked in the main menu it displays its stats
+    /// </summary>
+    /// <param name="i"> This is the item index in GameInfo, used to get information of item</param>
+    private void BountyClicked(int i)
+    {
+        if (GameInfo.getEquipment(i).owned)
+        {
+            currentItem = -1;
+            equipmentName.text = GameInfo.getEquipment(i).name;
+            equipmentDetails.text = GameInfo.getEquipment(i).description;
+            equipmentImage.overrideSprite = GameInfo.getEquipment(i).eqImage;
+            equipmentImage.color = Color.white;
+        }
+    }
+
+    /// <summary>
+    /// Sets Visablity of the four option buttons for equipment
+    /// </summary>
+    /// <param name="pri">Set interactablity of Primary button to this</param>
+    /// <param name="sec">Set interactablity of secondary button to this</param>
+    /// <param name="def">Set interactablity of defense button to this</param>
+    /// <param name="buy">Set interactablity of buy button to this</param>
     private void SetButtonsVisablity(bool pri, bool sec, bool def, bool buy)
     {
         primaryButton.interactable = pri;
@@ -204,7 +236,11 @@ public class InventoryController : MonoBehaviour {
         defenseButton.interactable = def;
     }
 
-    // Set time to primary combat move
+    /// <summary>
+    /// Set item to primary combat move, diable the ability to equip again
+    /// set item to equipped in GameInfo and display it next to Ego
+    /// </summary>
+    /// <param name="i">This is the item to be equipped</param>
     private void PrimaryButtonClicked(int i)
     {
         primaryButton.interactable = false;
@@ -218,7 +254,11 @@ public class InventoryController : MonoBehaviour {
         GameInfo.toggleEquipped(i);
     }
 
-    // Set item to secondary combat move
+    /// <summary>
+    /// Equip the item to the designated slot and disable it from being eqipped again
+    /// until another item replaces it
+    /// </summary>
+    /// <param name="i">This is the item to be equipped</param>
     private void SecondaryButtonClicked(int i)
     {
         primaryButton.interactable = false;
@@ -231,8 +271,6 @@ public class InventoryController : MonoBehaviour {
         GameInfo.equippedIndexes[1] = i;
         GameInfo.toggleEquipped(i);
     }
-
-    // Set item to defense button 
     private void DefenseButtonClicked(int i)
     {
         defenseButton.interactable = false;
@@ -244,8 +282,6 @@ public class InventoryController : MonoBehaviour {
         GameInfo.equippedIndexes[2] = i;
         GameInfo.toggleEquipped(i);
     }
-
-    // Buy item button actions
     private void BuyButtonClicked(int i)
     {
         GameInfo.setEquipmentColor(i, Color.white);
@@ -257,7 +293,10 @@ public class InventoryController : MonoBehaviour {
         EgosMoney.color = TextColor;
     }
 
-    // For Testing Purposes
+    /// <summary>
+    /// When the trade button is pressed, show the avaliable items to buy
+    /// When exiting trad hide the items that have yet to be bought
+    /// </summary>
     public void toggleBuyingMode()
     {
         EgosMoney.color = TextColor;
