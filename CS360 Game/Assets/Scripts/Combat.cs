@@ -15,7 +15,7 @@ public class Combat : MonoBehaviour
 	Canvas buttons;
 	Button primaryChoice;
 	Button secondaryChoice;
-	Button partyMemberChoice;
+	Button switchMember;
 	Button run;
 	private int playerHp;
 	private int playerAtkPrimary;
@@ -25,7 +25,7 @@ public class Combat : MonoBehaviour
 	private int enemyHP;
 	private int enemyMaxHP;
 	private int enemyAtk;
-	private int activePlayer;
+	private int activePlayer=2;
 	private int PlayerCurrentHP;
 	private int PartyOnecurrentHP;
 	private int PartyTwocurrentHP;
@@ -44,18 +44,11 @@ public class Combat : MonoBehaviour
 	private string hpTextPlayer;
 	private string hpTextEnemy;
 
+	//Who we're fighting
+	private int enemyID = GameInfo.currentNPC;
 
-	public enum battleStates
-	{
-		START,
-		PLAYERCHOICE,
-		ENEMYCHOICE,
-		LOSE,
-		WIN,
-		RUN
-	}
 
-	private battleStates currentState;
+	
 
 	// Use this for initialization
 	void Start()
@@ -63,11 +56,11 @@ public class Combat : MonoBehaviour
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
 		primaryChoice = buttons.transform.Find("Primary").GetComponent<Button>();
 		secondaryChoice = buttons.transform.Find("Secondary").GetComponent<Button>();
-		partyMemberChoice = buttons.transform.Find("PartyMember").GetComponent<Button>();
+		switchMember = buttons.transform.Find("Switch").GetComponent<Button>();
 		run = buttons.transform.Find("Run").GetComponent<Button>();
 		primaryChoice.onClick.AddListener(PrimaryAction);
 		secondaryChoice.onClick.AddListener(SecondaryAction);
-		partyMemberChoice.onClick.AddListener(SwitchPartyMember);
+		switchMember.onClick.AddListener(SwitchPartyMember);
 		run.onClick.AddListener(RunFromCombat);
 
 		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
@@ -75,7 +68,6 @@ public class Combat : MonoBehaviour
 		//updaterText = FindObjectOfType<TextMeshPro> ();
 		//updaterText = GetComponent<TextMeshPro> ();
 		//updaterText = gameObject.AddComponent<TextMeshPro>();
-		playerHp = GameInfo.getEgoHealth();
 		PlayerCurrentHP = playerHp;
 		playerAtkPrimary = GameInfo.getEgoPrimary();
 		playerAtkSecondary = GameInfo.getEgoSecondary();
@@ -94,81 +86,37 @@ public class Combat : MonoBehaviour
 		PartyTwoAtkSecondary = GameInfo.getParty (1).npc.secondaryStat;
 		damagehold = 0;
 		healhold = 0;
-		hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-		hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-		GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
+
+
+		UpdateEnemyHealthToScreen(GameInfo.getEnemy(enemyID).health);
+		UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
+
 		GameObject.Find("Enemy").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
 		GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
 		GameObject.Find("Background").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/ComScenes/" + GameInfo.getName(GameInfo.currentNPC));
 		//updaterText.text = "Press the Confirm Button to Begin Combat";
-		currentState = battleStates.START;
+		
 
 	}
 	// Update is called once per frame
-	void Update ()
-	{
-		//logs which state is active for  testing
-		//Debug.Log (currentState);
-		//switch case to set state to specific combat state pending on circumstances of combat and break's infinitely until
-		//player procs next state
-		switch (currentState) {
-		//START initializes the combat sequence
-		case (battleStates.START):
-               //SETUP BATTLE FUNCTION
-			activePlayer = 0;
-			break;
-		//PLAYERCHOICE is the player's turn
-		case (battleStates.PLAYERCHOICE):
-			break;
-		//ENEMYCHOICE is the enemy's turn
-		case (battleStates.ENEMYCHOICE):
-			break;
-		//LOSE ends the game
-		case (battleStates.LOSE):
-			break;
-		//WIN ends combat and returns scene to overworld
-		case (battleStates.WIN):
-			break;
-		//RUN returns to overworld but does not remove the enemy from the overworld
-		case (battleStates.RUN):
-			break;
-		}
-
-	}
-
-	void OnGUI ()
-	{
-		//NEXT STATE cycles the states of combat between player's turn and enemies turn. Basically a confirm button. 
-		if (GUILayout.Button ("Confirm Choice")) {
-			//if player's and enemy's are not 0
-			if (PlayerCurrentHP > 0 && enemyHP > 0) {
-				//if combat just started
-				if (currentState == battleStates.START) {
-					//begin player's turn
-					text = "Player's Turn, Select Primary, Secondary and Confirm or Switch/Run";
-					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
-					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-					currentState = battleStates.PLAYERCHOICE;
-				}
-                //if player's turn
-                else if (currentState == battleStates.PLAYERCHOICE) {
-					text = "Player's Turn, Select Primary, Secondary and Confirm or Switch/Run";
-					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
-					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-				}
-			}
-
-		}
 	
+	void UpdateEnemyHealthToScreen(int newHealth){		
+		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
+		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 	}
-	public void PrimaryAction(){
+	void UpdateCurrentNPCHealthToScreen(int newHealth){
+		if(activePlayer<2){	
+		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getParty(activePlayer).npc.MAXhealth;
+		GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
+		}
+		else{
+			
+		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getEgoMaxHealth();
+		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
+		}
+	}
+
+	void PrimaryAction(){
 		Debug.Log("PRIMARY");
 		/*
 		REMOVE BUTTONS
@@ -233,13 +181,16 @@ public class Combat : MonoBehaviour
 				//STATEMENT CHANGING SPRITE
 			}
 			//third party member is 3
-			if (activePlayer == 3) {
+			if (activePlayer == 2) {
 				//switch active player to ego
-				activePlayer = 1;
+				activePlayer = 0;
 				//STATEMENT CHANGING SPRITE
 			}
 
 		}
+
+	}
+	void ChangeNPCImage(){
 
 	}
 	void RunFromCombat(){
