@@ -12,6 +12,11 @@ using TMPro;
 
 public class Combat : MonoBehaviour
 {
+	Canvas buttons;
+	Button primaryChoice;
+	Button secondaryChoice;
+	Button switchMember;
+	Button run;
 	private int playerHp;
 	private int playerAtkPrimary;
 	private int playerAtkSecondary;
@@ -53,8 +58,18 @@ public class Combat : MonoBehaviour
 	private battleStates currentState;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
+		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
+		primaryChoice = buttons.transform.Find("Primary").GetComponent<Button>();
+		secondaryChoice = buttons.transform.Find("Secondary").GetComponent<Button>();
+		switchMember = buttons.transform.Find("Switch").GetComponent<Button>();
+		run = buttons.transform.Find("Run").GetComponent<Button>();
+		primaryChoice.onClick.AddListener(PrimaryAction);
+		secondaryChoice.onClick.AddListener(SecondaryAction);
+		switchMember.onClick.AddListener(SwitchPartyMember);
+		run.onClick.AddListener(RunFromCombat);
+
 		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
 		GameObject.Find ("Enemyname").GetComponent<TextMeshProUGUI> ().text = GameInfo.getEnemy(GameInfo.currentNPC).name;
 		//updaterText = FindObjectOfType<TextMeshPro> ();
@@ -154,6 +169,7 @@ public class Combat : MonoBehaviour
 	
 	}
 	void PrimaryAction(){
+		Debug.Log("PRIMARY");
 		if (activePlayer > 0) {
 				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
 					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
@@ -170,6 +186,7 @@ public class Combat : MonoBehaviour
 
 	}
 	void SecondaryAction(){
+		Debug.Log("SECONDARY");
 		//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
 			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
@@ -184,7 +201,8 @@ public class Combat : MonoBehaviour
 			}
 
 	}
-	void SwitchPartyMemmber(){
+	void SwitchPartyMember(){
+		Debug.Log("SWITCH");
 		if (GUILayout.Button ("Switch")) {
 			//active player is ego if activePlayer = 1
 			if (activePlayer == 0) {
@@ -209,6 +227,7 @@ public class Combat : MonoBehaviour
 
 	}
 	void RunFromCombat(){
+			Debug.Log("RUN");
 			currentState = battleStates.RUN;
 			SceneManager.LoadScene (GameInfo.prevScene);
 	}
@@ -216,104 +235,29 @@ public class Combat : MonoBehaviour
 	void RemoveButtonsFromScreen(){
 
 	}
-	void EnemyTurn(){
-		//begin enemy's turn
-					if (start == false) {
-						start = true;
-					} else {
-						if (damagehold > 0) {
-							enemyHP -= damagehold;
-							text = "Enemy takes " + damagehold.ToString() + " damage. Confirm to continue.";
-							GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
-							hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-							hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-							GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-							GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-							damagehold = 0;
-							healhold = 0;
-							currentState = battleStates.ENEMYCHOICE;
-						} else {
-							if (healhold > 0) {
-								PlayerCurrentHP += healhold;
-								text =  "Player recovers " + healhold.ToString() + " damage. Confirm to continue.";
-								GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
-								hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-								hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-								GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-								GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-								damagehold = 0;
-								healhold = 0;
-								currentState = battleStates.ENEMYCHOICE;
-							}
-						}
-					}
-				
-                //if enemy's turn
-                else if (currentState == battleStates.ENEMYCHOICE) {
-					//begin player's turn
-					if(string.Equals(GameInfo.getEnemy(GameInfo.currentNPC).name, "Cynthia")){
-						
-						enemyHP += 5;
-						if (enemyHP > enemyMaxHP) {
-							enemyHP = enemyMaxHP;
-						}
-						text = "Enemy heals 10 damage. Confirm to continue.";
-					}
-					else{
-					damagehold = damageCalc.Next (2, 17) + enemyAtk;
-					playerHp -= damagehold;
-					text = "Player takes " + damagehold.ToString() + " damage. Confirm to continue.";
-					}
 
-					GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = text;
-					hpTextEnemy = "HP:" + enemyHP.ToString() + "/" + enemyMaxHP.ToString();
-					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
-					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
-					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-					damagehold = 0;
-					healhold = 0;
-					currentState = battleStates.PLAYERCHOICE;
-				}
-			
-            //if player's hp is 0
-			else if (PlayerCurrentHP <= 0){
+	void EnemyChoice(){
 
-				//Lose game and load title screen
-				currentState = battleStates.LOSE;
-				SceneManager.LoadScene("Title Screen", LoadSceneMode.Additive);
-			}
-            //if enemy's hp is 0
-            else if (enemyHP <= 0) {
-				//win fight and load back into overworld
-				currentState = battleStates.WIN;
-				GameInfo.setDead (GameInfo.currentNPC);
-				if(string.Equals(GameInfo.getEnemy(GameInfo.currentNPC).name, "Ozul")){
-					//WIN GAME SCREEN
-				}
-				SceneManager.LoadScene (GameInfo.prevScene);
-			}
-		}
-
-	
+	}
 
 	void EndGame(){
 
 	}
 
 
-	IEnumerator Damage(){
-		/* 
-		1. Tell the player the damage to which enemy
-		2. Update the text
-		3. Tell the player the damage to be received
-		4. Update that text
-		5. Add Buttons to screen
-		*/
-	}
+	// IEnumerator Damage(){
+	// 	/* 
+	// 	1. Tell the player the damage to which enemy
+	// 	2. Update the text
+	// 	3. Tell the player the damage to be received
+	// 	4. Update that text
+	// 	5. Add Buttons to screen
+	// 	*/
+	// }
 
-	IEnumerator Switch(){
+	// IEnumerator Switch(){
 
-	}
+	// }
 
 
 }
