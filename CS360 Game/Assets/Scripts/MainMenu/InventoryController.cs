@@ -11,6 +11,8 @@ public class InventoryController : MonoBehaviour {
     private Button[] equip = new Button[15];
     private Image EgosPrimary,EgosSecondary,EgosDefense, equipmentImage;
     private Button primaryButton, secondaryButton, defenseButton, buyButton, enableBuying;
+    private Button exitMM, exitGame;
+    private GameObject exitButtons;
     private equipmentData buying;
 
     /// <summary>
@@ -43,6 +45,21 @@ public class InventoryController : MonoBehaviour {
     /// sets up all the button listeners and displays the correct items in inventory
     /// </summary>
     void OnEnable () {
+
+        //exitMM = GameObject.Find("ExitMenu").GetComponent<Button>();
+        //exitGame = GameObject.Find("ExitGame").GetComponent<Button>();
+        //if (GameInfo.currentNPC == -1)
+        //{
+        //    exitMM.onClick.AddListener(ExitTheMainMenu);
+        //    exitGame.onClick.AddListener(ExitGame);
+        //}
+        //else
+        //{
+        //    exitButtons = GameObject.Find("ExitMenu");
+        //    exitButtons.SetActive(false);
+        //    exitButtons = GameObject.Find("ExitGame");
+        //    exitButtons.SetActive(false);
+        //}
 
         // Set on Click-listener for each item slot and set the correct visability color
         for (int i = 0; i < 12; i++)
@@ -325,5 +342,15 @@ public class InventoryController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public static void ExitTheMainMenu()
+    {
+        SceneManager.LoadScene(GameInfo.prevScene);
+    }
+
+    public static void ExitGame()
+    {
+        Application.Quit();
     }
 }
