@@ -19,101 +19,67 @@ public class Combat : MonoBehaviour
 	Button partyMemberChoice;
 	Button run;
 	TextMeshProUGUI status, currentNPCName, currentNPCHealth, enemyName, enemyHealth;
-	private int playerHp;
-	private int playerAtkPrimary;
-	private int playerAtkSecondary;
-	private int playerMaxAtkPrimary;
-	private int playerMaxAtkSecondary;
-	private int enemyHP;
-	private int enemyMaxHP;
-	private int enemyAtk;
-	private int activePlayer=2;
-	private int PlayerCurrentHP;
-	private int PartyOnecurrentHP;
-	private int PartyTwocurrentHP;
-	private int PartyOneAtkPrimary;
-	private int PartyTwoAtkSecondary;
-	private int PartyOneAtkSecondary;
-	private int PartyTwoAtkPrimary;
-	private int playerMinAtkPrimary;
-	private int playerMinAtkSecondary;
-	private System.Random damageCalc = new System.Random();
-	private bool start = false;
-	private int damagehold;
-	private int healhold;
-	public TextMeshPro updaterText;
-	private string text;
 	private string hpTextPlayer;
 	private string hpTextEnemy;
+    private int activePlayer = 2;
 
-	//Who we're fighting
-	private int enemyID = GameInfo.currentNPC;
-
-
-	
+    //Who we're fighting
+    private int enemyID = GameInfo.currentNPC;
 
 	// Use this for initialization
 	void Start()
 	{
+        // Find Main gameobjects
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
 		statusCanvas = GameObject.Find("StatusCanvas").GetComponent<Canvas>();
 
+        // Find Combat Buttons
 		primaryChoice = buttons.transform.Find("Primary").GetComponent<Button>();
 		secondaryChoice = buttons.transform.Find("Secondary").GetComponent<Button>();
 		partyMemberChoice = buttons.transform.Find("PartyMember").GetComponent<Button>();
 		run = buttons.transform.Find("Run").GetComponent<Button>();
+
+        // Set listeners to each button
 		primaryChoice.onClick.AddListener(PrimaryAction);
 		secondaryChoice.onClick.AddListener(SecondaryAction);
 		partyMemberChoice.onClick.AddListener(SwitchPartyMember);
 		run.onClick.AddListener(RunFromCombat);
 
+        // Find text fields
 		status = statusCanvas.transform.Find("Status").GetComponent<TextMeshProUGUI>();
 		currentNPCHealth = statusCanvas.transform.Find("CurrentNPCHealth").GetComponent<TextMeshProUGUI>();
 		currentNPCName = statusCanvas.transform.Find("CurrentNPCName").GetComponent<TextMeshProUGUI>();
 		enemyHealth = statusCanvas.transform.Find("EnemyHealth").GetComponent<TextMeshProUGUI>();
 		enemyName = statusCanvas.transform.Find("EnemyName").GetComponent<TextMeshProUGUI>();
 
-		
-		//updaterText = FindObjectOfType<TextMeshPro> ();
-		//updaterText = GetComponent<TextMeshPro> ();
-		//updaterText = gameObject.AddComponent<TextMeshPro>();
-		PlayerCurrentHP = playerHp;
-		playerAtkPrimary = GameInfo.getEgoPrimary();
-		playerAtkSecondary = GameInfo.getEgoSecondary();
-		playerMinAtkPrimary = 2 + playerAtkPrimary;
-		playerMinAtkSecondary = 2 + playerAtkSecondary;
-		playerMaxAtkPrimary = 17 + playerAtkPrimary;
-		playerMaxAtkSecondary = 17 + playerAtkSecondary;
-		enemyHP = GameInfo.getEnemy(GameInfo.currentNPC).health;
-		enemyMaxHP = enemyHP;
-		enemyAtk = GameInfo.getEnemy(GameInfo.currentNPC).enemyDamage;
-		PartyOnecurrentHP = GameInfo.getParty(0).npc.health;
-		PartyTwocurrentHP = GameInfo.getParty(1).npc.health;
-		PartyOneAtkPrimary = GameInfo.getParty (0).npc.primaryStat;
-		PartyTwoAtkPrimary = GameInfo.getParty (1).npc.primaryStat;
-		PartyOneAtkSecondary = GameInfo.getParty (0).npc.secondaryStat;
-		PartyTwoAtkSecondary = GameInfo.getParty (1).npc.secondaryStat;
-		damagehold = 0;
-		healhold = 0;
-
-
-		UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+        // Update all text field initially
+        status.text = "Choose primary action, secondary action, switch party member, or run";
+        UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
+        enemyName.text = GameInfo.getName(enemyID);
+        if (GameInfo.getEquipped(0).name != "")
+        {
+            primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(0).name;
+        }
+        if (GameInfo.getEquipped(1).name != "")
+        {
+            secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(1).name;
+        }
 
-		GameObject.Find("Enemy").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
+        // Set the art for the scene
+        GameObject.Find("EnemyImage").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
 		GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
 		GameObject.Find("Background").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/ComScenes/" + GameInfo.getName(GameInfo.currentNPC));
-		//updaterText.text = "Press the Confirm Button to Begin Combat";
-		
-
 	}
-	// Update is called once per frame
-	
+
+    // Call when enemy takes damage
 	void UpdateEnemyHealthToScreen(int newHealth){	
 		Debug.Log("TEST");	
 		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
 		enemyHealth.text = hpTextEnemy;
 	}
+
+    // Call when party member takes damage or switching party members
 	void UpdateCurrentNPCHealthToScreen(int newHealth){
 		if(activePlayer<2){	
 		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getParty(activePlayer).npc.MAXhealth;
@@ -126,17 +92,62 @@ public class Combat : MonoBehaviour
 	}
 
 	void PrimaryAction(){
-		System.Random rnd = new System.Random();
+        int dmg;
+
+        System.Random rnd = new System.Random();
 		if (activePlayer == 2){
-			int dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
-			UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+            dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
+            GameInfo.updateNPCHealth(enemyID, dmg);
+            UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		}else{
-			int dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
-			UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+			dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
+            GameInfo.updateNPCHealth(enemyID, dmg);
+            UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		}
+
 		ToggleButtons(false);
-		StartCoroutine(Wait());
-		ToggleButtons(true);
+        if (GameInfo.getNPCHealth(enemyID) == 0)
+        {
+            GameInfo.setDead(enemyID);
+            // Killed Recruitable
+            if (enemyID < 4)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". You check them for any items to take with you.";
+            }
+
+            // Killed Shadow
+            else if (enemyID < 7)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". You can feel the shadows enter your body";
+            }
+
+            //Killed bounty
+            else if (enemyID > 7)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". Retrieve your proof of kill to later redeem your reward";
+            }
+
+            //Killed Ozul
+            else
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
+                // Put it in a coroutine so that you can read the words at end
+                ///!!!!!!!!!!!
+                /// you win scene!!
+                ///!!!!!!!!!!!
+            }
+            
+            KilledEnemy();
+            // Wait for a bit then return to overworld, add their object to your inventory?
+        }
+        else
+        {
+            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage!";
+            //StartCoroutine(Wait());
+            //status.text = GameInfo.getName(enemyID) + " makes their move.";
+            //Call Enemy Attacks function
+        }
+        StartCoroutine(WaitAfterAttack());
 		/*
 		REMOVE BUTTONS
 		1. Calculate Damage to Enemy (Different Case for Heal ID's 0 and 2)
@@ -160,6 +171,7 @@ public class Combat : MonoBehaviour
 			}
 		*/
 	}
+
 	void SecondaryAction(){
 		Debug.Log("SECONDARY");
 		/*
@@ -173,81 +185,174 @@ public class Combat : MonoBehaviour
 		//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
 			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
-			if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
-				if (PartyOnecurrentHP < 0) {
-					healhold = 1;
-				} else if (PartyTwocurrentHP < 0) {
-					PartyTwocurrentHP = 1;
-				}
-			} else {
-				damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
-			}
+			//if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
+			//	if (PartyOnecurrentHP < 0) {
+			//		healhold = 1;
+			//	} else if (PartyTwocurrentHP < 0) {
+			//		PartyTwocurrentHP = 1;
+			//	}
+			//} else {
+			//	damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
+			//}
 
 	}
+
 	void SwitchPartyMember(){
 		Debug.Log("SWITCH");
-		if (GUILayout.Button ("Switch")) {
-			//active player is ego if activePlayer = 1
-			if (activePlayer == 0) {
-				//switch to next party member
-				activePlayer = 1;
-				//STATEMENT CHANGING CHARACTER SPRITE
-			}
-			//second party member is 2
-			if (activePlayer == 1) {
-				//switch active player to next
-				activePlayer = 2;
-				//STATEMENT CHANGING SPRITE
-			}
-			//third party member is 3
-			if (activePlayer == 2) {
-				//switch active player to ego
-				activePlayer = 0;
-				//STATEMENT CHANGING SPRITE
-			}
+		//active player is ego if activePlayer = 2
 
+		if (activePlayer == 0) {
+			//switch to next party member
+			activePlayer = 1;
+        }
+		if (activePlayer == 1) {
+			//switch active player to Ego
+			activePlayer = 2;
+            GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
+            currentNPCName.text = "Ego";
+            UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
+            status.text = "You have changed to Ego.";
+            // Change actions in Buttons
+            if (GameInfo.getEquipped(0).name != "")
+            {
+                primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(0).name;
+            }
+            else
+            {
+                primaryChoice.GetComponentInChildren<Text>().text = "Primary";
+            }
+            if (GameInfo.getEquipped(1).name != "")
+            {
+                secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(1).name;
+            }
+            else
+            {
+                secondaryChoice.GetComponentInChildren<Text>().text = "Secondary";
+            }
+        }
+		if (activePlayer == 2) {
+			//switch active player
+			activePlayer = 0;
 		}
 
-	}
-	void ChangeNPCImage(){
+        //STATEMENT CHANGING SPRITE
+        if (activePlayer < 2)
+        {
+            GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.party[activePlayer].slotID));
+            currentNPCName.text = GameInfo.getName(GameInfo.party[activePlayer].slotID);
+            UpdateCurrentNPCHealthToScreen(GameInfo.party[activePlayer].slotID);
+            status.text = "You have changed to " + GameInfo.getName(GameInfo.party[activePlayer].slotID) + ".";
+            // Change actions in Buttons
+            primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getPrimaryActionName(GameInfo.party[activePlayer].slotID);
+            secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getSecondaryActionName(GameInfo.party[activePlayer].slotID);
+        }
+
+
+    }
+
+    void ChangeNPCImage(){
 
 	}
+
 	void RunFromCombat(){
 			Debug.Log("RUN");
 			SceneManager.LoadScene (GameInfo.prevScene);
 	}
 
 	void ToggleButtons(bool val){
-		primaryChoice.interactable = val;
+        primaryChoice.interactable = val;
 		secondaryChoice.interactable = val;
 		partyMemberChoice.interactable = val;
 		run.interactable = val;
 	}
 
-	void EnemyChoice(){
+    /// <summary>
+    /// Call this when it is the enemy's turn
+    /// If the party member is killed switch to next party member... check if that one is dead to
+    /// if Ego is dead and none of the party slotID's equal 0 (cynthia) --- you lose
+    /// </summary>
+	void EnemyAttaks(){
+        int dmg;
+    
+        System.Random rnd = new System.Random();
+        System.Random EgoRnd = new System.Random();
+        dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
 
-	}
+        // If NOT EGO
+        if (activePlayer < 2)
+        {
+            GameInfo.updateNPCHealth(GameInfo.party[activePlayer].slotID, dmg);
+            UpdateCurrentNPCHealthToScreen(GameInfo.getNPCHealth(GameInfo.party[activePlayer].slotID));
+
+            if (GameInfo.getNPCHealth(GameInfo.party[activePlayer].slotID) == 0)
+            {
+                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has been killed by " + GameInfo.getName(enemyID);
+                GameInfo.setDead(GameInfo.party[activePlayer].slotID);
+                SwitchPartyMember();
+            }
+            else
+            {
+                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has taken " + dmg + " damage!";
+            }
+        }
+        // IS EGO
+        else
+        {
+            // if Ego has extra line of defense, check how much defense he gets (from all three items)
+            int defense = EgoRnd.Next(0, (GameInfo.getEgoDefense()));
+            if (dmg - defense < 0)
+            {
+                dmg = 0;
+            }
+            else
+            {
+                dmg -= defense;
+            }
+
+            GameInfo.updateCurrentHealth(dmg);
+            UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
+
+            if (GameInfo.getEgoCurrentHealth() == 0)
+            {
+                if(GameInfo.party[0].slotID != 0 && GameInfo.party[1].slotID != 0)
+                {
+                    status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
+                    //////!!!!!!!!!!
+                    ///YOU LOSE SCENE!
+                    //////!!!!!!!!!!
+                }
+                else
+                {
+                    status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + "! But wait...";
+                }
+                // Wait for a bit then return to overworld, add their object to your inventory?
+            }
+            else
+            {
+                status.text = "Ego has taken " + dmg + " damage!";
+            }
+        }
+        StartCoroutine(WaitForEnemy());
+    }
 
 	void EndGame(){
 
 	}
 
-	IEnumerator Wait(){
-		yield return new WaitForSeconds(2);
-	}
-	// IEnumerator Damage(){
-	// 	/* 
-	// 	1. Tell the player the damage to which enemy
-	// 	2. Update the text
-	// 	3. Tell the player the damage to be received
-	// 	4. Update that text
-	// 	5. Add Buttons to screen
-	// 	*/
-	// }
+	IEnumerator WaitAfterAttack(){
+		yield return new WaitForSeconds(5);
+        EnemyAttaks();
+    }
 
-	// IEnumerator Switch(){
+    IEnumerator WaitForEnemy()
+    {
+        yield return new WaitForSeconds(5);
+        ToggleButtons(true);
+    }
 
-	// }
-
-
+    IEnumerator KilledEnemy()
+    {
+        yield return new WaitForSeconds(7);
+        SceneManager.LoadScene(GameInfo.prevScene);
+    }
 }

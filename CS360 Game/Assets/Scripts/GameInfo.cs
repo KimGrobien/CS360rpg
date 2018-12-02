@@ -342,8 +342,16 @@ public class GameInfo : MonoBehaviour
 		return currentHealth;
 	}
     public static void updateCurrentHealth(int damage){
-         currentHealth -= damage;
+        if (currentHealth - damage < 0)
+        {
+            currentHealth = 0;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
     }
+
 	public static int getEgoPrimary(){
 		return primaryBonus;
 	}
@@ -351,7 +359,7 @@ public class GameInfo : MonoBehaviour
 		return secondaryBonus;
 	}
 	public static int getEgoDefense(){
-		return defenseBonus;
+		return defenseBonus + primarydefenseBonus + secondarydefenseBonus;
 	}
 	public static int getEgoHeal(){
 		return egoHeal;
@@ -359,7 +367,19 @@ public class GameInfo : MonoBehaviour
 	public static PartySlot getParty(int index){
 		return party [index];
 	}
-	public static NPCData getEnemy(int index){
+
+    public static string getPrimaryActionName(int idx)
+    {
+        return NPCList[idx].primaryName;
+    }
+
+    public static string getSecondaryActionName(int idx)
+    {
+        return NPCList[idx].secondaryName;
+    }
+    
+
+    public static NPCData getEnemy(int index){
 		return NPCList [index];
 	}
 	public static int getEgoMaxAtk(){
@@ -383,7 +403,14 @@ public class GameInfo : MonoBehaviour
     }
 
     public static void updateNPCHealth(int idx, int damage){
-        NPCList[idx].health -= damage;
+        if (!(NPCList[idx].health - damage < 0))
+        {
+            NPCList[idx].health -= damage;
+        }
+        else
+        {
+            NPCList[idx].health = 0;
+        }
     }
 
     public static int getNPCHealth(int idx){
