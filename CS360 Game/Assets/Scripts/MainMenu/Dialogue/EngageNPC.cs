@@ -487,8 +487,13 @@ IEnumerator type()
 		if(GameInfo.currentNPC==3){
 			i=7;
 		}
+		if(GameInfo.currentNPC!=1){
 		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!"
 		+" You received "+GameInfo.equipmentStrings[i, 0]+" as a gift!";
+		}
+		else{
+		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!";
+		}
 		txt1.text = "Leave";
 		txt2.text = "";
 		

@@ -13,10 +13,10 @@ public class InteractImageAnimation : MonoBehaviour {
 		GameObject.Find("box").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
 		canvas3 = GameObject.Find("InteractImage");		
 		GameObject.Find("box2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
-		if(isBounty){
+	
 		canvas2 = GameObject.Find("InteractImage1");		
 		GameObject.Find("box1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
-		}
+
 	}
 	
 	void OnTriggerEnter2D (Collider2D other) {
