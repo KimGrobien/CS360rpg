@@ -178,7 +178,7 @@ public class Combat : MonoBehaviour
 		4. Wait. UpdateText
 		BRING BACK BUTTONS
 		 */
-		if (activePlayer > 0) {
+		/*if (activePlayer > 0) {
 				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
 					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
 				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
@@ -191,7 +191,7 @@ public class Combat : MonoBehaviour
 			} else if(activePlayer == 0){
 				damagehold = damageCalc.Next (playerMinAtkPrimary, playerMaxAtkPrimary);
 			}
-
+		*/
 	}
 	void SecondaryAction(){
 		Debug.Log("SECONDARY");
@@ -248,8 +248,11 @@ public class Combat : MonoBehaviour
 			SceneManager.LoadScene (GameInfo.prevScene);
 	}
 
-	void RemoveButtonsFromScreen(){
-
+	void ToggleButtons(bool val){
+		primaryChoice.enabled = val;
+		secondaryChoice.enabled = val;
+		partyMemberChoice.enabled = val;
+		run.enabled = val;
 	}
 
 	void EnemyChoice(){
