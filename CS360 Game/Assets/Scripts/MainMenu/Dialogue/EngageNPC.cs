@@ -48,8 +48,9 @@ public class EngageNPC : MonoBehaviour {
             defenseButton.interactable = false;
             GameObject.Find("Inventory").SetActive(true);
             GameObject.Find("Dialogue").SetActive(false);
-			return;
+            return;
 		}
+
 		//Get button objects
 		trade = GameObject.Find("Trade");
 		choice1 = GameObject.Find("Choice1").GetComponent<Button>();
