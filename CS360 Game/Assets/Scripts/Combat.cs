@@ -170,6 +170,14 @@ public class Combat : MonoBehaviour
 	}
 	void PrimaryAction(){
 		Debug.Log("PRIMARY");
+		/*
+		REMOVE BUTTONS
+		1. Calculate Damage to Enemy (Different Case for Heal ID's 0 and 2)
+		2. Wait. Update Text
+		3. Calculate Damage to be Received
+		4. Wait. UpdateText
+		BRING BACK BUTTONS
+		 */
 		if (activePlayer > 0) {
 				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
 					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
@@ -187,6 +195,14 @@ public class Combat : MonoBehaviour
 	}
 	void SecondaryAction(){
 		Debug.Log("SECONDARY");
+		/*
+		REMOVE BUTTONS
+		1. Calculate Damage to Enemy (Different Case for Revive ID 0)
+		2. Wait. Update Text
+		3. Calculate Damage to be Received
+		4. Wait. UpdateText
+		BRING BACK BUTTONS
+		 */
 		//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
 			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
 			//NEXT STATE
