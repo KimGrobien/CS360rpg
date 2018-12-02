@@ -89,10 +89,10 @@ TextureImporter:
       name: Berndy_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 216
-        width: 129
-        height: 150
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93f2af3b6064e3e46b8aa2edcaa14c0f
+      spriteID: cb0a00dffb6104c4a9844ccaf776e4b2
       vertices: []
       indices: 
       edges: []
@@ -109,10 +109,10 @@ TextureImporter:
       name: Berndy_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 24
-        width: 129
-        height: 147
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c68590177af4444ad67b2210d92314
+      spriteID: b13bfb07430424f419eef83080bb64c5
       vertices: []
       indices: 
       edges: []

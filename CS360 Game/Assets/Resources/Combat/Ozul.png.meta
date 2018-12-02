@@ -105,10 +105,10 @@ TextureImporter:
       name: Ozul_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 783
-        width: 96
-        height: 165
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,7 +116,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b10676ab5ca2074458a9d470d09af07d
+      spriteID: 754f8c6c309e505419edd4aed2fab51c
       vertices: []
       indices: 
       edges: []
@@ -125,10 +125,10 @@ TextureImporter:
       name: Ozul_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 783
-        width: 96
-        height: 165
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df4076acc166e454e8e18847173e8134
+      spriteID: 2e519a49bbac09b4f9942af3749eee88
       vertices: []
       indices: 
       edges: []
@@ -145,10 +145,10 @@ TextureImporter:
       name: Ozul_2
       rect:
         serializedVersion: 2
-        x: 429
-        y: 783
-        width: 102
-        height: 165
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d829c486d9242084cb760b2342711593
+      spriteID: b512fb6fb5db77049911bdf13f198781
       vertices: []
       indices: 
       edges: []
@@ -165,10 +165,10 @@ TextureImporter:
       name: Ozul_3
       rect:
         serializedVersion: 2
-        x: 618
-        y: 783
-        width: 105
-        height: 165
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,7 +176,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 294c852ef03a1614e970937ca1096f1d
+      spriteID: b558ce65a47ee0e4aafff419a46a771c
       vertices: []
       indices: 
       edges: []
@@ -185,10 +185,10 @@ TextureImporter:
       name: Ozul_4
       rect:
         serializedVersion: 2
-        x: 36
-        y: 591
-        width: 117
-        height: 165
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,7 +196,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d86ec719c8bb3545aacec6e18d9c4ce
+      spriteID: 50f62c9e0a41f8846b85f5eaf5af5491
       vertices: []
       indices: 
       edges: []
@@ -205,10 +205,10 @@ TextureImporter:
       name: Ozul_5
       rect:
         serializedVersion: 2
-        x: 222
-        y: 591
-        width: 129
-        height: 165
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,7 +216,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb54c08227c2a74788d2585f77d37e2
+      spriteID: aff5be31268a68843bc0b7f33219a1f5
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
       name: Ozul_6
       rect:
         serializedVersion: 2
-        x: 411
-        y: 591
-        width: 141
-        height: 165
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,7 +236,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87bd614e90c264e4c922db1f78772b43
+      spriteID: bd5d32e31087588448b01f6350a7496e
       vertices: []
       indices: 
       edges: []
@@ -245,10 +245,10 @@ TextureImporter:
       name: Ozul_7
       rect:
         serializedVersion: 2
-        x: 600
-        y: 591
-        width: 147
-        height: 165
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,7 +256,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe43902c72844644abcff6014ca641a7
+      spriteID: 27ef5e36fd4179942a3ab19bd4260499
       vertices: []
       indices: 
       edges: []
@@ -265,10 +265,10 @@ TextureImporter:
       name: Ozul_8
       rect:
         serializedVersion: 2
-        x: 15
-        y: 399
-        width: 159
-        height: 165
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,7 +276,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e5787b6b7028b44baa69e53a230e637
+      spriteID: 554083fc4f9ce3a4ab481020a4406d43
       vertices: []
       indices: 
       edges: []
@@ -285,10 +285,10 @@ TextureImporter:
       name: Ozul_9
       rect:
         serializedVersion: 2
-        x: 198
-        y: 399
-        width: 180
-        height: 165
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,7 +296,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 196c7696e47e2bc439b2cc500f1f608e
+      spriteID: 60d227666b30a414d91cd43d0e0efb7c
       vertices: []
       indices: 
       edges: []
@@ -305,10 +305,10 @@ TextureImporter:
       name: Ozul_10
       rect:
         serializedVersion: 2
-        x: 399
-        y: 399
-        width: 159
-        height: 165
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,7 +316,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81f4924f7d7ae94baa8727e680b1825
+      spriteID: 82d46bb115664624d9ec1c8910e459c0
       vertices: []
       indices: 
       edges: []
@@ -325,10 +325,10 @@ TextureImporter:
       name: Ozul_11
       rect:
         serializedVersion: 2
-        x: 600
-        y: 399
-        width: 147
-        height: 165
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,7 +336,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87fa94f673cbbf843a55d1dc199a4c7d
+      spriteID: 5ef060f24d40b0d42a1035f0968c000b
       vertices: []
       indices: 
       edges: []
@@ -345,10 +345,10 @@ TextureImporter:
       name: Ozul_12
       rect:
         serializedVersion: 2
-        x: 27
-        y: 207
-        width: 141
-        height: 165
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,7 +356,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db53be70e38f39d46a02ccb0059672c1
+      spriteID: f3df8e6648345824c8f940772b1ea396
       vertices: []
       indices: 
       edges: []
@@ -365,10 +365,10 @@ TextureImporter:
       name: Ozul_13
       rect:
         serializedVersion: 2
-        x: 222
-        y: 207
-        width: 129
-        height: 165
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,7 +376,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0c8475204abb30448cf341842898cb1
+      spriteID: e8a885486d35baa45b0d2926c753edcb
       vertices: []
       indices: 
       edges: []
@@ -385,10 +385,10 @@ TextureImporter:
       name: Ozul_14
       rect:
         serializedVersion: 2
-        x: 420
-        y: 207
-        width: 117
-        height: 165
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -396,7 +396,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef228bfa0afd7c147895fd53f957d3f0
+      spriteID: c303304eeb3df6e4389356236df93983
       vertices: []
       indices: 
       edges: []
@@ -405,10 +405,10 @@ TextureImporter:
       name: Ozul_15
       rect:
         serializedVersion: 2
-        x: 618
-        y: 207
-        width: 105
-        height: 165
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -416,7 +416,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e9929484bbb8c647ba071d89dbd0606
+      spriteID: 719650aa80eb5eb4d81b705b6cd7372a
       vertices: []
       indices: 
       edges: []
@@ -425,10 +425,10 @@ TextureImporter:
       name: Ozul_16
       rect:
         serializedVersion: 2
-        x: 45
-        y: 15
-        width: 102
-        height: 165
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,7 +436,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: addaa440b027dea4392c29e2a7d5ab8d
+      spriteID: d5f3a694adb7a4643a511fe4b94e83bb
       vertices: []
       indices: 
       edges: []
@@ -445,10 +445,10 @@ TextureImporter:
       name: Ozul_17
       rect:
         serializedVersion: 2
-        x: 240
-        y: 15
-        width: 96
-        height: 165
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,7 +456,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c33153a1b1fdd24e9a41c27b6b7c414
+      spriteID: d78f9dc7eb45489489f19ad6fd1028ad
       vertices: []
       indices: 
       edges: []

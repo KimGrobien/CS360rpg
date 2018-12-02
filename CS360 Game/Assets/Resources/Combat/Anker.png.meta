@@ -92,10 +92,10 @@ TextureImporter:
       name: Anker_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 396
-        width: 99
-        height: 171
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,7 +103,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a080a0de267ce5b4c992b76fd9a767f7
+      spriteID: cfc47a338cb4aa8498a6003e679c374a
       vertices: []
       indices: 
       edges: []
@@ -112,10 +112,10 @@ TextureImporter:
       name: Anker_1
       rect:
         serializedVersion: 2
-        x: 237
-        y: 396
-        width: 99
-        height: 168
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,7 +123,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e36b840fff3abc44097fd66d18160909
+      spriteID: d4bdea36480753446a78a78d28e809a9
       vertices: []
       indices: 
       edges: []
@@ -132,10 +132,10 @@ TextureImporter:
       name: Anker_2
       rect:
         serializedVersion: 2
-        x: 45
-        y: 204
-        width: 99
-        height: 171
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faa99bf0b910c094cb7be55125045ab4
+      spriteID: e6f4f58942f2ff44589ac95910d93343
       vertices: []
       indices: 
       edges: []
@@ -152,10 +152,10 @@ TextureImporter:
       name: Anker_3
       rect:
         serializedVersion: 2
-        x: 237
-        y: 204
-        width: 99
-        height: 171
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a554d3268d6e1b4a9bb8c926154fcfb
+      spriteID: f8d771b187d1bb64b8603c87f9a070f8
       vertices: []
       indices: 
       edges: []
@@ -172,10 +172,10 @@ TextureImporter:
       name: Anker_4
       rect:
         serializedVersion: 2
-        x: 45
-        y: 12
-        width: 99
-        height: 171
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,7 +183,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43ba0962b989144b8a6f0132ad454bc
+      spriteID: 1fcee58d0f857dc4fa379462f6166d61
       vertices: []
       indices: 
       edges: []

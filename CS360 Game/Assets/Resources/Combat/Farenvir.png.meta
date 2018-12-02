@@ -91,10 +91,10 @@ TextureImporter:
       name: Farenvir_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 195
-        width: 153
-        height: 180
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 592e9eabbdf0e184fbe013e612ae8b58
+      spriteID: 041ff4a13f456ef4b891897d8560ef31
       vertices: []
       indices: 
       edges: []
@@ -111,10 +111,10 @@ TextureImporter:
       name: Farenvir_1
       rect:
         serializedVersion: 2
-        x: 213
-        y: 198
-        width: 162
-        height: 177
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cfe9e93c60d4204788f6ec405775d9e
+      spriteID: 60ea8315aed14574e96dfcc6b0c2df03
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Farenvir_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 6
-        width: 162
-        height: 177
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef4600fcededa034bb86600ae2f624f8
+      spriteID: 6cb54e4ce55fcb648a81bc7f220033c1
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: Farenvir_3
       rect:
         serializedVersion: 2
-        x: 213
-        y: 3
-        width: 153
-        height: 180
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77975ef30460a8f48ab78f8f70fec8f0
+      spriteID: e723ea33c35dc15489fcfe5e67e2dc96
       vertices: []
       indices: 
       edges: []

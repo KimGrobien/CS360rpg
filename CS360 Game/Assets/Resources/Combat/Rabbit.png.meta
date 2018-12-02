@@ -91,10 +91,10 @@ TextureImporter:
       name: Rabbit_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 207
-        width: 186
-        height: 165
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 485b31aa3f268fe47bfa92d34426143f
+      spriteID: 94d4420a07385e04ca6d62ca9e237322
       vertices: []
       indices: 
       edges: []
@@ -111,10 +111,10 @@ TextureImporter:
       name: Rabbit_1
       rect:
         serializedVersion: 2
-        x: 195
-        y: 207
-        width: 186
-        height: 165
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ff6867449b2ee44b7b649fd0183f05
+      spriteID: a8e8f52d077de924b90df919349d4bdb
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Rabbit_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 15
-        width: 186
-        height: 165
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2a7e32b2cf243e40a8364e318797103
+      spriteID: 3f0b431fc5de20f4aae4f7c744d5b3bb
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: Rabbit_3
       rect:
         serializedVersion: 2
-        x: 195
-        y: 21
-        width: 186
-        height: 159
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39a43a8945d05224d810d0670cf68f4f
+      spriteID: 98f854d3f817c96479b975c415df33bd
       vertices: []
       indices: 
       edges: []

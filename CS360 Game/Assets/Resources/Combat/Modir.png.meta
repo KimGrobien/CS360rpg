@@ -95,10 +95,10 @@ TextureImporter:
       name: Modir_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 213
-        width: 165
-        height: 171
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,7 +106,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b6847ab4cd24884d964b952db024775
+      spriteID: 6c05b5392a662374689e01ed9bff2f47
       vertices: []
       indices: 
       edges: []
@@ -115,10 +115,10 @@ TextureImporter:
       name: Modir_1
       rect:
         serializedVersion: 2
-        x: 222
-        y: 213
-        width: 159
-        height: 171
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,19 +126,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f870dea2041bda4e928b313ccf8b323
+      spriteID: 8518360e676920540aadd38478af544b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Modir_4
+      name: Modir_2
       rect:
         serializedVersion: 2
-        x: 24
-        y: 21
-        width: 165
-        height: 171
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,19 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1febce79cfc5cd842904b2bfc5985dd3
+      spriteID: 608c11a4941164046a044e7a9e25605a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Modir_5
+      name: Modir_3
       rect:
         serializedVersion: 2
-        x: 222
-        y: 21
-        width: 159
-        height: 171
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 833c0d4471d796548b650b0d80ad2f18
+      spriteID: 60fbc59a5b7dfb646b0ec8bf31f53bd9
       vertices: []
       indices: 
       edges: []

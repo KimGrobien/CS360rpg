@@ -92,10 +92,10 @@ TextureImporter:
       name: Ego_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 399
-        width: 123
-        height: 165
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,7 +103,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1b6a099ebcf02741a8984fb2a295c54
+      spriteID: bc0698c6661713448903ae3b2319c419
       vertices: []
       indices: 
       edges: []
@@ -112,10 +112,10 @@ TextureImporter:
       name: Ego_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 399
-        width: 120
-        height: 165
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,7 +123,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63b85cf85a71ed643b487266e009e0e5
+      spriteID: c7c5066cc2e47d64588db5c3cd243df2
       vertices: []
       indices: 
       edges: []
@@ -132,10 +132,10 @@ TextureImporter:
       name: Ego_2
       rect:
         serializedVersion: 2
-        x: 39
-        y: 210
-        width: 129
-        height: 162
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97e9288b5743ac84dac8db7e295e5933
+      spriteID: 920e0e44fdd4e9942946ed1b5d6eddac
       vertices: []
       indices: 
       edges: []
@@ -152,10 +152,10 @@ TextureImporter:
       name: Ego_3
       rect:
         serializedVersion: 2
-        x: 231
-        y: 210
-        width: 129
-        height: 162
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71fa294b57ffb804abbb1e57a4e322e6
+      spriteID: 36254a3f49eb96845ad48598b2aab9bb
       vertices: []
       indices: 
       edges: []
@@ -172,10 +172,10 @@ TextureImporter:
       name: Ego_4
       rect:
         serializedVersion: 2
-        x: 42
-        y: 18
-        width: 138
-        height: 162
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,7 +183,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4cbfbeff9b968f4e8616c7f1fdb25c0
+      spriteID: e560347af0a8e0f4d85b38cc8dbcbf0d
       vertices: []
       indices: 
       edges: []
