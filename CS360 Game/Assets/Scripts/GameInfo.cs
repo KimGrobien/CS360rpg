@@ -253,6 +253,11 @@ public class GameInfo : MonoBehaviour
         equipmentList[i].owned = false;
     }
 
+    public static bool getOwnedStatus(int i)
+    {
+        return equipmentList[i].owned;
+    }
+
     // Return which item Ego has equipped in index i
     public static equipmentData getEquipped(int i)
     {
