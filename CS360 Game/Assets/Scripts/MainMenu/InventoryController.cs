@@ -58,9 +58,13 @@ public class InventoryController : MonoBehaviour {
         {
             equip[i] = GameObject.Find("slot" + i).GetComponent<Button>();
             int set = i;
-            if (GameInfo.getEquipment(set).owned)
+            if (GameInfo.getOwnedStatus(set))
             {
                 GameInfo.setEquipmentColor(set, Color.white);
+            }
+            else
+            {
+                GameInfo.setEquipmentColor(set, Color.clear);
             }
             equip[set].image.color = GameInfo.getEquipment(set).Visability;
             equip[set].onClick.AddListener(() => BountyClicked(set));
@@ -135,7 +139,7 @@ public class InventoryController : MonoBehaviour {
         {
             if (!(j == 3 || j == 7 || j == 11))
             {
-                if (!GameInfo.getEquipment(j).owned && GameInfo.buyingMode)
+                if (!GameInfo.getOwnedStatus(j) && GameInfo.buyingMode)
                 {
                     GameInfo.setEquipmentColor(j, Color.gray);
                     equip[j].image.color = GameInfo.getEquipment(j).Visability;
@@ -144,7 +148,7 @@ public class InventoryController : MonoBehaviour {
         }
 
         // You own the object or in buying mode and not gift
-        if (GameInfo.getEquipment(i).owned || (GameInfo.buyingMode && !gift))
+        if (GameInfo.getOwnedStatus(i) || (GameInfo.buyingMode && !gift))
         {
             currentItem = i;
             equipmentName.text = GameInfo.getEquipment(i).name;
@@ -157,21 +161,21 @@ public class InventoryController : MonoBehaviour {
         if (GameInfo.buyingMode && !gift)
         {
             // and you have enough Money
-            if (!GameInfo.getEquipment(i).owned && GameInfo.getEquipment(i).Price <= GameInfo.getMoney())
+            if (!GameInfo.getOwnedStatus(i) && GameInfo.getEquipment(i).Price <= GameInfo.getMoney())
             {
                 SetButtonsVisablity(false, false, false, true);
                 EgosMoney.color = Color.green;
                 equip[i].image.color = Color.green;
             }
             // Dont have enough money
-            else if (!GameInfo.getEquipment(i).owned && GameInfo.getEquipment(i).Price > GameInfo.getMoney())
+            else if (!GameInfo.getOwnedStatus(i) && GameInfo.getEquipment(i).Price > GameInfo.getMoney())
             {
                 SetButtonsVisablity(false, false, false, false);
                 EgosMoney.color = Color.red;
                 equip[i].image.color = Color.red;
             }
             // Buying mode but you already own the object
-            else if (GameInfo.getEquipment(i).owned)
+            else if (GameInfo.getOwnedStatus(i))
             {
                 SetButtonsVisablity(false, false, false, false);
                 EgosMoney.color = TextColor;
@@ -179,7 +183,7 @@ public class InventoryController : MonoBehaviour {
         }
 
         // you own the object and its not in buying mode and its not already equipped
-        else if (GameInfo.getEquipment(i).owned && !GameInfo.buyingMode && !GameInfo.getEquipment(i).equipped)
+        else if (GameInfo.getOwnedStatus(i) && !GameInfo.buyingMode && !GameInfo.getEquipment(i).equipped)
         {
             EgosMoney.color = TextColor;
             //if attack object
@@ -211,7 +215,7 @@ public class InventoryController : MonoBehaviour {
     /// <param name="i"> This is the item index in GameInfo, used to get information of item</param>
     private void BountyClicked(int i)
     {
-        if (GameInfo.getEquipment(i).owned)
+        if (GameInfo.getOwnedStatus(i))
         {
             currentItem = -1;
             equipmentName.text = GameInfo.getEquipment(i).name;
@@ -237,8 +241,8 @@ public class InventoryController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Set item to primary combat move, diable the ability to equip again
-    /// set item to equipped in GameInfo and display it next to Ego
+    /// Equip the item to the designated slot and disable it from being eqipped again
+    /// until another item replaces it
     /// </summary>
     /// <param name="i">This is the item to be equipped</param>
     private void PrimaryButtonClicked(int i)
@@ -253,12 +257,6 @@ public class InventoryController : MonoBehaviour {
         GameInfo.equippedIndexes[0] = i;
         GameInfo.toggleEquipped(i);
     }
-
-    /// <summary>
-    /// Equip the item to the designated slot and disable it from being eqipped again
-    /// until another item replaces it
-    /// </summary>
-    /// <param name="i">This is the item to be equipped</param>
     private void SecondaryButtonClicked(int i)
     {
         primaryButton.interactable = false;
@@ -282,6 +280,11 @@ public class InventoryController : MonoBehaviour {
         GameInfo.equippedIndexes[2] = i;
         GameInfo.toggleEquipped(i);
     }
+
+    /// <summary>
+    /// Buy item! Whoop Whoop!
+    /// </summary>
+    /// <param name="i"></param>
     private void BuyButtonClicked(int i)
     {
         GameInfo.setEquipmentColor(i, Color.white);
