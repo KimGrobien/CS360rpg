@@ -48,6 +48,8 @@ public class titleScreen : MonoBehaviour {
 	
 
 	public void beginGame(){
+		playMusic.StopMusic("title");
+        playMusic.PlayMusic("overworld");
 		SceneManager.LoadScene(1);
 	}
 
