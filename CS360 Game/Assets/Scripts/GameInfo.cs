@@ -346,7 +346,9 @@ public class GameInfo : MonoBehaviour
 	public static int getEgoMaxAtk(){
 		return AttackRangeMAX;
 	}
-    
+	public static void setDead(int index){
+		NPCList [index].dead = true;
+	}
     public static void PopulatePotentialNPCPartSlot(){
         party[0].isAssigned=false;
         party[1].isAssigned=false;

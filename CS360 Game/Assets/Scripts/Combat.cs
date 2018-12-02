@@ -85,6 +85,7 @@ public class Combat : MonoBehaviour
 		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
 		GameObject.Find("Enemy").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
 		GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
+		GameObject.Find("Background").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/ComScenes/" + GameInfo.getName(GameInfo.currentNPC));
 		//updaterText.text = "Press the Confirm Button to Begin Combat";
 		currentState = battleStates.START;
 
@@ -181,7 +182,11 @@ public class Combat : MonoBehaviour
                 else if (currentState == battleStates.ENEMYCHOICE) {
 					//begin player's turn
 					if(string.Equals(GameInfo.getEnemy(GameInfo.currentNPC).name, "Cynthia")){
-						enemyHP += 10;
+						
+						enemyHP += 5;
+						if (enemyHP > enemyMaxHP) {
+							enemyHP = enemyMaxHP;
+						}
 						text = "Enemy heals 10 damage. Confirm to continue.";
 					}
 					else{
@@ -211,6 +216,10 @@ public class Combat : MonoBehaviour
             else if (enemyHP <= 0) {
 				//win fight and load back into overworld
 				currentState = battleStates.WIN;
+				GameInfo.setDead (GameInfo.currentNPC);
+				if(string.Equals(GameInfo.getEnemy(GameInfo.currentNPC).name, "Ozul")){
+					//WIN GAME SCREEN
+				}
 				SceneManager.LoadScene (GameInfo.prevScene);
 			}
 		}
