@@ -445,6 +445,7 @@ IEnumerator type()
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
         PartyMember.isAssigned=true;
 		GameInfo.party[0] = PartyMember;
+		GameInfo.party[0].slotID = GameInfo.currentNPC;
         GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
         //Added to gift item - Kurt
         int giftID = GameInfo.party[0].npc.giftItemID;
@@ -464,7 +465,9 @@ IEnumerator type()
 		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
         PartyMember.isAssigned=true;
 		GameInfo.party[1] = PartyMember;
+		GameInfo.party[1].slotID = GameInfo.currentNPC;
         GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
+		
         //Added to gift item - Kurt
         int giftID = GameInfo.party[1].npc.giftItemID;
         if (giftID > 0)
@@ -495,6 +498,7 @@ IEnumerator type()
 		else{
 		npcResponse.text = GameInfo.getName(GameInfo.currentNPC) + " is now added to your party!";
 		}
+
 		txt1.text = "Leave";
 		txt2.text = "";
 		

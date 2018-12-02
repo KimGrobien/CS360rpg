@@ -382,4 +382,21 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    public static void updateNPCHealth(int idx, int damage){
+        NPCList[idx].health -= damage;
+    }
+
+    public static int getNPCHealth(int idx){
+        return NPCList[idx].health;
+    }
+
+    public static int getPrimaryAttackBonus(){
+        return primaryBonus;
+    }
+
+    public static int getNPCPrimaryAttack(int idx){
+        Debug.Log(idx);
+        return NPCList[idx].primaryStat;
+    }
+
 }

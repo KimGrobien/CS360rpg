@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 //Comments below should describe the code decently
 //CAPS = code to be added
@@ -12,11 +13,12 @@ using TMPro;
 
 public class Combat : MonoBehaviour
 {
-	Canvas buttons;
+	Canvas buttons, statusCanvas;
 	Button primaryChoice;
 	Button secondaryChoice;
 	Button partyMemberChoice;
 	Button run;
+	TextMeshProUGUI status, currentNPCName, currentNPCHealth, enemyName, enemyHealth;
 	private int playerHp;
 	private int playerAtkPrimary;
 	private int playerAtkSecondary;
@@ -54,6 +56,8 @@ public class Combat : MonoBehaviour
 	void Start()
 	{
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
+		statusCanvas = GameObject.Find("StatusCanvas").GetComponent<Canvas>();
+
 		primaryChoice = buttons.transform.Find("Primary").GetComponent<Button>();
 		secondaryChoice = buttons.transform.Find("Secondary").GetComponent<Button>();
 		partyMemberChoice = buttons.transform.Find("PartyMember").GetComponent<Button>();
@@ -63,8 +67,13 @@ public class Combat : MonoBehaviour
 		partyMemberChoice.onClick.AddListener(SwitchPartyMember);
 		run.onClick.AddListener(RunFromCombat);
 
-		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
-		GameObject.Find ("Enemyname").GetComponent<TextMeshProUGUI> ().text = GameInfo.getEnemy(GameInfo.currentNPC).name;
+		status = statusCanvas.transform.Find("Status").GetComponent<TextMeshProUGUI>();
+		currentNPCHealth = statusCanvas.transform.Find("CurrentNPCHealth").GetComponent<TextMeshProUGUI>();
+		currentNPCName = statusCanvas.transform.Find("CurrentNPCName").GetComponent<TextMeshProUGUI>();
+		enemyHealth = statusCanvas.transform.Find("EnemyHealth").GetComponent<TextMeshProUGUI>();
+		enemyName = statusCanvas.transform.Find("EnemyName").GetComponent<TextMeshProUGUI>();
+
+		
 		//updaterText = FindObjectOfType<TextMeshPro> ();
 		//updaterText = GetComponent<TextMeshPro> ();
 		//updaterText = gameObject.AddComponent<TextMeshPro>();
@@ -88,7 +97,7 @@ public class Combat : MonoBehaviour
 		healhold = 0;
 
 
-		UpdateEnemyHealthToScreen(GameInfo.getEnemy(enemyID).health);
+		UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
 
 		GameObject.Find("Enemy").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.currentNPC));
@@ -100,24 +109,31 @@ public class Combat : MonoBehaviour
 	}
 	// Update is called once per frame
 	
-	void UpdateEnemyHealthToScreen(int newHealth){		
+	void UpdateEnemyHealthToScreen(int newHealth){	
+		Debug.Log("TEST");	
 		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
-		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
+		enemyHealth.text = hpTextEnemy;
 	}
 	void UpdateCurrentNPCHealthToScreen(int newHealth){
 		if(activePlayer<2){	
 		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getParty(activePlayer).npc.MAXhealth;
-		GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
+		currentNPCHealth.text = hpTextPlayer;
 		}
 		else{
-			
 		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getEgoMaxHealth();
-		GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
+		currentNPCHealth.text = hpTextPlayer;
 		}
 	}
 
 	void PrimaryAction(){
-		Debug.Log("PRIMARY");
+		System.Random rnd = new System.Random();
+		if (activePlayer == 2){
+			int dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
+			UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+		}else{
+			int dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
+			UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+		}
 		
 		/*
 		REMOVE BUTTONS
