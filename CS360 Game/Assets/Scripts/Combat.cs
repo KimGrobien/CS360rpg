@@ -134,7 +134,9 @@ public class Combat : MonoBehaviour
 			int dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
 			UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		}
-		
+		ToggleButtons(false);
+		StartCoroutine(Wait());
+		ToggleButtons(true);
 		/*
 		REMOVE BUTTONS
 		1. Calculate Damage to Enemy (Different Case for Heal ID's 0 and 2)
@@ -216,10 +218,10 @@ public class Combat : MonoBehaviour
 	}
 
 	void ToggleButtons(bool val){
-		primaryChoice.enabled = val;
-		secondaryChoice.enabled = val;
-		partyMemberChoice.enabled = val;
-		run.enabled = val;
+		primaryChoice.interactable = val;
+		secondaryChoice.interactable = val;
+		partyMemberChoice.interactable = val;
+		run.interactable = val;
 	}
 
 	void EnemyChoice(){
@@ -230,7 +232,9 @@ public class Combat : MonoBehaviour
 
 	}
 
-
+	IEnumerator Wait(){
+		yield return new WaitForSeconds(2);
+	}
 	// IEnumerator Damage(){
 	// 	/* 
 	// 	1. Tell the player the damage to which enemy
