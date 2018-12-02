@@ -15,7 +15,7 @@ public class Combat : MonoBehaviour
 	Canvas buttons;
 	Button primaryChoice;
 	Button secondaryChoice;
-	Button switchMember;
+	Button partyMemberChoice;
 	Button run;
 	private int playerHp;
 	private int playerAtkPrimary;
@@ -63,11 +63,11 @@ public class Combat : MonoBehaviour
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
 		primaryChoice = buttons.transform.Find("Primary").GetComponent<Button>();
 		secondaryChoice = buttons.transform.Find("Secondary").GetComponent<Button>();
-		switchMember = buttons.transform.Find("Switch").GetComponent<Button>();
+		partyMemberChoice = buttons.transform.Find("PartyMember").GetComponent<Button>();
 		run = buttons.transform.Find("Run").GetComponent<Button>();
 		primaryChoice.onClick.AddListener(PrimaryAction);
 		secondaryChoice.onClick.AddListener(SecondaryAction);
-		switchMember.onClick.AddListener(SwitchPartyMember);
+		partyMemberChoice.onClick.AddListener(SwitchPartyMember);
 		run.onClick.AddListener(RunFromCombat);
 
 		GameObject.Find ("Textupdater").GetComponent<TextMeshProUGUI> ().text = "Press the Confirm Button to Begin Combat";
@@ -168,7 +168,7 @@ public class Combat : MonoBehaviour
 		}
 	
 	}
-	void PrimaryAction(){
+	public void PrimaryAction(){
 		Debug.Log("PRIMARY");
 		/*
 		REMOVE BUTTONS
