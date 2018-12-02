@@ -70,7 +70,7 @@ public static void loadCynthiaDialogue(){
         Cynthia[2].indexForOption2 = 6;
         //response to index 1 option 1
         Cynthia[3].response = "Your story seems to have struck a chord with her."
-        +" Her guarded dimeanor seems to soften. "
+        +" Her guarded demeanor seems to soften. "
         +"She says, \"I think I can help. Hold on.\"\n\nShe raises her hands in your direction. "
         +"A bright light emits from her palms. You feel a warmth in your chest and start feeling a little better.";
         Cynthia[3].option1 = "That was amazing! Thank you so much for helping me. "
@@ -393,11 +393,11 @@ template
         Anker[36].indexForOption1 = -2;
         Anker[36].indexForOption2 = 0;
         //response to index 32 option 1
-        Anker[36].response = "He says, \"I'll help you, but only to protect my daughter.\"";
-        Anker[36].option1 = "Add to Party";
-        Anker[36].option2 = "Leave";
-        Anker[36].indexForOption1 = -3;
-        Anker[36].indexForOption2 = 0;
+        Anker[63].response = "He says, \"I'll help you, but only to protect my daughter.\"";
+        Anker[63].option1 = "Add to Party";
+        Anker[63].option2 = "Leave";
+        Anker[63].indexForOption1 = -3;
+        Anker[63].indexForOption2 = 0;
 
         GameInfo.DialogueTrees[1] = Anker;
     }
