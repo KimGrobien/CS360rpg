@@ -60,7 +60,7 @@ public class GameInfo : MonoBehaviour
     private static string CharacterName = "Ego";
     private static int money = 300;
     private static bool isAlive = true;
-    private static int health = 100;
+    private static int MAXhealth = 100, currentHealth = 100;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
     public static int[] equippedIndexes = new int[3];
@@ -280,10 +280,6 @@ public class GameInfo : MonoBehaviour
         return DialogueTrees[index];
     }
 
-    // Update health of Ego
-    public static void UpdateHealth(int heal){
-        health+=heal;
-    }
 
     // Update Egos Primary item bonuses
     public static void UpdateEgosPrimary(equipmentData equip)
@@ -339,9 +335,15 @@ public class GameInfo : MonoBehaviour
     //
     public static void updateParty(int id){
         }
-	public static int getEgoHealth(){
-		return health;
+	public static int getEgoMaxHealth(){
+		return MAXhealth;
 	}
+    public static int getEgoCurrentHealth(){
+		return currentHealth;
+	}
+    public static void updateCurrentHealth(int damage){
+         currentHealth -= damage;
+    }
 	public static int getEgoPrimary(){
 		return primaryBonus;
 	}
@@ -379,4 +381,5 @@ public class GameInfo : MonoBehaviour
         potentialNPC[3].npc = NPCList[3];
         
     }
+
 }
