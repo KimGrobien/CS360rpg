@@ -39,6 +39,7 @@ public class Combat : MonoBehaviour
 	private string hpTextPlayer;
 	private string hpTextEnemy;
 
+
 	public enum battleStates
 	{
 		START,
@@ -146,7 +147,77 @@ public class Combat : MonoBehaviour
 					hpTextPlayer = "HP:" + PlayerCurrentHP.ToString () + "/" + playerHp.ToString ();
 					GameObject.Find ("PlayerHP").GetComponent<TextMeshProUGUI> ().text = hpTextPlayer;
 					GameObject.Find ("EnemyHP").GetComponent<TextMeshProUGUI> ().text = hpTextEnemy;
-					//begin enemy's turn
+				}
+			}
+
+		}
+	
+	}
+	void PrimaryAction(){
+		if (activePlayer > 0) {
+				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
+					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
+				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
+					if (playerHp - PlayerCurrentHP >= 50) {
+						healhold = 50;
+					} else {
+						healhold = playerHp;
+					}
+				}
+			} else if(activePlayer == 0){
+				damagehold = damageCalc.Next (playerMinAtkPrimary, playerMaxAtkPrimary);
+			}
+
+	}
+	void SecondaryAction(){
+		//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
+			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
+			//NEXT STATE
+			if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
+				if (PartyOnecurrentHP < 0) {
+					healhold = 1;
+				} else if (PartyTwocurrentHP < 0) {
+					PartyTwocurrentHP = 1;
+				}
+			} else {
+				damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
+			}
+
+	}
+	void SwitchPartyMemmber(){
+		if (GUILayout.Button ("Switch")) {
+			//active player is ego if activePlayer = 1
+			if (activePlayer == 0) {
+				//switch to next party member
+				activePlayer = 1;
+				//STATEMENT CHANGING CHARACTER SPRITE
+			}
+			//second party member is 2
+			if (activePlayer == 1) {
+				//switch active player to next
+				activePlayer = 2;
+				//STATEMENT CHANGING SPRITE
+			}
+			//third party member is 3
+			if (activePlayer == 3) {
+				//switch active player to ego
+				activePlayer = 1;
+				//STATEMENT CHANGING SPRITE
+			}
+
+		}
+
+	}
+	void RunFromCombat(){
+			currentState = battleStates.RUN;
+			SceneManager.LoadScene (GameInfo.prevScene);
+	}
+
+	void RemoveButtonsFromScreen(){
+
+	}
+	void EnemyTurn(){
+		//begin enemy's turn
 					if (start == false) {
 						start = true;
 					} else {
@@ -176,7 +247,7 @@ public class Combat : MonoBehaviour
 							}
 						}
 					}
-				}
+				
                 //if enemy's turn
                 else if (currentState == battleStates.ENEMYCHOICE) {
 					//begin player's turn
@@ -203,7 +274,7 @@ public class Combat : MonoBehaviour
 					healhold = 0;
 					currentState = battleStates.PLAYERCHOICE;
 				}
-			}
+			
             //if player's hp is 0
 			else if (PlayerCurrentHP <= 0){
 
@@ -222,69 +293,27 @@ public class Combat : MonoBehaviour
 				SceneManager.LoadScene (GameInfo.prevScene);
 			}
 		}
-		//primary attack/action
-		if (GUILayout.Button ("Primary Action")) {
-			//IF STATEMENT TO CHECK IF CYNTHIA OR NOT
-			//IF CYNTHIA, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
-			//NEXT STATE
 
-			if (activePlayer > 0) {
-				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
-					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
-				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
-					if (playerHp - PlayerCurrentHP >= 50) {
-						healhold = 50;
-					} else {
-						healhold = playerHp;
-					}
-				}
-			} else if(activePlayer == 0){
-				damagehold = damageCalc.Next (playerMinAtkPrimary, playerMaxAtkPrimary);
-			}
+	
 
-		}
-		if (GUILayout.Button ("Secondary Action")) {
-			//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
-			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
-			//NEXT STATE
-			if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
-				if (PartyOnecurrentHP < 0) {
-					healhold = 1;
-				} else if (PartyTwocurrentHP < 0) {
-					PartyTwocurrentHP = 1;
-				}
-			} else {
-				damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
-			}
+	void EndGame(){
 
-		}
-		//switch action does not take a turn or change the state in order to take effect. Swaps active character for next
-		//party member
-		if (GUILayout.Button ("Switch")) {
-			//active player is ego if activePlayer = 1
-			if (activePlayer == 0) {
-				//switch to next party member
-				activePlayer = 1;
-				//STATEMENT CHANGING CHARACTER SPRITE
-			}
-			//second party member is 2
-			if (activePlayer == 1) {
-				//switch active player to next
-				activePlayer = 2;
-				//STATEMENT CHANGING SPRITE
-			}
-			//third party member is 3
-			if (activePlayer == 3) {
-				//switch active player to ego
-				activePlayer = 1;
-				//STATEMENT CHANGING SPRITE
-			}
-
-		}
-		//Run leaves combat and returns to overworld with the npc remaining in the overworld
-		if (GUILayout.Button ("Run")) {
-			currentState = battleStates.RUN;
-			SceneManager.LoadScene (GameInfo.prevScene);
-		}
 	}
+
+
+	IEnumerator Damage(){
+		/* 
+		1. Tell the player the damage to which enemy
+		2. Update the text
+		3. Tell the player the damage to be received
+		4. Update that text
+		5. Add Buttons to screen
+		*/
+	}
+
+	IEnumerator Switch(){
+
+	}
+
+
 }
