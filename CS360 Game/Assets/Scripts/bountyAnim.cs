@@ -26,7 +26,17 @@ public class bountyAnim : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerExit2D (Collider2D other){
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (GameInfo.getEquipment(idx).owned && Input.GetKeyDown(KeyCode.S))
+        {
+            GameInfo.AddMoney(GameInfo.GetPrice(idx));
+            GameInfo.setBountyNotOwned(idx);
+            showMoney.enabled = false;
+        }
+    }
+
+    void OnTriggerExit2D (Collider2D other){
 		showMoney.enabled = false;
 	}
 }

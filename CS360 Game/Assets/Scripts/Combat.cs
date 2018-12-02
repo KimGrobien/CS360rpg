@@ -12,7 +12,6 @@ using TMPro;
 
 public class Combat : MonoBehaviour
 {
-
 	private int playerHp;
 	private int playerAtkPrimary;
 	private int playerAtkSecondary;

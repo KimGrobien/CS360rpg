@@ -314,6 +314,18 @@ public class GameInfo : MonoBehaviour
         money -= price;
     }
 
+    // bounty has been redeemed
+    public static void AddMoney(int price)
+    {
+        money += price;
+    }
+
+    // bounty has been redeemed
+    public static int GetPrice(int index)
+    {
+        return equipmentList[index].Price;
+    }
+
     public static void toggleEquipped(int i)
     {
         equipmentList[i].equipped = !equipmentList[i].equipped;
