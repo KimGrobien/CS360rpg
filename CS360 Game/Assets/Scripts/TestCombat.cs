@@ -13,7 +13,7 @@ using TMPro;
 public class CombatTest : MonoBehaviour
 {
     // Player's Stats
-    private int playerHp;
+   /* private int playerHp;
     private int playerAtkPrimary;
     private int playerAtkSecondary;
     private int playerMaxAtkPrimary;
@@ -335,5 +335,5 @@ public class CombatTest : MonoBehaviour
             currentState = battleStates.RUN;
             SceneManager.LoadScene(GameInfo.prevScene);
         }
-    }
+    }*/
 }
