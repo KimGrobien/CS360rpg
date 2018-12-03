@@ -371,12 +371,20 @@ public class GameInfo : MonoBehaviour
 
     public static string getPrimaryActionName(int idx)
     {
-        return NPCList[idx].primaryName;
+        if(NPCList[idx].primaryName != ""){
+            return NPCList[idx].primaryName;
+        }else{
+            return "Primary";
+        }
     }
 
     public static string getSecondaryActionName(int idx)
     {
-        return NPCList[idx].secondaryName;
+        if(NPCList[idx].secondaryName != ""){
+            return NPCList[idx].secondaryName;
+        }else{
+            return "Secondary";
+        }
     }
     
 

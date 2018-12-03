@@ -16,7 +16,6 @@ public class enterNewArea : MonoBehaviour {
                     SceneManager.LoadScene(1);
                     break;
                 case "enter_town":
-                    Debug.Log("TEST");
                     //Account for 4 alternate entry points to town
                     switch (SceneManager.GetActiveScene().name){
                         case "Castle":

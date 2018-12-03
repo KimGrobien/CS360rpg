@@ -61,7 +61,7 @@ public class Combat : MonoBehaviour
         UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
 		UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
         enemyName.text = GameInfo.getName(enemyID);
-        if (GameInfo.getEquipped(0).name != "")
+        if (GameInfo.getEquipped(0).name != null)
         {
             primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(0).name;
         }
@@ -69,7 +69,7 @@ public class Combat : MonoBehaviour
         {
             primaryChoice.GetComponentInChildren<Text>().text = "Primary";
         }
-        if (GameInfo.getEquipped(1).name != "")
+        if (GameInfo.getEquipped(1).name != null)
         {
             secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(1).name;
         }
@@ -334,7 +334,7 @@ public class Combat : MonoBehaviour
             UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
             status.text = "You have changed to Ego.";
             // Change actions in Buttons
-            if (GameInfo.getEquipped(0).name != "")
+            if (GameInfo.getEquipped(0).name != null)
             {
                 primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(0).name;
             }
@@ -342,7 +342,7 @@ public class Combat : MonoBehaviour
             {
                 primaryChoice.GetComponentInChildren<Text>().text = "Primary";
             }
-            if (GameInfo.getEquipped(1).name != "")
+            if (GameInfo.getEquipped(1).name != null)
             {
                 secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(1).name;
             }
