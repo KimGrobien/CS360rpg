@@ -236,6 +236,12 @@ public class GameInfo : MonoBehaviour
         equipmentList[i].owned = false;
     }
 
+    // Use to set bounty item not owned after reedeeming money
+    public static void setNotDead(int i)
+    {
+        equipmentList[i].owned = true;
+    }
+
     public static bool getOwnedStatus(int i)
     {
         return equipmentList[i].owned;
