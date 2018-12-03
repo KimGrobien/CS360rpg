@@ -60,7 +60,7 @@ public class GameInfo : MonoBehaviour
     //private static string CharacterName = "Ego";
     private static int money = 0;
     public static bool isAlive = true;
-    private static int MAXhealth = 100, currentHealth = 100;
+    private static int MAXhealth = 100, currentHealth = 50;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
     public static int[] equippedIndexes = new int[3];
