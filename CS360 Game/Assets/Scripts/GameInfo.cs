@@ -432,8 +432,13 @@ public class GameInfo : MonoBehaviour
     }
 
     public static int getNPCPrimaryAttack(int idx){
-        Debug.Log(idx);
-        return NPCList[idx].primaryStat;
+        if (idx < 4) {//Recruitable, so return max val
+            return NPCList[idx].primaryStat;
+        }else{//Enemy, return random num within attack range
+             System.Random rnd = new System.Random();
+             return rnd.Next(NPCList[idx].enemyDamageBonus, NPCList[idx].enemyDamage + NPCList[idx].enemyDamageBonus);
+        }
+        
     }
 
     public static int getNPCSecondaryAttack(int idx)
