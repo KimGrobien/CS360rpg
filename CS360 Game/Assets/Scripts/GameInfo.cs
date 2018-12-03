@@ -60,7 +60,7 @@ public class GameInfo : MonoBehaviour
     //private static string CharacterName = "Ego";
     private static int money = 0;
     public static bool isAlive = true;
-    private static int MAXhealth = 100, currentHealth = 100;
+    private static int MAXhealth = 100, currentHealth = 50;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
     public static int[] equippedIndexes = new int[3];
@@ -109,6 +109,9 @@ public class GameInfo : MonoBehaviour
     public static Node[][] DialogueTrees = new Node[11][];
     public static int[] encountered = new int[11];
     public static bool[] recruitable = {false,false,false,false,false,false,false,false,false,false,false};
+
+    //death conditions
+    public static bool[] hasBountyInInventory = {false,false,false};
     
     public static bool end;//true for win game, false for die
     // Used to populate all the initial data of the game

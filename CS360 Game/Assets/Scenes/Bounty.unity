@@ -3001,7 +3001,9 @@ MonoBehaviour:
   one: 0
   two: 0
   three: 1
-  isBounty: 1
+  four: 0
+  five: 0
+  isBounty: 0
 --- !u!61 &493925340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5861,7 +5863,9 @@ MonoBehaviour:
   one: 0
   two: 1
   three: 0
-  isBounty: 1
+  four: 0
+  five: 0
+  isBounty: 0
 --- !u!61 &1221498982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6206,7 +6210,9 @@ MonoBehaviour:
   one: 1
   two: 0
   three: 0
-  isBounty: 1
+  four: 0
+  five: 0
+  isBounty: 0
 --- !u!61 &1336979701
 BoxCollider2D:
   m_ObjectHideFlags: 0
