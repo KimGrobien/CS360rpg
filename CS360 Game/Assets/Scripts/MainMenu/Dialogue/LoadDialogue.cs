@@ -449,6 +449,68 @@ template
     }
     
     public static void loadOzulDialogue(){
+        Ozul[0].response = "He asks, \"What are you?\"";
+        Ozul[0].option1 = "???";
+        Ozul[0].option2 = "???";
+        Ozul[0].indexForOption1 = 1;
+        Ozul[0].indexForOption2 = 2;
+        //response to index 0 option 1
+        Ozul[1].response = "He asks, \"No response? Do you even know? My name is Ozul I was born into this world let down from god into"
+        +" the loving arms of my mother and father. Do you remember your mother and father?\"";
+        Ozul[1].option1 = "Yes";
+        Ozul[1].option2 = "No";
+        Ozul[1].indexForOption1 = 3;
+        Ozul[1].indexForOption2 = 4;
+        //response to index 0 option 2
+        Ozul[2].response = "He says, \"You walk into my home and are willing to hurt the ones I protect? And for what? I see you've gained nothing."
+        +" For entertainment? Does our suffering amuse you?\"";
+        Ozul[2].option1 = "Yes";
+        Ozul[2].option2 = "No";
+        Ozul[2].indexForOption1 = 5;
+        Ozul[2].indexForOption2 = 6;
+        //response to index 1 option 1
+        Ozul[3].response = "He says, \"You are lying.\"";
+        Ozul[3].option1 = "How would you know?";
+        Ozul[3].option2 = "Attack!";
+        Ozul[3].indexForOption1 = 7;
+        Ozul[3].indexForOption2 = 0;
+        //response to index 1 option 2
+        Ozul[4].response = "He says, \"Do you feel anything at all?\"";
+        Ozul[4].option1 = "Yes";
+        Ozul[4].option2 = "No";
+        Ozul[4].indexForOption1 = 9;
+        Ozul[4].indexForOption2 = 10;
+        //response to index 2 option 1
+        Ozul[5].response = "He says, \"Then allow me to join in on the fun!\"";
+        Ozul[5].option1 = "Leave";
+        Ozul[5].option2 = "Fight";
+        Ozul[5].indexForOption1 = -2;
+        Ozul[5].indexForOption2 = 0;
+        //response to index 2 option 2
+        Ozul[6].response = "He says, \"For some reason, I believe you. But, that does not change what you have done. Allow me to show you what suffering"
+        +" feels like.\"";
+        Ozul[6].option1 = "Leave";
+        Ozul[6].option2 = "Fight";
+        Ozul[6].indexForOption1 = -2;
+        Ozul[6].indexForOption2 = 0;
+        //response to index 3 option 1
+        Ozul[7].response = "He says, \"I can't feel your shadows. I'm done talking. My shadows will destroy you!\"";
+        Ozul[7].option1 = "Leave";
+        Ozul[7].option2 = "Fight";
+        Ozul[7].indexForOption1 = -2;
+        Ozul[7].indexForOption2 = 0;
+        //response to index 4 option 1
+        Ozul[9].response = "He says, \"You're lying. I've seen what kind of a monster you are. You'll pay for what you've done!\"";
+        Ozul[9].option1 = "Leave";
+        Ozul[9].option2 = "Fight";
+        Ozul[9].indexForOption1 = -2;
+        Ozul[9].indexForOption2 = 0;
+        //response to index 4 option 2
+        Ozul[10].response = "He says, \"Then leave. Leave this place and never return.\"";
+        Ozul[10].option1 = "Leave";
+        Ozul[10].option2 = "Fight";
+        Ozul[10].indexForOption1 = -2;
+        Ozul[10].indexForOption2 = 0;
 
         
         GameInfo.DialogueTrees[7] = Ozul;
@@ -551,6 +613,9 @@ template
 			}
 			if(GameInfo.currentNPC==3){
 				textToScreen = "He doesn't seem to notice you standing there. He only stares out over the empty beds.";
+			}
+            if(GameInfo.currentNPC == 7){
+				textToScreen = "He says, \"You are trapped. It is worse than you could have imagined.\"";
 			}
 			if(GameInfo.currentNPC == 8){
 				textToScreen = "The fox looks at you as if you are the grim reaper himself.";
