@@ -626,6 +626,7 @@ public class Combat : MonoBehaviour
     }
 
     IEnumerator GameEnds(){
+        ToggleButtons(false);
         status.text = endText;
         yield return new WaitForSeconds(4);
 		if (GameInfo.end){

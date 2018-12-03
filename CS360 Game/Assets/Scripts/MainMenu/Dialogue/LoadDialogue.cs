@@ -403,6 +403,12 @@ template
     }
     
     public static void loadEdwardDialogue(){
+        Berndy[0].response = "";
+        Berndy[0].option1 = "Talk";
+        Berndy[0].option2 = "Fight";
+        Berndy[0].indexForOption1 = 0;
+        Berndy[0].indexForOption2 = 0;
+
 
         
         GameInfo.DialogueTrees[2] = Edward;
