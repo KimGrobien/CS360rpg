@@ -8,12 +8,9 @@ public class InteractImageAnimation : MonoBehaviour {
 	GameObject canvas,canvas2,canvas3;
 	public bool one, two, three, isBounty;
 	// Use this for initialization
-	void Start () {		
-		GameObject.Find("box").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
-			
-		GameObject.Find("box1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
+	void Start () {
+				
 		
-		GameObject.Find("box2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
 	}
 	
 	void OnTriggerEnter2D (Collider2D other) {

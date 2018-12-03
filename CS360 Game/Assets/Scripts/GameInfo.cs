@@ -109,11 +109,8 @@ public class GameInfo : MonoBehaviour
     public static Node[][] DialogueTrees = new Node[11][];
     public static int[] encountered = new int[11];
     public static bool[] recruitable = {false,false,false,false,false,false,false,false,false,false,false};
-
-    //Fordeath
-    GameObject livingNPC;
-    string NPCObjectName;
     
+    public static bool end;//true for win game, false for die
     // Used to populate all the initial data of the game
     private void Start()
     {
@@ -130,25 +127,7 @@ public class GameInfo : MonoBehaviour
             PopulatePotentialNPCPartSlot();
             PopulateParty();
         }
-        for(int i = 0;i<NPCList.Length;i++){
-            if(NPCList[i].dead){
-                if(NPCList[0].dead){
-                    NPCObjectName = "cynthia";
-                }
-                if(NPCList[1].dead){
-                    NPCObjectName = "shopkeeper";
-                }
-                if(NPCList[2].dead){
-                    NPCObjectName = "doctor";
-                }
-                if(NPCList[3].dead){
-                    NPCObjectName = "farmer";
-                }
-                livingNPC = GameObject.Find(NPCObjectName);
-                livingNPC.SetActive(false);
-                
-            }
-        }
+        
        // LoadDialogue.createDialogueTrees();
     }
 

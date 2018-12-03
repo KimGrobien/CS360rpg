@@ -20,6 +20,7 @@ public class Combat : MonoBehaviour
 	private string hpTextPlayer;
 	private string hpTextEnemy;
     private int activePlayer = 2;
+    private string endText;
 
     //Who we're fighting
     private int enemyID = GameInfo.currentNPC;
@@ -158,11 +159,10 @@ public class Combat : MonoBehaviour
             //Killed Ozul
             else
             {
-                status.text = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
+                GameInfo.end = true;
+                endText = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
                 // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
-                ///!!!!!!!!!!!
-                /// you win scene!!
-                ///!!!!!!!!!!!
+                StartCoroutine(GameEnds());
             }
 
             StartCoroutine(KilledEnemy());
@@ -252,11 +252,10 @@ public class Combat : MonoBehaviour
             //Killed Ozul
             else
             {
-                status.text = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
+                GameInfo.end = true;
+                endText = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
                 // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
-                ///!!!!!!!!!!!
-                /// you win scene!!
-                ///!!!!!!!!!!!
+                StartCoroutine(GameEnds());
             }
 
             StartCoroutine(KilledEnemy());
@@ -431,10 +430,11 @@ public class Combat : MonoBehaviour
             {
                 if(partyMember1 != 0 && partyMember2 != 0)
                 {
-                    status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
-                    //////!!!!!!!!!!
-                    ///YOU LOSE SCENE!
-                    //////!!!!!!!!!!
+                    
+                GameInfo.end = false;
+                endText = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
+                // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
+                StartCoroutine(GameEnds());
                 }
                 else
                 {
@@ -453,9 +453,6 @@ public class Combat : MonoBehaviour
         }
     }
 
-	void EndGame(){
-
-	}
 
 	IEnumerator WaitAfterAttack(){
 		yield return new WaitForSeconds(3);
@@ -475,5 +472,10 @@ public class Combat : MonoBehaviour
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 
+    IEnumerator GameEnds(){
+        status.text = endText;
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("End");
+    }
 
 }

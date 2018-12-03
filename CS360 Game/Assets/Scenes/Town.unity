@@ -1722,7 +1722,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7a45bd49963931c4ab8cca179cd4f12b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e4948bfb9c946c4c9dc6090fa9d09c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2446,6 +2446,7 @@ GameObject:
   - component: {fileID: 670873261}
   - component: {fileID: 670873260}
   - component: {fileID: 670873259}
+  - component: {fileID: 670873263}
   m_Layer: 5
   m_Name: InteractImage
   m_TagString: Untagged
@@ -2530,6 +2531,17 @@ RectTransform:
   m_AnchoredPosition: {x: 3.91, y: -0.51}
   m_SizeDelta: {x: 2.182, y: 2.423}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &670873263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 670873258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28cb3d8a4afd644390829b6c6deb037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &675503074
 GameObject:
   m_ObjectHideFlags: 0
@@ -3056,6 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   one: 1
   two: 0
+  three: 0
   isBounty: 1
 --- !u!61 &879643868
 BoxCollider2D:
@@ -5172,7 +5185,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7a45bd49963931c4ab8cca179cd4f12b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e4948bfb9c946c4c9dc6090fa9d09c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5546,6 +5559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   one: 0
   two: 1
+  three: 0
   isBounty: 1
 --- !u!61 &1473257237
 BoxCollider2D:
