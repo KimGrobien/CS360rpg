@@ -86,7 +86,6 @@ public class Combat : MonoBehaviour
 
     // Call when enemy takes damage
 	void UpdateEnemyHealthToScreen(int newHealth){	
-		Debug.Log("TEST");	
 		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
 		enemyHealth.text = hpTextEnemy;
 	}
@@ -377,7 +376,6 @@ public class Combat : MonoBehaviour
     IEnumerator KilledEnemy()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log(GameInfo.prevScene);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 }
