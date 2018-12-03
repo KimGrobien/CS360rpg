@@ -171,13 +171,13 @@ public class Combat : MonoBehaviour
                 }
                 else if (enemyID == 2)
                 {
-                    GameInfo.setEquipmentColor(3, Color.white);
-                    GameInfo.setEquipmentOwned(3);
+                    GameInfo.setEquipmentColor(7, Color.white);
+                    GameInfo.setEquipmentOwned(7);
                 }
                 else if (enemyID == 3)
                 {
-                    GameInfo.setEquipmentColor(7, Color.white);
-                    GameInfo.setEquipmentOwned(7);
+                    GameInfo.setEquipmentColor(3, Color.white);
+                    GameInfo.setEquipmentOwned(3);
                 }
                 status.text = "You have killed " + GameInfo.getName(enemyID) + ". You check them for any items to take with you.";
             }
