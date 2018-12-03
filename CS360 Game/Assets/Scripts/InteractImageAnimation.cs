@@ -10,7 +10,6 @@ public class InteractImageAnimation : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-				
 		
 	}
 	

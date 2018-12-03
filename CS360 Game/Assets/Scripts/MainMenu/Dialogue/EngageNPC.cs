@@ -117,6 +117,7 @@ public class EngageNPC : MonoBehaviour {
 		//check if npc is on the team
 		if((GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
 			textToScreen = LoadDialogue.setNPCResponseIfOnTeam();
+			choice2.interactable=false;
 		}
 
 		StartCoroutine(type());
