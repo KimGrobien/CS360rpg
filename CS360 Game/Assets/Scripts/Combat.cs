@@ -86,7 +86,6 @@ public class Combat : MonoBehaviour
 
     // Call when enemy takes damage
 	void UpdateEnemyHealthToScreen(int newHealth){	
-		Debug.Log("TEST");	
 		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
 		enemyHealth.text = hpTextEnemy;
 	}
@@ -154,8 +153,8 @@ public class Combat : MonoBehaviour
                 ///!!!!!!!!!!!
             }
 
-            SceneManager.LoadScene(GameInfo.prevScene);
-            //KilledEnemy();
+            //SceneManager.LoadScene(GameInfo.prevScene);
+            StartCoroutine(KilledEnemy());
             // Wait for a bit then return to overworld, add their object to your inventory?
         }
         else
@@ -302,7 +301,8 @@ public class Combat : MonoBehaviour
             else
             {
                 status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has taken " + dmg + " damage! Make your move.";
-                StartCoroutine(WaitAfterEnemy());
+                ToggleButtons(true);
+				//StartCoroutine(WaitAfterEnemy());
             }
         }
         // IS EGO
@@ -365,7 +365,6 @@ public class Combat : MonoBehaviour
     IEnumerator KilledEnemy()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log(GameInfo.prevScene);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 }
