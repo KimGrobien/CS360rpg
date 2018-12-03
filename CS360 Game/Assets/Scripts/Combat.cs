@@ -157,7 +157,7 @@ public class Combat : MonoBehaviour
 		}
 
 		ToggleButtons(false);
-        if (GameInfo.getNPCHealth(enemyID) == 0)
+        if (GameInfo.getNPCHealth(enemyID) <= 0)
         {
             GameInfo.setDead(enemyID);
             // Killed Recruitable
@@ -291,7 +291,7 @@ public class Combat : MonoBehaviour
         }
 
         ToggleButtons(false);
-        if (GameInfo.getNPCHealth(enemyID) == 0)
+        if (GameInfo.getNPCHealth(enemyID) <= 0)
         {
             GameInfo.setDead(enemyID);
             // Killed Recruitable
@@ -309,6 +309,10 @@ public class Combat : MonoBehaviour
             //Killed bounty
             else if (enemyID > 7)
             {
+                GameInfo.setEquipmentOwned(3);
+                GameInfo.setEquipmentOwned(7);
+                GameInfo.setEquipmentOwned(11);
+
                 status.text = "You have killed " + GameInfo.getName(enemyID) + ". Retrieve your proof of kill to later redeem your reward";
             }
 
@@ -553,6 +557,7 @@ public class Combat : MonoBehaviour
 
     IEnumerator KilledEnemy()
     {
+        Debug.Log(GameInfo.CheckIfDead(enemyID));
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(GameInfo.prevScene);
     }

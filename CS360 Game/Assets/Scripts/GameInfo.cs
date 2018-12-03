@@ -384,6 +384,10 @@ public class GameInfo : MonoBehaviour
 	public static void setDead(int index){
 		NPCList[index].dead = true;
 	}
+    public static bool CheckIfDead(int index)
+    {
+        return NPCList[index].dead;
+    }
 
     public static void setPartyMemberDead(int index)
     {
