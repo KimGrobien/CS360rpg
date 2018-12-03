@@ -563,6 +563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28cb3d8a4afd644390829b6c6deb037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfNPCObject: edward
+  nameOfDotsImage: InteractImage
+  npcID: 2
 --- !u!1 &293941044
 GameObject:
   m_ObjectHideFlags: 0
