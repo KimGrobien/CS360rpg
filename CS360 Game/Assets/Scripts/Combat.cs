@@ -168,15 +168,22 @@ public class Combat : MonoBehaviour
             StartCoroutine(KilledEnemy());
             // Wait for a bit then return to overworld, add their object to your inventory?
         }
-        else if (GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
+        else if (activePlayer != 2)
         {
-            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
+            if (GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
+            {
+                status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
+            }
+            else
+            {
+                status.text = "Your party members have been healed! " + GameInfo.getName(enemyID) + " is making their move.";
+            }
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
         }
         else
         {
-            status.text = "Your party members have been healed! " + GameInfo.getName(enemyID) + " is making their move.";
+            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
         }
@@ -386,7 +393,7 @@ public class Combat : MonoBehaviour
 
     IEnumerator KilledEnemy()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 }
