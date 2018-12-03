@@ -190,29 +190,98 @@ public class Combat : MonoBehaviour
 	}
 
 	void SecondaryAction(){
-		Debug.Log("SECONDARY");
-		/*
-		REMOVE BUTTONS
-		1. Calculate Damage to Enemy (Different Case for Revive ID 0)
-		2. Wait. Update Text
-		3. Calculate Damage to be Received
-		4. Wait. UpdateText
-		BRING BACK BUTTONS
-		 */
-		//IF STATEMENT TO CHECK IF CYNTHIA OR DOC OR NOT
-			//IF CYNTHIA OR DOC, CYCLE PARTY FOR LOWEST HP PARTY MEMBER AND HEAL
-			//NEXT STATE
-			//if (GameInfo.getParty (activePlayer - 1).slotID == 0) {
-			//	if (PartyOnecurrentHP < 0) {
-			//		healhold = 1;
-			//	} else if (PartyTwocurrentHP < 0) {
-			//		PartyTwocurrentHP = 1;
-			//	}
-			//} else {
-			//	damagehold = damageCalc.Next (playerMinAtkSecondary, playerMaxAtkSecondary);
-			//}
+        int dmg;
 
-	}
+        System.Random rnd = new System.Random();
+        if (activePlayer == 2)
+        {
+            dmg = rnd.Next(2, 18) + GameInfo.getEgoSecondary();
+            GameInfo.updateNPCHealth(enemyID, dmg);
+            UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+        }
+        else
+        {
+            dmg = rnd.Next(0, GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID));
+            if (GameInfo.party[activePlayer].slotID != 0)
+            {
+                GameInfo.updateNPCHealth(enemyID, dmg);
+                UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+            }
+            else
+            {
+                if (!GameInfo.isAlive)
+                {
+                    GameInfo.isAlive = true;
+                    GameInfo.updateCurrentHealth(-100);
+                }
+                else if (activePlayer == 1 && GameInfo.party[0].npc.dead)
+                {
+                    GameInfo.setNPCAlive(GameInfo.party[0].slotID);
+                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, GameInfo.party[0].npc.MAXhealth);
+                }
+                else if (activePlayer == 0 && GameInfo.party[1].npc.dead)
+                {
+                    GameInfo.setNPCAlive(GameInfo.party[1].slotID);
+                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, GameInfo.party[1].npc.MAXhealth);
+                }
+            }
+        }
+
+        ToggleButtons(false);
+        if (GameInfo.getNPCHealth(enemyID) == 0)
+        {
+            GameInfo.setDead(enemyID);
+            // Killed Recruitable
+            if (enemyID < 4)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". You check them for any items to take with you.";
+            }
+
+            // Killed Shadow
+            else if (enemyID < 7)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". You can feel the shadows enter your body";
+            }
+
+            //Killed bounty
+            else if (enemyID > 7)
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". Retrieve your proof of kill to later redeem your reward";
+            }
+
+            //Killed Ozul
+            else
+            {
+                status.text = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
+                // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
+                ///!!!!!!!!!!!
+                /// you win scene!!
+                ///!!!!!!!!!!!
+            }
+
+            StartCoroutine(KilledEnemy());
+            // Wait for a bit then return to overworld, add their object to your inventory?
+        }
+        else if (activePlayer != 2)
+        {
+            if (GameInfo.party[activePlayer].slotID != 0)
+            {
+                status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
+            }
+            else
+            {
+                status.text = "You have attempted to revive a dead party member!" + GameInfo.getName(enemyID) + " is making their move.";
+            }
+            //Call Enemy Attacks function
+            StartCoroutine(WaitAfterAttack());
+        }
+        else
+        {
+            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
+            //Call Enemy Attacks function
+            StartCoroutine(WaitAfterAttack());
+        }
+    }
 
 	void SwitchPartyMember(){
 		Debug.Log("SWITCH");
@@ -281,10 +350,6 @@ public class Combat : MonoBehaviour
             {
                 secondaryChoice.GetComponentInChildren<Text>().text = "Secondary";
             }
-	}
-
-    void ChangeNPCImage(){
-
 	}
 
 	void RunFromCombat(){
@@ -370,6 +435,7 @@ public class Combat : MonoBehaviour
                 {
                     status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + "! But wait...";
                     // SWITCH Members
+                    GameInfo.isAlive = false;
                     ToggleButtons(true);
                 }
                 // Wait for a bit then return to overworld, add their object to your inventory?

@@ -59,7 +59,7 @@ public class GameInfo : MonoBehaviour
     // Ego's Data
     //private static string CharacterName = "Ego";
     private static int money = 300;
-    private static bool isAlive = true;
+    public static bool isAlive = true;
     private static int MAXhealth = 100, currentHealth = 100;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
@@ -387,6 +387,12 @@ public class GameInfo : MonoBehaviour
 	public static void setDead(int index){
 		NPCList [index].dead = true;
 	}
+
+    public static void setNPCAlive(int index)
+    {
+        NPCList[index].dead = false;
+    }
+
     public static void PopulatePotentialNPCPartSlot(){
         party[0].isAssigned=false;
         party[1].isAssigned=false;
@@ -428,6 +434,12 @@ public class GameInfo : MonoBehaviour
     public static int getNPCPrimaryAttack(int idx){
         Debug.Log(idx);
         return NPCList[idx].primaryStat;
+    }
+
+    public static int getNPCSecondaryAttack(int idx)
+    {
+        Debug.Log(idx);
+        return NPCList[idx].secondaryStat;
     }
 
 }
