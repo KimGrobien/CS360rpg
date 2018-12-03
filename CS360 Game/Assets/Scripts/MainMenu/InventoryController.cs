@@ -239,6 +239,7 @@ public class InventoryController : MonoBehaviour {
             equipmentDetails.text = GameInfo.getEquipment(i).description;
             equipmentImage.overrideSprite = GameInfo.getEquipment(i).eqImage;
             equipmentImage.color = Color.white;
+            SetButtonsVisablity(false, false, false, false);
         }
     }
 
