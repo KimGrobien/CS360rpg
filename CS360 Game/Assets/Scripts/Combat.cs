@@ -114,10 +114,22 @@ public class Combat : MonoBehaviour
         else
         {
 			dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
-            if(GameInfo.party[activePlayer].slotID != 0)
+            if(GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
             {
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+            }
+            else
+            {
+                GameInfo.updateCurrentHealth(-dmg/2);
+                if (activePlayer == 1)
+                {
+                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg / 2);
+                }
+                else
+                {
+                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg / 2);
+                }
             }
 		}
 
@@ -147,19 +159,24 @@ public class Combat : MonoBehaviour
             else
             {
                 status.text = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
-                // Put it in a coroutine so that you can read the words at end
+                // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
                 ///!!!!!!!!!!!
                 /// you win scene!!
                 ///!!!!!!!!!!!
             }
 
-            //SceneManager.LoadScene(GameInfo.prevScene);
             StartCoroutine(KilledEnemy());
             // Wait for a bit then return to overworld, add their object to your inventory?
         }
-        else
+        else if (GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
         {
             status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
+            //Call Enemy Attacks function
+            StartCoroutine(WaitAfterAttack());
+        }
+        else
+        {
+            status.text = "Your party members have been healed! " + GameInfo.getName(enemyID) + " is making their move.";
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
         }
@@ -302,7 +319,6 @@ public class Combat : MonoBehaviour
             {
                 status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has taken " + dmg + " damage! Make your move.";
                 ToggleButtons(true);
-				//StartCoroutine(WaitAfterEnemy());
             }
         }
         // IS EGO
@@ -335,14 +351,14 @@ public class Combat : MonoBehaviour
                 {
                     status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + "! But wait...";
                     // SWITCH Members
-                    StartCoroutine(WaitAfterEnemy());
+                    ToggleButtons(true);
                 }
                 // Wait for a bit then return to overworld, add their object to your inventory?
             }
             else
             {
                 status.text = "Ego has taken " + dmg + " damage! Make your move.";
-                StartCoroutine(WaitAfterEnemy());
+                ToggleButtons(true);
             }
         }
     }
@@ -354,12 +370,6 @@ public class Combat : MonoBehaviour
 	IEnumerator WaitAfterAttack(){
 		yield return new WaitForSeconds(3);
         EnemyAttaks();
-    }
-
-    IEnumerator WaitAfterEnemy()
-    {
-        yield return new WaitForSeconds(3);
-        ToggleButtons(true);
     }
 
     IEnumerator KilledEnemy()
