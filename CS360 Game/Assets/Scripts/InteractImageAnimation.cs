@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class InteractImageAnimation : MonoBehaviour {
 	GameObject canvas,canvas2,canvas3;
-	public bool one, two, three, isBounty;
+	public bool one, two, three, four, five, isBounty;
+	
 	// Use this for initialization
 	void Start () {
 				
@@ -23,6 +24,12 @@ public class InteractImageAnimation : MonoBehaviour {
 		else if(three){
 		GameObject.Find("box2").GetComponent<Image>().sprite = Resources.Load<Sprite>("InteractImage");
 		}
+		else if(four){
+		GameObject.Find("box3").GetComponent<Image>().sprite = Resources.Load<Sprite>("InteractImage");
+		}
+		else if(five){
+		GameObject.Find("box4").GetComponent<Image>().sprite = Resources.Load<Sprite>("InteractImage");
+		}
 		else{
 		GameObject.Find("box").GetComponent<Image>().sprite = Resources.Load<Sprite>("InteractImage");
 		}
@@ -37,6 +44,12 @@ public class InteractImageAnimation : MonoBehaviour {
 		}
 		else if(three){
 		GameObject.Find("box2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
+		}
+		else if(four){
+		GameObject.Find("box3").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
+		}
+		else if(five){
+		GameObject.Find("box4").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
 		}
 		else{
 		GameObject.Find("box").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
