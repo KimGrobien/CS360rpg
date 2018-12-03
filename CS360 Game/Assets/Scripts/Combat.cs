@@ -300,6 +300,19 @@ public class Combat : MonoBehaviour
             // Killed Recruitable
             if (enemyID < 4)
             {
+                if(enemyID == 0)
+                {
+                    GameInfo.setEquipmentOwned(11);
+                    Debug.Log(GameInfo.getOwnedStatus(11));
+                }
+                else if(enemyID == 2)
+                {
+                    GameInfo.setEquipmentOwned(7);
+                }
+                else if (enemyID == 3)
+                {
+                    GameInfo.setEquipmentOwned(3);
+                }
                 status.text = "You have killed " + GameInfo.getName(enemyID) + ". You check them for any items to take with you.";
             }
 
@@ -312,9 +325,18 @@ public class Combat : MonoBehaviour
             //Killed bounty
             else if (enemyID > 7)
             {
-                GameInfo.setEquipmentOwned(3);
-                GameInfo.setEquipmentOwned(7);
-                GameInfo.setEquipmentOwned(11);
+                if (enemyID == 8)
+                {
+                    GameInfo.setEquipmentOwned(14);
+                }
+                else if (enemyID == 9)
+                {
+                    GameInfo.setEquipmentOwned(12);
+                }
+                else
+                {
+                    GameInfo.setEquipmentOwned(13);
+                }
 
                 status.text = "You have killed " + GameInfo.getName(enemyID) + ". Retrieve your proof of kill to later redeem your reward";
             }
