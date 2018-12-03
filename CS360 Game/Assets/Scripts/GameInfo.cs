@@ -128,6 +128,7 @@ public class GameInfo : MonoBehaviour
             LoadDialogue.createDialogueTrees();
             PopulateEquipmentList();
             PopulatePotentialNPCPartSlot();
+            PopulateParty();
         }
         for(int i = 0;i<NPCList.Length;i++){
             if(NPCList[i].dead){
@@ -398,6 +399,11 @@ public class GameInfo : MonoBehaviour
         potentialNPC[3].slotID = 0;
         potentialNPC[3].npc = NPCList[3];
         
+    }
+
+     public static void PopulateParty(){
+        party[0].slotID = -1;
+        party[1].slotID = -1;
     }
 
     public static void updateNPCHealth(int idx, int damage){

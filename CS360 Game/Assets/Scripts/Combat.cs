@@ -214,14 +214,44 @@ public class Combat : MonoBehaviour
 
 		if (activePlayer == 0) {
 			//switch to next party member
-			activePlayer = 1;
-			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
-			Debug.Log( GameInfo.getParty(activePlayer).slotID);
+			if (GameInfo.getParty(1).slotID != -1){
+				activePlayer = 1;
+				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+			}else{
+				switchActiveToEgo();
+			}
         }
 		else if (activePlayer == 1)
         {
 			//switch active player to Ego
-			activePlayer = 2;
+			switchActiveToEgo();
+        }
+		else if (activePlayer == 2) {
+			//switch active player
+			if (GameInfo.getParty(0).slotID != -1){
+				activePlayer = 0;
+				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+			}else if (GameInfo.getParty(1).slotID != -1){
+				activePlayer = 1;
+				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+			}
+		}
+
+        //STATEMENT CHANGING SPRITE
+        if (activePlayer < 2)
+        {
+            GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.party[activePlayer].slotID));
+            currentNPCName.text = GameInfo.getName(GameInfo.party[activePlayer].slotID);
+            UpdateCurrentNPCHealthToScreen(GameInfo.getNPCHealth(GameInfo.party[activePlayer].slotID));
+            status.text = "You have changed to " + GameInfo.getName(GameInfo.party[activePlayer].slotID) + ".";
+            // Change actions in Buttons
+            primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getPrimaryActionName(GameInfo.party[activePlayer].slotID);
+            secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getSecondaryActionName(GameInfo.party[activePlayer].slotID);
+        }
+    }
+
+	public void switchActiveToEgo(){
+		activePlayer = 2;
 			playerAnim.SetInteger("id", -1);
             GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
             currentNPCName.text = "Ego";
@@ -244,26 +274,7 @@ public class Combat : MonoBehaviour
             {
                 secondaryChoice.GetComponentInChildren<Text>().text = "Secondary";
             }
-        }
-		else if (activePlayer == 2) {
-			//switch active player
-			activePlayer = 0;
-			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
-			Debug.Log( GameInfo.getParty(activePlayer).slotID);
-		}
-
-        //STATEMENT CHANGING SPRITE
-        if (activePlayer < 2)
-        {
-            GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/" + GameInfo.getName(GameInfo.party[activePlayer].slotID));
-            currentNPCName.text = GameInfo.getName(GameInfo.party[activePlayer].slotID);
-            UpdateCurrentNPCHealthToScreen(GameInfo.party[activePlayer].slotID);
-            status.text = "You have changed to " + GameInfo.getName(GameInfo.party[activePlayer].slotID) + ".";
-            // Change actions in Buttons
-            primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getPrimaryActionName(GameInfo.party[activePlayer].slotID);
-            secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getSecondaryActionName(GameInfo.party[activePlayer].slotID);
-        }
-    }
+	}
 
     void ChangeNPCImage(){
 
