@@ -217,11 +217,13 @@ public class Combat : MonoBehaviour
                 else if (activePlayer == 1 && GameInfo.party[0].npc.dead)
                 {
                     GameInfo.setNPCAlive(GameInfo.party[0].slotID);
+                    GameInfo.setPartyMemberAlive(0);
                     GameInfo.updateNPCHealth(GameInfo.party[0].slotID, GameInfo.party[0].npc.MAXhealth);
                 }
                 else if (activePlayer == 0 && GameInfo.party[1].npc.dead)
                 {
                     GameInfo.setNPCAlive(GameInfo.party[1].slotID);
+                    GameInfo.setPartyMemberAlive(1);
                     GameInfo.updateNPCHealth(GameInfo.party[1].slotID, GameInfo.party[1].npc.MAXhealth);
                 }
             }
@@ -269,7 +271,7 @@ public class Combat : MonoBehaviour
             }
             else
             {
-                status.text = "You have attempted to revive a dead party member!" + GameInfo.getName(enemyID) + " is making their move.";
+                status.text = "You have attempted to revive a dead party member! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
@@ -283,30 +285,46 @@ public class Combat : MonoBehaviour
     }
 
 	void SwitchPartyMember(){
-		Debug.Log("SWITCH");
+		//Debug.Log("SWITCH");
 		playerAnim.Play("IDle", -1, 0f);//Set anim back to default
 		//active player is ego if activePlayer = 2
 
 		if (activePlayer == 0) {
-			//switch to next party member
-			if (GameInfo.getParty(1).slotID != -1){
+			//if next slot is not empty and the next member is not dead
+			if (GameInfo.getParty(1).slotID != -1 && !GameInfo.getParty(1).npc.dead)
+            {
 				activePlayer = 1;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
-			}else{
+			}else if (GameInfo.isAlive){
 				switchActiveToEgo();
 			}
         }
 		else if (activePlayer == 1)
         {
-			//switch active player to Ego
-			switchActiveToEgo();
+            //switch active player to Ego if he is alive
+            if (GameInfo.isAlive)
+            { 
+                switchActiveToEgo();
+            }
+            //else switch to next player if Ego is dead and cynthia is in party
+            else if(!GameInfo.getParty(0).npc.dead)
+            {
+                activePlayer = 0;
+                playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+            }
         }
 		else if (activePlayer == 2) {
-			//switch active player
-			if (GameInfo.getParty(0).slotID != -1){
+			//switch to member 0 if not dead or not empty
+            //Debug.Log(GameInfo.getParty(0).npc.dead);
+
+			if (GameInfo.getParty(0).slotID != -1 && !GameInfo.getParty(0).npc.dead)
+            {
 				activePlayer = 0;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
-			}else if (GameInfo.getParty(1).slotID != -1){
+			}
+            // else try and switch to next party member (if not dead and if not empty)
+            else if (GameInfo.getParty(1).slotID != -1 && !GameInfo.getParty(1).npc.dead)
+            {
 				activePlayer = 1;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
 			}
@@ -352,8 +370,7 @@ public class Combat : MonoBehaviour
 	}
 
 	void RunFromCombat(){
-			Debug.Log("RUN");
-        Debug.Log(GameInfo.prevScene);
+		//Debug.Log("RUN");
         SceneManager.LoadScene (GameInfo.prevScene);
 	}
 
@@ -386,7 +403,7 @@ public class Combat : MonoBehaviour
         }
         else
         {
-			Debug.Log("TWO");
+			//Debug.Log("TWO");
             dmg = rnd.Next(0, 2);
         }
 
@@ -399,6 +416,7 @@ public class Combat : MonoBehaviour
             if (GameInfo.getNPCHealth(GameInfo.party[activePlayer].slotID) == 0)
             {
                 status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has been killed by " + GameInfo.getName(enemyID) + ". Switch Party Member";
+                GameInfo.setPartyMemberDead(activePlayer);
                 GameInfo.setDead(GameInfo.party[activePlayer].slotID);
                 // Check If anyone else is alive...
                 StartCoroutine(AfterPartyMemberDies());
@@ -428,13 +446,13 @@ public class Combat : MonoBehaviour
 
             if (GameInfo.getEgoCurrentHealth() == 0)
             {
-                if(partyMember1 != 0 && partyMember2 != 0)
-                {
-                    
-                GameInfo.end = false;
-                endText = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
-                // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
-                StartCoroutine(GameEnds());
+                if((partyMember1 != 0 && partyMember2 != 0) || (partyMember1 == 0 && GameInfo.party[0].npc.dead) || (partyMember2 == 0 && GameInfo.party[1].npc.dead))
+                {   
+                    GameInfo.end = false;
+                    GameInfo.isAlive = false;
+                    endText = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
+                    // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
+                    StartCoroutine(GameEnds());
                 }
                 else
                 {
@@ -477,5 +495,4 @@ public class Combat : MonoBehaviour
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene("End");
     }
-
 }

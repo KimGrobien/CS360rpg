@@ -213,7 +213,7 @@ public class EngageNPC : MonoBehaviour {
 		}
 		if((index==3 || index == 12)&& GameInfo.currentNPC==0){
 			//heal Ego
-			GameInfo.updateCurrentHealth(50);
+			GameInfo.updateCurrentHealth(-50);
 			Debug.Log("Heal Ego");
 
 		}

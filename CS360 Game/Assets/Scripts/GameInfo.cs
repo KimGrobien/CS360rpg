@@ -58,9 +58,9 @@ public class GameInfo : MonoBehaviour
 
     // Ego's Data
     //private static string CharacterName = "Ego";
-    private static int money = 300;
+    private static int money = 0;
     public static bool isAlive = true;
-    private static int MAXhealth = 100, currentHealth = 100;
+    private static int MAXhealth = 100, currentHealth = 50;
     public static PartySlot[] party = new PartySlot[2];
     private static equipmentData[] equippedItems = new equipmentData[3];
     public static int[] equippedIndexes = new int[3];
@@ -165,9 +165,9 @@ public class GameInfo : MonoBehaviour
         }
          
         //TODO: Remove owned = true; for testing bountyAnims
-        equipmentList[12].owned = true;
-        equipmentList[13].owned = true;    
-        equipmentList[14].owned = true;
+        equipmentList[12].owned = false;
+        equipmentList[13].owned = false;    
+        equipmentList[14].owned = false;
         //var sprites = Resources.Load<Sprite>("Equipment/1"); ;
         //for (int i = 0; i < 15; i++)
         //{
@@ -382,8 +382,18 @@ public class GameInfo : MonoBehaviour
 	}
 
 	public static void setDead(int index){
-		NPCList [index].dead = true;
+		NPCList[index].dead = true;
 	}
+
+    public static void setPartyMemberDead(int index)
+    {
+        party[index].npc.dead = true;
+    }
+
+    public static void setPartyMemberAlive(int index)
+    {
+        party[index].npc.dead = false;
+    }
 
     public static void setNPCAlive(int index)
     {
