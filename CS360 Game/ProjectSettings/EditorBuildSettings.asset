@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Combat.unity
     guid: 2f3abdbbf9866e146803d4e0710a2ed6
   - enabled: 1
-    path: Assets/Scenes/End.unity
+    path: Assets/Scenes/You Win.unity
     guid: d1e77c07e0d853240b7e724d52007494
+  - enabled: 1
+    path: Assets/Scenes/You Lose.unity
+    guid: b058948f6f0f19d40bcf29adac7fe5b1
   m_configObjects: {}

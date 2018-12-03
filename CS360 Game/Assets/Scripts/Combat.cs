@@ -568,6 +568,10 @@ public class Combat : MonoBehaviour
     IEnumerator GameEnds(){
         status.text = endText;
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene("End");
+		if (GameInfo.end){
+			SceneManager.LoadScene("You Win");
+		}else{
+			SceneManager.LoadScene("You Lose");
+		}
     }
 }
