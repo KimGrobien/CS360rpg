@@ -109,6 +109,9 @@ public class GameInfo : MonoBehaviour
     public static Node[][] DialogueTrees = new Node[11][];
     public static int[] encountered = new int[11];
     public static bool[] recruitable = {false,false,false,false,false,false,false,false,false,false,false};
+
+    //death conditions
+    public static bool[] hasBountyInInventory = {false,false,false};
     
     public static bool end;//true for win game, false for die
     // Used to populate all the initial data of the game
