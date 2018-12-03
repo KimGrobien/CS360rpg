@@ -159,6 +159,7 @@ public class Combat : MonoBehaviour
 		ToggleButtons(false);
         if (GameInfo.getNPCHealth(enemyID) == 0)
         {
+            Debug.Log(enemyID);
             GameInfo.setDead(enemyID);
             // Killed Recruitable
             if (enemyID < 4)
@@ -293,6 +294,8 @@ public class Combat : MonoBehaviour
         ToggleButtons(false);
         if (GameInfo.getNPCHealth(enemyID) == 0)
         {
+            
+            Debug.Log(enemyID);
             GameInfo.setDead(enemyID);
             // Killed Recruitable
             if (enemyID < 4)
