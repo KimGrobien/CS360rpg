@@ -10,9 +10,4 @@ public class CombatAnimations : MonoBehaviour {
 		Debug.Log(anim);
 		anim.SetInteger("id", GameInfo.currentNPC);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

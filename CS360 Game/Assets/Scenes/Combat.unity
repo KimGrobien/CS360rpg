@@ -721,7 +721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa900707ca5fd6468129feb035d5c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updaterText: {fileID: 0}
 --- !u!225 &287962957
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1144,7 +1143,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 494129434}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1c56d2e0df56249419ec55d11d4e7646, type: 2}
   m_CullingMode: 0
@@ -1190,7 +1189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 28f4ba5d8081529478df0a3a092aad77, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1198,7 +1197,7 @@ SpriteRenderer:
   m_Size: {x: 1.23, y: 1.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &494129438
