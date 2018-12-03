@@ -219,7 +219,8 @@ public class Combat : MonoBehaviour
 			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
 			Debug.Log( GameInfo.getParty(activePlayer).slotID);
         }
-		if (activePlayer == 1) {
+		else if (activePlayer == 1)
+        {
 			//switch active player to Ego
 			activePlayer = 2;
 			playerAnim.SetInteger("id", -1);
@@ -245,7 +246,7 @@ public class Combat : MonoBehaviour
                 secondaryChoice.GetComponentInChildren<Text>().text = "Secondary";
             }
         }
-		if (activePlayer == 2) {
+		else if (activePlayer == 2) {
 			//switch active player
 			activePlayer = 0;
 			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
