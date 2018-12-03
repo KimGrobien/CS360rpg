@@ -57,7 +57,7 @@ public class GameInfo : MonoBehaviour
     private static bool Gameloaded = false;
 
     // Ego's Data
-    private static string CharacterName = "Ego";
+    //private static string CharacterName = "Ego";
     private static int money = 300;
     private static bool isAlive = true;
     private static int MAXhealth = 100, currentHealth = 100;
@@ -67,8 +67,8 @@ public class GameInfo : MonoBehaviour
 
     //Egos Data for Combat
     //Ego wil always deal damage from 2 to 17 plus whatever bonus from the equipment
-    private static int AttackRangeMIN = 2;
-    private static int AttackRangeMAX = 17;
+    //private static int AttackRangeMIN = 2;
+    //private static int AttackRangeMAX = 17;
     private static int primaryBonus = 0;
     private static int secondaryBonus = 0;
     private static int primarydefenseBonus = 0;
@@ -382,9 +382,7 @@ public class GameInfo : MonoBehaviour
     public static NPCData getEnemy(int index){
 		return NPCList [index];
 	}
-	public static int getEgoMaxAtk(){
-		return AttackRangeMAX;
-	}
+
 	public static void setDead(int index){
 		NPCList [index].dead = true;
 	}

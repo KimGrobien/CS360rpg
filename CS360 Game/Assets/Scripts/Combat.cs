@@ -26,8 +26,12 @@ public class Combat : MonoBehaviour
     //Who we're fighting
     private int enemyID = GameInfo.currentNPC;
 
-	// Use this for initialization
-	void Start()
+    //Id's of party members
+    int partyMember1 = GameInfo.party[0].slotID;
+    int partyMember2 = GameInfo.party[1].slotID;
+
+    // Use this for initialization
+    void Start()
 	{
         // Find Main gameobjects
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
@@ -61,9 +65,17 @@ public class Combat : MonoBehaviour
         {
             primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(0).name;
         }
+        else
+        {
+            primaryChoice.GetComponentInChildren<Text>().text = "Primary";
+        }
         if (GameInfo.getEquipped(1).name != "")
         {
             secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getEquipped(1).name;
+        }
+        else
+        {
+            secondaryChoice.GetComponentInChildren<Text>().text = "Secondary";
         }
 
         // Set the art for the scene
@@ -99,10 +111,15 @@ public class Combat : MonoBehaviour
             dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
             GameInfo.updateNPCHealth(enemyID, dmg);
             UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
-		}else{
+		}
+        else
+        {
 			dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(GameInfo.party[activePlayer].slotID));
-            GameInfo.updateNPCHealth(enemyID, dmg);
-            UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+            if(GameInfo.party[activePlayer].slotID != 0)
+            {
+                GameInfo.updateNPCHealth(enemyID, dmg);
+                UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
+            }
 		}
 
 		ToggleButtons(false);
@@ -136,40 +153,17 @@ public class Combat : MonoBehaviour
                 /// you win scene!!
                 ///!!!!!!!!!!!
             }
-            
-            KilledEnemy();
+
+            SceneManager.LoadScene(GameInfo.prevScene);
+            //KilledEnemy();
             // Wait for a bit then return to overworld, add their object to your inventory?
         }
         else
         {
-            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage!";
-            //StartCoroutine(Wait());
-            //status.text = GameInfo.getName(enemyID) + " makes their move.";
+            status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             //Call Enemy Attacks function
+            StartCoroutine(WaitAfterAttack());
         }
-        StartCoroutine(WaitAfterAttack());
-		/*
-		REMOVE BUTTONS
-		1. Calculate Damage to Enemy (Different Case for Heal ID's 0 and 2)
-		2. Wait. Update Text
-		3. Calculate Damage to be Received
-		4. Wait. UpdateText
-		BRING BACK BUTTONS
-		 */
-		/*if (activePlayer > 0) {
-				if (GameInfo.getParty (activePlayer - 1).slotID != 0 && GameInfo.getParty (activePlayer - 1).slotID != 2) {
-					damagehold = damageCalc.Next (playerMinAtkPrimary, playerAtkPrimary);
-				} else if (GameInfo.getParty (activePlayer - 1).slotID == 0 || GameInfo.getParty (activePlayer - 1).slotID == 2) {
-					if (playerHp - PlayerCurrentHP >= 50) {
-						healhold = 50;
-					} else {
-						healhold = playerHp;
-					}
-				}
-			} else if(activePlayer == 0){
-				damagehold = damageCalc.Next (playerMinAtkPrimary, playerMaxAtkPrimary);
-			}
-		*/
 	}
 
 	void SecondaryAction(){
@@ -256,7 +250,8 @@ public class Combat : MonoBehaviour
 
 	void RunFromCombat(){
 			Debug.Log("RUN");
-			SceneManager.LoadScene (GameInfo.prevScene);
+        Debug.Log(GameInfo.prevScene);
+        SceneManager.LoadScene (GameInfo.prevScene);
 	}
 
 	void ToggleButtons(bool val){
@@ -276,7 +271,16 @@ public class Combat : MonoBehaviour
     
         System.Random rnd = new System.Random();
         System.Random EgoRnd = new System.Random();
-        dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
+
+        //if not Cynthia
+        if (enemyID != 0)
+        {
+            dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
+        }
+        else
+        {
+            dmg = rnd.Next(0, 1);
+        }
 
         // If NOT EGO
         if (activePlayer < 2)
@@ -288,11 +292,13 @@ public class Combat : MonoBehaviour
             {
                 status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has been killed by " + GameInfo.getName(enemyID);
                 GameInfo.setDead(GameInfo.party[activePlayer].slotID);
+                // Check If anyone else is alive...
                 SwitchPartyMember();
             }
             else
             {
-                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has taken " + dmg + " damage!";
+                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has taken " + dmg + " damage! Make your move.";
+                StartCoroutine(WaitAfterEnemy());
             }
         }
         // IS EGO
@@ -314,7 +320,7 @@ public class Combat : MonoBehaviour
 
             if (GameInfo.getEgoCurrentHealth() == 0)
             {
-                if(GameInfo.party[0].slotID != 0 && GameInfo.party[1].slotID != 0)
+                if(partyMember1 != 0 && partyMember2 != 0)
                 {
                     status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
                     //////!!!!!!!!!!
@@ -324,15 +330,17 @@ public class Combat : MonoBehaviour
                 else
                 {
                     status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + "! But wait...";
+                    // SWITCH Members
+                    StartCoroutine(WaitAfterEnemy());
                 }
                 // Wait for a bit then return to overworld, add their object to your inventory?
             }
             else
             {
-                status.text = "Ego has taken " + dmg + " damage!";
+                status.text = "Ego has taken " + dmg + " damage! Make your move.";
+                StartCoroutine(WaitAfterEnemy());
             }
         }
-        StartCoroutine(WaitForEnemy());
     }
 
 	void EndGame(){
@@ -340,19 +348,20 @@ public class Combat : MonoBehaviour
 	}
 
 	IEnumerator WaitAfterAttack(){
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
         EnemyAttaks();
     }
 
-    IEnumerator WaitForEnemy()
+    IEnumerator WaitAfterEnemy()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         ToggleButtons(true);
     }
 
     IEnumerator KilledEnemy()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(3);
+        Debug.Log(GameInfo.prevScene);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 }
