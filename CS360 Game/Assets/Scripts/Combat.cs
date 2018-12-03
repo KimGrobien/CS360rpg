@@ -399,10 +399,10 @@ public class Combat : MonoBehaviour
 
             if (GameInfo.getNPCHealth(GameInfo.party[activePlayer].slotID) == 0)
             {
-                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has been killed by " + GameInfo.getName(enemyID);
+                status.text = GameInfo.getName(GameInfo.party[activePlayer].slotID) + " has been killed by " + GameInfo.getName(enemyID) + ". Switch Party Member";
                 GameInfo.setDead(GameInfo.party[activePlayer].slotID);
                 // Check If anyone else is alive...
-                SwitchPartyMember();
+                StartCoroutine(AfterPartyMemberDies());
             }
             else
             {
@@ -441,7 +441,7 @@ public class Combat : MonoBehaviour
                     status.text = "Ego has been killed by " + GameInfo.getName(enemyID) + "! But wait...";
                     // SWITCH Members
                     GameInfo.isAlive = false;
-                    ToggleButtons(true);
+                    StartCoroutine(AfterPartyMemberDies());
                 }
                 // Wait for a bit then return to overworld, add their object to your inventory?
             }
@@ -462,9 +462,18 @@ public class Combat : MonoBehaviour
         EnemyAttaks();
     }
 
+    IEnumerator AfterPartyMemberDies()
+    {
+        yield return new WaitForSeconds(3);
+        SwitchPartyMember();
+        ToggleButtons(true);
+    }
+
     IEnumerator KilledEnemy()
     {
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
+
+
 }
