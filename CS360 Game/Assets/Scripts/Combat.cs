@@ -314,11 +314,16 @@ public class Combat : MonoBehaviour
         //if not Cynthia
         if (enemyID != 0)
         {
-            dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
+			if (enemyID < 4){//Recruitable, returned val from getNPC... is max val
+				dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
+			}else{//Enemy, returned val from getNPC... is actual damage
+				dmg = GameInfo.getNPCPrimaryAttack(enemyID);
+			}
         }
         else
         {
-            dmg = rnd.Next(0, 1);
+			Debug.Log("TWO");
+            dmg = rnd.Next(0, 2);
         }
 
         // If NOT EGO
