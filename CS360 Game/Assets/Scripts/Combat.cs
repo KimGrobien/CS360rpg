@@ -13,11 +13,9 @@ using System;
 
 public class Combat : MonoBehaviour
 {
+	Animator playerAnim;
 	Canvas buttons, statusCanvas;
-	Button primaryChoice;
-	Button secondaryChoice;
-	Button partyMemberChoice;
-	Button run;
+	Button primaryChoice, secondaryChoice, partyMemberChoice, run;
 	TextMeshProUGUI status, currentNPCName, currentNPCHealth, enemyName, enemyHealth;
 	private string hpTextPlayer;
 	private string hpTextEnemy;
@@ -33,6 +31,8 @@ public class Combat : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
+		//Find Player Animator
+		playerAnim = GameObject.Find("Player").GetComponent<Animator>();
         // Find Main gameobjects
 		buttons = GameObject.Find("Buttons").GetComponent<Canvas>();
 		statusCanvas = GameObject.Find("StatusCanvas").GetComponent<Canvas>();
@@ -193,15 +193,19 @@ public class Combat : MonoBehaviour
 
 	void SwitchPartyMember(){
 		Debug.Log("SWITCH");
+		playerAnim.Play("IDle", -1, 0f);//Set anim back to default
 		//active player is ego if activePlayer = 2
 
 		if (activePlayer == 0) {
 			//switch to next party member
 			activePlayer = 1;
+			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+			Debug.Log( GameInfo.getParty(activePlayer).slotID);
         }
 		if (activePlayer == 1) {
 			//switch active player to Ego
 			activePlayer = 2;
+			playerAnim.SetInteger("id", -1);
             GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
             currentNPCName.text = "Ego";
             UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
@@ -227,6 +231,8 @@ public class Combat : MonoBehaviour
 		if (activePlayer == 2) {
 			//switch active player
 			activePlayer = 0;
+			playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
+			Debug.Log( GameInfo.getParty(activePlayer).slotID);
 		}
 
         //STATEMENT CHANGING SPRITE
@@ -240,8 +246,6 @@ public class Combat : MonoBehaviour
             primaryChoice.GetComponentInChildren<Text>().text = GameInfo.getPrimaryActionName(GameInfo.party[activePlayer].slotID);
             secondaryChoice.GetComponentInChildren<Text>().text = GameInfo.getSecondaryActionName(GameInfo.party[activePlayer].slotID);
         }
-
-
     }
 
     void ChangeNPCImage(){
