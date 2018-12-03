@@ -125,7 +125,7 @@ public class Combat : MonoBehaviour
             // No using potion
             else
 			{
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
 
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
@@ -137,7 +137,7 @@ public class Combat : MonoBehaviour
             // If not healing
             if(GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
             {
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -275,7 +275,7 @@ public class Combat : MonoBehaviour
             // No using potion
             else
             {
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -285,20 +285,20 @@ public class Combat : MonoBehaviour
             // If anker, its a fixed value
             if (GameInfo.party[1].slotID == 1)
             {
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
                 dmg = GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID);
             }
             // If not anker, range attack
             else
             {
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
                 dmg = rnd.Next(0, GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID));
             }
 
             //If not cynthia
             if (GameInfo.party[activePlayer].slotID != 0)
             {
-				StartCoroutine(AttackAnimPlayer);
+				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -525,7 +525,7 @@ public class Combat : MonoBehaviour
         //if not Cynthia
         if (enemyID != 0)
         {
-			StartCoroutine(AttackAnimEnemy);
+			StartCoroutine(AttackAnimEnemy());
 			if (enemyID < 4){//Recruitable, returned val from getNPC... is max val
 				dmg = rnd.Next(0, GameInfo.getNPCPrimaryAttack(enemyID));
 			}else{//Enemy, returned val from getNPC... is actual damage
