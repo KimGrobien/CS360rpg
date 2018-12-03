@@ -336,16 +336,23 @@ public class GameInfo : MonoBehaviour
     //
     public static void updateParty(int id){
         }
+
 	public static int getEgoMaxHealth(){
 		return MAXhealth;
 	}
+
     public static int getEgoCurrentHealth(){
 		return currentHealth;
 	}
+
     public static void updateCurrentHealth(int damage){
         if (currentHealth - damage < 0)
         {
             currentHealth = 0;
+        }
+        else if (currentHealth - damage > MAXhealth)
+        {
+            currentHealth = MAXhealth;
         }
         else
         {
@@ -356,15 +363,19 @@ public class GameInfo : MonoBehaviour
 	public static int getEgoPrimary(){
 		return primaryBonus;
 	}
+
 	public static int getEgoSecondary(){
 		return secondaryBonus;
 	}
+
 	public static int getEgoDefense(){
 		return defenseBonus + primarydefenseBonus + secondarydefenseBonus;
 	}
+
 	public static int getEgoHeal(){
 		return egoHeal;
 	}
+
 	public static PartySlot getParty(int index){
 		return party [index];
 	}
@@ -387,7 +398,6 @@ public class GameInfo : MonoBehaviour
         }
     }
     
-
     public static NPCData getEnemy(int index){
 		return NPCList [index];
 	}
@@ -415,19 +425,23 @@ public class GameInfo : MonoBehaviour
         
     }
 
-     public static void PopulateParty(){
+    public static void PopulateParty(){
         party[0].slotID = -1;
         party[1].slotID = -1;
     }
 
     public static void updateNPCHealth(int idx, int damage){
-        if (!(NPCList[idx].health - damage < 0))
+        if (NPCList[idx].health - damage < 0)
         {
-            NPCList[idx].health -= damage;
+            NPCList[idx].health = 0;
+        }
+        else if (NPCList[idx].health - damage > NPCList[idx].MAXhealth)
+        {
+            NPCList[idx].health = NPCList[idx].MAXhealth;
         }
         else
         {
-            NPCList[idx].health = 0;
+            NPCList[idx].health -= damage;
         }
     }
 
