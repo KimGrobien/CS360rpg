@@ -416,7 +416,7 @@ template
         Edward[1].indexForOption1 = 3;
         Edward[1].indexForOption2 = -2;
         //response to index 0 option 2
-        Edward[2].response = "He says, \"My son... My son is missing.\" He continues to stare at nothing.";
+        Edward[2].response = "He says, \"My son... my son is missing.\" He continues to stare at nothing.";
         Edward[2].option1 = "If you heal me I can go find him and bring him back to you.";
         Edward[2].option2 = "I'm going to bring him back for you!";
         Edward[2].indexForOption1 = 5;
@@ -435,6 +435,18 @@ template
         Edward[5].option2 = "I'm going to bring him back for you!";
         Edward[5].indexForOption1 = 11;
         Edward[5].indexForOption2 = -2;
+        //response to index 3 option 2
+        Edward[8].response = "He says, \"I will hurt people again... So I must do nothing. Please leave.\"";
+        Edward[8].option1 = "I understand.";
+        Edward[8].option2 = "Restart?";
+        Edward[8].indexForOption1 = -2;
+        Edward[8].indexForOption2 = -1;
+        //response to index 11 option 1
+        Edward[11].response = "He says, \"If I was stronger I would go save him myself.\"";
+        Edward[11].option1 = "Well why don't you come with me? We can save him together.";
+        Edward[11].option2 = "I'll be strong for you.";
+        Edward[11].indexForOption1 = -3;
+        Edward[11].indexForOption2 = -2;
         
         GameInfo.DialogueTrees[2] = Edward;
     }
@@ -689,7 +701,7 @@ public static string setNPCResponseIfOnTeam(){
 				textToScreen = "He says, \"Can I trust you to save my wife?\"";
 			}
 			if(GameInfo.currentNPC==2){
-				textToScreen = "He says, \"Have you noticed that the shadows seem darker?\nI wonder if it has to do with those monsters\"";
+				textToScreen = "He says, \"Have you noticed that the shadows seem darker? I wonder if it has to do with those monsters\"";
 			}
             return textToScreen;
     }
