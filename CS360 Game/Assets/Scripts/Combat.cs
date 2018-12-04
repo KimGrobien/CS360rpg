@@ -128,8 +128,12 @@ public class Combat : MonoBehaviour
         System.Random rnd = new System.Random();
 		if (activePlayer == 2){
             dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
-            EgoItemUsed.sprite = GameInfo.getEquipped(0).eqImage;
-            EgoItemUsed.color = Color.white;
+            if (GameInfo.ReturnEquippedItem(0) >-1)
+            {
+                EgoItemUsed.sprite = GameInfo.getEquipped(0).eqImage;
+                EgoItemUsed.color = Color.white;
+            }
+            
             // If ego is using potion
             if (GameInfo.getEquipped(0).healBonus > 0)
             {
@@ -282,8 +286,11 @@ public class Combat : MonoBehaviour
         System.Random rnd = new System.Random();
         if (activePlayer == 2)
         {
-            EgoItemUsed.sprite = GameInfo.getEquipped(1).eqImage;
-            EgoItemUsed.color = Color.white;
+            if (GameInfo.ReturnEquippedItem(1) > -1)
+            {
+                EgoItemUsed.sprite = GameInfo.getEquipped(1).eqImage;
+                EgoItemUsed.color = Color.white;
+            }
             dmg = rnd.Next(2, 18) + GameInfo.getEgoSecondary();
             // If ego is using potion
             if (GameInfo.getEquipped(1).healBonus > 0)

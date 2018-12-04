@@ -176,14 +176,10 @@ public class GameInfo : MonoBehaviour
         equipmentList[8].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/0");
         equipmentList[9].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/1");
         equipmentList[10].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/2");
-        //var sprites = Resources.Load<Sprite>("Equipment/1"); ;
-        //for (int i = 0; i < 15; i++)
-        //{
-        //    sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
-        //    equipmentList[i].eqImage = sprites;
-        //    equipmentList[i].owned = false;
-        //    equipmentList[i].Visability = Color.clear;
-        //}
+
+        equippedIndexes[0] = -1;
+        equippedIndexes[1] = -1;
+        equippedIndexes[2] = -1;
     }
 
     // Populate the NPC List using array data
@@ -321,9 +317,17 @@ public class GameInfo : MonoBehaviour
         return equipmentList[index].Price;
     }
 
-    public static void toggleEquipped(int i)
+    public static void ToggleEquipped(int i)
     {
-        equipmentList[i].equipped = !equipmentList[i].equipped;
+        if (i > -1)
+        {
+            equipmentList[i].equipped = !equipmentList[i].equipped;
+        }
+    }
+
+    public static int ReturnEquippedItem(int idx)
+    {
+        return equippedIndexes[idx];
     }
 
     //

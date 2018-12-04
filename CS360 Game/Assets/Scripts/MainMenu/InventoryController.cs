@@ -46,21 +46,6 @@ public class InventoryController : MonoBehaviour {
     /// </summary>
     void OnEnable () {
 
-        //exitMM = GameObject.Find("ExitMenu").GetComponent<Button>();
-        //exitGame = GameObject.Find("ExitGame").GetComponent<Button>();
-        //if (GameInfo.currentNPC == -1)
-        //{
-        //    exitMM.onClick.AddListener(ExitTheMainMenu);
-        //    exitGame.onClick.AddListener(ExitGame);
-        //}
-        //else
-        //{
-        //    exitButtons = GameObject.Find("ExitMenu");
-        //    exitButtons.SetActive(false);
-        //    exitButtons = GameObject.Find("ExitGame");
-        //    exitButtons.SetActive(false);
-        //}
-
         // Set on Click-listener for each item slot and set the correct visability color
         for (int i = 0; i < 12; i++)
         {
@@ -144,10 +129,12 @@ public class InventoryController : MonoBehaviour {
     // Make sure to pass id of each item
     private void ItemClicked(int i)
     {
-        Debug.Log("itemClicked");
-        Debug.Log("ObjectClicked: " + i);
-        Debug.Log("Wooden Sheild owned? " + GameInfo.getOwnedStatus(0));
-        Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
+        //Debug.Log("ObjectClicked: " + i);
+        //Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
+        //Debug.Log("itemClicked");
+        //Debug.Log("ObjectClicked: " + i);
+        //Debug.Log("Wooden Sheild owned? " + GameInfo.getOwnedStatus(0));
+        //Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
         // are you clicking on a gift?
         bool gift = false;
         if (i == 3 || i == 7 || i == 11)
@@ -277,9 +264,11 @@ public class InventoryController : MonoBehaviour {
         EgosPrimary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosPrimary(GameInfo.getEquipment(i));
         GameInfo.setEquipment(0, i);
-        GameInfo.toggleEquipped(GameInfo.equippedIndexes[0]);
+        GameInfo.ToggleEquipped(GameInfo.equippedIndexes[0]);
         GameInfo.equippedIndexes[0] = i;
-        GameInfo.toggleEquipped(i);
+        GameInfo.ToggleEquipped(i);
+        //Debug.Log("ObjectClicked: " + i);
+        //Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
     }
     private void SecondaryButtonClicked(int i)
     {
@@ -289,9 +278,11 @@ public class InventoryController : MonoBehaviour {
         EgosSecondary.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosSecondary(GameInfo.getEquipment(i));
         GameInfo.setEquipment(1, i);
-        GameInfo.toggleEquipped(GameInfo.equippedIndexes[1]);
+        GameInfo.ToggleEquipped(GameInfo.equippedIndexes[1]);
         GameInfo.equippedIndexes[1] = i;
-        GameInfo.toggleEquipped(i);
+        GameInfo.ToggleEquipped(i);
+        //Debug.Log("ObjectClicked: " + i);
+        //Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
     }
     private void DefenseButtonClicked(int i)
     {
@@ -300,9 +291,10 @@ public class InventoryController : MonoBehaviour {
         EgosDefense.sprite = GameInfo.getEquipment(i).eqImage;
         GameInfo.UpdateEgosDefense(GameInfo.getEquipment(i));
         GameInfo.setEquipment(2, i);
-        GameInfo.toggleEquipped(GameInfo.equippedIndexes[2]);
+        GameInfo.ToggleEquipped(GameInfo.equippedIndexes[2]);
         GameInfo.equippedIndexes[2] = i;
-        GameInfo.toggleEquipped(i);
+        GameInfo.ToggleEquipped(i);
+        //Debug.Log("ObjectClicked: " + i);
     }
 
     /// <summary>
