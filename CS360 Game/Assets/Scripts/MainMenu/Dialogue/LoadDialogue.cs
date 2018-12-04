@@ -511,12 +511,11 @@ template
         Emrik[14].indexForOption1 = -3;
         Emrik[14].indexForOption2 = 0;
         //response to index 6 option 2
-        Emrik[28].response = "The farmer says, \"Some people say she's witch. I just think she has a gift, but she cannot defend herself for long."
-        +" So you met her is she okay?\"";
-        Emrik[28].option1 = "Yes.";
-        Emrik[28].option2 = "No, she's dead.";
-        Emrik[28].indexForOption1 = -3;
-        Emrik[28].indexForOption2 = 0;
+        Emrik[28].response = "The farmer says, \"If you don't have any information then I'll just stay here and wait.\"";
+        Emrik[28].option1 = "Leave";
+        Emrik[28].option2 = "Restart?";
+        Emrik[28].indexForOption1 = -2;
+        Emrik[28].indexForOption2 = -1;
 
         
         GameInfo.DialogueTrees[3] = Emrik;
