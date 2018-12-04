@@ -403,13 +403,38 @@ template
     }
     
     public static void loadEdwardDialogue(){
-        Berndy[0].response = "";
-        Berndy[0].option1 = "Talk";
-        Berndy[0].option2 = "Fight";
-        Berndy[0].indexForOption1 = 0;
-        Berndy[0].indexForOption2 = 0;
-
-
+        Edward[0].response = "The doctor seems to look passed you as he talks and says, \"Did you need something stranger?\"";
+        Edward[0].option1 = "I'm not feeling so good, could you heal me?";
+        Edward[0].option2 = "Are you okay?";
+        Edward[0].indexForOption1 = 1;
+        Edward[0].indexForOption2 = 2;
+        //response to index 0 option 1
+        Edward[1].response = "He says,\"Of course I can heal you.\"\n\nHe gives you a look over then pulls out some medicine and gives it to you."
+        +" You take them and feel a bit better.";
+        Edward[1].option1 = "Thank you sir, are you doing okay?";
+        Edward[1].option2 = "Now I can go";
+        Edward[1].indexForOption1 = 3;
+        Edward[1].indexForOption2 = -2;
+        //response to index 0 option 2
+        Edward[2].response = "He says, \"My son...\n\nMy son is missing.\" and continues to stare at nothing.";
+        Edward[2].option1 = "If you heal me I can go find him and bring him back to you.";
+        Edward[2].option2 = "I'm going to bring him back for you!";
+        Edward[2].indexForOption1 = 5;
+        Edward[2].indexForOption2 = -2;  
+        //response to index 1 option 1
+        Edward[3].response = "He looks to the beds again. You can tell something is bothering him. He says,\"I've been trying to do nothing."
+        +" It's so hard. I fear that if I do something then I will go back to the way I used to be... so, for your sake and everyone elses, "
+        +"please leave me here to do nothing.\"";
+        Edward[3].option1 = "Okay, I'll leave you alone.";
+        Edward[3].option2 = "What do you think will happen if you do something?";
+        Edward[3].indexForOption1 = -2;
+        Edward[3].indexForOption2 = 8;
+        //response to index 1 option 2
+        Edward[5].response = "He says, \"I would have done that anyways. Doing good is all I feel like doing...\"";
+        Edward[5].option1 = "";
+        Edward[5].option2 = "I'm going to bring him back for you!";
+        Edward[5].indexForOption1 = 5;
+        Edward[5].indexForOption2 = -2;
         
         GameInfo.DialogueTrees[2] = Edward;
     }
