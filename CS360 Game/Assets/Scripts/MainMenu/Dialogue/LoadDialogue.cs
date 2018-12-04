@@ -452,6 +452,24 @@ template
     }
     
     public static void loadEmrikDialogue(){
+         Emrik[0].response = "The farmer looks at you and says, \"I have nothing for sale today boy. Come back later.\"";
+        Emrik[0].option1 = "I wouldn't want to buy anything from you anyways your fields aren't lookin too good.";
+        Emrik[0].option2 = "Are you waiting on someone?";
+        Emrik[0].indexForOption1 = 1;
+        Emrik[0].indexForOption2 = 2; 
+        //response to index 0 option 1
+        Emrik[1].response = "The farmer gets angry and yells, \"If you keep talking like that I'll kill you!\"";
+        Emrik[1].option1 = "Don't get so mad. I'm leaving.";
+        Emrik[1].option2 = "Do it.";
+        Emrik[1].indexForOption1 = -2;
+        Emrik[1].indexForOption2 = 0;
+        //response to index 0 option 1
+        Emrik[2].response = "The farmer says, \"My wife disappeared not too long ago, along with that doctor's son and that family."
+        +" I think they just went somewhere and any day they'll return. I feel like it's going to be today.\"";
+        Emrik[2].option1 = "Why would they leave in the first place?";
+        Emrik[2].option2 = "Why not go look for her?";
+        Emrik[2].indexForOption1 = 5;
+        Emrik[2].indexForOption2 = 6;
 
         
         GameInfo.DialogueTrees[3] = Emrik;
