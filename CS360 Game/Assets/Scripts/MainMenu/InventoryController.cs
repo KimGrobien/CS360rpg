@@ -144,6 +144,7 @@ public class InventoryController : MonoBehaviour {
     // Make sure to pass id of each item
     private void ItemClicked(int i)
     {
+        Debug.Log("itemClicked");
         // are you clicking on a gift?
         bool gift = false;
         if (i == 3 || i == 7 || i == 11)

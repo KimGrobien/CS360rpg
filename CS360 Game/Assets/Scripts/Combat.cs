@@ -32,6 +32,7 @@ public class Combat : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
+        Debug.Log("Start");
 		//Find Player Animator
 		playerAnim = GameObject.Find("Player").GetComponent<Animator>();
         // Find Main gameobjects
@@ -104,6 +105,9 @@ public class Combat : MonoBehaviour
 	}
 
 	void PrimaryAction(){
+        Debug.Log("Primary1");
+        Debug.Log("Primary2");
+        ToggleButtons(false);
         int dmg;
 
         System.Random rnd = new System.Random();
@@ -112,21 +116,20 @@ public class Combat : MonoBehaviour
             // If ego is using potion
             if(GameInfo.getEquipped(0).healBonus > 0)
             {
-                GameInfo.updateCurrentHealth(-dmg / 2);
+                GameInfo.updateCurrentHealth(-(dmg));
                 if (GameInfo.party[0].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg);
                 }
                 if (GameInfo.party[1].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg);
                 }
+                UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
             }
             // No using potion
             else
 			{
-				StartCoroutine(AttackAnimPlayer());
-
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             } 
@@ -137,7 +140,6 @@ public class Combat : MonoBehaviour
             // If not healing
             if(GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
             {
-				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -146,22 +148,22 @@ public class Combat : MonoBehaviour
             {
                 if (GameInfo.isAlive)
                 {
-                    GameInfo.updateCurrentHealth(-dmg / 2);
+                    GameInfo.updateCurrentHealth(-dmg);
                 }
                 if (activePlayer == 1 && GameInfo.party[0].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg);
                 }
                 else if (GameInfo.party[1].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg);
                 }
             }
 		}
 
-		ToggleButtons(false);
         if (GameInfo.getNPCHealth(enemyID) <= 0)
         {
+            StartCoroutine(AttackAnimPlayer());
             Debug.Log(enemyID);
             GameInfo.setDead(enemyID);
             // Killed Recruitable
@@ -226,11 +228,13 @@ public class Combat : MonoBehaviour
         {
             if (GameInfo.party[activePlayer].slotID != 0 && GameInfo.party[activePlayer].slotID != 2)
             {
+                StartCoroutine(AttackAnimPlayer());
                 status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             else
             {
                 status.text = "Your party members have been healed! " + GameInfo.getName(enemyID) + " is making their move.";
+                StartCoroutine(WaitAfterAttack());
             }
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
@@ -241,18 +245,20 @@ public class Combat : MonoBehaviour
             if (GameInfo.getEquipped(0).healBonus > 0)
             {
                 status.text = "Ego has used heal. " + GameInfo.getName(enemyID) + " is making their move.";
+                StartCoroutine(WaitAfterAttack());
             }
             else
             {
+                StartCoroutine(AttackAnimPlayer());
                 status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             //Call Enemy Attacks function
             StartCoroutine(WaitAfterAttack());
-           
         }
 	}
 
 	void SecondaryAction(){
+        ToggleButtons(false);
         int dmg;
 
         System.Random rnd = new System.Random();
@@ -262,20 +268,20 @@ public class Combat : MonoBehaviour
             // If ego is using potion
             if (GameInfo.getEquipped(1).healBonus > 0)
             {
-                GameInfo.updateCurrentHealth(-dmg / 2);
+                GameInfo.updateCurrentHealth(-dmg);
                 if (GameInfo.party[0].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[0].slotID, -dmg);
                 }
                 if (GameInfo.party[1].slotID != -1)
                 {
-                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg / 2);
+                    GameInfo.updateNPCHealth(GameInfo.party[1].slotID, -dmg);
                 }
+                UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
             }
             // No using potion
             else
             {
-				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -285,20 +291,17 @@ public class Combat : MonoBehaviour
             // If anker, its a fixed value
             if (GameInfo.party[1].slotID == 1)
             {
-				StartCoroutine(AttackAnimPlayer());
                 dmg = GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID);
             }
             // If not anker, range attack
             else
             {
-				StartCoroutine(AttackAnimPlayer());
                 dmg = rnd.Next(0, GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID));
             }
 
             //If not cynthia
             if (GameInfo.party[activePlayer].slotID != 0)
             {
-				StartCoroutine(AttackAnimPlayer());
                 GameInfo.updateNPCHealth(enemyID, dmg);
                 UpdateEnemyHealthToScreen(GameInfo.getNPCHealth(enemyID));
             }
@@ -325,9 +328,9 @@ public class Combat : MonoBehaviour
             }
         }
 
-        ToggleButtons(false);
         if (GameInfo.getNPCHealth(enemyID) <= 0)
         {
+            StartCoroutine(AttackAnimPlayer());
             GameInfo.setDead(enemyID);
             // Killed Recruitable
             if (enemyID < 4)
@@ -385,16 +388,17 @@ public class Combat : MonoBehaviour
             }
 
             StartCoroutine(KilledEnemy());
-            // Wait for a bit then return to overworld, add their object to your inventory?
         }
         else if (activePlayer != 2)
         {
             if (GameInfo.party[activePlayer].slotID != 0)
             {
+                StartCoroutine(AttackAnimPlayer());
                 status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             else
             {
+                StartCoroutine(WaitAfterAttack());
                 status.text = "You have attempted to revive a dead party member! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             //Call Enemy Attacks function
@@ -405,9 +409,11 @@ public class Combat : MonoBehaviour
             if (GameInfo.getEquipped(1).healBonus > 0)
             {
                 status.text = "Ego has used heal. " + GameInfo.getName(enemyID) + " is making their move.";
+                StartCoroutine(WaitAfterAttack());
             }
             else
             {
+                StartCoroutine(AttackAnimPlayer());
                 status.text = GameInfo.getName(enemyID) + " has taken " + dmg + " damage! " + GameInfo.getName(enemyID) + " is making their move.";
             }
             StartCoroutine(WaitAfterAttack());
@@ -500,7 +506,8 @@ public class Combat : MonoBehaviour
 	}
 
 	void RunFromCombat(){
-		//Debug.Log("RUN");
+        Debug.Log("Run1");
+        Debug.Log("Run2");
         SceneManager.LoadScene (GameInfo.prevScene);
 	}
 
@@ -517,6 +524,7 @@ public class Combat : MonoBehaviour
     /// if Ego is dead and none of the party slotID's equal 0 (cynthia) --- you lose
     /// </summary>
 	void EnemyAttaks(){
+        Debug.Log("EnemyAttacks");
         int dmg;
     
         System.Random rnd = new System.Random();
@@ -602,9 +610,8 @@ public class Combat : MonoBehaviour
         }
     }
 
-
 	IEnumerator WaitAfterAttack(){
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(6);
         EnemyAttaks();
     }
 
@@ -617,7 +624,13 @@ public class Combat : MonoBehaviour
 
     IEnumerator KilledEnemy()
     {
-        Debug.Log(GameInfo.CheckIfDead(enemyID));
+        SpriteRenderer sprender;
+        sprender = GameObject.Find("EnemyImage").GetComponent<SpriteRenderer>();
+        sprender.color = Color.grey;
+        yield return new WaitForSeconds(0.4f);
+        sprender.color = Color.clear;
+        yield return new WaitForSeconds(0.4f);
+        sprender.enabled = false;
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
@@ -651,8 +664,8 @@ public class Combat : MonoBehaviour
 		yield return new WaitForSeconds (0.2f);
 		sprender.enabled = true;
 		yield return new WaitForSeconds (0.2f);
+    }
 
-	}
 	IEnumerator AttackAnimEnemy ()
 	{
 		SpriteRenderer sprender;
