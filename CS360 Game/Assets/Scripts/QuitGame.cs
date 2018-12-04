@@ -12,6 +12,7 @@ void Start(){
 }
 
 void CloseGame(){
+		Debug.Log("REACHED");
 		Application.Quit();
 }
 }
