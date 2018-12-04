@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 	// Use this for initialization
 	void Start () {
-        moveSpeed = 3;
-		if (GameInfo.prevPos.x != -999){
+        moveSpeed = 2;
+		if (GameInfo.prevPos.x != -999){//Ignore prevPos if -999
 			this.transform.position = GameInfo.prevPos;
 		}
 		if(GameInfo.currentNPC >= 0){

@@ -118,13 +118,13 @@ public class GameInfo : MonoBehaviour
     // Used to populate all the initial data of the game
     private void Start()
     {
-        
 
         DontDestroyOnLoad(this.gameObject);
         //If you are initializing Arrays or data in this start function put it in this if statment so that it isnt reinizalized everytime you reload the start screen
         if (!Gameloaded)
         {
             Gameloaded = true;
+            GameInfo.prevPos.x = -999; //-999 special value to signify ignore prevPos
             PopulateNPCList();
             LoadDialogue.createDialogueTrees();
             PopulateEquipmentList();
@@ -140,7 +140,7 @@ public class GameInfo : MonoBehaviour
             //Toggle Menu
             if (SceneManager.GetActiveScene().name == "Menu"){
                 SceneManager.LoadScene(prevScene);
-            }else{
+            }else if (SceneManager.GetActiveScene().name != "Combat") {//Can't open menu during combat
                 prevScene = SceneManager.GetActiveScene().buildIndex;
                 prevPos = GameObject.Find("Player").GetComponent<SpriteRenderer>().transform.position;
                 currentNPC = -1; //Not interacting with NPC with code D

@@ -11,6 +11,8 @@ public class playMusic : MonoBehaviour {
 	private static AudioSource title;
 	private static AudioSource doctor;
 	private static AudioSource cave;
+	private static AudioSource lose;
+	private static AudioSource win;
 
 	// Use this for initialization
 
@@ -34,6 +36,12 @@ public class playMusic : MonoBehaviour {
 				break;
 			case "doctor":
 				doctor.Play();
+				break;
+			case "lose":
+				lose.Play();
+				break;
+			case "win":
+				win.Play();
 				break;
 		}
 	}
@@ -59,8 +67,55 @@ public class playMusic : MonoBehaviour {
 			case "battle":
 				battle.Stop();
 				break;
+			case "lose":
+				lose.Stop();
+				break;
+			case "win":
+				win.Stop();
+				break;
 		}
     }
+
+	public static void StopAllMusic(){
+		overworld.Stop();
+		shop.Stop();
+		title.Stop();
+		cave.Stop();
+		doctor.Stop();
+		battle.Stop();
+		lose.Stop();
+		win.Stop();
+	}
+
+	public static void PlayMusicBySceneName(string name){
+		Debug.Log(name);
+		switch (name){
+			case "Start": case "Town": case "Castle": case "Bounty":
+				overworld.Play();
+				break;
+			case "Castle Hall": case "Boss Room":
+				cave.Play();
+				break;
+			case "Shop":
+				shop.Play();
+				break;
+			case "Doctor":
+				doctor.Play();
+				break;
+			case "Title":
+				title.Play();
+				break;
+			case "Combat":
+				battle.Play();
+				break;
+			case "You Lose":
+				lose.Play();
+				break;
+			case "You Win":
+				win.Play();
+				break;
+		}
+	}
 	void Start () {
 		DontDestroyOnLoad(transform.gameObject);
         overworld = GameObject.Find("Overworld").GetComponent<AudioSource>();
@@ -69,6 +124,8 @@ public class playMusic : MonoBehaviour {
 		doctor = GameObject.Find("Doctor").GetComponent<AudioSource>();
 		title = GameObject.Find("Title").GetComponent<AudioSource>();
 		cave = GameObject.Find("Cave").GetComponent<AudioSource>();
+		lose = GameObject.Find("Lose").GetComponent<AudioSource>();
+		win = GameObject.Find("Win").GetComponent<AudioSource>();
 		PlayMusic("title");
 	}
 	

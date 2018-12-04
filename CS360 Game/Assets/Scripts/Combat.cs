@@ -541,9 +541,10 @@ public class Combat : MonoBehaviour
 	}
 
 	void RunFromCombat(){
-        Debug.Log("Run1");
-        Debug.Log("Run2");
-        SceneManager.LoadScene (GameInfo.prevScene);
+        playMusic.StopMusic("battle");
+        string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(GameInfo.prevScene));
+        playMusic.PlayMusicBySceneName(sceneName);
+        SceneManager.LoadScene(GameInfo.prevScene);
 	}
 
 	void ToggleButtons(bool val){
@@ -667,6 +668,9 @@ public class Combat : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         sprender.enabled = false;
         yield return new WaitForSeconds(4);
+        playMusic.StopMusic("battle");
+        string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(GameInfo.prevScene));
+        playMusic.PlayMusicBySceneName(sceneName);
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 
@@ -674,9 +678,12 @@ public class Combat : MonoBehaviour
         ToggleButtons(false);
         status.text = endText;
         yield return new WaitForSeconds(4);
+        playMusic.StopMusic("battle");
 		if (GameInfo.end){
+            playMusic.PlayMusicBySceneName("You Win");
 			SceneManager.LoadScene("You Win");
 		}else{
+            playMusic.PlayMusicBySceneName("You Lose");
 			SceneManager.LoadScene("You Lose");
 		}
     }

@@ -269,6 +269,8 @@ public class EngageNPC : MonoBehaviour {
 			txt2.text = temp2;
 			//this will be the fight option and will change scenes and pass information about who the enemy is
 			Debug.Log("Fight Begins");
+			playMusic.StopAllMusic(); //Accounts for whatever scene you could be in
+			playMusic.PlayMusicBySceneName("Combat");
 			SceneManager.LoadScene("Combat");
 			return;
 		}
