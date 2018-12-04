@@ -146,10 +146,11 @@ public class EngageNPC : MonoBehaviour {
 				txt2.text = "Fight";
 			}
 		if(index==-3){
+			npcResponse.text = "I can go with you.";
 			GameInfo.recruitable[GameInfo.currentNPC] = true;
 		}
 		if(index==-4){
-			npcResponse.text = textToScreen;
+			npcResponse.text = "I can go with you.";
 			addToParty();
 			indexForNextOption1=-2;
 			indexForNextOption2=0;
@@ -157,7 +158,7 @@ public class EngageNPC : MonoBehaviour {
 		}
 		
 		if(GameInfo.recruitable[GameInfo.currentNPC]){
-			npcResponse.text = textToScreen;
+			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
             //Kurt
@@ -271,6 +272,7 @@ public class EngageNPC : MonoBehaviour {
 	
 		npcResponse.text="";
 		if(index==-3){
+			npcResponse.text = "I can go with you.";
 			GameInfo.recruitable[GameInfo.currentNPC] = true;
 		}
 		if(index==-4){
@@ -282,7 +284,7 @@ public class EngageNPC : MonoBehaviour {
 		}
 		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3
 		&& (GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
-			npcResponse.text = textToScreen;
+			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
             //Kurt
