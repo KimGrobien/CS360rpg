@@ -161,6 +161,7 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
+			choice2.interactable=false;
             //Kurt
             NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
             NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
@@ -207,6 +208,7 @@ public class EngageNPC : MonoBehaviour {
 		if(index==-1){
 			txt1.text="Restart?";
 			npcResponse.text="";
+			GameObject.Find("Choice2").SetActive(false);
 			txt2.text="";
 			index=0;
 			indexForNextOption1=0;
@@ -303,6 +305,7 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
+			choice2.interactable=false;
             //Kurt
             NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
             NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
@@ -327,6 +330,7 @@ public class EngageNPC : MonoBehaviour {
 		if(index==-1){
 			txt1.text="Restart?";
 			npcResponse.text="";
+			GameObject.Find("Choice2").SetActive(false);
 			txt2.text="";
 			index=0;
 			indexForNextOption1=0;
@@ -448,6 +452,8 @@ IEnumerator type()
 
 	public void addToParty(){
 		StopAllCoroutines();
+		
+		choice2.interactable=true;
 		PartyMember = GameInfo.potentialNPC[GameInfo.currentNPC];
 		if((PartyMember.npc.name == GameInfo.party[0].npc.name) || (PartyMember.npc.name == GameInfo.party[1].npc.name)){
 			alreadyAdded();
@@ -470,6 +476,7 @@ IEnumerator type()
 		npcResponse.text = GameInfo.getName(GameInfo.currentNPC)+" is already a part of the team.";
 		txt1.text = "Leave";
 		txt2.text = "";
+		GameObject.Find("Choice2").SetActive(false);
 		return;
 	}
 
@@ -556,6 +563,7 @@ IEnumerator type()
 		
 		choice1.onClick.RemoveListener(AddToSlot1);
 		choice2.onClick.RemoveListener(AddToSlot2);
+		GameObject.Find("Choice2").SetActive(false);
 		choice1.onClick.AddListener(cancelMenu);
 	}
 	public void displayAllText(){
