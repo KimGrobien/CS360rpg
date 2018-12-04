@@ -21,6 +21,7 @@ public class Combat : MonoBehaviour
 	private string hpTextEnemy;
     private int activePlayer = 2;
     private string endText;
+    Image EgoArmor, EgoItemUsed;
 
     //Who we're fighting
     private int enemyID = GameInfo.currentNPC;
@@ -45,8 +46,22 @@ public class Combat : MonoBehaviour
 		partyMemberChoice = buttons.transform.Find("PartyMember").GetComponent<Button>();
 		run = buttons.transform.Find("Run").GetComponent<Button>();
 
+        //FindEgosItems
+        EgoArmor = buttons.transform.Find("EgoArmor").GetComponent<Image>();
+        EgoItemUsed = buttons.transform.Find("EgoItemUsed").GetComponent<Image>();
+        if (GameInfo.getEquipped(2).name != null)
+        {
+            EgoArmor.sprite = GameInfo.getEquipped(2).ArmorFullImage;
+        }
+        else
+        {
+            EgoArmor.color = Color.clear;
+        }
+
+        EgoItemUsed.color = Color.clear;
+
         // Set listeners to each button
-		primaryChoice.onClick.AddListener(PrimaryAction);
+        primaryChoice.onClick.AddListener(PrimaryAction);
 		secondaryChoice.onClick.AddListener(SecondaryAction);
 		partyMemberChoice.onClick.AddListener(SwitchPartyMember);
 		run.onClick.AddListener(RunFromCombat);
@@ -113,8 +128,10 @@ public class Combat : MonoBehaviour
         System.Random rnd = new System.Random();
 		if (activePlayer == 2){
             dmg = rnd.Next(2, 18) + GameInfo.getPrimaryAttackBonus();
+            EgoItemUsed.sprite = GameInfo.getEquipped(0).eqImage;
+            EgoItemUsed.color = Color.white;
             // If ego is using potion
-            if(GameInfo.getEquipped(0).healBonus > 0)
+            if (GameInfo.getEquipped(0).healBonus > 0)
             {
                 GameInfo.updateCurrentHealth(-(dmg));
                 if (GameInfo.party[0].slotID != -1)
@@ -246,6 +263,7 @@ public class Combat : MonoBehaviour
             {
                 status.text = "Ego has used heal. " + GameInfo.getName(enemyID) + " is making their move.";
                 StartCoroutine(WaitAfterAttack());
+                EgoItemUsed.color = Color.clear;
             }
             else
             {
@@ -264,6 +282,8 @@ public class Combat : MonoBehaviour
         System.Random rnd = new System.Random();
         if (activePlayer == 2)
         {
+            EgoItemUsed.sprite = GameInfo.getEquipped(1).eqImage;
+            EgoItemUsed.color = Color.white;
             dmg = rnd.Next(2, 18) + GameInfo.getEgoSecondary();
             // If ego is using potion
             if (GameInfo.getEquipped(1).healBonus > 0)
@@ -410,6 +430,7 @@ public class Combat : MonoBehaviour
             {
                 status.text = "Ego has used heal. " + GameInfo.getName(enemyID) + " is making their move.";
                 StartCoroutine(WaitAfterAttack());
+                EgoItemUsed.color = Color.clear;
             }
             else
             {
@@ -429,7 +450,8 @@ public class Combat : MonoBehaviour
 			//if next slot is not empty and the next member is not dead
 			if (GameInfo.getParty(1).slotID != -1 && !GameInfo.getParty(1).npc.dead)
             {
-				activePlayer = 1;
+                EgoArmor.color = Color.clear;
+                activePlayer = 1;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
 			}else if (GameInfo.isAlive){
 				switchActiveToEgo();
@@ -445,6 +467,7 @@ public class Combat : MonoBehaviour
             //else switch to next player if Ego is dead and cynthia is in party
             else if(!GameInfo.getParty(0).npc.dead)
             {
+                EgoArmor.color = Color.clear;
                 activePlayer = 0;
                 playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
             }
@@ -455,13 +478,15 @@ public class Combat : MonoBehaviour
 
 			if (GameInfo.getParty(0).slotID != -1 && !GameInfo.getParty(0).npc.dead)
             {
-				activePlayer = 0;
+                EgoArmor.color = Color.clear;
+                activePlayer = 0;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
 			}
             // else try and switch to next party member (if not dead and if not empty)
             else if (GameInfo.getParty(1).slotID != -1 && !GameInfo.getParty(1).npc.dead)
             {
-				activePlayer = 1;
+                EgoArmor.color = Color.clear;
+                activePlayer = 1;
 				playerAnim.SetInteger("id", GameInfo.getParty(activePlayer).slotID);
 			}
 		}
@@ -481,7 +506,8 @@ public class Combat : MonoBehaviour
 
 	public void switchActiveToEgo(){
 		activePlayer = 2;
-			playerAnim.SetInteger("id", -1);
+        EgoArmor.color = Color.white;
+        playerAnim.SetInteger("id", -1);
             GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
             currentNPCName.text = "Ego";
             UpdateCurrentNPCHealthToScreen(GameInfo.getEgoCurrentHealth());
@@ -664,6 +690,7 @@ public class Combat : MonoBehaviour
 		yield return new WaitForSeconds (0.2f);
 		sprender.enabled = true;
 		yield return new WaitForSeconds (0.2f);
+        EgoItemUsed.color = Color.clear;
     }
 
 	IEnumerator AttackAnimEnemy ()
@@ -673,16 +700,22 @@ public class Combat : MonoBehaviour
 		AudioSource attackSound = GameObject.Find ("attackSound").GetComponent<AudioSource> ();
 		attackSound.Play ();
 		sprender.enabled = false;
+        EgoArmor.enabled = false;
 		yield return new WaitForSeconds (0.2f);
-		sprender.enabled = true;
+        EgoArmor.enabled = true;
+        sprender.enabled = true;
 		yield return new WaitForSeconds (0.2f);
-		sprender.enabled = false;
+        EgoArmor.enabled = false;
+        sprender.enabled = false;
 		yield return new WaitForSeconds (0.2f);
-		sprender.enabled = true;
+        EgoArmor.enabled = true;
+        sprender.enabled = true;
 		yield return new WaitForSeconds (0.2f);
-		sprender.enabled = false;
+        EgoArmor.enabled = false;
+        sprender.enabled = false;
 		yield return new WaitForSeconds (0.2f);
-		sprender.enabled = true;
+        EgoArmor.enabled = true;
+        sprender.enabled = true;
 		yield return new WaitForSeconds (0.2f);
 
 	}

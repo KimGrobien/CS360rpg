@@ -145,6 +145,9 @@ public class InventoryController : MonoBehaviour {
     private void ItemClicked(int i)
     {
         Debug.Log("itemClicked");
+        Debug.Log("ObjectClicked: " + i);
+        Debug.Log("Wooden Sheild owned? " + GameInfo.getOwnedStatus(0));
+        Debug.Log("Wooden Sheild Equipped? " + GameInfo.getEquipment(0).equipped);
         // are you clicking on a gift?
         bool gift = false;
         if (i == 3 || i == 7 || i == 11)
@@ -205,8 +208,10 @@ public class InventoryController : MonoBehaviour {
         {
             EgosMoney.color = TextColor;
             //if attack object
-            if (i >= 0 && i < 8 || i == 11)
+            //Debug.Log("ObjectClicked: " + i);
+            if (i < 8 || i == 11)
             {
+                //Debug.Log("ObjectClicked: " + i);
                 SetButtonsVisablity(true, true, false, false);
             }
             // if defense object
@@ -328,14 +333,6 @@ public class InventoryController : MonoBehaviour {
         equipmentImage.color = Color.clear;
 
         GameInfo.buyingMode = !GameInfo.buyingMode;
-        if(GameInfo.buyingMode)
-        {
-            enableBuying.GetComponentInChildren<Text>().text = "Exit Trade";
-        }
-        else
-        {
-            enableBuying.GetComponentInChildren<Text>().text = "Start Trade";
-        }
         for (int i = 0; i < 12; i++)
         {
             if (!(i == 3 || i == 7 || i == 11))

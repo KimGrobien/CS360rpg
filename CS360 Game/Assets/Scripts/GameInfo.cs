@@ -39,6 +39,7 @@ public struct equipmentData
     public int healBonus;
     public int Price;
     public Sprite eqImage;
+    public Sprite ArmorFullImage;
     public bool equipped;
     public bool owned;
     public Color Visability;
@@ -58,7 +59,7 @@ public class GameInfo : MonoBehaviour
 
     // Ego's Data
     //private static string CharacterName = "Ego";
-    private static int money = 0;
+    private static int money = 400;
     public static bool isAlive = true;
     private static int MAXhealth = 100, currentHealth = 50;
     public static PartySlot[] party = new PartySlot[2];
@@ -150,7 +151,7 @@ public class GameInfo : MonoBehaviour
     // Populate the Equipment List using array data
     private void PopulateEquipmentList()
     {
-        var sprites = Resources.Load<Sprite>("Equipment/1"); ;
+        var sprites = Resources.Load<Sprite>("Equipment/1");
         for (int i = 0; i < 15; i++)
         {
             sprites = Resources.Load<Sprite>("Equipment/" + (i + 1));
@@ -171,6 +172,10 @@ public class GameInfo : MonoBehaviour
         equipmentList[12].owned = false;
         equipmentList[13].owned = false;    
         equipmentList[14].owned = false;
+
+        equipmentList[8].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/0");
+        equipmentList[9].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/1");
+        equipmentList[10].ArmorFullImage = Resources.Load<Sprite>("EgoArmor/2");
         //var sprites = Resources.Load<Sprite>("Equipment/1"); ;
         //for (int i = 0; i < 15; i++)
         //{
