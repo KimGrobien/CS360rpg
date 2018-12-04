@@ -129,6 +129,7 @@ public class EngageNPC : MonoBehaviour {
 	
 	public void clickedOption1(int index){
 		StopAllCoroutines();
+		choice2.interactable=true;
 		npcResponse.text="";
 		if(GameInfo.recruitable[GameInfo.currentNPC]&&GameInfo.encountered[GameInfo.currentNPC]>3
 		|| (GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
@@ -207,16 +208,13 @@ public class EngageNPC : MonoBehaviour {
 			return;
 		}
 		if(index==-1){
-			txt1.text="Restart?";
-			npcResponse.text="";
-			GameObject.Find("Choice2").SetActive(false);
-			txt2.text="";
+			
 			index=0;
 			indexForNextOption1=0;
 			indexForNextOption2=0;
 			textToScreen = currentDialogue[0].response;
 			restarts++;
-			return;
+			//return;
 		}
 		if(index==0){
 			index++;
@@ -249,6 +247,8 @@ public class EngageNPC : MonoBehaviour {
 
 	public void clickedOption2(int index){
 		StopAllCoroutines();
+		
+		choice2.interactable=true;
 		if(isTyping){
 			if(index==0){
 				txt1.text = "Talk";
@@ -333,16 +333,15 @@ public class EngageNPC : MonoBehaviour {
 		}
 		
 		if(index==-1){
-			txt1.text="Restart?";
-			npcResponse.text="";
-			GameObject.Find("Choice2").SetActive(false);
-			txt2.text="";
+			
+			choice2.interactable=false;
+			
 			index=0;
 			indexForNextOption1=0;
 			indexForNextOption2=-1;
 			textToScreen = currentDialogue[0].response;
 			restarts++;
-			return;
+			//return;
 		}
 		if(index==0){
 			index++;
@@ -407,6 +406,7 @@ IEnumerator type()
 		txt1.text="";
 		txt2.text="";
 		npcResponse.text="";
+		choice2.interactable=true;
 		foreach (char letter in textToScreen.ToCharArray()) {
              npcResponse.text += letter;
              yield return new WaitForSeconds ((float).01);
@@ -422,6 +422,7 @@ IEnumerator type()
 		 else if(indexForNextOption1==0&&indexForNextOption2==0){
 			txt1.text = "Talk";
 			txt2.text = "Fight";
+			choice2.interactable=true;
 		 }
 		 else{
 		 	txt1.text = temp1;
@@ -481,7 +482,7 @@ IEnumerator type()
 		npcResponse.text = GameInfo.getName(GameInfo.currentNPC)+" is already a part of the team.";
 		txt1.text = "Leave";
 		txt2.text = "";
-		GameObject.Find("Choice2").SetActive(false);
+		choice2.interactable=true;
 		return;
 	}
 
@@ -568,7 +569,7 @@ IEnumerator type()
 		
 		choice1.onClick.RemoveListener(AddToSlot1);
 		choice2.onClick.RemoveListener(AddToSlot2);
-		GameObject.Find("Choice2").SetActive(false);
+		choice2.interactable=false;
 		choice1.onClick.AddListener(cancelMenu);
 	}
 	public void displayAllText(){
