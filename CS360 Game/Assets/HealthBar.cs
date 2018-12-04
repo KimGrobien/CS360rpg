@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour {
 	Slider HealthBarSlider;
-
 	public string SliderName;
 	// Use this for initialization
-	void Start () {
+	void Update () {
 		HealthBarSlider = GameObject.Find(SliderName).GetComponent<Slider>();
 		HealthBarSlider.value = getHealthPercentage();
 	}
