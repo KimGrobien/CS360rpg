@@ -287,7 +287,7 @@ template
         //response to index 1 option 1
         Anker[3].response = "He says, \"Could be because we're out here in the middle of nowhere and no one wants to live here."+
         " Who would blame them for up and leaving? People don't usually make their way out here."
-        +" They get lost, or get abandoned and end up here. Yeah that could be it or whatever is eating Sal's chicken's finally got real hungry. \""
+        +" They get lost, or get abandoned and end up here. Yeah that could be it or whatever is eating Sal's chickens finally got real hungry. \""
         + "\n\nHe kind of laughed at this. \n\"There's always that castle that sprung up a few years ago. No one goes there.\"";
         Anker[3].option1 = "How did you end up here?";
         Anker[3].option2 = "What's the story with the castle?";
@@ -353,8 +353,8 @@ template
         Anker[18].indexForOption1 = -2;
         Anker[18].indexForOption2 = -1;
         //response to index 15 option 1
-        Anker[31].response = "He says, \"If you're not going to buy anything then please go back to where you came from. I don't know you."
-        +" And what you don't seem right. I don't trust you.\"";
+        Anker[31].response = "He says, \"If you're not going to buy anything then please go back to where you came from. I don't know you"
+        +" and you don't seem right. I don't trust you.\"";
         Anker[31].option1 = "Leave";
         Anker[31].option2 = "Restart?";
         Anker[31].indexForOption1 = -2;
@@ -416,7 +416,7 @@ template
         Edward[1].indexForOption1 = 3;
         Edward[1].indexForOption2 = -2;
         //response to index 0 option 2
-        Edward[2].response = "He says, \"My son...\n\nMy son is missing.\" and continues to stare at nothing.";
+        Edward[2].response = "He says, \"My son... My son is missing.\" He continues to stare at nothing.";
         Edward[2].option1 = "If you heal me I can go find him and bring him back to you.";
         Edward[2].option2 = "I'm going to bring him back for you!";
         Edward[2].indexForOption1 = 5;
@@ -431,9 +431,9 @@ template
         Edward[3].indexForOption2 = 8;
         //response to index 1 option 2
         Edward[5].response = "He says, \"I would have done that anyways. Doing good is all I feel like doing...\"";
-        Edward[5].option1 = "";
+        Edward[5].option1 = "Without you I wouldn't be able to do anything.";
         Edward[5].option2 = "I'm going to bring him back for you!";
-        Edward[5].indexForOption1 = 5;
+        Edward[5].indexForOption1 = 11;
         Edward[5].indexForOption2 = -2;
         
         GameInfo.DialogueTrees[2] = Edward;
@@ -639,10 +639,10 @@ template
 			if(GameInfo.currentNPC==1){
 				textToScreen = "He says, \"If you're not going to buy anything, please leave me alone...\"";
 			}
-			if(GameInfo.currentNPC==2){
+			if(GameInfo.currentNPC==3){
 				textToScreen = "He gives you an angry look and turns away from you.";
 			}
-			if(GameInfo.currentNPC==3){
+			if(GameInfo.currentNPC==2){
 				textToScreen = "He doesn't seem to notice you standing there. He only stares out over the empty beds.";
 			}
             if(GameInfo.currentNPC == 7){
@@ -672,7 +672,7 @@ template
 				textToScreen = "He says, \"Take me to the demon that took my wife!\"";
 			}
 			if(GameInfo.currentNPC==2){
-				textToScreen = "He says, \"I've failed everyone I've tried to take care of, you can't trust me.\"";
+				textToScreen = "He says, \"I've failed everyone I've tried to take care of, you can't trust me. But, I'll go with you.\"";
 			}
             return textToScreen;
     }
