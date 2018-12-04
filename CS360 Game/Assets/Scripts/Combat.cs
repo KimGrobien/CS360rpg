@@ -216,7 +216,6 @@ public class Combat : MonoBehaviour
                 endText = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
                 // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
                 StartCoroutine(GameEnds());
-                return;
             }
 
             StartCoroutine(KilledEnemy());
@@ -383,7 +382,6 @@ public class Combat : MonoBehaviour
                 endText = "You have killed " + GameInfo.getName(enemyID) + ". What have you done!?";
                 // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
                 StartCoroutine(GameEnds());
-                return;
             }
 
             StartCoroutine(KilledEnemy());
@@ -523,7 +521,7 @@ public class Combat : MonoBehaviour
     
         System.Random rnd = new System.Random();
         System.Random EgoRnd = new System.Random();
-
+        
         //if not Cynthia
         if (enemyID != 0)
         {
@@ -586,7 +584,6 @@ public class Combat : MonoBehaviour
                     endText = "Ego has been killed by " + GameInfo.getName(enemyID) + " and you have no one to save you!";
                     // Put it in a coroutine so that you can read the words at end... but that aint been working for me?
                     StartCoroutine(GameEnds());
-                    return;
                 }
                 else
                 {
