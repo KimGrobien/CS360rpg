@@ -2784,7 +2784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28cb3d8a4afd644390829b6c6deb037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfNPCObject: Shoperkeeper
+  nameOfNPCObject: Shopkeeper
   nameOfDotsImage: InteractImage
   npcID: 1
 --- !u!1 &1866577670
