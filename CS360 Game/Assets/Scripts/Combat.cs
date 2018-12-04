@@ -51,7 +51,9 @@ public class Combat : MonoBehaviour
         EgoItemUsed = buttons.transform.Find("EgoItemUsed").GetComponent<Image>();
         if (GameInfo.getEquipped(2).name != null)
         {
+            EgoArmor.color = Color.clear;
             EgoArmor.sprite = GameInfo.getEquipped(2).ArmorFullImage;
+            StartCoroutine(WaitToAddArmor());
         }
         else
         {
@@ -513,7 +515,7 @@ public class Combat : MonoBehaviour
 
 	public void switchActiveToEgo(){
 		activePlayer = 2;
-        EgoArmor.color = Color.white;
+        StartCoroutine(WaitToAddArmor());
         playerAnim.SetInteger("id", -1);
             GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
             currentNPCName.text = "Ego";
@@ -726,4 +728,10 @@ public class Combat : MonoBehaviour
 		yield return new WaitForSeconds (0.2f);
 
 	}
+
+    IEnumerator WaitToAddArmor()
+    {
+        yield return new WaitForSeconds(.65f);
+        EgoArmor.color = Color.white;
+    }
 }
