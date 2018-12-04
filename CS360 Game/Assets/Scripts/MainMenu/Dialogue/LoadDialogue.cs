@@ -470,6 +470,46 @@ template
         Emrik[2].option2 = "Why not go look for her?";
         Emrik[2].indexForOption1 = 5;
         Emrik[2].indexForOption2 = 6;
+        //response to index 2 option 1
+        Emrik[5].response = "The farmer says, \"Maybe they seen a heard of wild cows and went to go catch one, or maybe"
+        +" they watched that young boy run off into the forest or something and are still looking for him." 
+        +" I don't know. But they better get back soon.\"";
+        Emrik[5].option1 = "How long will you wait?";
+        Emrik[5].option2 = "Is there anything I can do?";
+        Emrik[5].indexForOption1 = 11;
+        Emrik[5].indexForOption2 = 12;
+        //response to index 2 option 2
+        Emrik[6].response = "The farmer says, \"Did you see that woman who lives just outside of town? She's like a daughter to me."
+        +" If I left and something happened to her, and I lost both my wife and daughter... I don't know what I would do.\"";
+        Emrik[6].option1 = "I understand, but wouldn't it make more sense to go get rid of the threat? You seem capable.";
+        Emrik[6].option2 = "She seems to be able to take care of herself.";
+        Emrik[6].indexForOption1 = 13;
+        Emrik[6].indexForOption2 = 14;
+        //response to index 2 option 1
+        Emrik[11].response = "The farmer says, \"As long as I have to. If you could leave me alone. I don't need another person to worry about.\"";
+        Emrik[11].option1 = "Restart?";
+        Emrik[11].option2 = "Leave";
+        Emrik[11].indexForOption1 = -1;
+        Emrik[11].indexForOption2 = -2;
+        //response to index 2 option 1
+        Emrik[12].response = "The farmer says, \"You can leave me alone.\"";
+        Emrik[12].option1 = "Restart?";
+        Emrik[12].option2 = "Leave";
+        Emrik[12].indexForOption1 = -1;
+        Emrik[12].indexForOption2 = -2;
+        //response to index 2 option 1
+        Emrik[13].response = "The farmer says, \"If I knew what the threat was I would get rid of it right now. Do you know what it is or where she's gone?\"";
+        Emrik[13].option1 = "Yes, I do and if you come with me we can save her.";
+        Emrik[13].option2 = "No, but I think we can figure it out together.";
+        Emrik[13].indexForOption1 = -3;
+        Emrik[13].indexForOption2 = 28;
+        //response to index 2 option 1
+        Emrik[14].response = "The farmer says, \"Some people say she's witch. I just think she has a gift, but she cannot defend herself for long."
+        +" So you met her\"";
+        Emrik[14].option1 = "Yes, I do and if you come with me we can save her.";
+        Emrik[14].option2 = "No, but I think we can figure it out together.";
+        Emrik[14].indexForOption1 = -3;
+        Emrik[14].indexForOption2 = 28;
 
         
         GameInfo.DialogueTrees[3] = Emrik;
