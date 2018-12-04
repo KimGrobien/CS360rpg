@@ -515,7 +515,16 @@ public class Combat : MonoBehaviour
 
 	public void switchActiveToEgo(){
 		activePlayer = 2;
-        StartCoroutine(WaitToAddArmor());
+        if (GameInfo.getEquipped(2).name != null)
+        {
+            EgoArmor.color = Color.clear;
+            EgoArmor.sprite = GameInfo.getEquipped(2).ArmorFullImage;
+            StartCoroutine(WaitToAddArmor());
+        }
+        else
+        {
+            EgoArmor.color = Color.clear;
+        }
         playerAnim.SetInteger("id", -1);
             GameObject.Find("Player").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/Ego");
             currentNPCName.text = "Ego";
