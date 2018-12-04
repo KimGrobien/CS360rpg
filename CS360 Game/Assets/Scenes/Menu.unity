@@ -883,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.404, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5667557}
-  m_AnchoredPosition: {x: -71, y: 745.19995}
+  m_AnchoredPosition: {x: -71, y: 745.2}
   m_SizeDelta: {x: 96.600006, y: -29.59999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415075747
@@ -2667,7 +2667,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Trade
+  m_Text: Start Trade
 --- !u!222 &773158809
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3642,8 +3642,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -318, y: -651}
-  m_SizeDelta: {x: 162.4, y: 69.6}
+  m_AnchoredPosition: {x: -267.1, y: -649.99}
+  m_SizeDelta: {x: 264.1, y: 67.584}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974946833
 MonoBehaviour:
@@ -3912,6 +3912,7 @@ GameObject:
   - component: {fileID: 1071676769}
   - component: {fileID: 1071676771}
   - component: {fileID: 1071676770}
+  - component: {fileID: 1071676772}
   m_Layer: 5
   m_Name: EqImage
   m_TagString: Untagged
@@ -3971,6 +3972,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1071676768}
   m_CullTransparentMesh: 0
+--- !u!114 &1071676772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1071676768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1254083943, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 0
+  m_AspectRatio: 0.9122807
 --- !u!1 &1102018872
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,7 +5569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

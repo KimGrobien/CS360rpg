@@ -328,6 +328,14 @@ public class InventoryController : MonoBehaviour {
         equipmentImage.color = Color.clear;
 
         GameInfo.buyingMode = !GameInfo.buyingMode;
+        if(GameInfo.buyingMode)
+        {
+            enableBuying.GetComponentInChildren<Text>().text = "Exit Trade";
+        }
+        else
+        {
+            enableBuying.GetComponentInChildren<Text>().text = "Start Trade";
+        }
         for (int i = 0; i < 12; i++)
         {
             if (!(i == 3 || i == 7 || i == 11))

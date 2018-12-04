@@ -32,14 +32,17 @@ public class bountyAnim : MonoBehaviour {
         {
             if (idx == 14)
             {
+                GameInfo.updateNPCHealth(8, -GameInfo.getNPCMAXHealth(8));
                 GameInfo.setNotDead(8);
             }
             else if (idx == 12)
             {
+                GameInfo.updateNPCHealth(9, -GameInfo.getNPCMAXHealth(9));
                 GameInfo.setNotDead(9);
             }
             else
             {
+                GameInfo.updateNPCHealth(10, -GameInfo.getNPCMAXHealth(10));
                 GameInfo.setNotDead(10);
             }
             GameInfo.AddMoney(GameInfo.GetPrice(idx));

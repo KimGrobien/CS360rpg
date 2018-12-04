@@ -19,6 +19,9 @@ public class EngageNPC : MonoBehaviour {
 	int restarts;
 	PartySlot PartyMember;
     InventoryController control;
+    // Used to display details about NPC's
+    private TextMeshProUGUI NPCNameDisplay, NPCDetailsDisplay;
+    private Image NPCimageDetails;
 
     public void Start() {
 
@@ -157,7 +160,15 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = textToScreen;
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
-			txt1.text = "Add to Party";
+            //Kurt
+            NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+            NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
+            NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+            NPCDetailsDisplay.text = GameInfo.getPrimaryActionName(GameInfo.currentNPC) + "\n" + GameInfo.getSecondaryActionName(GameInfo.currentNPC) + "\nCurrent Health: " + GameInfo.getNPCHealth(GameInfo.currentNPC);
+            NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
+            NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
+            NPCimageDetails.color = Color.white;
+            txt1.text = "Add to Party";
 			txt2.text = "";
 					return;
 		}
@@ -274,7 +285,15 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = textToScreen;
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
-			txt1.text = "Add to Party";
+            //Kurt
+            NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+            NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
+            NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+            NPCDetailsDisplay.text = GameInfo.getPrimaryActionName(GameInfo.currentNPC) + "\n" + GameInfo.getSecondaryActionName(GameInfo.currentNPC) + "\nCurrent Health: " + GameInfo.getNPCHealth(GameInfo.currentNPC);
+            NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
+            NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
+            NPCimageDetails.color = Color.white;
+            txt1.text = "Add to Party";
 			txt2.text = "Fight";
 					return;
 		}
@@ -282,7 +301,15 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
-			txt1.text = "Add to Party";
+            //Kurt
+            NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+            NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
+            NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+            NPCDetailsDisplay.text = GameInfo.getPrimaryActionName(GameInfo.currentNPC) + "\n" + GameInfo.getSecondaryActionName(GameInfo.currentNPC) + "\nCurrent Health: " + GameInfo.getNPCHealth(GameInfo.currentNPC);
+            NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
+            NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
+            NPCimageDetails.color = Color.white;
+            txt1.text = "Add to Party";
 			txt2.text = "";
 					return;
 		}
@@ -340,8 +367,16 @@ public class EngageNPC : MonoBehaviour {
 	}
 
     public void beginTrade(){
-		//make all the left side of the menu interactable
-		Debug.Log("BEGINNING TRADE");
+        //make all the left side of the menu interactable
+        if (GameInfo.buyingMode)
+        {
+            trade.GetComponentInChildren<Text>().text = "Exit Trade";
+        }
+        else
+        {
+            trade.GetComponentInChildren<Text>().text = "Start Trade";
+        }
+        Debug.Log("BEGINNING TRADE");
         //InventoryController.toggleBuyingMode();
 	}
 
@@ -443,15 +478,23 @@ IEnumerator type()
 	public void AddToSlot1(){
 	
 		GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite =
-		 Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
+		Resources.Load<Sprite>("DialogueImages/"+GameInfo.getName(GameInfo.currentNPC));
         PartyMember.isAssigned=true;
 		GameInfo.party[0] = PartyMember;
 		GameInfo.party[0].slotID = GameInfo.currentNPC;
         GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
-        //Added to gift item - Kurt
+        //Hide NPC Details
+        NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+        NPCNameDisplay.text = "";
+        NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+        NPCDetailsDisplay.text = "";
+        NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
+        NPCimageDetails.color = Color.clear;
+        //Added to gift item
         int giftID = GameInfo.party[0].npc.giftItemID;
         if(giftID > 0)
         {
+
             GameInfo.setEquipmentOwned(giftID);
             GameInfo.setEquipmentColor(giftID, Color.white);
             Button Gift = GameObject.Find("slot" + giftID).GetComponent<Button>();
@@ -468,8 +511,14 @@ IEnumerator type()
 		GameInfo.party[1] = PartyMember;
 		GameInfo.party[1].slotID = GameInfo.currentNPC;
         GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
-		
-        //Added to gift item - Kurt
+        //Hide NPC Details
+        NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
+        NPCNameDisplay.text = "";
+        NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
+        NPCDetailsDisplay.text = "";
+        NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
+        NPCimageDetails.color = Color.clear;
+        //Added to gift item
         int giftID = GameInfo.party[1].npc.giftItemID;
         if (giftID > 0)
         {
