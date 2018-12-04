@@ -507,9 +507,16 @@ template
         Emrik[14].response = "The farmer says, \"Some people say she's witch. I just think she has a gift, but she cannot defend herself for long."
         +" So you met her is she okay?\"";
         Emrik[14].option1 = "Yes.";
-        Emrik[14].option2 = "No.";
+        Emrik[14].option2 = "No, she's dead.";
         Emrik[14].indexForOption1 = -3;
-        Emrik[14].indexForOption2 = 30;
+        Emrik[14].indexForOption2 = 0;
+        //response to index 6 option 2
+        Emrik[28].response = "The farmer says, \"Some people say she's witch. I just think she has a gift, but she cannot defend herself for long."
+        +" So you met her is she okay?\"";
+        Emrik[28].option1 = "Yes.";
+        Emrik[28].option2 = "No, she's dead.";
+        Emrik[28].indexForOption1 = -3;
+        Emrik[28].indexForOption2 = 0;
 
         
         GameInfo.DialogueTrees[3] = Emrik;
