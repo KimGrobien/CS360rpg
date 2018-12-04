@@ -323,8 +323,14 @@ public class InventoryController : MonoBehaviour {
         equipmentName.text = "";
         equipmentDetails.text = "";
         equipmentImage.color = Color.clear;
+        equipmentImage.sprite = null;
 
         GameInfo.buyingMode = !GameInfo.buyingMode;
+        if(!GameInfo.buyingMode)
+        {
+            equipmentImage.sprite = null;
+            equipmentImage.enabled = false;
+        }
         for (int i = 0; i < 12; i++)
         {
             if (!(i == 3 || i == 7 || i == 11))

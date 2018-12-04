@@ -168,8 +168,9 @@ public class EngageNPC : MonoBehaviour {
             NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
             NPCDetailsDisplay.text = GameInfo.getPrimaryActionName(GameInfo.currentNPC) + "\n" + GameInfo.getSecondaryActionName(GameInfo.currentNPC) + "\nCurrent Health: " + GameInfo.getNPCHealth(GameInfo.currentNPC);
             NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
-            NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
+            NPCimageDetails.overrideSprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
             NPCimageDetails.color = Color.white;
+            NPCimageDetails.enabled = true;
             txt1.text = "Add to Party";
 			txt2.text = "";
 					return;
@@ -295,8 +296,9 @@ public class EngageNPC : MonoBehaviour {
             NPCDetailsDisplay = GameObject.Find("EqInfo").GetComponent<TextMeshProUGUI>();
             NPCDetailsDisplay.text = GameInfo.getPrimaryActionName(GameInfo.currentNPC) + "\n" + GameInfo.getSecondaryActionName(GameInfo.currentNPC) + "\nCurrent Health: " + GameInfo.getNPCHealth(GameInfo.currentNPC);
             NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
-            NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
+            NPCimageDetails.overrideSprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
             NPCimageDetails.color = Color.white;
+            NPCimageDetails.enabled = true;
             txt1.text = "Add to Party";
 			txt2.text = "Fight";
 					return;
@@ -314,6 +316,7 @@ public class EngageNPC : MonoBehaviour {
             NPCimageDetails = GameObject.Find("EqImage").GetComponent<Image>();
             NPCimageDetails.sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.getName(GameInfo.currentNPC));
             NPCimageDetails.color = Color.white;
+            NPCimageDetails.enabled = true;
             txt1.text = "Add to Party";
 			txt2.text = "";
 					return;
