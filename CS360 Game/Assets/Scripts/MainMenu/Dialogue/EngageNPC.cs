@@ -233,11 +233,9 @@ public class EngageNPC : MonoBehaviour {
 			index--;
 
 		}
-		if(((index==3 || index == 12)&& GameInfo.currentNPC==0)||((index==3||index==5)&&GameInfo.currentNPC==2)){
+		if(((index==3 || index == 12)&& GameInfo.currentNPC==0)||((index==1||index==5)&&GameInfo.currentNPC==2)){
 			//heal Ego
 			GameInfo.updateCurrentHealth(-50);
-			Debug.Log("Heal Ego");
-
 		}
 		if((index==-2)){
 			//Load into the overworld
@@ -276,7 +274,6 @@ public class EngageNPC : MonoBehaviour {
 			txt1.text = temp1;
 			txt2.text = temp2;
 			//this will be the fight option and will change scenes and pass information about who the enemy is
-			Debug.Log("Fight Begins");
 			playMusic.StopAllMusic(); //Accounts for whatever scene you could be in
 			playMusic.PlayMusicBySceneName("Combat");
 			SceneManager.LoadScene("Combat");
@@ -364,7 +361,6 @@ public class EngageNPC : MonoBehaviour {
 		if((index==3 || index == 12)&& GameInfo.currentNPC==0){
 			//heal Ego
 			GameInfo.updateCurrentHealth(50);
-			Debug.Log("Heal Ego");
 
 		}
 		if((index==-2)){
@@ -395,7 +391,6 @@ public class EngageNPC : MonoBehaviour {
         {
             trade.GetComponentInChildren<Text>().text = "Start Trade";
         }
-        Debug.Log("BEGINNING TRADE");
         //InventoryController.toggleBuyingMode();
 	}
 
@@ -437,7 +432,7 @@ IEnumerator type()
 		 	txt1.text = temp1;
 		 	txt2.text = temp2;
 		 }
-		 if(GameInfo.recruitable[GameInfo.currentNPC]){
+		 if(GameInfo.recruitable[GameInfo.currentNPC]&&!checkIfInParty()){
 			 txt1.text = "Will you come with me?";
 			 txt2.text = "Leave";
 		 }

@@ -482,7 +482,6 @@ public class GameInfo : MonoBehaviour
 
     public static int getNPCSecondaryAttack(int idx)
     {
-        Debug.Log(idx);
         return NPCList[idx].secondaryStat;
     }
 

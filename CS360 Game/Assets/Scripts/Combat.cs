@@ -35,7 +35,6 @@ public class Combat : MonoBehaviour
     /// </summary>
     void Start()
 	{
-        Debug.Log("Start");
 		//Find Player Animator
 		playerAnim = GameObject.Find("Player").GetComponent<Animator>();
         // Find Main gameobjects
@@ -133,8 +132,6 @@ public class Combat : MonoBehaviour
     /// Called on primary action button click, deals damage or heals depending on party member
     /// </summary>
 	void PrimaryAction(){
-        Debug.Log("Primary1");
-        Debug.Log("Primary2");
         ToggleButtons(false);
         int dmg;
 
@@ -198,7 +195,6 @@ public class Combat : MonoBehaviour
         if (GameInfo.getNPCHealth(enemyID) <= 0)
         {
             StartCoroutine(AttackAnimPlayer());
-            Debug.Log(enemyID);
             GameInfo.setDead(enemyID);
             // Killed Recruitable
             if (enemyID < 4)
@@ -597,7 +593,6 @@ public class Combat : MonoBehaviour
     /// if Ego is dead and none of the party slotID's equal 0 (cynthia) --- you lose
     /// </summary>
 	void EnemyAttaks(){
-        Debug.Log("EnemyAttacks");
         int dmg;
     
         System.Random rnd = new System.Random();

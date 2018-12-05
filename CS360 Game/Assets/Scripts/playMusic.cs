@@ -88,7 +88,6 @@ public class playMusic : MonoBehaviour {
 	}
 
 	public static void PlayMusicBySceneName(string name){
-		Debug.Log(name);
 		switch (name){
 			case "Start": case "Town": case "Castle": case "Bounty":
 				overworld.Play();
