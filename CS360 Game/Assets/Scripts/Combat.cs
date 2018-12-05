@@ -13,15 +13,16 @@ using System;
 
 public class Combat : MonoBehaviour
 {
+    // Defining Class Variables
 	Animator playerAnim;
 	Canvas buttons, statusCanvas;
 	Button primaryChoice, secondaryChoice, partyMemberChoice, run;
 	TextMeshProUGUI status, currentNPCName, currentNPCHealth, enemyName, enemyHealth;
-	private string hpTextPlayer;
-	private string hpTextEnemy;
-    private int activePlayer = 2;
-    private string endText;
-    Image EgoArmor, EgoItemUsed;
+	private string hpTextPlayer;    // Compose the string to display current party member's health
+	private string hpTextEnemy;     // Compose the string to display current enemy's member's health
+    private int activePlayer = 2;   // Holds data to keep track of which party member is fighting, Ego = 2, party member 1 = 0, and party member 2 = 1
+    private string endText;         // Holds string data for ending scene text
+    Image EgoArmor, EgoItemUsed;    // Display the armor and item that Ego has equipped on his body
 
     //Who we're fighting
     private int enemyID = GameInfo.currentNPC;
@@ -29,8 +30,9 @@ public class Combat : MonoBehaviour
     //Id's of party members
     int partyMember1 = GameInfo.party[0].slotID;
     int partyMember2 = GameInfo.party[1].slotID;
-
-    // Use this for initialization
+    /// <summary>
+    /// Runs at start for initialization of all the buttons and images
+    /// </summary>
     void Start()
 	{
         Debug.Log("Start");
@@ -103,14 +105,20 @@ public class Combat : MonoBehaviour
 		GameObject.Find("Background").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Combat/ComScenes/" + GameInfo.getName(GameInfo.currentNPC));
 	}
 
-    // Call when enemy takes damage
+    /// <summary>
+    /// Call when enemy takes damage to display knew health
+    /// </summary>
+    /// <param name="newHealth">the new health of enemy after damage</param>
 	void UpdateEnemyHealthToScreen(int newHealth){	
 		hpTextEnemy = "HP:" +newHealth+"/" + GameInfo.getEnemy(enemyID).MAXhealth;
 		enemyHealth.text = hpTextEnemy;
 	}
 
-    // Call when party member takes damage or switching party members
-	void UpdateCurrentNPCHealthToScreen(int newHealth){
+    /// <summary>
+    /// Call when party member takes damage or switching party members, to display new health ratio
+    /// </summary>
+    /// <param name="newHealth">new health of party member after damage or heal</param>
+    void UpdateCurrentNPCHealthToScreen(int newHealth){
 		if(activePlayer<2){	
 		hpTextPlayer = "HP:" +newHealth+"/" + GameInfo.getParty(activePlayer).npc.MAXhealth;
 		currentNPCHealth.text = hpTextPlayer;
@@ -121,6 +129,9 @@ public class Combat : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Called on primary action button click, deals damage or heals depending on party member
+    /// </summary>
 	void PrimaryAction(){
         Debug.Log("Primary1");
         Debug.Log("Primary2");
@@ -281,6 +292,9 @@ public class Combat : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// This is called when the secondary action is pressed.
+    /// </summary>
 	void SecondaryAction(){
         ToggleButtons(false);
         int dmg;
@@ -450,6 +464,9 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is called when the swtich button is pressed. determine if anyone in the party is alive or even been recruited
+    /// </summary>
 	void SwitchPartyMember(){
 		//Debug.Log("SWITCH");
 		playerAnim.Play("IDle", -1, 0f);//Set anim back to default
@@ -513,6 +530,9 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Function called when Ego is to be switched to
+    /// </summary>
 	public void switchActiveToEgo(){
 		activePlayer = 2;
         if (GameInfo.getEquipped(2).name != null)
@@ -549,6 +569,9 @@ public class Combat : MonoBehaviour
             }
 	}
 
+    /// <summary>
+    /// Load previous scene you fraidy cat
+    /// /// </summary>
 	void RunFromCombat(){
         playMusic.StopMusic("battle");
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(GameInfo.prevScene));
@@ -556,6 +579,11 @@ public class Combat : MonoBehaviour
         SceneManager.LoadScene(GameInfo.prevScene);
 	}
 
+
+    /// <summary>
+    /// toggle all the combat buttons (disable and able the buttons when appropriate
+    /// </summary>
+    /// <param name="val"> This is either true or false </param>
 	void ToggleButtons(bool val){
         primaryChoice.interactable = val;
 		secondaryChoice.interactable = val;
@@ -655,11 +683,19 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// After you attack wait a few seconds and let the enemy attack
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator WaitAfterAttack(){
 		yield return new WaitForSeconds(6);
         EnemyAttaks();
     }
 
+    /// <summary>
+    /// If your party member dies wait and switch party members
+    /// </summary>
+    /// <returns></returns>
     IEnumerator AfterPartyMemberDies()
     {
         yield return new WaitForSeconds(3);
@@ -667,6 +703,10 @@ public class Combat : MonoBehaviour
         ToggleButtons(true);
     }
 
+    /// <summary>
+    /// You killed the enemy, he disappears and exits the last scene
+    /// </summary>
+    /// <returns></returns>
     IEnumerator KilledEnemy()
     {
         SpriteRenderer sprender;
@@ -683,6 +723,10 @@ public class Combat : MonoBehaviour
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 
+    /// <summary>
+    /// The game is over you lost or won
+    /// </summary>
+    /// <returns></returns>
     IEnumerator GameEnds(){
         ToggleButtons(false);
         status.text = endText;
@@ -697,6 +741,10 @@ public class Combat : MonoBehaviour
 		}
     }
 
+    /// <summary>
+    /// Enemy is hit. he flashes.
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator AttackAnimPlayer ()
 	{
 		SpriteRenderer sprender;
@@ -718,6 +766,10 @@ public class Combat : MonoBehaviour
         EgoItemUsed.color = Color.clear;
     }
 
+    /// <summary>
+    /// flash party member
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator AttackAnimEnemy ()
 	{
 		SpriteRenderer sprender;
@@ -745,6 +797,10 @@ public class Combat : MonoBehaviour
 
 	}
 
+    /// <summary>
+    /// delay adding armor
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WaitToAddArmor()
     {
         yield return new WaitForSeconds(.65f);
