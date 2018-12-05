@@ -497,19 +497,25 @@ template
         Emrik[12].option2 = "Leave";
         Emrik[12].indexForOption1 = -1;
         Emrik[12].indexForOption2 = -2;
-        //response to index 2 option 1
+        //response to index 6 option 1
         Emrik[13].response = "The farmer says, \"If I knew what the threat was I would get rid of it right now. Do you know what it is or where she's gone?\"";
         Emrik[13].option1 = "Yes, I do and if you come with me we can save her.";
         Emrik[13].option2 = "No, but I think we can figure it out together.";
         Emrik[13].indexForOption1 = -3;
         Emrik[13].indexForOption2 = 28;
-        //response to index 2 option 1
+        //response to index 6 option 2
         Emrik[14].response = "The farmer says, \"Some people say she's witch. I just think she has a gift, but she cannot defend herself for long."
-        +" So you met her\"";
-        Emrik[14].option1 = "Yes, I do and if you come with me we can save her.";
-        Emrik[14].option2 = "No, but I think we can figure it out together.";
+        +" So you met her is she okay?\"";
+        Emrik[14].option1 = "Yes.";
+        Emrik[14].option2 = "No, she's dead.";
         Emrik[14].indexForOption1 = -3;
-        Emrik[14].indexForOption2 = 28;
+        Emrik[14].indexForOption2 = 0;
+        //response to index 6 option 2
+        Emrik[28].response = "The farmer says, \"If you don't have any information then I'll just stay here and wait.\"";
+        Emrik[28].option1 = "Leave";
+        Emrik[28].option2 = "Restart?";
+        Emrik[28].indexForOption1 = -2;
+        Emrik[28].indexForOption2 = -1;
 
         
         GameInfo.DialogueTrees[3] = Emrik;

@@ -11,7 +11,7 @@ public class enterNewArea : MonoBehaviour {
             {
                 case "enter_start":
                     if(SceneManager.GetActiveScene().name == "Town"){//Different entry point if coming from town
-                        GameInfo.prevPos = new Vector3(-1.55f, 6.76f, 0);
+                        GameInfo.prevPos = new Vector3(-1.2f, 6.5f, 0);
                     }
                     SceneManager.LoadScene(1);
                     break;
@@ -21,20 +21,20 @@ public class enterNewArea : MonoBehaviour {
                         case "Castle":
                             playMusic.StopMusic("cave");
                              playMusic.PlayMusic("overworld");
-                            GameInfo.prevPos = new Vector3(-8.07f, -4.72f, 0);
+                            GameInfo.prevPos = new Vector3(-7.75f, -4.95f, 0);
                             break;
                         case "Bounty":
-                           GameInfo.prevPos = new Vector3(.36f, 6.84f, 0);
+                           GameInfo.prevPos = new Vector3(.55f, 6.5f, 0);
                             break;
                         case "Shop":
                             playMusic.StopMusic("shop");
-                             playMusic.PlayMusic("overworld");
-                            GameInfo.prevPos = new Vector3(-5.68f, -4.49f, 0);
+                            playMusic.PlayMusic("overworld");
+                            GameInfo.prevPos = new Vector3(-5.55f, -4.75f, 0);
                             break;
                         case "Hospital":
                             playMusic.StopMusic("doctor");
                              playMusic.PlayMusic("overworld");
-                            GameInfo.prevPos = new Vector3(-4.43f, -.79f, 0);
+                            GameInfo.prevPos = new Vector3(-4.20f, -.95f, 0);
                             break;
                     }
                     SceneManager.LoadScene(2);
