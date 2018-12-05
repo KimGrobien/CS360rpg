@@ -292,6 +292,9 @@ public class Combat : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// This is called when the secondary action is pressed.
+    /// </summary>
 	void SecondaryAction(){
         ToggleButtons(false);
         int dmg;
@@ -461,6 +464,9 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is called when the swtich button is pressed. determine if anyone in the party is alive or even been recruited
+    /// </summary>
 	void SwitchPartyMember(){
 		//Debug.Log("SWITCH");
 		playerAnim.Play("IDle", -1, 0f);//Set anim back to default
@@ -524,6 +530,9 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Function called when Ego is to be switched to
+    /// </summary>
 	public void switchActiveToEgo(){
 		activePlayer = 2;
         if (GameInfo.getEquipped(2).name != null)
@@ -560,6 +569,9 @@ public class Combat : MonoBehaviour
             }
 	}
 
+    /// <summary>
+    /// Load previous scene you fraidy cat
+    /// /// </summary>
 	void RunFromCombat(){
         playMusic.StopMusic("battle");
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(GameInfo.prevScene));
@@ -567,6 +579,11 @@ public class Combat : MonoBehaviour
         SceneManager.LoadScene(GameInfo.prevScene);
 	}
 
+
+    /// <summary>
+    /// toggle all the combat buttons (disable and able the buttons when appropriate
+    /// </summary>
+    /// <param name="val"> This is either true or false </param>
 	void ToggleButtons(bool val){
         primaryChoice.interactable = val;
 		secondaryChoice.interactable = val;
@@ -666,11 +683,19 @@ public class Combat : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// After you attack wait a few seconds and let the enemy attack
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator WaitAfterAttack(){
 		yield return new WaitForSeconds(6);
         EnemyAttaks();
     }
 
+    /// <summary>
+    /// If your party member dies wait and switch party members
+    /// </summary>
+    /// <returns></returns>
     IEnumerator AfterPartyMemberDies()
     {
         yield return new WaitForSeconds(3);
@@ -678,6 +703,10 @@ public class Combat : MonoBehaviour
         ToggleButtons(true);
     }
 
+    /// <summary>
+    /// You killed the enemy, he disappears and exits the last scene
+    /// </summary>
+    /// <returns></returns>
     IEnumerator KilledEnemy()
     {
         SpriteRenderer sprender;
@@ -694,6 +723,10 @@ public class Combat : MonoBehaviour
         SceneManager.LoadScene(GameInfo.prevScene);
     }
 
+    /// <summary>
+    /// The game is over you lost or won
+    /// </summary>
+    /// <returns></returns>
     IEnumerator GameEnds(){
         ToggleButtons(false);
         status.text = endText;
@@ -708,6 +741,10 @@ public class Combat : MonoBehaviour
 		}
     }
 
+    /// <summary>
+    /// Enemy is hit. he flashes.
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator AttackAnimPlayer ()
 	{
 		SpriteRenderer sprender;
@@ -729,6 +766,10 @@ public class Combat : MonoBehaviour
         EgoItemUsed.color = Color.clear;
     }
 
+    /// <summary>
+    /// flash party member
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator AttackAnimEnemy ()
 	{
 		SpriteRenderer sprender;
@@ -756,6 +797,10 @@ public class Combat : MonoBehaviour
 
 	}
 
+    /// <summary>
+    /// delay adding armor
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WaitToAddArmor()
     {
         yield return new WaitForSeconds(.65f);
