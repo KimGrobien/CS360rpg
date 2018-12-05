@@ -394,7 +394,7 @@ template
         Anker[36].indexForOption2 = 0;
         //response to index 32 option 1
         Anker[63].response = "He says, \"I'll help you, but only to protect my daughter.\"";
-        Anker[63].option1 = "Add to Party";
+        Anker[63].option1 = "Thank you, we will find her!";
         Anker[63].option2 = "Leave";
         Anker[63].indexForOption1 = -3;
         Anker[63].indexForOption2 = 0;

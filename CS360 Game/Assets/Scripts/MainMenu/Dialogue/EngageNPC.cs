@@ -121,7 +121,6 @@ public class EngageNPC : MonoBehaviour {
 			
 			textToScreen = LoadDialogue.setNPCResponseIfRecruitable();
 			choice1.onClick.RemoveAllListeners();
-			choice1.onClick.AddListener(addToParty);
 			txt1.text="Add to Party";
 		}
 		//check if npc is on the team
@@ -170,6 +169,8 @@ public class EngageNPC : MonoBehaviour {
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
 			choice2.interactable=false;
+			
+			choice1.onClick.AddListener(addToParty);
             //Kurt
             NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
             NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
@@ -299,6 +300,7 @@ public class EngageNPC : MonoBehaviour {
 			npcResponse.text = "I can go with you.";
 			indexForNextOption1=-4;
 			indexForNextOption2=0;
+			choice1.onClick.AddListener(addToParty);
             //Kurt
             NPCNameDisplay = GameObject.Find("EqName").GetComponent<TextMeshProUGUI>();
             NPCNameDisplay.text = GameInfo.getName(GameInfo.currentNPC);
@@ -435,6 +437,11 @@ IEnumerator type()
 		 	txt1.text = temp1;
 		 	txt2.text = temp2;
 		 }
+		 if(GameInfo.recruitable[GameInfo.currentNPC]){
+			 txt1.text = "Will you come with me?";
+			 txt2.text = "Leave";
+		 }
+		 
 		 isTyping=false;
 	}
 
