@@ -117,10 +117,17 @@ public class EngageNPC : MonoBehaviour {
 		if(GameInfo.recruitable[GameInfo.currentNPC]){
 			textToScreen = LoadDialogue.setNPCResponseIfRecruitable();
 		}
+		if((GameInfo.recruitable[GameInfo.currentNPC])&&(GameInfo.encountered[GameInfo.currentNPC] > 3)){
+			
+			textToScreen = LoadDialogue.setNPCResponseIfRecruitable();
+			choice1.onClick.RemoveAllListeners();
+			choice1.onClick.AddListener(addToParty);
+			txt1.text="Add to Party";
+		}
 		//check if npc is on the team
 		if((GameInfo.party[0].npc.name==GameInfo.getName(GameInfo.currentNPC))||(GameInfo.party[1].npc.name==GameInfo.getName(GameInfo.currentNPC))){
 			textToScreen = LoadDialogue.setNPCResponseIfOnTeam();
-			choice2.interactable=false;
+			GameObject.Find("Choice2").SetActive(false);
 		}
 
 		StartCoroutine(type());
@@ -479,7 +486,7 @@ IEnumerator type()
 		choice2.onClick.RemoveAllListeners();
         choice1.onClick.AddListener(cancelMenu);
         choice2.onClick.AddListener(doNothing);
-		npcResponse.text = GameInfo.getName(GameInfo.currentNPC)+" is already a part of the team.";
+		npcResponse.text = LoadDialogue.setNPCResponseIfOnTeam();//GameInfo.getName(GameInfo.currentNPC)+" is already a part of the team.";
 		txt1.text = "Leave";
 		txt2.text = "";
 		choice2.interactable=true;
