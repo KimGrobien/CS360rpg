@@ -7,12 +7,8 @@ using UnityEngine.UI;
 public class InteractImageAnimation : MonoBehaviour {
 	GameObject canvas,canvas2,canvas3;
 	public bool one, two, three, four, five, isBounty;
-	
 	// Use this for initialization
-	void Start () {
 		
-	}
-	
 	void OnTriggerEnter2D (Collider2D other) {
 		if(one){
 		GameObject.Find("box").GetComponent<Image>().sprite = Resources.Load<Sprite>("InteractImage");

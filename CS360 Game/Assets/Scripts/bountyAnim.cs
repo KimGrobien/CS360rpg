@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class bountyAnim : MonoBehaviour {
 
-	private SpriteRenderer showMoney;
+	private SpriteRenderer showMoney, interactAnim;
 	public int idx; //Idx of bounty
 
 	void Start() {
 		switch (idx) {
 			case 13:
 				showMoney = GameObject.Find("show_money_0").GetComponent<SpriteRenderer>();
+                interactAnim = GameObject.Find("show_dots_0").GetComponent<SpriteRenderer>();
 				break;
 			case 12:
 				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
+                interactAnim = GameObject.Find("show_dots_1").GetComponent<SpriteRenderer>();
 				break;
 			case 14:
 				showMoney = GameObject.Find("show_money_2").GetComponent<SpriteRenderer>();
+                interactAnim = GameObject.Find("show_dots_2").GetComponent<SpriteRenderer>();
 				break;
 		}
 	}
 	void OnTriggerEnter2D (Collider2D other) {
 	    if(GameInfo.getEquipment(idx).owned){
 			showMoney.enabled = true;
+            interactAnim.enabled=true;
 		}
 	}
 
@@ -48,10 +52,13 @@ public class bountyAnim : MonoBehaviour {
             GameInfo.AddMoney(GameInfo.GetPrice(idx));
             GameInfo.setBountyNotOwned(idx);
             showMoney.enabled = false;
+            interactAnim.enabled=false;
         }
     }
 
     void OnTriggerExit2D (Collider2D other){
 		showMoney.enabled = false;
+        
+            interactAnim.enabled=false;
 	}
 }
