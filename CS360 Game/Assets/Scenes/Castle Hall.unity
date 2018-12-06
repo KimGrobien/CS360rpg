@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 77994694}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1623,8 +1623,8 @@ GameObject:
   - component: {fileID: 936329670}
   - component: {fileID: 936329669}
   - component: {fileID: 936329668}
-  - component: {fileID: 936329667}
   - component: {fileID: 936329672}
+  - component: {fileID: 936329667}
   m_Layer: 0
   m_Name: Modir
   m_TagString: Untagged
@@ -1640,12 +1640,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 936329666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fec1f3c59adb6934e8c8a4e57634cf0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5524d18da20edc5428c326b39bad052b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 1
-  popupName: 
-  id: 5
+  NPCID: 5
+  automaticTrigger: 0
 --- !u!61 &936329668
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1761,7 +1760,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfNPCObject: Modir
   nameOfDotsImage: 
+  nameWall: 
   npcID: 5
+  automatic: 1
 --- !u!1 &1119727507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,8 +1875,8 @@ GameObject:
   - component: {fileID: 1226496428}
   - component: {fileID: 1226496427}
   - component: {fileID: 1226496426}
-  - component: {fileID: 1226496425}
   - component: {fileID: 1226496430}
+  - component: {fileID: 1226496425}
   m_Layer: 0
   m_Name: Farenvir
   m_TagString: Untagged
@@ -1891,12 +1892,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1226496424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fec1f3c59adb6934e8c8a4e57634cf0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5524d18da20edc5428c326b39bad052b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 1
-  popupName: 
-  id: 6
+  NPCID: 6
+  automaticTrigger: 1
 --- !u!61 &1226496426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1906,10 +1906,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.42926002, y: 0.5155213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1920,7 +1920,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2.873383, y: 1.6812544}
   m_EdgeRadius: 0
 --- !u!95 &1226496427
 Animator:
@@ -2012,7 +2012,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfNPCObject: Farenvir
   nameOfDotsImage: 
+  nameWall: 
   npcID: 6
+  automatic: 1
 --- !u!1 &1229070044
 GameObject:
   m_ObjectHideFlags: 0

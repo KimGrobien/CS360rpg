@@ -914,6 +914,60 @@ RectTransform:
   m_AnchoredPosition: {x: 832, y: 704}
   m_SizeDelta: {x: 1664, y: 1408}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &425684279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 425684280}
+  - component: {fileID: 425684281}
+  m_Layer: 0
+  m_Name: w_shopkeeper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &425684280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 425684279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1822919939}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &425684281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 425684279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0075089633, y: 0.007508859}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.38426906, y: 0.6245544}
+  m_EdgeRadius: 0
 --- !u!1 &527928234
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,8 +2247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1674327620}
   - component: {fileID: 1674327619}
-  - component: {fileID: 1674327618}
-  - component: {fileID: 1674327617}
   m_Layer: 0
   m_Name: dots
   m_TagString: Untagged
@@ -2202,43 +2254,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1674327617
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674327616}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.6225418, y: -3.972762}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 3.2, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.78245, y: 10.038103}
-  m_EdgeRadius: 0
---- !u!114 &1674327618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674327616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dotsObjName: dots
 --- !u!212 &1674327619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2291,12 +2306,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1674327616}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 1.58, z: 45.41992}
-  m_LocalScale: {x: 0.12489487, y: 0.12489487, z: 0.12489487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.42962968, z: 45.41992}
+  m_LocalScale: {x: 0.09251472, y: 0.09251472, z: 0.12489487}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1822919939}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769363111
 GameObject:
@@ -2313,7 +2328,7 @@ GameObject:
   - component: {fileID: 1769363112}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2466,6 +2481,8 @@ GameObject:
   - component: {fileID: 1822919936}
   - component: {fileID: 1822919935}
   - component: {fileID: 1822919940}
+  - component: {fileID: 1822919942}
+  - component: {fileID: 1822919941}
   m_Layer: 0
   m_Name: Shopkeeper
   m_TagString: Untagged
@@ -2496,10 +2513,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.018772244, y: -0.0112634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2510,7 +2527,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.6775445, y: 0.9779013}
   m_EdgeRadius: 0
 --- !u!95 &1822919937
 Animator:
@@ -2585,7 +2602,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.19, y: 1, z: 0}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1674327620}
+  - {fileID: 425684280}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2601,8 +2620,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameOfNPCObject: Shopkeeper
-  nameOfDotsImage: InteractImage
+  nameOfDotsImage: dots
+  nameWall: w_shopkeeper
   npcID: 1
+  automatic: 0
+--- !u!114 &1822919941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822919934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5524d18da20edc5428c326b39bad052b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCID: 1
+  automaticTrigger: 0
+--- !u!114 &1822919942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822919934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotsObjName: dots
 --- !u!1 &1866577670
 GameObject:
   m_ObjectHideFlags: 0

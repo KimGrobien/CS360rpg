@@ -6,6 +6,7 @@ public class bountyAnim : MonoBehaviour {
 
 	private SpriteRenderer showMoney, interactAnim;
 	public int idx; //Idx of bounty
+    private bool inTrigger;
 
 	void Start() {
 		switch (idx) {
@@ -27,10 +28,11 @@ public class bountyAnim : MonoBehaviour {
 	    if(GameInfo.getEquipment(idx).owned){
 			showMoney.enabled = true;
             interactAnim.enabled=true;
+            inTrigger=true;
 		}
 	}
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
         if (GameInfo.getEquipment(idx).owned && Input.GetKeyDown(KeyCode.S))
         {
@@ -58,7 +60,7 @@ public class bountyAnim : MonoBehaviour {
 
     void OnTriggerExit2D (Collider2D other){
 		showMoney.enabled = false;
-        
+        inTrigger=false;
             interactAnim.enabled=false;
 	}
 }
