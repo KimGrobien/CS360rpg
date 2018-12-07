@@ -258,6 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfcb89151844d74e8cfc43cd4b21971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfShowMoney: show_money_0
+  nameOfDots: show_dots_0
   idx: 13
 --- !u!61 &32044955
 BoxCollider2D:
@@ -4554,6 +4556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfcb89151844d74e8cfc43cd4b21971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfShowMoney: show_money_1
+  nameOfDots: show_dots_1
   idx: 12
 --- !u!61 &1175302187
 BoxCollider2D:
@@ -4739,6 +4743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfcb89151844d74e8cfc43cd4b21971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfShowMoney: show_money_2
+  nameOfDots: show_dots_2
   idx: 14
 --- !u!61 &1197108978
 BoxCollider2D:

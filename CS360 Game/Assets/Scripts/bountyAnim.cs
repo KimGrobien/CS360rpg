@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class bountyAnim : MonoBehaviour {
 
-	private SpriteRenderer showMoney, interactAnim;
+	private SpriteRenderer showMoney,interactAnim;
+    public string nameOfShowMoney,nameOfDots;
 	public int idx; //Idx of bounty
     private bool inTrigger;
 
 	void Start() {
-		switch (idx) {
-			case 13:
-				showMoney = GameObject.Find("show_money_0").GetComponent<SpriteRenderer>();
-                interactAnim = GameObject.Find("show_dots_0").GetComponent<SpriteRenderer>();
-				break;
-			case 12:
-				showMoney = GameObject.Find("show_money_1").GetComponent<SpriteRenderer>();
-                interactAnim = GameObject.Find("show_dots_1").GetComponent<SpriteRenderer>();
-				break;
-			case 14:
-				showMoney = GameObject.Find("show_money_2").GetComponent<SpriteRenderer>();
-                interactAnim = GameObject.Find("show_dots_2").GetComponent<SpriteRenderer>();
-				break;
-		}
+				showMoney = GameObject.Find(nameOfShowMoney).GetComponent<SpriteRenderer>();
+                interactAnim = GameObject.Find(nameOfDots).GetComponent<SpriteRenderer>();
 	}
 	void OnTriggerEnter2D (Collider2D other) {
 	    if(GameInfo.getEquipment(idx).owned){
@@ -32,8 +21,8 @@ public class bountyAnim : MonoBehaviour {
 		}
 	}
 
-    private void Update()
-    {
+    private void Update(){
+    
         if (GameInfo.getEquipment(idx).owned && Input.GetKeyDown(KeyCode.S))
         {
             if (idx == 14)
@@ -61,6 +50,6 @@ public class bountyAnim : MonoBehaviour {
     void OnTriggerExit2D (Collider2D other){
 		showMoney.enabled = false;
         inTrigger=false;
-            interactAnim.enabled=false;
+        interactAnim.enabled=false;
 	}
 }
