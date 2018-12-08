@@ -7,44 +7,66 @@ using UnityEngine.UI;
 
 public class EngageNPC : MonoBehaviour {
 
+	//GameObject references in Unity editor
 	TextMeshProUGUI npcName,npcResponse;
 	Button choice1, choice2, cancel;
 	GameObject trade;
-	Text txt1, txt2;
-	Node[] currentDialogue;
-	int indexForNextOption1, indexForNextOption2;
+	Text txt1, txt2;//the text objects associated with the choice1 and choice2 buttons
 	Sprite npcImage;
-	string textToScreen,temp1, temp2;
-	bool isTyping;
-	int restarts;
-	PartySlot PartyMember;
-    InventoryController control;
-    // Used to display details about NPC's
+	
+    // Used to display details about NPC's when recruitting
     private TextMeshProUGUI NPCNameDisplay, NPCDetailsDisplay;
     private Image NPCimageDetails;
 
+	//the currentDialogue tree that will be traversed
+	Node[] currentDialogue;
+	//the indexes for the options that come after each response
+	int indexForNextOption1, indexForNextOption2;
+	
+	//temporary holders for the typing effect
+	string textToScreen,temp1, temp2;
+	
+	//used for knowing when the typing affect is happening
+	bool isTyping;
+
+	//data to keep track of the number of restarts in a interaction
+	int restarts;
+
+	//if the NPC gets recruited this is the object that gets passed to the GameInfo.party
+	PartySlot PartyMember;
+	
+	/// <summary>
+    /// The start function is called every time the script is loaded into a scene
+	/// In this case it gets all the game objects from the scenes and sets them based on
+	/// Which NPC you're talking to, if you've encountered them a lot,
+	/// if they're in the party, if they're recruitable, or if we're opening the menu
+	/// while not interacting with an NPC
+    /// </summary>
     public void Start() {
 
         // Kurt added this so buttons are not interactable
+		// because we need to check if we are talking to the Shopkeeper
+		// but we still need these references
         Button primaryButton = GameObject.Find("PrimaryB").GetComponent<Button>();
         Button secondaryButton = GameObject.Find("SecondaryB").GetComponent<Button>();
         Button defenseButton = GameObject.Find("DefenseB").GetComponent<Button>();
         Button buyButton = GameObject.Find("BuyB").GetComponent<Button>();
 
-        // KURT MOVED THIS UP HERE
-        if (GameInfo.party[0].isAssigned)
+        // This decision structure checks which NPC's are on the team if any and updates the corresponding
+		// slot images
+        if (GameInfo.party[0].isAssigned)//checks party slot 1
         {
             GameObject.Find("EgoPartyImage1").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[0].npc.name);
             GameObject.Find("PartyName0").GetComponent<TextMeshProUGUI>().text = GameInfo.party[0].npc.name;
         }
-        if (GameInfo.party[1].isAssigned)
+        if (GameInfo.party[1].isAssigned)//checks party slot 2
         {
             GameObject.Find("EgoPartyImage2").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/" + GameInfo.party[1].npc.name);
             GameObject.Find("PartyName1").GetComponent<TextMeshProUGUI>().text = GameInfo.party[1].npc.name;
         }
-        ////////////////////////////
 
-        if (GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue should be invisible
+		// now check if we are interacting with an NPC
+        if (GameInfo.currentNPC == -1){//Not interacting with NPC so dialogue side should be invisible
             primaryButton.interactable = false;
             secondaryButton.interactable = false;
             buyButton.interactable = false;
@@ -54,16 +76,17 @@ public class EngageNPC : MonoBehaviour {
             return;
 		}
 
-		//Get button objects
+		//Get button objects for the whole scene
 		trade = GameObject.Find("Trade");
 		choice1 = GameObject.Find("Choice1").GetComponent<Button>();
 		choice2 = GameObject.Find("Choice2").GetComponent<Button>();
 		trade.SetActive(false); //this one needs to be invisible at first, and set visible if the NPC is the shopkeeper
-			if(GameInfo.currentNPC==1){
-				trade.SetActive(true);
-				trade.GetComponent<Button>().onClick.AddListener(beginTrade);
-			}
+		if(GameInfo.currentNPC==1){
+			trade.SetActive(true);
+			trade.GetComponent<Button>().onClick.AddListener(beginTrade);
+		}
 		cancel = GameObject.Find("Cancel").GetComponent<Button>();
+		//add listener for the cancel button
 		cancel.onClick.AddListener(cancelMenu);
 
 		//Get NPC Text Areas: Name and Response
@@ -73,18 +96,20 @@ public class EngageNPC : MonoBehaviour {
 		txt1 = choice1.GetComponentInChildren<Text>();
 		txt2 = choice2.GetComponentInChildren<Text>();
 
+		//here we need to set the inventory buttons false again, even if we are interacting with an NPC
         primaryButton.interactable = false;
         secondaryButton.interactable = false;
         buyButton.interactable = false;
         defenseButton.interactable = false;
 
-        //Set the name of the NPC
+        //Set the name of the NPC if we are interacting with an NPC
         if (GameInfo.currentNPC==-1){
 			npcName.text = "";
 		}
 		else{
 			npcName.text=GameInfo.getName(GameInfo.currentNPC);
 		}
+
 		//update the image to current npc engaging with
 		if(GameInfo.currentNPC==-1){
 			GameObject.Find("NPC_Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("DialogueImages/Empty");
@@ -98,16 +123,16 @@ public class EngageNPC : MonoBehaviour {
  			currentDialogue = GameInfo.getDialogueTree(GameInfo.currentNPC);
 		}
 		
-		//assign base values
+		//assign base values for initial response and textColor
 		textToScreen=LoadDialogue.SetBaseNPCResponses();
 		setTextColor();
 
-		//create the listeners and change the text based on which was clicked.
+		//create the listeners for the buttons
 		if(GameInfo.currentNPC!=-1){
         choice1.onClick.AddListener(()=>clickedOption1(indexForNextOption1));
         choice2.onClick.AddListener(()=>clickedOption2(indexForNextOption2));
 		
-		
+		//this keeps track of how many times the player has interacted with the NPC
 		++GameInfo.encountered[GameInfo.currentNPC];
 		//check if npc is being encountered a lot
         if(GameInfo.encountered[GameInfo.currentNPC] > 3){
