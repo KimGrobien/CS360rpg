@@ -23,7 +23,9 @@ public class Inventory : MonoBehaviour {
     }
 
     public void RefreshUI()
+    
     {
+        Debug.Log(items.Count);
         int i = 0;
         for (; i < items.Count && i < itemSlots.Length; i++)
         {
