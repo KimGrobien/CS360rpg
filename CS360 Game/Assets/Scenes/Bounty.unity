@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 72079001}
   - component: {fileID: 72079007}
   - component: {fileID: 72079002}
+  - component: {fileID: 72079008}
   m_Layer: 0
   m_Name: rock creature
   m_TagString: Untagged
@@ -258,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCID: 9
+  automaticTrigger: 0
 --- !u!61 &72079003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -377,6 +379,19 @@ MonoBehaviour:
   nameOfDotsImage: rc_dots
   nameWall: rc_wall
   npcID: 9
+  automatic: 0
+--- !u!114 &72079008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72079000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotsObjName: rc_dots
 --- !u!1 &85627612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +2983,7 @@ GameObject:
   - component: {fileID: 395647109}
   - component: {fileID: 395647113}
   - component: {fileID: 395647108}
+  - component: {fileID: 395647114}
   m_Layer: 0
   m_Name: rabbit
   m_TagString: Untagged
@@ -2987,6 +3003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCID: 10
+  automaticTrigger: 0
 --- !u!61 &395647109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3106,6 +3123,19 @@ MonoBehaviour:
   nameOfDotsImage: r_dots
   nameWall: r_wall
   npcID: 10
+  automatic: 0
+--- !u!114 &395647114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 395647107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotsObjName: r_dots
 --- !u!1 &493845175
 GameObject:
   m_ObjectHideFlags: 0
@@ -3343,8 +3373,6 @@ GameObject:
   m_Component:
   - component: {fileID: 538468340}
   - component: {fileID: 538468339}
-  - component: {fileID: 538468338}
-  - component: {fileID: 538468337}
   m_Layer: 0
   m_Name: rc_dots
   m_TagString: Untagged
@@ -3352,43 +3380,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &538468337
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 538468336}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.09228444, y: -3.972762}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 3.2, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 10.212101, y: 10.038103}
-  m_EdgeRadius: 0
---- !u!114 &538468338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 538468336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dotsObjName: rc_dots
 --- !u!212 &538468339
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4161,6 +4152,7 @@ GameObject:
   - component: {fileID: 698106192}
   - component: {fileID: 698106196}
   - component: {fileID: 698106191}
+  - component: {fileID: 698106197}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
@@ -4180,6 +4172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCID: 8
+  automaticTrigger: 0
 --- !u!61 &698106192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4299,6 +4292,19 @@ MonoBehaviour:
   nameOfDotsImage: f_dots
   nameWall: f_wall
   npcID: 8
+  automatic: 0
+--- !u!114 &698106197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698106190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotsObjName: f_dots
 --- !u!1 &714816331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4787,8 +4793,6 @@ GameObject:
   m_Component:
   - component: {fileID: 746311091}
   - component: {fileID: 746311090}
-  - component: {fileID: 746311089}
-  - component: {fileID: 746311088}
   m_Layer: 0
   m_Name: r_dots
   m_TagString: Untagged
@@ -4796,43 +4800,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &746311088
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 746311087}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.6225418, y: -3.972762}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 3.2, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.78245, y: 10.038103}
-  m_EdgeRadius: 0
---- !u!114 &746311089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 746311087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dotsObjName: r_dots
 --- !u!212 &746311090
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5932,8 +5899,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1113131008}
   - component: {fileID: 1113131007}
-  - component: {fileID: 1113131006}
-  - component: {fileID: 1113131005}
   m_Layer: 0
   m_Name: f_dots
   m_TagString: Untagged
@@ -5941,43 +5906,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1113131005
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1113131004}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 2.3046842, y: -6.259639}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 3.2, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.8931055, y: 5.889822}
-  m_EdgeRadius: 0
---- !u!114 &1113131006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1113131004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736e88828954ec64ab7f164383708023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dotsObjName: f_dots
 --- !u!212 &1113131007
 SpriteRenderer:
   m_ObjectHideFlags: 0
