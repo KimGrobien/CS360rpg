@@ -45,6 +45,7 @@ public struct equipmentData
     public Color Visability;
 }
 
+// A structure defined to hold data about Ego's party members
 public struct PartySlot{
     public int slotID;
 	public NPCData npc;
@@ -67,9 +68,6 @@ public class GameInfo : MonoBehaviour
     public static int[] equippedIndexes = new int[3];
 
     //Egos Data for Combat
-    //Ego wil always deal damage from 2 to 17 plus whatever bonus from the equipment
-    //private static int AttackRangeMIN = 2;
-    //private static int AttackRangeMAX = 17;
     private static int primaryBonus = 0;
     private static int secondaryBonus = 0;
     private static int primarydefenseBonus = 0;
@@ -81,10 +79,11 @@ public class GameInfo : MonoBehaviour
     public static int prevScene = -1;
     public static Vector3 prevPos;
     public static int currentNPC = -1;
+
     // For equipment
     public static bool buyingMode = false;
-    // atk, defense, heal, price (buy or sell for bounty)
     private static Sprite[] equipmentSprites = new Sprite[15];
+    // atk, defense, heal, price (buy or sell for bounty)
     private static int[,] equipmentStats = new int[15, 4] { { 5, 10, 0, 25 }, { 20, 20, 0, 40 }, { 50, 50, 0, 100 }, { 15, 0, 0, 0 }, { 10, 0, 0, 10 }, { 25, 0, 0, 20 }, { 50, 0, 0, 50 }, { 35, 0, 0, 0 }, { 0, 20, 0, 10 }, { 0, 30, 0, 20 }, { 0, 50, 0, 50 }, { 0, 0, 40, 0 }, { 0, 0, 0, 25 }, { 0, 0, 0, 5 }, { 0, 0, 0, 10 } };
     public static string[,] equipmentStrings = new string[15, 2] { { "Wooden Shield", "Low Protection\nLow Attack\nPrice: $25" }, { "Iron Shield", "Medium Protection\nMedium Attack\nPrice: $40" }, { "Spiked Shield", "High Protection\nHigh Attack\nPrice: $100" }, { "Scalpel", "Low Attack\nA Gift" }, { "Gila Dagger", "Low Attack\nPrice: $10" }, { "Sword", "Medium Attack\nPrice: $20" }, { "Fire Staff", "High Attack\nPrice: $50" }, { "Sickle", "Medium Attack\nA Gift" }, { "Leather Set", "Low Protection\nPrice: $10" }, { "Chainmail Set", "Medium Protection\nPrice: $20" }, { "Knight Set", "High Protection\nPrice: $50" }, { "Heal Spell", "Low Ability to Heal\nA Gift" }, { "Rock Hat", "Redeemable Bounty\nReward: $25" }, { "Rabbit Tail", "Redeemable Bounty\nReward: $5" }, { "Fox Fur", "Redeemable Bounty\nReward: $10" }, };
     private static equipmentData[] equipmentList = new equipmentData[15];
@@ -115,6 +114,7 @@ public class GameInfo : MonoBehaviour
     public static bool[] hasBountyInInventory = {false,false,false};
     
     public static bool end;//true for win game, false for die
+
     // Used to populate all the initial data of the game
     private void Start()
     {
@@ -134,6 +134,7 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    //Check for Main Menu Cue key
     private void Update(){
         if (Input.GetKeyDown(KeyCode.D)){
             //Toggle Menu
@@ -147,6 +148,7 @@ public class GameInfo : MonoBehaviour
             }
         }
     }
+
     // Populate the Equipment List using array data
     private void PopulateEquipmentList()
     {
@@ -242,6 +244,7 @@ public class GameInfo : MonoBehaviour
         NPCList[i].dead = false;
     }
 
+    // Return owned status of item
     public static bool getOwnedStatus(int i)
     {
         return equipmentList[i].owned;
@@ -268,7 +271,6 @@ public class GameInfo : MonoBehaviour
     public static Node[] getDialogueTree(int index){
         return DialogueTrees[index];
     }
-
 
     // Update Egos Primary item bonuses
     public static void UpdateEgosPrimary(equipmentData equip)
@@ -316,6 +318,7 @@ public class GameInfo : MonoBehaviour
         return equipmentList[index].Price;
     }
 
+    // Toggle equipment owned or not
     public static void ToggleEquipped(int i)
     {
         if (i > -1)
@@ -324,23 +327,27 @@ public class GameInfo : MonoBehaviour
         }
     }
 
+    //Return index of item that is equipped at idx index
     public static int ReturnEquippedItem(int idx)
     {
         return equippedIndexes[idx];
     }
 
     //
-    public static void updateParty(int id){
-        }
+    //public static void updateParty(int id){
+    //}
 
+    // Return Ego's Max health
 	public static int getEgoMaxHealth(){
 		return MAXhealth;
 	}
 
+    // Get Ego's current health
     public static int getEgoCurrentHealth(){
 		return currentHealth;
 	}
 
+    // Update the health of the designated NPC
     public static void updateCurrentHealth(int damage){
         if (currentHealth - damage < 0)
         {
@@ -356,26 +363,32 @@ public class GameInfo : MonoBehaviour
         }
     }
 
+    // Get ego's primary attack bonus
 	public static int getEgoPrimary(){
 		return primaryBonus;
 	}
 
+    // Get Ego's Secondary attack bonus
 	public static int getEgoSecondary(){
 		return secondaryBonus;
 	}
 
+    // Get Ego's defense bonus, summation of all three
 	public static int getEgoDefense(){
 		return defenseBonus + primarydefenseBonus + secondarydefenseBonus;
 	}
 
+    // return Ego's heal ability
 	public static int getEgoHeal(){
 		return egoHeal;
 	}
 
+    // Return member of party
 	public static PartySlot getParty(int index){
 		return party [index];
 	}
 
+    // Return name of NPC's primary action
     public static string getPrimaryActionName(int idx)
     {
         if(NPCList[idx].primaryName != ""){
@@ -385,6 +398,7 @@ public class GameInfo : MonoBehaviour
         }
     }
 
+    // Return name of NPC's secondary action
     public static string getSecondaryActionName(int idx)
     {
         if(NPCList[idx].secondaryName != ""){
@@ -394,33 +408,42 @@ public class GameInfo : MonoBehaviour
         }
     }
     
+    // Return NPC data of the Enemy you are interacting with
     public static NPCData getEnemy(int index){
 		return NPCList [index];
 	}
 
-	public static void setDead(int index){
-		NPCList[index].dead = true;
-	}
-    public static bool CheckIfDead(int index)
-    {
-        return NPCList[index].dead;
-    }
-
+    // Set partyMember to dead
     public static void setPartyMemberDead(int index)
     {
         party[index].npc.dead = true;
     }
 
+    // Set Party member to alive
     public static void setPartyMemberAlive(int index)
     {
         party[index].npc.dead = false;
     }
 
+    // Set NPC to alive
     public static void setNPCAlive(int index)
     {
         NPCList[index].dead = false;
     }
 
+    // set NPC to dead
+    public static void setDead(int index)
+    {
+        NPCList[index].dead = true;
+    }
+
+    // Check if NPC is dead
+    public static bool CheckIfDead(int index)
+    {
+        return NPCList[index].dead;
+    }
+
+    // Populate
     public static void PopulatePotentialNPCPartSlot(){
         party[0].isAssigned=false;
         party[1].isAssigned=false;
@@ -435,11 +458,13 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    // Populate party with dummy IDs
     public static void PopulateParty(){
         party[0].slotID = -1;
         party[1].slotID = -1;
     }
 
+    // Update an NPC's heath, may be healing (if damage = negative value)
     public static void updateNPCHealth(int idx, int damage){
         if (NPCList[idx].health - damage < 0)
         {
@@ -455,20 +480,23 @@ public class GameInfo : MonoBehaviour
         }
     }
 
+    // Return health of desired NPC
     public static int getNPCHealth(int idx){
         return NPCList[idx].health;
     }
 
+    // Return the MAX health of a desired NPC
     public static int getNPCMAXHealth(int idx)
     {
         return NPCList[idx].MAXhealth;
     }
     
-
+    // Return Primary Bonus for Ego
     public static int getPrimaryAttackBonus(){
         return primaryBonus;
     }
 
+    // Return attack Max for NPC
     public static int getNPCPrimaryAttack(int idx){
         if (idx < 4) {//Recruitable, so return max val
             return NPCList[idx].primaryStat;
@@ -479,6 +507,7 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    //Return second attack number for NPC
     public static int getNPCSecondaryAttack(int idx)
     {
         return NPCList[idx].secondaryStat;

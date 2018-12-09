@@ -252,7 +252,7 @@ public class InventoryController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Equip the item to the designated slot and disable it from being eqipped again
+    /// FOR NEXT THREE FUNCTION - Equip the item to the designated slot and disable it from being eqipped again
     /// until another item replaces it
     /// </summary>
     /// <param name="i">This is the item to be equipped</param>
