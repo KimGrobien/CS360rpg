@@ -328,9 +328,10 @@ public class Combat : MonoBehaviour
         else
         {
             // If anker, its a fixed value
-            if (GameInfo.party[1].slotID == 1)
+            if (GameInfo.party[activePlayer].slotID == 1)
             {
                 dmg = GameInfo.getNPCSecondaryAttack(GameInfo.party[activePlayer].slotID);
+                
             }
             // If not anker, range attack
             else

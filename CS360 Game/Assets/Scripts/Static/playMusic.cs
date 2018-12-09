@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class playMusic : MonoBehaviour {
-
+	// AudioSources for each music track played during game. Static so that they maintain position in between scenes
 	private static AudioSource overworld;
 	private static AudioSource battle;
 	private static AudioSource shop;
@@ -16,6 +15,7 @@ public class playMusic : MonoBehaviour {
 
 	// Use this for initialization
 
+	// PlayMusic plays the specified audio track
 	public static void PlayMusic(string id)
     {
 		switch (id) {
@@ -45,7 +45,7 @@ public class playMusic : MonoBehaviour {
 				break;
 		}
 	}
- 
+ // StopMusic stops the specified audio track
     public static void StopMusic(string id)
     {
 		switch (id) {
@@ -75,7 +75,7 @@ public class playMusic : MonoBehaviour {
 				break;
 		}
     }
-
+// StopAllMusic stops all the audio tracks
 	public static void StopAllMusic(){
 		overworld.Stop();
 		shop.Stop();
@@ -86,7 +86,7 @@ public class playMusic : MonoBehaviour {
 		lose.Stop();
 		win.Stop();
 	}
-
+	//PlayMusicBySceneName plays the track appropriate to a specified scene name
 	public static void PlayMusicBySceneName(string name){
 		switch (name){
 			case "Start": case "Town": case "Castle": case "Bounty":
